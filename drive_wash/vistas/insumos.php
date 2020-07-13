@@ -54,7 +54,7 @@ if ($_SESSION['almacen']==1)
                         <form name="formulario" id="formulario" method="POST">
                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <label>Nombre(*):</label>
-                            <input type="text" name="id" id="id">
+                            <input type="hidden" name="id" id="id">
                             <input type="text" class="form-control" name="nombre" id="nombre" maxlength="100" placeholder="Nombre" required>
                           </div>
                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">

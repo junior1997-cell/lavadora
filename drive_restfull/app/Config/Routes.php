@@ -31,14 +31,15 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
+$routes->resource('activInsumo');
+$routes->resource('ActivarPrenda');
+$routes->resource('Acttipolavado');
 $routes->resource('registros');
 $routes->resource('clientes');
 $routes->resource('insumos');
-$routes->resource('Usuariopermiso');
-$routes->resource('Distrito');
-$routes->resource('Cargo'); 
-$routes->resource('Permiso'); 
-$routes->resource('Tipodoc'); 
+$routes->resource('Prendas');
+$routes->resource('Delivery');
+$routes->resource('TipoLavado');
 
 
 /**

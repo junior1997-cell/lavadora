@@ -7,25 +7,17 @@ require_once "../modelos/Usuario.php";
 
 $usuario=new Usuario();
 
-
-// id ES UNA VARIABLE ENVIADA DESDE LA VISTA USUARIOS PARA EDITAR
-$id=isset($_POST["id"])? limpiarCadena($_POST["id"]):"";
-$tipo_doc=isset($_POST["tipo_documento"])? limpiarCadena($_POST["tipo_documento"]):"";
-// DNI ES UNA VARIABLE ENVIADA DESDE LA VISTA USUARIOS
-$dni=isset($_POST["dni"])? limpiarCadena($_POST["dni"]):"";
-$nombres=isset($_POST["nombres"])? limpiarCadena($_POST["nombres"]):"";
-$apellidos=isset($_POST["apellidos"])? limpiarCadena($_POST["apellidos"]):"";
-$razonsocial=isset($_POST["razonsocial"])? limpiarCadena($_POST["razonsocial"]):"";
-$sexo=isset($_POST["sexo"])? limpiarCadena($_POST["sexo"]):"";
+$idusuario=isset($_POST["idusuario"])? limpiarCadena($_POST["idusuario"]):"";
+$nombre=isset($_POST["nombre"])? limpiarCadena($_POST["nombre"]):"";
+$tipo_documento=isset($_POST["tipo_documento"])? limpiarCadena($_POST["tipo_documento"]):"";
+$num_documento=isset($_POST["num_documento"])? limpiarCadena($_POST["num_documento"]):"";
+$direccion=isset($_POST["direccion"])? limpiarCadena($_POST["direccion"]):"";
+$telefono=isset($_POST["telefono"])? limpiarCadena($_POST["telefono"]):"";
+$email=isset($_POST["email"])? limpiarCadena($_POST["email"]):"";
+$cargo=isset($_POST["cargo"])? limpiarCadena($_POST["cargo"]):"";
 $login=isset($_POST["login"])? limpiarCadena($_POST["login"]):"";
 $clave=isset($_POST["clave"])? limpiarCadena($_POST["clave"]):"";
-$celular=isset($_POST["celular"])? limpiarCadena($_POST["celular"]):"";
-$id_cargo=isset($_POST["id_cargo"])? limpiarCadena($_POST["id_cargo"]):"";
-$id_distrito=isset($_POST["id_distrito"])? limpiarCadena($_POST["id_distrito"]):"";
-$direccion=isset($_POST["direccion"])? limpiarCadena($_POST["direccion"]):"";
 $imagen=isset($_POST["imagen"])? limpiarCadena($_POST["imagen"]):"";
-
-
 
 switch ($_GET["op"]){
 	case 'guardaryeditar':
@@ -38,9 +30,6 @@ switch ($_GET["op"]){
 			//Validamos el acceso solo al usuario logueado y autorizado.
 			if ($_SESSION['almacen']==1)
 			{
-
-			
-
 				if (!file_exists($_FILES['imagen']['tmp_name']) || !is_uploaded_file($_FILES['imagen']['tmp_name']))
 				{
 					$imagen=$_POST["imagenactual"];
@@ -54,43 +43,15 @@ switch ($_GET["op"]){
 						move_uploaded_file($_FILES["imagen"]["tmp_name"], "../files/usuarios/" . $imagen);
 					}
 				}
-				
+				//Hash SHA256 en la contraseña
+				$clavehash=hash("SHA256",$clave);
 
-				// validamos "razonsocial" SI ESTA VACIA O TIENE DATOS
-				if(empty($razonsocial)){
-					$nomb=$nombres;
-				}else{
-					$nomb=$razonsocial;
-				}
-
-				// validamos "clave_actual" SI ESTA VACIA O TIENE DATOS
-				if(empty($clave)){
-					$clavehash=$_POST["clave_actual"];
-				}else{
-
-					//Hash SHA256 en la contraseña, para encriptar.
-					$clavehash=hash("SHA256",$clave);
-				}
-				// validamos "sexo" SI ESTA VACIA O TIENE DATOS
-				if(empty($sexo)){
-					$sex=$_POST["sexo_actual"];
-				}else{
-					$sex=$sexo;
-				}
-
-
-				// Validamos "id" SI ESTA VACIA O TIENE DATOS para "guardar" o "editar"
-				if (empty($id)){
-					$rspta=$usuario->guardar_api_usuario($tipo_doc,$dni,$nomb,$apellidos,$sex,$login,
-						$clavehash,$celular,$id_cargo,$id_distrito,$direccion,$imagen);
-
-						// $_POST['permiso']
+				if (empty($idusuario)){
+					$rspta=$usuario->insertar($nombre,$tipo_documento,$num_documento,$direccion,$telefono,$email,$cargo,$login,$clavehash,$imagen,$_POST['permiso']);
 					echo $rspta ? "Usuario registrado" : "No se pudieron registrar todos los datos del usuario";
 				}
 				else {
-					$rspta=$usuario->editar_api_usuario($id,$tipo_doc,$dni,$nomb,$apellidos,$sex,$login,$clavehash,$celular,$id_cargo,$id_distrito,$direccion,$imagen);
-
-						// $_POST['permiso']
+					$rspta=$usuario->editar($idusuario,$nombre,$tipo_documento,$num_documento,$direccion,$telefono,$email,$cargo,$login,$clavehash,$imagen,$_POST['permiso']);
 					echo $rspta ? "Usuario actualizado" : "Usuario no se pudo actualizar";
 				}
 			//Fin de las validaciones de acceso
@@ -112,7 +73,7 @@ switch ($_GET["op"]){
 			//Validamos el acceso solo al usuario logueado y autorizado.
 			if ($_SESSION['almacen']==1)
 			{
-				$rspta=$usuario->borrar_api_usuario($id);
+				$rspta=$usuario->desactivar($idusuario);
  				echo $rspta ? "Usuario Desactivado" : "Usuario no se puede desactivar";
 			//Fin de las validaciones de acceso
 			}
@@ -133,7 +94,7 @@ switch ($_GET["op"]){
 			//Validamos el acceso solo al usuario logueado y autorizado.
 			if ($_SESSION['almacen']==1)
 			{
-				$rspta=$usuario->recuperar_api_usuario($id);
+				$rspta=$usuario->activar($idusuario);
  				echo $rspta ? "Usuario activado" : "Usuario no se puede activar";
 			//Fin de las validaciones de acceso
 			}
@@ -154,16 +115,15 @@ switch ($_GET["op"]){
 			//Validamos el acceso solo al usuario logueado y autorizado.
 			if ($_SESSION['almacen']==1)
 			{
-				
-				//var_dump($dni); die;
-				$rspta=$usuario->listar_one_api_persona_local($id);				
-			 		//Vamos a declarar un srray	 		
-			 	echo json_encode($rspta);
-		
-				//Fin de las validaciones de acceso
-			}else{
+				$rspta=$usuario->listar_una_persona_api($idusuario);
+		 		//Codificar el resultado utilizando json
 
-		  		require 'noacceso.php';
+		 		echo json_encode($rspta);
+			//Fin de las validaciones de acceso
+			}
+			else
+			{
+		  	require 'noacceso.php';
 			}
 		}		
 	break;
@@ -178,32 +138,26 @@ switch ($_GET["op"]){
 			//Validamos el acceso solo al usuario logueado y autorizado.
 			if ($_SESSION['almacen']==1)
 			{
-				$rspta=$usuario->listar_all_api_persona_local();				
+				$rspta=$usuario->captura_reniec();
+				
 		 		//Vamos a declarar un array
 		 		//var_dump($rspta); die;
-		 		$a="1";
 		 		$data =array();
-		 		foreach($rspta["Detalle"] as $reg ){
+		 		 
 		 			$data[]=array(
-		 				"0"=>($reg['estado'])?'<button class="btn btn-warning" onclick="mostrar('.$reg['id'].')"><i class="fa fa-pencil"></i></button>'.' <button class="btn btn-danger" onclick="desactivar('.$reg['id'].')"><i class="fa fa-trash"></i></button>':'<button class="btn btn-warning" onclick="mostrar('.$reg['id'].')"><i class="fa fa-pencil"></i></button>'.' <button class="btn btn-primary" onclick="activar('.$reg['id'].')"><i class="fa fa-check"></i></button>',	
-		 				"1"=>$reg['nombre']." ".$reg['apellidos'],
-
-		 				
-
-		 				"2"=>$reg['id_sexo'],
-		 				
-		 				
-		 				"3"=>$reg['id_tipo_doc'].": ".$reg['num_doc'],
-		 				"4"=>$reg['email'],
-		 				
-		 				"5"=>$reg['celular'],
-		 				"6"=>$reg['id_cargo'],
-		 				"7"=>$reg['id_distrito'],
-		 				"8"=>"<img src='../files/usuarios/".$reg['imagen']."' height='40px' width='40px' >",
-		 				"9"=>($reg['estado'])?'<span class="label bg-green">Activado</span>':
+		 				"0"=>$rspta['dni'],	
+		 				"1"=>$rspta['nombres'],
+		 				"2"=>$rspta['nombres']." ".$rspta['apellidoPaterno'],
+		 				"3"=>$rspta['apellidoMaterno'],
+		 				"4"=>$rspta['nombres'].": ".$rspta['apellidoPaterno'],
+		 				"5"=>$rspta['nombres'],
+		 				"6"=>$rspta['nombres'],
+		 				"7"=>$rspta['nombres'],
+		 				"8"=>$rspta['nombres'],
+		 				"9"=>($rspta['nombres'])?'<span class="label bg-green">Activado</span>':
 		 				'<span class="label bg-red">Desactivado</span>'
-		 			);
-		 		}
+		 				);
+		 		
 
 				//var_dump ($data); die;
 		 		$results = array(
@@ -225,26 +179,25 @@ switch ($_GET["op"]){
 		//Obtenemos todos los permisos de la tabla permisos
 		require_once "../modelos/Permiso.php";
 		$permiso = new Permiso();
-		$rspta = $permiso->listar_all_api_permiso();
+		$rspta = $permiso->listar();
 
 		//Obtener los permisos asignados al usuario
-		 $id=$_GET['id'];
-		$marcados = $usuario->listar_api_permiso_marcado_local($id);
-		// //Declaramos el array para almacenar todos los permisos marcados
-		// $valores=array();
+		$id=$_GET['id'];
+		$marcados = $usuario->listarmarcados($id);
+		//Declaramos el array para almacenar todos los permisos marcados
+		$valores=array();
 
-		// //Almacenar los permisos asignados al usuario en el array
-		// foreach($marcados->fetch_object()as $per )
-		// 	{
-		// 		array_push($valores, $per->idpermiso);
-		// 	}
+		//Almacenar los permisos asignados al usuario en el array
+		while ($per = $marcados->fetch_object())
+			{
+				array_push($valores, $per->idpermiso);
+			}
 
 		//Mostramos la lista de permisos en la vista y si están o no marcados
-		foreach($rspta['Detalle']as $reg)
+		while ($reg = $rspta->fetch_object())
 				{
 					$sw=in_array($reg->idpermiso,$valores)?'checked':'';
-
-					echo '<li>SASS <input type="checkbox" '.$sw.'  name="'.$reg['nombre'].'" value="'.$reg['id'].'">'.$reg['nombre'].'</li>';
+					echo '<li> <input type="checkbox" '.$sw.'  name="permiso[]" value="'.$reg->idpermiso.'">'.$reg->nombre.'</li>';
 				}
 	break;
 
@@ -257,7 +210,7 @@ switch ($_GET["op"]){
 
 		$rspta=$usuario->verificar($logina, $clavea);
 
-		$fetch=$rspta->fetch_object(); 
+		$fetch=$rspta->fetch_object();
 
 		if (isset($fetch))
 	    {
@@ -308,184 +261,44 @@ switch ($_GET["op"]){
 	    }
 	    echo json_encode($fetch);
 	break;
-
-	case 'sunat':
-		if (!isset($_SESSION["nombre"]))
-		{
-		  header("Location: ../vistas/login.html");//Validamos el acceso solo a los usuarios logueados al sistema.
-		}
-		else
-		{
-			//Validamos el acceso solo al usuario logueado y autorizado.
-			if ($_SESSION['almacen']==1)
-			{			
-				//var_dump($dni); die;
-				$rspta=$usuario->captura_unic_sunat($dni);
-		 		//Codificar el resultado utilizando json
-		 		//var_dump($rspta); die;
-		 		$data =array();
-
-		 		 	$data[]=array(
-		 				"0"=>$rspta['ruc'],	
-		 				"1"=>$rspta['razonSocial'],
-		 				"2"=>$rspta['direccion']." - ".$rspta['distrito']." - ".$rspta['provincia']." - ".$rspta['departamento'],
-		 				"3"=>"DNI(*):"
-		 				 
-		 				);
-		 			echo json_encode($data);	
-			//Fin de las validaciones de acceso
-			}
-			else
-			{
-		  	require 'noacceso.php';
-			}
-		}		
-	break;
 	case 'reniec':
-		if (!isset($_SESSION["nombre"]))
-		{
-		  header("Location: ../vistas/login.html");//Validamos el acceso solo a los usuarios logueados al sistema.
-		}
-		else
-		{
-			//Validamos el acceso solo al usuario logueado y autorizado.
+		//Validamos el acceso solo al usuario logueado y autorizado.
 			if ($_SESSION['almacen']==1)
-			{			
-				// var_dump($dni);
-				$rspta=$usuario->captura_unic_reniec($dni);
-		 		//Codificar el resultado utilizando json
-		 		// var_dump($rspta); die;
+			{
+				$rspta=$usuario->captura_reniec();
+				
+		 		//Vamos a declarar un array
+		 		var_dump($rspta); die;
 		 		$data =array();
-
-		 		 		$data[]=array(
-		 				"0"=>$rspta['dni'],	
-		 				"1"=>$rspta['nombres'],
-		 				"2"=>$rspta['apellidoPaterno']." ".$rspta['apellidoMaterno'],
-		 				"3"=>"DNI(*):"
-		 				 
+		 		while ($reg=$rspta->fetch_object()){
+		 			$data[]=array(
+		 				"0"=>($reg->condicion)?'<button class="btn btn-warning" onclick="mostrar('.$reg->idusuario.')"><i class="fa fa-pencil"></i></button>'.
+		 					' <button class="btn btn-danger" onclick="desactivar('.$reg->idusuario.')"><i class="fa fa-close"></i></button>':
+		 					'<button class="btn btn-warning" onclick="mostrar('.$reg->idusuario.')"><i class="fa fa-pencil"></i></button>'.
+		 					' <button class="btn btn-primary" onclick="activar('.$reg->idusuario.')"><i class="fa fa-check"></i></button>',
+		 				"1"=>$reg->nombre,
+		 				"2"=>$reg->tipo_documento,
+		 				"3"=>$reg->num_documento,
+		 				"4"=>$reg->telefono,
+		 				"5"=>$reg->email,
+		 				"6"=>$reg->login,
+		 				"7"=>"<img src='../files/usuarios/".$reg->imagen."' height='50px' width='50px' >",
+		 				"8"=>($reg->condicion)?'<span class="label bg-green">Activado</span>':
+		 				'<span class="label bg-red">Desactivado</span>'
 		 				);
-		 			echo json_encode($data);	
+		 		}
+
+				//var_dump ($data); die;
+		 		$results = array($data);
+		 		echo json_encode($results);
 			//Fin de las validaciones de acceso
 			}
 			else
 			{
 		  	require 'noacceso.php';
 			}
-		}		
-	break;
 
-	case 'select_distrito':
-		if (!isset($_SESSION["nombre"]))
-		{
-		  header("Location: ../vistas/login.html");//Validamos el acceso solo a los usuarios logueados al sistema.
-		}
-		else
-		{
-			//Validamos el acceso solo al usuario logueado y autorizado.
-			if ($_SESSION['almacen']==1)
-			{			
-				//var_dump($dni); die;
-				$rspta=$usuario->listar_all_api_distrito();
-		 		//Codificar el resultado utilizando json
-		 		//var_dump($rspta); die;		 		 
-		 			foreach($rspta["Detalle"] as $reg ){	
-		 		 		 
-		 				echo '<option value=' . $reg['id'] . '>' . $reg['nombre'] . '</option>';		 				 		 
-		 		 	}
-		 			 
-			//Fin de las validaciones de acceso
-			}
-			else
-			{
-		  	require 'noacceso.php';
-			}
-		}		
 	break;
-	case 'select_cargo':
-		if (!isset($_SESSION["nombre"]))
-		{
-		  header("Location: ../vistas/login.html");//Validamos el acceso solo a los usuarios logueados al sistema.
-		}
-		else
-		{
-			//Validamos el acceso solo al usuario logueado y autorizado.
-			if ($_SESSION['almacen']==1)
-			{			
-				//var_dump($dni); die;
-				$rspta=$usuario->listar_all_api_cargo();
-		 		//Codificar el resultado utilizando json
-		 		//var_dump($rspta); die;		 		 
-		 			foreach($rspta["Detalle"] as $reg ){	
-		 		 		 
-		 				echo '<option value=' . $reg['id'] . '>' . $reg['nombre'] . '</option>';		 				 		 
-		 		 	}
-		 			 
-			//Fin de las validaciones de acceso
-			}
-			else
-			{
-		  	require 'noacceso.php';
-			}
-		}		
-	break;
-
-	case 'select_tipo_doc':
-		if (!isset($_SESSION["nombre"]))
-		{
-		  header("Location: ../vistas/login.html");//Validamos el acceso solo a los usuarios logueados al sistema.
-		}
-		else
-		{
-			//Validamos el acceso solo al usuario logueado y autorizado.
-			if ($_SESSION['almacen']==1)
-			{			
-				//var_dump($dni); die;
-				$rspta=$usuario->listar_all_api_tipo_doc();
-		 		//Codificar el resultado utilizando json
-		 		//var_dump($rspta); die;		 		 
-		 			foreach($rspta["Detalle"] as $reg ){	
-		 		 		 
-		 				echo '<option value="' . $reg['id'] . '">' . $reg['nombre'] . '</option>';		 				 		 
-		 		 	}
-		 			 
-			//Fin de las validaciones de acceso
-			}
-			else
-			{
-		  	require 'noacceso.php';
-			}
-		}		
-	break;
-
-	case 'select_sexo':
-		if (!isset($_SESSION["nombre"]))
-		{
-		  header("Location: ../vistas/login.html");//Validamos el acceso solo a los usuarios logueados al sistema.
-		}
-		else
-		{
-			//Validamos el acceso solo al usuario logueado y autorizado.
-			if ($_SESSION['almacen']==1)
-			{			
-				//var_dump($dni); die;
-				$rspta=$usuario->listar_all_api_sexo();
-		 		//Codificar el resultado utilizando json
-		 		//var_dump($rspta); die;		 		 
-		 			foreach($rspta["Detalle"] as $reg ){	
-		 		 		 
-		 				echo '<option value="' . $reg['id'] . '">' . $reg['nombre'] . '</option>';		 				 		 
-		 		 	}
-		 			 
-			//Fin de las validaciones de acceso
-			}
-			else
-			{
-		  	require 'noacceso.php';
-			}
-		}		
-	break;
-
-
 	case 'salir':
 		//Limpiamos las variables de sesión   
         session_unset();

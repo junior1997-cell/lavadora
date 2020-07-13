@@ -62,28 +62,30 @@
                         a través del siguiente formulario:
                     </p>        
                 </div>
+                <div id="ocultar">
+                    <div class="row col-xl-8 offset-2 bg-dark text-white font-weight-bold">
+                        <?php
+                        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                            print_r($datos['Detalle']);
+                        }
+                        ?>
+                    </div>
+                    <div class="row col-xl-8 offset-2 bg-success text-white font-weight-bold">
+                        <?php
+                        if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-                <div class="row col-xl-8 offset-2 bg-dark text-white font-weight-bold">
-                    <?php
-                    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                        print_r($datos['Detalle']);
-                    }
-                    ?>
-                </div>
-                <div class="row col-xl-8 offset-2 bg-success text-white font-weight-bold">
-                    <?php
-                    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                        print_r("Cliente id: ".$datos['Credenciales']['cliente_id']);
-                    }
-                    ?>
-                </div>
-                <div class="row col-xl-8 offset-2 bg-info text-white font-weight-bold">
+                            print_r($datos['Credenciales']['cliente_id']);
+                        }
+                        ?>
+                    </div>
+                    <div class="row col-xl-8 offset-2 bg-info text-white font-weight-bold">
 
-                    <?php
-                    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                        print_r("Llave secreta: ".$datos['Credenciales']['llave_secreta']);
-                    }
-                    ?>
+                        <?php
+                        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                            print_r("Llave secreta: ".$datos['Credenciales']['llave_secreta']);
+                        }
+                        ?>
+                    </div>
                 </div>
             </div>
         </div>      
@@ -108,11 +110,89 @@
                             <input type="email" name="email" placeholder="E-mail" class="form-control form-control-sm" required>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-success btn-sm btn-block registrar">Registrar</button>
+                    <div class="row">
+                        <div class="form-group col-sm-9">
+                            <button type="submit" class="btn btn-success btn-sm btn-block registrar" id="registrar">Registrar</button>
+                        </div>
+                        <div class="form-group col-sm-3">
+                            <button type="button" class="btn btn-danger btn-sm btn-block"data-toggle="modal" data-target=".bd-example-modal-lg">Verificar</button>
+                        </div>
+                    
+                    </div>
                 </form>
             </div>
         </div>
+           
     </seccion>
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="x" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                 <div class="modal-header" style=" background: #5DADE2;">
+                    <div class="row col-xl-11 offset-0 p-3 mb-2 bg-white text-dark" style="margin-left: .1rem!important; background: #5DADE2!important;">
+                        <?php
+                        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                            print_r($datos['Detalle']);
+                        }
+                        ?>
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                      <div class="modal-body">
+                        <div class="row col-xl-12 offset-0 p-3 mb-2 bg-info text-dark" style="margin-left: .1rem!important; background: #FEF9E7!important;" >
+                            <?php
+                            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                                print_r("Cliente id: ".$datos['Credenciales']['cliente_id']);
+                                //echo "Aquie el cliente id de la api";
+                            }
+                            ?>
+                        </div>
+                        <div class="row col-xl-12 offset-0 p-3 mb-2 bg-secondary text-dark" style="margin-left: .1rem!important; background: #FEF9E7!important;">
+
+                            <?php
+                            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                                print_r("Llave secreta: ".$datos['Credenciales']['llave_secreta']);
+                            }
+                           // echo "hola soy soy tu ";
+                            ?>
+                        </div>
+                  </div>
+                        <div class="modal-footer">
+                  </div>
+            </div>
+          </div>
+</div>
       
     </body>
 </html>
+
+<script>
+    
+    $('#ocultar').hide();
+
+    $(document).ready(function(){ 
+
+  
+   
+  $("#btn3").click(function(){
+          VanillaToasts.create({
+              title: 'Message Title',
+              text: 'Notification text',
+              type: 'error',
+              icon: 'img/error.png',
+               timeout: 6000
+          });
+      });       
+    
+    $("#registrar").click(function(){
+        VanillaToasts.create({
+            title: 'Message Title',
+            text: 'Notification text',
+            type: 'success',
+            icon: 'img/success.png',
+             timeout: 6000
+        });
+    });  
+});     
+</script>

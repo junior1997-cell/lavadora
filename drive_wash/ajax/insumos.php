@@ -51,12 +51,12 @@ switch ($_GET["op"]){
 	break;
 
 	case 'desactivar':
-		$rspta=$insumos->desactivar($id);
+		$rspta=$insumos->Dasactivar_uniq_insumo($id);
  		echo $rspta ? "Insumo Desactivado" : "Insumo no se puede desactivar";
 	break;
 
 	case 'activar':
-		$rspta=$insumos->activar($id);
+		$rspta=$insumos->Activar_uniq_insumo($id);
  		echo $rspta ? "Insumo activado" : "Insumo no se puede activar";
 	break;
 

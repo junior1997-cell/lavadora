@@ -14,6 +14,17 @@ function init(){
 	            $("#idcliente").html(r);
 	            $('#idcliente').selectpicker('refresh');
 	});
+		//Cargamos los items al select delivery
+	$.post("../ajax/venta.php?op=listardelivey", function(r){
+        $("#delivery").html(r);
+        $('#delivery').selectpicker('refresh');
+	});
+			//Cargamos los items al select delivery
+	$.post("../ajax/venta.php?op=listartipolavado", function(r){
+        $("#id_tipo_lavado").html(r);
+        $('#id_tipo_lavado').selectpicker('refresh');
+	});
+
 	$('#mVentas').addClass("treeview active");
     $('#lVentas').addClass("active");
 }
@@ -35,9 +46,10 @@ function limpiar()
 	var now = new Date();
 	var day = ("0" + now.getDate()).slice(-2);
 	var month = ("0" + (now.getMonth() + 1)).slice(-2);
-	var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
+	var today = now.getFullYear()+"-"+(month)+"-"+(day);
     $('#fecha_hora').val(today);
-
+//console.log(today);
+//alert(today);
     //Marcamos el primer tipo_documento
     $("#tipo_comprobante").val("Boleta");
 	$("#tipo_comprobante").selectpicker('refresh');
@@ -58,6 +70,7 @@ function mostrarform(flag)
 		$("#btnGuardar").hide();
 		$("#btnCancelar").show();
 		$("#btnAgregarArt").show();
+		$("#btnAgregartipolav").show();
 		detalles=0;
 	}
 	else
@@ -119,7 +132,7 @@ function listar()
 //Función ListarArticulos
 function listarArticulos()
 {
-	tabla=$('#tblarticulos').dataTable(
+	tabla=$('#tblPrendas').dataTable(
 	{
 		"aProcessing": true,//Activamos el procesamiento del datatables
 	    "aServerSide": true,//Paginación y filtrado realizados por el servidor
@@ -129,7 +142,7 @@ function listarArticulos()
 		        ],
 		"ajax":
 				{
-					url: '../ajax/venta.php?op=listarArticulosVenta',
+					url: '../ajax/venta.php?op=listarprendaslavado',
 					type : "get",
 					dataType : "json",						
 					error: function(e){
@@ -137,7 +150,32 @@ function listarArticulos()
 					}
 				},
 		"bDestroy": true,
-		"iDisplayLength": 5,//Paginación
+		"iDisplayLength": 4,//Paginación
+	    "order": [[ 0, "desc" ]]//Ordenar (columna,orden)
+	}).DataTable();
+}
+//Función Listartipopedido
+function listartipopedido()
+{
+	tabla=$('#tblPidopedido').dataTable(
+	{
+		"aProcessing": true,//Activamos el procesamiento del datatables
+	    "aServerSide": true,//Paginación y filtrado realizados por el servidor
+	    dom: 'Bfrtip',//Definimos los elementos del control de tabla
+	    buttons: [		          
+		            
+		        ],
+		"ajax":
+				{
+					url: '../ajax/venta.php?op=listartipolavado',
+					type : "get",
+					dataType : "json",						
+					error: function(e){
+						console.log(e.responseText);	
+					}
+				},
+		"bDestroy": true,
+		"iDisplayLength": 4,//Paginación
 	    "order": [[ 0, "desc" ]]//Ordenar (columna,orden)
 	}).DataTable();
 }
@@ -188,6 +226,7 @@ function mostrar(idventa)
 		$("#btnGuardar").hide();
 		$("#btnCancelar").show();
 		$("#btnAgregarArt").hide();
+		$("#btnAgregartipolav").hide();
  	});
 
  	$.post("../ajax/venta.php?op=listarDetalle&id="+idventa,function(r){
@@ -230,6 +269,26 @@ function marcarImpuesto()
         $("#impuesto").val("0"); 
     }
   }
+
+$('.selectpicker').on('changed.bs.select', function (e) {
+    	var selected = e.target.value;
+    	console.log(selected);
+
+    	// NO SELECT
+    if(selected == "1"){
+    	$("#delivery").hide();
+    
+    }
+        if(selected == "2"){
+    	$("#delivery").show();
+    
+    }
+        if(selected == "3"){
+    	$("#delivery").show();
+    
+    }
+
+});
 
 function agregarDetalle(idarticulo,articulo,precio_venta)
   {
@@ -275,18 +334,38 @@ function agregarDetalle(idarticulo,articulo,precio_venta)
     	inpS.value=(inpC.value * inpP.value)-inpD.value;
     	document.getElementsByName("subtotal")[i].innerHTML = inpS.value;
     }
-    calcularTotales();
-
+    calcularTotales(); 
   }
+    function ShowSelected(){
+		/* Para obtener el valor */
+		var cod = document.getElementById("delivery").value;
+		 if (cod == "2" || cod == "3" || cod == "4") {
+			    
+		}else{}
+	}
+ 
   function calcularTotales(){
   	var sub = document.getElementsByName("subtotal");
   	var total = 0.0;
-
+  	var delivey = 1.0;
+  	var porcentaje=0.15;
   	for (var i = 0; i <sub.length; i++) {
 		total += document.getElementsByName("subtotal")[i].value;
 	}
-	$("#total").html("S/. " + total);
-    $("#total_venta").val(total);
+	x=total*porcentaje;
+	//var numb = 123.23454;
+	suma = x.toFixed(1);
+
+	tipo=typeof suma;
+	console.log(suma,tipo);
+	//y=parsefloat(suma);
+	y=parseFloat(suma, 10);
+	tipoy=typeof y;
+	console.log(tipoy, y);
+	totall=y+total;
+	//x = (totall);
+	$("#total").html("S/. " + totall);
+    $("#total_venta").val(totall);
     evaluar();
   }
 

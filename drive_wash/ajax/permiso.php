@@ -19,18 +19,14 @@ $permiso=new Permiso();
 switch ($_GET["op"]){
 	
 	case 'listar':
-		$rspta=$permiso->listar_all_api_permiso();
+		$rspta=$permiso->listar();
  		//Vamos a declarar un array
  		$data= Array();
 
- 		$cont=1;
- 		foreach($rspta["Detalle"] as $reg){
+ 		while ($reg=$rspta->fetch_object()){
  			$data[]=array(
- 				
- 				"0"=>$cont,
- 				"1"=>$reg['nombre']
+ 				"0"=>$reg->nombre
  				);
- 			$cont=$cont+1;
  		}
  		$results = array(
  			"sEcho"=>1, //Información para el datatables

@@ -18,7 +18,7 @@ $venta=new Venta();
 
 $idventa=isset($_POST["idventa"])? limpiarCadena($_POST["idventa"]):"";
 $idcliente=isset($_POST["idcliente"])? limpiarCadena($_POST["idcliente"]):"";
-$idusuario=$_SESSION["idusuario"];
+$id=$_SESSION["id"];
 $tipo_comprobante=isset($_POST["tipo_comprobante"])? limpiarCadena($_POST["tipo_comprobante"]):"";
 $serie_comprobante=isset($_POST["serie_comprobante"])? limpiarCadena($_POST["serie_comprobante"]):"";
 $num_comprobante=isset($_POST["num_comprobante"])? limpiarCadena($_POST["num_comprobante"]):"";
@@ -77,7 +77,7 @@ switch ($_GET["op"]){
                                 </tfoot>';
 	break;
 
-	case 'listar':
+	/*case 'listar':
 		$rspta=$venta->listar();
  		//Vamos a declarar un array
  		$data= Array();
@@ -112,7 +112,7 @@ switch ($_GET["op"]){
  			"aaData"=>$data);
  		echo json_encode($results);
 
-	break;
+	break;*/
 
 	case 'selectCliente':
 		require_once "../modelos/Persona.php";
@@ -126,23 +126,20 @@ switch ($_GET["op"]){
 				}
 	break;
 
-	case 'listarArticulosVenta':
-		require_once "../modelos/Articulo.php";
-		$articulo=new Articulo();
+	case 'listarprendaslavado':
+		require_once "../modelos/Prendas.php";
+		$prendas=new Prendas();
 
-		$rspta=$articulo->listarActivosVenta();
+		$rspta=$prendas->listar_api_prendaslavadoact();
  		//Vamos a declarar un array
  		$data= Array();
-
- 		while ($reg=$rspta->fetch_object()){
+ 		//var_dump($rspta);die;
+ 		foreach ($rspta['Detalle'] as $reg) {
  			$data[]=array(
- 				"0"=>'<button class="btn btn-warning" onclick="agregarDetalle('.$reg->idarticulo.',\''.$reg->nombre.'\',\''.$reg->precio_venta.'\')"><span class="fa fa-plus"></span></button>',
- 				"1"=>$reg->nombre,
- 				"2"=>$reg->categoria,
- 				"3"=>$reg->codigo,
- 				"4"=>$reg->stock,
- 				"5"=>$reg->precio_venta,
- 				"6"=>"<img src='../files/articulos/".$reg->imagen."' height='50px' width='50px' >"
+ 				"0"=>'<button class="btn btn-warning" onclick="agregarDetalle('.$reg['id'].',\''.$reg['nombre'].'\',\''.$reg['precio'].'\')"><span class="fa fa-plus"></span></button>',
+ 				"1"=>$reg['nombre'],
+ 				"2"=>$reg['precio'],
+ 				"3"=>"<img src='../files/prendas/".$reg['imagen']."' height='50px' width='50px' >"
  				);
  		}
  		$results = array(
@@ -152,6 +149,54 @@ switch ($_GET["op"]){
  			"aaData"=>$data);
  		echo json_encode($results);
 	break;
+
+	/*case 'listartipolavado':
+		require_once "../modelos/Tipo_lavado.php";
+		$tipo=new TipoLavado();
+
+		$rspta=$tipo->listar_api_tipolavado_enventa();
+ 		//Vamos a declarar un array
+ 		$data= Array();
+ 		//var_dump($rspta);die;
+ 		foreach ($rspta['Detalle'] as $reg) {
+ 			$data[]=array(
+ 				"0"=>'<button class="btn btn-warning" onclick="agregarDetalle('.$reg['id'].',\''.$reg['nombre'].'\',\''.$reg['precio'].'\')"><span class="fa fa-plus"></span></button>',
+ 				"1"=>$reg['nombre'],
+ 				"2"=>$reg['precio']
+ 				);
+ 		}
+ 		$results = array(
+ 			"sEcho"=>1, //Información para el datatables
+ 			"iTotalRecords"=>count($data), //enviamos el total registros al datatable
+ 			"iTotalDisplayRecords"=>count($data), //enviamos el total registros a visualizar
+ 			"aaData"=>$data);
+ 		echo json_encode($results);
+	break;*/
+
+	case 'listardelivey':
+		require_once "../modelos/Venta.php";
+		$select=new Venta();
+
+		$rspta=$select->select_api_delivey();
+			//Vamos a declarar un array
+		foreach ($rspta['Detalle'] as $reg){
+
+			echo '<option value=' . $reg['id'] . '>' . $reg['nombre'] . '</option>';
+		}
+	break;
+
+	case 'listartipolavado':
+		require_once "../modelos/Tipo_lavado.php";
+		$tipo=new TipoLavado();
+
+		$rspta=$tipo->listar_api_tipolavado_enventa();
+			//Vamos a declarar un array
+		foreach($rspta['Detalle'] as $reg){
+
+			echo '<option value=' . $reg['id'] . '>' . $reg['nombre'] . '</option>';
+		}
+	break;
+
 }
 //Fin de las validaciones de acceso
 }

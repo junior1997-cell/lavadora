@@ -19,8 +19,8 @@ if (strlen(session_id()) < 1)
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="../public/css/_all-skins.min.css">
-    <link rel="apple-touch-icon" href="../files/plantilla/lava5.png">
-    <link rel="shortcut icon" href="../files/plantilla/lava5.png">
+    <link rel="apple-touch-icon" href="../files/plantilla/nimlogo1.png">
+    <link rel="shortcut icon" href="../files/plantilla/nimlogo1.png">
 
     <!-- DATATABLES -->
     <link rel="stylesheet" type="text/css" href="../public/datatables/jquery.dataTables.min.css">    
@@ -36,14 +36,14 @@ if (strlen(session_id()) < 1)
       <header class="main-header">
 
         <!-- Logo -->
-        <a href="index2.html" class="logo">
+        <a href="escritorio.php" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"> 
-            <img src="../files/plantilla/lava5.png" class="img-responsive" style="padding:10px">
+            <img src="../files/plantilla/nimlogo1.png" class="img-responsive" style="padding:2px">
           </span>
           <!-- logo for regular state and mobile devices -->
           <span class="logo-lg">
-            <img src="../files/plantilla/lava_largo.png" class="img-responsive" style="padding:10px">
+            <img src="../files/plantilla/logo.png" class="img-responsive" style="padding:15px; padding-top: 10px; padding-right: 10px; margin: -12px;">
           </span>
         </a>
 
@@ -62,7 +62,7 @@ if (strlen(session_id()) < 1)
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <img src="../files/usuarios/<?php echo $_SESSION['imagen']; ?>" class="user-image" alt="User Image">
-                  <span class="hidden-xs"><?php echo $_SESSION['nombre']," ",$_SESSION['apellidos']; ?></span>
+                  <span class="hidden-xs"><?php echo $_SESSION['nombre']; ?></span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
@@ -70,16 +70,15 @@ if (strlen(session_id()) < 1)
                     <img src="../files/usuarios/<?php echo $_SESSION['imagen']; ?>" class="img-circle" alt="User Image">
                     <p>
                      <?php echo $_SESSION['nombre']; ?>
-                     <span class="hidden-xs"><?php echo $_SESSION['apellidos']; ?></span>
-                      <small><?php echo $_SESSION['id_cargo']; ?></small>
+                      <small><?php echo $_SESSION['cargo']; ?></small>
                     </p>
                   </li>
-                   <hr style="margin:2px 0px !important;">
+                  
                   <!-- Menu Footer-->
-                  <li class="user-footer" style="background-color: #726FB1 !important;">
+                  <li class="user-footer">
                     
-                    <div class="pull-right" >
-                      <a href="../ajax/usuario.php?op=salir" class="btn btn-danger btn-flat">Cerrar</a>
+                    <div class="pull-right">
+                      <a href="../ajax/usuario.php?op=salir" class="btn btn-default btn-flat">Cerrar</a>
                     </div>
                   </li>
                 </ul>
@@ -121,6 +120,8 @@ if (strlen(session_id()) < 1)
                 <li id="lArticulos"><a href="articulo.php"><i class="fa fa-circle-o"></i> Artículos</a></li>
                 <li id="lCategorias"><a href="categoria.php"><i class="fa fa-circle-o"></i> Categorías</a></li>
                 <li id="lCategorias"><a href="insumos.php"><i class="fa fa-circle-o"></i> Insumos</a></li>
+                <li id="lCategorias"><a href="prendas.php"><i class="fa fa-circle-o"></i> Prendas</a></li>
+                <li id="lCategorias"><a href="tipo_lavado.php"><i class="fa fa-circle-o"></i> Tipo lavado </a></li>
               </ul>
             </li>';
             }
@@ -182,18 +183,18 @@ if (strlen(session_id()) < 1)
             {
               echo '<li id="mAcceso" class="treeview">
               <a href="#">
-                <i class="fa fa-calculator"></i> <span>Contabilidad</span>
+                <i class="fa fa-folder"></i> <span>Contabilidad</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li id="lUsuarios"><a href="usuario.php"><i class="fa fa-book"></i> libro diario</a></li>
-                <li id="lPermisos"><a href="permiso.php"><i class="fa fa-book"></i> libro mayor</a></li>
-                <li id="lPermisos"><a href="permiso.php"><i class="fa fa-book"></i> Planilla de remuneraciones </a></li>
-                <li id="lPermisos"><a href="permiso.php"><i class="fa fa-book"></i> Balance de comprobación </a></li>
-                 <li id="lPermisos"><a href="permiso.php"><i class="fa fa-book"></i>EEFF</a></li>
-                  <li id="lPermisos"><a href="permiso.php"><i class="fa fa-book"></i>ERI</a></li>
-                <li id="lUsuarios"><a href="usuario.php"><i class="fa fa-book"></i> Topo de libro</a></li>
-                <li id="lPermisos"><a href="permiso.php"><i class="fa fa-book"></i></a></li>
+                <li id="lUsuarios"><a href="usuario.php"><i class="fa fa-circle-o"></i> libro diario</a></li>
+                <li id="lPermisos"><a href="permiso.php"><i class="fa fa-circle-o"></i> libro mayor</a></li>
+                <li id="lPermisos"><a href="permiso.php"><i class="fa fa-circle-o"></i> Planilla de remuneraciones </a></li>
+                <li id="lPermisos"><a href="permiso.php"><i class="fa fa-circle-o"></i> Balance de comprobación </a></li>
+                 <li id="lPermisos"><a href="permiso.php"><i class="fa fa-circle-o"></i>EEFF</a></li>
+                  <li id="lPermisos"><a href="permiso.php"><i class="fa fa-circle-o"></i>ERI</a></li>
+                <li id="lUsuarios"><a href="usuario.php"><i class="fa fa-circle-o"></i> Topo de libro</a></li>
+                <li id="lPermisos"><a href="permiso.php"><i class="fa fa-circle-o"></i></a></li>
                 
               </ul>
             </li>';

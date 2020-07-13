@@ -26,7 +26,7 @@ class Insumos extends Controller {
                 if ($request->getHeader('Authorization') == 'Authorization: Basic ' . base64_encode($value["cliente_id"] . ":" . $value["llave_secreta"])) {
 
                     $InsumosModel = new InsumosModel($db);
-                    $insumos = $InsumosModel->where('estado',1)
+                    $insumos = $InsumosModel
                             ->findAll();
                     
                     if (!empty($insumos)) {
@@ -220,7 +220,8 @@ class Insumos extends Controller {
                             'nombre' => 'required|string|max_length[255]',
                             'stock' => 'required',
                             'imagen' => 'required|max_length[255]',
-                            'descripcion' => 'required|string|max_length[255]'
+                            'descripcion' => 'string|max_length[255]'
+                            
                         ]);
 
                         $validation->withRequest($this->request)
@@ -240,12 +241,10 @@ class Insumos extends Controller {
                             $insumos = $InsumosModel->find($id);
                             $datos = array(
                                 "nombre" => $datos["nombre"],
-                                "correo" => $datos["correo"],
-                                "zip" => $datos["zip"],
-                                "telefono1" => $datos["telefono1"],
-                                "telefono2" => $datos["telefono2"],
-                                "pais" => $datos["pais"],
-                                "direccion" => $datos["direccion"]
+                                "stock" => $datos["stock"],
+                                "imagen" => $datos["imagen"],
+                                "descripcion" => $datos["descripcion"]
+                            
                             );
 
                             $insumos = $InsumosModel->update($id, $datos);

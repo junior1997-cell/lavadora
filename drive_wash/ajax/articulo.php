@@ -101,11 +101,10 @@ switch ($_GET["op"]){
 
 		$rspta = $categoria->select();
 
-		while ($reg = $rspta->fetch_object()){
-			
+		while ($reg = $rspta->fetch_object())
+				{
 					echo '<option value=' . $reg->idcategoria . '>' . $reg->nombre . '</option>';
-		}
-
+				}
 	break;
 }
 //Fin de las validaciones de acceso
