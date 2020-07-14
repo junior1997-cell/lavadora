@@ -109,7 +109,7 @@ if ($_SESSION['ventas']==1)
 
                           <div class="form-group col-lg-2 col-md-6 col-sm-6 col-xs-12">
                             <label>servicio de lavado (*):</label>
-                            <select name="id_tipo_lavado" id="id_tipo_lavado" class="form-control selectpicker" class="form-control selectpicker" data-live-search="true" required="">
+                            <select name="id_tipo_servicio" id="id_tipo_servicio" class="form-control selectpicker" class="form-control selectpicker" data-live-search="true" required="">
                             </select>
                           </div>
                           <div class="form-group col-lg-2 col-md-4 col-sm-4 col-xs-12">

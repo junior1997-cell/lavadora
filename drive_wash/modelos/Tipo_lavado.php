@@ -219,7 +219,7 @@ Class TipoLavado
 		$response = curl_exec($curl);
 
 		curl_close($curl);
-		$data = json_decode($response);
+		$data = json_decode($response,true);
 		return $data;
 	}
 	

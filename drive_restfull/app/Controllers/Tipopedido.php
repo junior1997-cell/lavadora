@@ -3,10 +3,10 @@
 namespace App\Controllers;
 
 use CodeIgniter\Controller;
-use App\Models\InsumosModel1;
+use App\Models\TipopedidoModel;
 use App\Models\RegistrosModel;
 
-class insumos1 extends Controller {
+class Tipopedido extends Controller {
 
     public function index() {
         //realiza solicitud a services y le decimos que ejecute el metodo request()
@@ -18,24 +18,21 @@ class insumos1 extends Controller {
         $registro = $registroModel->where('estado', 1)
                 ->findAll();
 
-        //$db = \Config\Database::connect();
-        //$pager = \Config\Services::pager();
         foreach ($registro as $key => $value) {
 
             if (array_key_exists('Authorization', $headers) && !empty($headers['Authorization'])) {
 
                 if ($request->getHeader('Authorization') == 'Authorization: Basic ' . base64_encode($value["cliente_id"] . ":" . $value["llave_secreta"])) {
 
-                    $clienteModel = new InsumosModel1($db);
-                    $cliente = $clienteModel->where('estado',1)
-                            ->findAll();
+                    $tipoModel = new TipopedidoModel($db);
+                    $tipo = $tipoModel->findAll();
                     
-                    if (!empty($cliente)) {
+                    if (!empty($tipo)) {
 
                         $data = array(
                             "Status" => 200,
-                            "Total_Resultados" => count($cliente),
-                            "Detalle" => $cliente
+                            "Total_Resultados" => count($tipo),
+                            "Detalle" => $tipo
                                 //"Paginador"=>$paginador
                         );
                     } else {
@@ -65,7 +62,7 @@ class insumos1 extends Controller {
         return json_encode($data, true);
     }
 
-    public function show($id) {
+    /*public function show($id) {
         //realiza solicitud a services y le decimos que ejecute el metodo request()
         $request = \Config\Services::request();
         $validation = \Config\Services::validation();
@@ -354,6 +351,6 @@ class insumos1 extends Controller {
         }
 
         return json_encode($data, true);
-    }
+    }*/
 
 }

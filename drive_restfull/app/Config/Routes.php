@@ -40,7 +40,7 @@ $routes->resource('insumos');
 $routes->resource('Prendas');
 $routes->resource('Delivery');
 $routes->resource('TipoLavado');
-
+$routes->resource('Tipopedido');
 
 /**
  * --------------------------------------------------------------------

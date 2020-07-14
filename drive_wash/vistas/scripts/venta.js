@@ -21,8 +21,8 @@ function init(){
 	});
 			//Cargamos los items al select delivery
 	$.post("../ajax/venta.php?op=listartipolavado", function(r){
-        $("#id_tipo_lavado").html(r);
-        $('#id_tipo_lavado').selectpicker('refresh');
+        $("#id_tipo_servicio").html(r);
+        $('#id_tipo_servicio').selectpicker('refresh');
 	});
 
 	$('#mVentas').addClass("treeview active");
