@@ -24,6 +24,12 @@ function init(){
         $("#id_tipo_servicio").html(r);
         $('#id_tipo_servicio').selectpicker('refresh');
 	});
+				//Cargamos los items al select tipo pedido
+	$.post("../ajax/venta.php?op=listartipopedido", function(r){
+        $("#id_tipo_pedido").html(r);
+        $('#id_tipo_pedido').selectpicker('refresh');
+	});
+
 
 	$('#mVentas').addClass("treeview active");
     $('#lVentas').addClass("active");
@@ -48,12 +54,35 @@ function limpiar()
 	var month = ("0" + (now.getMonth() + 1)).slice(-2);
 	var today = now.getFullYear()+"-"+(month)+"-"+(day);
     $('#fecha_hora').val(today);
-//console.log(today);
+    //oconsole.log(today);
+   // -----------------
+
+
 //alert(today);
     //Marcamos el primer tipo_documento
     $("#tipo_comprobante").val("Boleta");
 	$("#tipo_comprobante").selectpicker('refresh');
 }
+
+//---------------------------------
+var todayDate = new Date();
+var getTodayDate = todayDate.getDate();
+var getTodayMonth =  todayDate.getMonth()+1;
+var getTodayFullYear = todayDate.getFullYear();
+var getCurrentHours = todayDate.getHours();
+var getCurrentMinutes = todayDate.getMinutes();
+var getCurrentAmPm = getCurrentHours >= 12 ? 'PM' : 'AM';
+getCurrentHours = getCurrentHours % 12;
+getCurrentHours = getCurrentHours ? getCurrentHours : 12; 
+getCurrentMinutes = getCurrentMinutes < 10 ? '0'+getCurrentMinutes : getCurrentMinutes;
+var getCurrentDateTime = getTodayDate + '/' + getTodayMonth + '/' + getTodayFullYear + ' ' + getCurrentHours + ':' + getCurrentMinutes + ' ' + getCurrentAmPm;
+//alert(getCurrentDateTime);
+//document.getElementById('fechar_recojo').value=getCurrentDateTime;
+$("#hora_recojo").val(getCurrentDateTime);
+//console.log(getCurrentDateTime);
+
+//console.log(formatAMPM(new Date));
+
 
 //Función mostrar formulario
 function mostrarform(flag)
@@ -294,16 +323,19 @@ function agregarDetalle(idarticulo,articulo,precio_venta)
   {
   	var cantidad=1;
     var descuento=0;
+    var delivey=0;
 
     if (idarticulo!="")
     {
     	var subtotal=cantidad*precio_venta;
+    	//var porcentaje=subtotal*0.15;
     	var fila='<tr class="filas" id="fila'+cont+'">'+
     	'<td><button type="button" class="btn btn-danger" onclick="eliminarDetalle('+cont+')">X</button></td>'+
     	'<td><input type="hidden" name="idarticulo[]" value="'+idarticulo+'">'+articulo+'</td>'+
     	'<td><input type="number" name="cantidad[]" id="cantidad[]" value="'+cantidad+'"></td>'+
     	'<td><input type="number" name="precio_venta[]" id="precio_venta[]" value="'+precio_venta+'"></td>'+
     	'<td><input type="number" name="descuento[]" value="'+descuento+'"></td>'+
+    	'<td><input type="number" name="descuento[]" value="'+delivey+'"></td>'+
     	'<td><span name="subtotal" id="subtotal'+cont+'">'+subtotal+'</span></td>'+
     	'<td><button type="button" onclick="modificarSubototales()" class="btn btn-info"><i class="fa fa-refresh"></i></button></td>'+
     	'</tr>';

@@ -63,11 +63,7 @@ if ($_SESSION['ventas']==1)
                           </div>
                           <div class="form-group col-lg-3 col-md-5 col-sm-6 col-xs-6">
                             <label>tipo pedido(*):</label>
-                            <select id="id_tipo_lavado" name="id_tipo_lavado" class=" form-control selectpicker" data-live-search="true"  required>
-                              <option></option>
-                              <option>Personal</option>
-                              <option>web</option>
-                              <option>Llamada</option>
+                            <select id="id_tipo_pedido" name="id_tipo_pedido" class=" form-control selectpicker" data-live-search="true"  required>
                             </select>
                           </div>
                           <div class="form-group col-lg-6 col-md-8 col-sm-8 col-xs-12">
@@ -114,11 +110,11 @@ if ($_SESSION['ventas']==1)
                           </div>
                           <div class="form-group col-lg-2 col-md-4 col-sm-4 col-xs-12">
                             <label>Fecha recojo(*):</label>
-                            <input type="date" class="form-control" name="fechar_recojo" id="fechar_recojo" required="">
+                            <input type="text" class="form-control" name="hora_recojo" id="hora_recojo" required="" value="" disabled="true">
                           </div>
-                          <div class="form-group col-lg-2 col-md-4 col-sm-4 col-xs-12">
+                          <div class="form-group col-lg-3 col-md-4 col-sm-4 col-xs-12">
                             <label>Fecha Entrega(*):</label>
-                            <input type="date" class="form-control" name="fechar_entrega" id="fechar_entrega" required="">
+                            <input type="datetime-local" class="form-control" name="fecha_hora" id="fecha_hora" required=""> 
                           </div>
                           <div class="form-group col-lg-3 col-md-4 col-sm-4 col-xs-12">
                             <label>Delivery (*):</label>
@@ -143,6 +139,7 @@ if ($_SESSION['ventas']==1)
                                     <th>Cantidad</th>
                                     <th>Precio Venta</th>
                                     <th>Descuento</th>
+                                    <th>Delivery</th>
                                     <th>Subtotal</th>
                                 </thead>
                                 <tbody>
@@ -153,19 +150,10 @@ if ($_SESSION['ventas']==1)
                                     <th></th>
                                     <th></th>
                                     <th></th>
+                                     <th></th>
                                     <th></th>
                                      <th><h4 id="total">S/. 0.00</h4><input type="hidden" name="total_venta" id="total_venta"></th> 
                                 </tfoot>
-                               <tfoot id="delivery">
-                                    <th>Delivery</th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                     <th><h4 id="total">S/. 0.00</h4><input type="hidden" name="total_venta" id="total_venta"></th> 
-                                     
-                                </tfoot>
-
                             </table>
                           </div>
 

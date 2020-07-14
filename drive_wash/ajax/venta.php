@@ -197,6 +197,18 @@ switch ($_GET["op"]){
 		}
 	break;
 
+	case 'listartipopedido':
+		require_once "../modelos/Venta.php";
+		$select=new Venta();
+
+		$rspta=$select->selct_api_tipoPedido();
+			//Vamos a declarar un array
+		foreach ($rspta['Detalle'] as $reg){
+
+			echo '<option value=' . $reg['id'] . '>' . $reg['nombre'] . '</option>';
+		}
+	break;
+
 }
 //Fin de las validaciones de acceso
 }

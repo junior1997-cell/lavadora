@@ -42,18 +42,13 @@ $routes->resource('insumos');
 $routes->resource('Prendas');
 $routes->resource('Delivery');
 $routes->resource('TipoLavado');
-<<<<<<< HEAD
 $routes->resource('Tipopedido');
-=======
-
 // junior rutas
 $routes->resource('Usuariopermiso');
 $routes->resource('Distrito');
 $routes->resource('Cargo'); 
 $routes->resource('Permiso'); 
 $routes->resource('Tipodoc');
-
->>>>>>> c64ca40ed851ed528d99e7982b405763a88454bb
 
 /**
  * --------------------------------------------------------------------

@@ -94,6 +94,31 @@ Class Venta
 		$data=json_decode($response,true);
 		return $data;
 	}
+	public function selct_api_tipoPedido(){
+
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/Tipopedido",
+		  CURLOPT_RETURNTRANSFER => true,
+		  CURLOPT_ENCODING => "",
+		  CURLOPT_MAXREDIRS => 10,
+		  CURLOPT_TIMEOUT => 0,
+		  CURLOPT_FOLLOWLOCATION => true,
+		  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+		  CURLOPT_CUSTOMREQUEST => "GET",
+		  CURLOPT_HTTPHEADER => array(
+		    "Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2Uya29pSGIzNnhSOFJqcDFnU1N1dXNxSkM0VVcwVFAuOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlNlRwcjAwLkZFLmk5MExkcE9uYkhVZnhRMW5nWHZDeQ=="
+		  ),
+		));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+		$data = json_decode($response,true);
+		return $data;
+
+	}
 	
 }
 ?>
