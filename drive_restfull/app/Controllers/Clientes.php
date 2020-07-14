@@ -134,115 +134,128 @@ class Clientes extends Controller {
         return json_encode($data, true);
     }
 
-    public function create() {
-        //realiza solicitud a services y le decimos que ejecute el metodo request()
-        $request = \Config\Services::request();
+   public function create(){
+        $request = \Config\Services::request(); 
         $validation = \Config\Services::validation();
         $headers = $request->getHeaders();
 
         $registroModel = new RegistrosModel($db);
-        $registro = $registroModel->where('estado', 1)
-                ->findAll();
-        foreach ($registro as $key => $value) {
+        $registro=$registroModel->where('estado', 1)
+        ->findAll();
+        foreach($registro as $key => $value){
 
-            if (array_key_exists('Authorization', $headers) && !empty($headers['Authorization'])) {
+            if(array_key_exists('Authorization', $headers) && !empty($headers['Authorization'])){
 
-                if ($request->getHeader('Authorization') == 'Authorization: Basic ' . base64_encode($value["cliente_id"] . ":" . $value["llave_secreta"])){
+                if($request->getHeader('Authorization') == 'Authorization: Basic '.base64_encode($value["cliente_id"].":".$value["llave_secreta"])){
 
                     // Registro de datos
-                    //El getVar()método extraerá de $ _REQUEST, por lo que devolverá cualquier dato de $ _GET, $ POST 
-                    $datos = array("nombre" => $request->getVar("nombre"),
-                        "apellidos" => $request->getVar("apellidos"),
-                        "id_sexo" => $request->getVar("id_sexo"),
-                        "id_tipo_doc" => $request->getVar("id_tipo_doc"),
-                        "num_doc" => $request->getVar("num_doc"),
-                        "email" => $request->getVar("email"),
-                        "password" => $request->getVar("password"),
-                        "celular" => $request->getVar("celular"),
-                        "id_cargo" => $request->getVar("id_cargo"),
-                        "id_distrito" => $request->getVar("id_distrito"),
-                        "direccion" => $request->getVar("direccion"),                                      
-                        "imagen" => $request->getVar("imagen")
-
+                    
+                    $datos = array("nombre"=>$request->getVar("nombre"),
+                                "apellidos" => $request->getVar("apellidos"),
+                                "imagen" => $request->getVar("imagen"),
+                                "id_sexo" => $request->getVar("id_sexo"),
+                                "id_tipo_doc" => $request->getVar("id_tipo_doc"),
+                                "num_doc" => $request->getVar("num_doc"),
+                                "email" => $request->getVar("email"),
+                                "password" => $request->getVar("password"),
+                                "celular" => $request->getVar("celular"),
+                                "id_cargo" => $request->getVar("id_cargo"),
+                                "id_distrito" => $request->getVar("id_distrito"),
+                                "direccion" => $request->getVar("direccion"),
+                               
+                                 
+                                                     
                     );
 
-                    if (!empty($datos)) {
+                    if(!empty($datos)){
 
                         // Validar los datos
 
                         $validation->setRules([
                             'nombre' => 'string|max_length[255]',
-                            'apellidos' => 'string|max_length[255]',
-                            'id_sexo' => 'numeric|max_length[255]',
-                            'id_tipo_doc' => 'numeric|max_length[255]', 
-                            'num_doc' => 'numeric|max_length[255]',
-                            'email' => 'string|max_length[255]',
-                            'direccion' => 'string|max_length[255]',
-                            'password' => 'string|max_length[255]',
-                            'celular' => 'string|max_length[255]',
-                            'id_cargo' => 'numeric|max_length[255]',
-                            'id_distrito' => 'numeric|max_length[255]',
-                            'imagen' => 'string|max_length[255]'
+                           
+                            'id_tipo_doc' => 'string|max_length[255]', 
+                           
+                            'id_cargo' => 'string|max_length[255]',
+                            'id_distrito' => 'string|max_length[255]'
+                            
                         ]);
 
                         $validation->withRequest($this->request)
-                                ->run();
+                           ->run();
 
-                        if ($validation->getErrors()) {
+                        if($validation->getErrors()){
                             $errors = $validation->getErrors();
                             $data = array(
-                                "Status" => 404,
-                                "Detalle" => $errors
+                                "Status"=>404,
+                                "Detalle"=>$errors
+                            );                          
+                            return json_encode($data, true); 
+                        }else{
+                            $datos = array("nombre"=>$datos["nombre"],
+                                            "apellidos" => $datos["apellidos"],
+                                            "imagen" => $datos["imagen"],
+                                            "id_sexo" => $datos["id_sexo"],
+                                            "id_tipo_doc" => $datos["id_tipo_doc"],
+                                            "num_doc" => $datos["num_doc"],
+                                            "email" => $datos["email"],
+                                            "password" => $datos["password"],
+                                            "celular" => $datos["celular"],
+                                            "id_cargo" => $datos["id_cargo"],
+                                            "id_distrito" => $datos["id_distrito"],
+                                            "direccion" => $datos["direccion"],
+                                             
+                                            
                             );
-                            return json_encode($data, true);
-                        } else {
-                            $datos = array("nombre" => $datos["nombre"],
-                                "apellidos" => $datos["apellidos"],
-                                "id_sexo" => $datos["id_sexo"],
-                                "id_tipo_doc" => $datos["id_tipo_doc"],
-                                "num_doc" => $datos["num_doc"],
-                                "email" => $datos["email"],
-                                "direccion" => $datos["direccion"],
-                                "password" => $datos["password"],
-                                "celular" => $datos["celular"],
-                                "id_cargo" => $datos["id_cargo"],
-                                "id_distrito" => $datos["id_distrito"],
-                                "imagen" => $value["imagen"]);
-
+                                       
+                            
                             $clienteModel = new ClientesModel($db);
                             $cliente = $clienteModel->insert($datos);
                             $data = array(
-                                "Status" => 200,
-                                "Detalle" => "Registro exitoso, cliente guardado (creado)"
-                            );
+                                "Status"=>200,
+                                "Detalle"=>"Registro exitoso, cliente guardado"
+                            );              
                             return json_encode($data, true);
                         }
-                    } else {
+
+                    }else{
 
                         $data = array(
-                            "Status" => 404,
-                            "Detalle" => "Registro con errores"
+
+                            "Status"=>404,
+                            "Detalle"=>"Registro con errores"
                         );
 
                         return json_encode($data, true);
+                
                     }
-                }else {
+                
+                }else{
 
                     $data = array(
-                        "Status" => 404,
-                        "Detalles" => "El token es inválido"
-                    );
+
+                        "Status"=>404,
+                        "Detalles"=>"El token es inválido"
+                        
+                    );                              
+
                 }
-            } else {
+
+            }else{
 
                 $data = array(
-                    "Status" => 404,
-                    "Detalles" => "No está autorizado para guardar los registros"
-                );
+
+                    "Status"=>404,
+                    "Detalles"=>"No está autorizado para guardar los registros"
+                    
+                );      
+
             }
+
         }
 
         return json_encode($data, true);
+        
     }
 
     public function update($id) {

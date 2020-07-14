@@ -42,6 +42,13 @@ function init(){
 	            $('#tipo_documento').selectpicker('refresh');
 
 	});
+	 //Cargamos los items al select tipo documento
+	$.post("../ajax/usuario.php?op=select_sexo", function(r){
+
+	            $("#sexo").html(r);
+	            $('#sexo').selectpicker('refresh');
+
+	});
 	 
 }
 
@@ -478,7 +485,8 @@ function mostrar(id)
 		$("#tipo_documento").val(data['Detalle']['id_tipo_doc']);
 		$("#tipo_documento").selectpicker('refresh');
 		$("#option_sexo").html(data['Detalle']['sexo']);
-		$("#sexo_actual").val(data['Detalle']['id_sexo']);
+		$("#sexo").val(data['Detalle']['id_sexo']);
+		$("#sexo").selectpicker('refresh');
 		$("#login").val(data['Detalle']['email']);
 		$("#clave_actual").val(data['Detalle']['clave']);
 		$("#celular").val(data['Detalle']['celular']);
