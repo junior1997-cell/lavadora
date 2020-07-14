@@ -78,8 +78,8 @@ if ($_SESSION['acceso']==1)
                           <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-2 col-xl-2">
                             <label id="antiguo_tipo_doc">Tipo Documento (*):</label>
                             <label id="nuevo_tipo_doc">Nuevo Tipo Doc</label>
-                            <select  class="form-control selectpicker" data-live-search="true" name="tipo_documento" id="tipo_documento"  onclick="tipo_doc_select_ruc_dni()" >
-                              <option >SELECT</option>
+                            <select  class="form-control selectpicker" data-live-search="true" name="tipo_documento" id="tipo_documento"  onclick="tipo_doc_select_ruc_dni()" required  >
+
                               
                             </select>
                               
@@ -129,15 +129,10 @@ if ($_SESSION['acceso']==1)
                           </div>
 
                             <!-- APELLIDOS -->
-                          <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3" id="div_sexo">
+                          <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3" id="div_sexo" >
                             <label>Sexo:</label>
-                            <select class="form-control select-picker" name="sexo" id="sexo" >
-                              <option id="option_sexo">Seleccione</option>
-                              <option value="1">Varon</option>
-                              <option value="2">Mujer</option>
-                              
+                            <select class="form-control select-picker" name="sexo" id="sexo" required> 
                             </select>
-                             <input type="hidden" name="sexo_actual" id="sexo_actual">
                           </div>
                           <!-- CORREO USUARIO -->
                           <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
