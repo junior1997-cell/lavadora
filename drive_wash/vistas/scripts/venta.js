@@ -323,7 +323,7 @@ function agregarDetalle(idarticulo,articulo,precio_venta)
   {
   	var cantidad=1;
     var descuento=0;
-    var delivey=0;
+    var delivey=0.15;
 
     if (idarticulo!="")
     {
@@ -335,7 +335,7 @@ function agregarDetalle(idarticulo,articulo,precio_venta)
     	'<td><input type="number" name="cantidad[]" id="cantidad[]" value="'+cantidad+'"></td>'+
     	'<td><input type="number" name="precio_venta[]" id="precio_venta[]" value="'+precio_venta+'"></td>'+
     	'<td><input type="number" name="descuento[]" value="'+descuento+'"></td>'+
-    	'<td><input type="number" name="descuento[]" value="'+delivey+'"></td>'+
+    	'<td><input type="number" disabled name="descuento[]" value="'+delivey+'"></td>'+
     	'<td><span name="subtotal" id="subtotal'+cont+'">'+subtotal+'</span></td>'+
     	'<td><button type="button" onclick="modificarSubototales()" class="btn btn-info"><i class="fa fa-refresh"></i></button></td>'+
     	'</tr>';

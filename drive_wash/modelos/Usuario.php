@@ -485,8 +485,7 @@ Class Usuario
 	//CAPTURAR PERSONA  DE RENIEC
 	public function captura_unic_reniec($dni)
     {
-    	//var_dump ($dni); die;	
-    	 
+     //var_dump ($dni); die;	   	 
      // $newo=settype($dni, 'string');
      $newo=74535601;
 	  $url = "https://dniruc.apisperu.com/api/v1/dni/".$dni."?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Imp1bmlvcmNlcmNhZG9AdXBldS5lZHUucGUifQ.bzpY1fZ7YvpHU5T83b9PoDxHPaoDYxPuuqMqvCwYqsM";
