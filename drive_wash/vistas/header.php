@@ -137,7 +137,7 @@ if (strlen(session_id()) < 1)
                  <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li id="lIngresos"><a href="ingreso.php"><i class="fa fa-circle-o"></i> Ingresos</a></li>
+                <li id="lIngresos"><a href=""><i class="fa fa-circle-o"></i> Ingresos</a></li>
                 <li id="lProveedores"><a href="proveedor.php"><i class="fa fa-circle-o"></i> Proveedores</a></li>
                 <li id="lProveedores"><a href="proveedor.php"><i class="fa fa-circle-o"></i> Producto Proveedores</a></li>
               </ul>
@@ -187,14 +187,14 @@ if (strlen(session_id()) < 1)
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li id="lUsuarios"><a href="usuario.php"><i class="fa fa-book"></i> libro diario</a></li>
-                <li id="lPermisos"><a href="permiso.php"><i class="fa fa-book"></i> libro mayor</a></li>
-                <li id="lPermisos"><a href="permiso.php"><i class="fa fa-table"></i> Planilla de remuneraciones </a></li>
-                <li id="lPermisos"><a href="permiso.php"><i class="fa fa-table"></i> Balance de comprobación </a></li>
-                 <li id="lPermisos"><a href="permiso.php"><i class="fa fa-circle-o"></i>EEFF</a></li>
-                  <li id="lPermisos"><a href="permiso.php"><i class="fa fa-circle-o"></i>ERI</a></li>
-                <li id="lUsuarios"><a href="usuario.php"><i class="fa fa-book"></i> Topo de libro</a></li>
-                <li id="lPermisos"><a href="permiso.php"><i class="fa fa-circle-o"></i></a></li>
+                <li id="lUsuarios"><a href="ingreso.php"><i class="fa fa-book"></i> libro diario</a></li>
+                <li id="lPermisos"><a href="ingreso.php"><i class="fa fa-book"></i> libro mayor</a></li>
+                <li id="lPermisos"><a href="ingreso.php"><i class="fa fa-table"></i> Planilla de remuneraciones </a></li>
+                <li id="lPermisos"><a href="ingreso.php"><i class="fa fa-table"></i> Balance de comprobación </a></li>
+                 <li id="lPermisos"><a href="ingreso.php"><i class="fa fa-circle-o"></i>EEFF</a></li>
+                  <li id="lPermisos"><a href="ingreso.php"><i class="fa fa-circle-o"></i>ERI</a></li>
+                <li id="lUsuarios"><a href="ingreso.php"><i class="fa fa-book"></i> Topo de libro</a></li>
+                <li id="lPermisos"><a href="ingreso.php"><i class="fa fa-circle-o"></i></a></li>
                 
               </ul>
             </li>';
