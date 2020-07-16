@@ -114,17 +114,7 @@ switch ($_GET["op"]){
 
 	break;*/
 
-	case 'selectCliente':
-		require_once "../modelos/Persona.php";
-		$persona = new Persona();
-
-		$rspta = $persona->listarC();
-
-		while ($reg = $rspta->fetch_object())
-				{
-				echo '<option value=' . $reg->idpersona . '>' . $reg->nombre . '</option>';
-				}
-	break;
+	
 
 	case 'listarprendaslavado':
 		require_once "../modelos/Prendas.php";
@@ -206,6 +196,18 @@ switch ($_GET["op"]){
 		foreach ($rspta['Detalle'] as $reg){
 
 			echo '<option value=' . $reg['id'] . '>' . $reg['nombre'] . '</option>';
+		}
+	break;
+
+	case 'listar_clientes':
+		require_once "../modelos/Venta.php";
+		$select=new Venta();
+
+		$rspta=$select->listar_all_api_persona_local();
+			//Vamos a declarar un array
+		foreach ($rspta['Detalle'] as $reg){
+
+			echo '<option value=' . $reg['id'] . '>' . $reg['nombre'] ." ".$reg['apellidos']. '</option>';
 		}
 	break;
 

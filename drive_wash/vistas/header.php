@@ -167,12 +167,12 @@ if (strlen(session_id()) < 1)
             {
               echo '<li id="mAcceso" class="treeview">
               <a href="#">
-                <i class="fa fa-folder"></i> <span>Acceso</span>
+                <i class="fa fa-lock"></i> <span>Acceso</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li id="lUsuarios"><a href="usuario.php"><i class="fa fa-circle-o"></i> Usuarios</a></li>
-                <li id="lPermisos"><a href="permiso.php"><i class="fa fa-circle-o"></i> Permisos</a></li>
+                <li id="lUsuarios"><a href="usuario.php"><i class="fa fa-user" aria-hidden="true"></i> Usuarios</a></li>
+                <li id="lPermisos"><a href="permiso.php"><i class="fa fa-check-square-o"></i> Permisos</a></li>
                 
               </ul>
             </li>';

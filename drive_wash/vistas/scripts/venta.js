@@ -2,6 +2,7 @@ var tabla;
 
 //Función que se ejecuta al inicio
 function init(){
+	hora_fecha();	
 	mostrarform(false);
 	listar();
 
@@ -9,11 +10,7 @@ function init(){
 	{
 		guardaryeditar(e);	
 	});
-	//Cargamos los items al select cliente
-	$.post("../ajax/venta.php?op=selectCliente", function(r){
-	            $("#idcliente").html(r);
-	            $('#idcliente').selectpicker('refresh');
-	});
+	 
 		//Cargamos los items al select delivery
 	$.post("../ajax/venta.php?op=listardelivey", function(r){
         $("#delivery").html(r);
@@ -24,15 +21,22 @@ function init(){
         $("#id_tipo_servicio").html(r);
         $('#id_tipo_servicio').selectpicker('refresh');
 	});
-				//Cargamos los items al select tipo pedido
+		//Cargamos los items al select tipo pedido
 	$.post("../ajax/venta.php?op=listartipopedido", function(r){
         $("#id_tipo_pedido").html(r);
         $('#id_tipo_pedido').selectpicker('refresh');
+	});
+	//Cargamos los items al select clientes
+	$.post("../ajax/venta.php?op=listar_clientes", function(r){
+        $("#id_cliente").html(r);
+        $('#id_cliente').selectpicker('refresh');
 	});
 
 
 	$('#mVentas').addClass("treeview active");
     $('#lVentas').addClass("active");
+
+    
 }
 
 //Función limpiar
@@ -64,29 +68,12 @@ function limpiar()
 	$("#tipo_comprobante").selectpicker('refresh');
 }
 
-//---------------------------------
-var todayDate = new Date();
-var getTodayDate = todayDate.getDate();
-var getTodayMonth =  todayDate.getMonth()+1;
-var getTodayFullYear = todayDate.getFullYear();
-var getCurrentHours = todayDate.getHours();
-var getCurrentMinutes = todayDate.getMinutes();
-var getCurrentAmPm = getCurrentHours >= 12 ? 'PM' : 'AM';
-getCurrentHours = getCurrentHours % 12;
-getCurrentHours = getCurrentHours ? getCurrentHours : 12; 
-getCurrentMinutes = getCurrentMinutes < 10 ? '0'+getCurrentMinutes : getCurrentMinutes;
-var getCurrentDateTime = getTodayDate + '/' + getTodayMonth + '/' + getTodayFullYear + ' ' + getCurrentHours + ':' + getCurrentMinutes + ' ' + getCurrentAmPm;
-//alert(getCurrentDateTime);
-//document.getElementById('fechar_recojo').value=getCurrentDateTime;
-$("#hora_recojo").val(getCurrentDateTime);
-//console.log(getCurrentDateTime);
-
-//console.log(formatAMPM(new Date));
 
 
-//Función mostrar formulario
+
 function mostrarform(flag)
 {
+	hora_fecha();	
 	//limpiar();
 	if (flag)
 	{
@@ -110,9 +97,34 @@ function mostrarform(flag)
 	}
 }
 
+function hora_fecha(){
+	// HORA Y FECHA
+    var todayDate = new Date();
+	var getTodayDate = todayDate.getDate();
+	var getTodayMonth =  todayDate.getMonth()+1;
+	var getTodayFullYear = todayDate.getFullYear();
+	var getCurrentHours = todayDate.getHours();
+	var getCurrentMinutes = todayDate.getMinutes();
+	var getCurrentSeconds=todayDate.getSeconds();
+	var getCurrentAmPm = getCurrentHours >= 12 ? 'PM' : 'AM';
+	getCurrentHours = getCurrentHours % 12;
+	getCurrentHours = getCurrentHours ? getCurrentHours : 12; 
+	getCurrentMinutes = getCurrentMinutes < 10 ? '0'+getCurrentMinutes : getCurrentMinutes;
+	var getCurrentDateTime = getTodayDate + '/' + getTodayMonth + '/' + getTodayFullYear + ' ' + getCurrentHours + ':' + getCurrentMinutes + ':' +getCurrentSeconds+ ' ' + getCurrentAmPm;
+	$("#hora_recojo").val(getCurrentDateTime);
+	var n_pedido=getTodayDate+''+getTodayMonth+''+getTodayFullYear+''+getCurrentHours+''+getCurrentMinutes+''+getCurrentSeconds;
+	console.log(n_pedido);
+	$("#numero_pedido").val(n_pedido);
+
+	console.log(getCurrentHours,getCurrentMinutes)
+	console.log(getCurrentHours)
+	console.log(getCurrentDateTime);
+}
+
 //Función cancelarform
 function cancelarform()
 {
+	hora_fecha();	
 	limpiar();
 	mostrarform(false);
 }
