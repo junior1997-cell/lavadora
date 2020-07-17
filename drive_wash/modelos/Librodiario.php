@@ -56,8 +56,11 @@ Class Ingreso
 	//Implementar un método para listar los registros
 	public function listar()
 	{
-		$sql="SELECT i.idingreso,DATE(i.fecha_hora) as fecha,i.idproveedor,p.nombre as proveedor,u.idusuario,u.nombre as usuario,i.tipo_comprobante,i.serie_comprobante,i.num_comprobante,i.total_compra,i.impuesto,i.estado FROM ingreso i INNER JOIN persona p ON i.idproveedor=p.idpersona INNER JOIN usuario u ON i.idusuario=u.idusuario ORDER BY i.idingreso desc";
-		return ejecutarConsulta($sql);		
+		$sql="SELECT ld.id,ld.n_operacion,ld.fecha,pc.codigo as cuenta,pc.descripcion,ld.debe,ld.haber,ld.estado
+			from libro_diario as ld INNER JOIN plan_contable pc on ld.id_plan_contable=pc.id";
+		return ejecutarConsulta($sql);	
+			//$data = ejecutarConsulta($sql);
+		//var_dump($data);
 	}
 	
 	public function ingresocabecera($idingreso){

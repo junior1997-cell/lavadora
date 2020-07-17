@@ -187,7 +187,7 @@ if (strlen(session_id()) < 1)
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li id="lUsuarios"><a href="ingreso.php"><i class="fa fa-book"></i> libro diario</a></li>
+                <li id="lUsuarios"><a href="librodiario.php"><i class="fa fa-book"></i> libro diario</a></li>
                 <li id="lPermisos"><a href="ingreso.php"><i class="fa fa-book"></i> libro mayor</a></li>
                 <li id="lPermisos"><a href="ingreso.php"><i class="fa fa-table"></i> Planilla de remuneraciones </a></li>
                 <li id="lPermisos"><a href="ingreso.php"><i class="fa fa-table"></i> Balance de comprobación </a></li>

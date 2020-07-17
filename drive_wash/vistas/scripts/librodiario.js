@@ -93,7 +93,7 @@ function listar()
 		        ],
 		"ajax":
 				{
-					url: '../ajax/ingreso.php?op=listar',
+					url: '../ajax/librodiario.php?op=listar',
 					type : "get",
 					dataType : "json",						
 					error: function(e){
