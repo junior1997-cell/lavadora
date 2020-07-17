@@ -345,7 +345,7 @@ switch ($_GET["op"]){
 			if ($_SESSION['almacen']==1)
 			{			
 				// var_dump($dni);
-				$rspta=$usuario->captura_unic_reniec($dni);
+				$rspta=$usuario->captura_unic_reniec_r($dni);
 		 		//Codificar el resultado utilizando json
 		 		// var_dump($rspta); die;
 		 		$data =array();
@@ -353,7 +353,7 @@ switch ($_GET["op"]){
 		 		 		$data[]=array(
 		 				"0"=>$rspta['dni'],	
 		 				"1"=>$rspta['nombres'],
-		 				"2"=>$rspta['apellidoPaterno']." ".$rspta['apellidoMaterno'],
+		 				"2"=>$rspta['apellido_paterno']." ".$rspta['apellido_materno'],
 		 				"3"=>"DNI(*):"
 		 				 
 		 				);

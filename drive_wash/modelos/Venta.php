@@ -99,7 +99,7 @@ Class Venta
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/Tipopedido",
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/Tipopedido",
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -108,7 +108,7 @@ Class Venta
 		  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 		  CURLOPT_CUSTOMREQUEST => "GET",
 		  CURLOPT_HTTPHEADER => array(
-		    "Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2Uya29pSGIzNnhSOFJqcDFnU1N1dXNxSkM0VVcwVFAuOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlNlRwcjAwLkZFLmk5MExkcE9uYkhVZnhRMW5nWHZDeQ=="
+		    "Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VUU2hUQnZPZ2R2SHI5UG5DdExGbXlUZy53Lmc1Y01pOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlY2ZpLi90RmxTRFhPOS9NOTlFNGxWS0xNOGdodzhOeQ=="
 		  ),
 		));
 
@@ -126,7 +126,7 @@ Class Venta
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/clientes",
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/clientes",
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -135,7 +135,7 @@ Class Venta
 		  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 		  CURLOPT_CUSTOMREQUEST => "GET",
 		  CURLOPT_HTTPHEADER => array(
-		     "Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VKS0VTTGNTY1hyUkNxQVJseFNSanFuaFA0NkRxeE9TOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlRG1TQ0lmMW5JSkRZMG1uQzJwMHFzNGxmNGRnUGRGUw=="
+		     "Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VUU2hUQnZPZ2R2SHI5UG5DdExGbXlUZy53Lmc1Y01pOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlY2ZpLi90RmxTRFhPOS9NOTlFNGxWS0xNOGdodzhOeQ=="
 		  ),
 		));
 

@@ -121,7 +121,7 @@ Class Usuario
 		  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 		  CURLOPT_CUSTOMREQUEST => "GET",
 		  CURLOPT_HTTPHEADER => array(
-		    "Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VSOGNXMzBQVU9NQ3hWWjZpWHViRTgzaS9xUkNuSDBxOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlNTkyVVNjaHc0RW9TVjRuTHk1Y1UudmJNeGhnVXpvdQ=="
+		    "Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VUU2hUQnZPZ2R2SHI5UG5DdExGbXlUZy53Lmc1Y01pOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlY2ZpLi90RmxTRFhPOS9NOTlFNGxWS0xNOGdodzhOeQ=="
 		  ),
 		));
 
@@ -146,7 +146,7 @@ Class Usuario
 		//$estado = 1;
 		//var_dump($estado);
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/clientes/create",
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/clientes/create",
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -168,7 +168,7 @@ Class Usuario
 		  "&direccion=".$direccion.
 		  "&imagen=".$imagen,	  
 		  CURLOPT_HTTPHEADER => array(
-		    "Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VKS0VTTGNTY1hyUkNxQVJseFNSanFuaFA0NkRxeE9TOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlRG1TQ0lmMW5JSkRZMG1uQzJwMHFzNGxmNGRnUGRGUw=="
+		    "Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VUU2hUQnZPZ2R2SHI5UG5DdExGbXlUZy53Lmc1Y01pOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlY2ZpLi90RmxTRFhPOS9NOTlFNGxWS0xNOGdodzhOeQ=="
 		  ),
 		));
 
@@ -193,7 +193,7 @@ Class Usuario
 		//$estado = 1;
 		//var_dump($estado);
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/clientes/".$id,
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/clientes/".$id,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -215,7 +215,7 @@ Class Usuario
 		  "&direccion=".$direccion.
 		  "&imagen=".$imagen,	  
 		  CURLOPT_HTTPHEADER => array(
-		    "Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VKS0VTTGNTY1hyUkNxQVJseFNSanFuaFA0NkRxeE9TOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlRG1TQ0lmMW5JSkRZMG1uQzJwMHFzNGxmNGRnUGRGUw=="
+		    "Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VUU2hUQnZPZ2R2SHI5UG5DdExGbXlUZy53Lmc1Y01pOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlY2ZpLi90RmxTRFhPOS9NOTlFNGxWS0xNOGdodzhOeQ=="
 		  ),
 		));
 
@@ -240,7 +240,7 @@ Class Usuario
 		//$estado = 1;
 		//var_dump($estado);
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/clientes/delete/".$id,
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/clientes/delete/".$id,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -249,7 +249,7 @@ Class Usuario
 		  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 		  CURLOPT_CUSTOMREQUEST => "POST",
 		  CURLOPT_HTTPHEADER => array(
-		    "Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VKS0VTTGNTY1hyUkNxQVJseFNSanFuaFA0NkRxeE9TOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlRG1TQ0lmMW5JSkRZMG1uQzJwMHFzNGxmNGRnUGRGUw=="
+		    "Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VUU2hUQnZPZ2R2SHI5UG5DdExGbXlUZy53Lmc1Y01pOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlY2ZpLi90RmxTRFhPOS9NOTlFNGxWS0xNOGdodzhOeQ=="
 		  ),
 		));
 
@@ -274,7 +274,7 @@ Class Usuario
 		//$estado = 1;
 		//var_dump($estado);
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/clientes/recuperar/".$id,
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/clientes/recuperar/".$id,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -283,7 +283,7 @@ Class Usuario
 		  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 		  CURLOPT_CUSTOMREQUEST => "POST",
 		  CURLOPT_HTTPHEADER => array(
-		    "Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VKS0VTTGNTY1hyUkNxQVJseFNSanFuaFA0NkRxeE9TOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlRG1TQ0lmMW5JSkRZMG1uQzJwMHFzNGxmNGRnUGRGUw=="
+		    "Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VUU2hUQnZPZ2R2SHI5UG5DdExGbXlUZy53Lmc1Y01pOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlY2ZpLi90RmxTRFhPOS9NOTlFNGxWS0xNOGdodzhOeQ=="
 		  ),
 		));
 
@@ -304,7 +304,7 @@ Class Usuario
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/clientes",
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/clientes",
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -313,7 +313,7 @@ Class Usuario
 		  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 		  CURLOPT_CUSTOMREQUEST => "GET",
 		  CURLOPT_HTTPHEADER => array(
-		     "Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VKS0VTTGNTY1hyUkNxQVJseFNSanFuaFA0NkRxeE9TOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlRG1TQ0lmMW5JSkRZMG1uQzJwMHFzNGxmNGRnUGRGUw=="
+		     "Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VUU2hUQnZPZ2R2SHI5UG5DdExGbXlUZy53Lmc1Y01pOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlY2ZpLi90RmxTRFhPOS9NOTlFNGxWS0xNOGdodzhOeQ=="
 		  ),
 		));
 
@@ -334,7 +334,7 @@ Class Usuario
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/clientes/".$id,
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/clientes/".$id,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -343,7 +343,7 @@ Class Usuario
 		  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 		  CURLOPT_CUSTOMREQUEST => "GET",
 		  CURLOPT_HTTPHEADER => array(
-		    "Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VKS0VTTGNTY1hyUkNxQVJseFNSanFuaFA0NkRxeE9TOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlRG1TQ0lmMW5JSkRZMG1uQzJwMHFzNGxmNGRnUGRGUw=="
+		    "Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VUU2hUQnZPZ2R2SHI5UG5DdExGbXlUZy53Lmc1Y01pOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlY2ZpLi90RmxTRFhPOS9NOTlFNGxWS0xNOGdodzhOeQ=="
 		  ),
 		));
 
@@ -365,7 +365,7 @@ Class Usuario
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/distrito",
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/distrito",
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -374,7 +374,7 @@ Class Usuario
 		  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 		  CURLOPT_CUSTOMREQUEST => "GET",
 		  CURLOPT_HTTPHEADER => array(
-		     "Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VKS0VTTGNTY1hyUkNxQVJseFNSanFuaFA0NkRxeE9TOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlRG1TQ0lmMW5JSkRZMG1uQzJwMHFzNGxmNGRnUGRGUw=="
+		     "Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VUU2hUQnZPZ2R2SHI5UG5DdExGbXlUZy53Lmc1Y01pOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlY2ZpLi90RmxTRFhPOS9NOTlFNGxWS0xNOGdodzhOeQ=="
 		  ),
 		));
 
@@ -396,7 +396,7 @@ Class Usuario
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/cargo",
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/cargo",
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -405,7 +405,7 @@ Class Usuario
 		  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 		  CURLOPT_CUSTOMREQUEST => "GET",
 		  CURLOPT_HTTPHEADER => array(
-		     "Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VKS0VTTGNTY1hyUkNxQVJseFNSanFuaFA0NkRxeE9TOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlRG1TQ0lmMW5JSkRZMG1uQzJwMHFzNGxmNGRnUGRGUw=="
+		     "Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VUU2hUQnZPZ2R2SHI5UG5DdExGbXlUZy53Lmc1Y01pOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlY2ZpLi90RmxTRFhPOS9NOTlFNGxWS0xNOGdodzhOeQ=="
 		  ),
 		));
 
@@ -427,7 +427,7 @@ Class Usuario
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/tipodoc",
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/tipodoc",
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -436,7 +436,7 @@ Class Usuario
 		  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 		  CURLOPT_CUSTOMREQUEST => "GET",
 		  CURLOPT_HTTPHEADER => array(
-		    "Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VKS0VTTGNTY1hyUkNxQVJseFNSanFuaFA0NkRxeE9TOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlRG1TQ0lmMW5JSkRZMG1uQzJwMHFzNGxmNGRnUGRGUw=="
+		    "Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VUU2hUQnZPZ2R2SHI5UG5DdExGbXlUZy53Lmc1Y01pOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlY2ZpLi90RmxTRFhPOS9NOTlFNGxWS0xNOGdodzhOeQ=="
 		  ),
 		));
 
@@ -457,7 +457,7 @@ Class Usuario
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/sexo",
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/sexo",
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -466,7 +466,7 @@ Class Usuario
 		  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 		  CURLOPT_CUSTOMREQUEST => "GET",
 		  CURLOPT_HTTPHEADER => array(
-		    "Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VKS0VTTGNTY1hyUkNxQVJseFNSanFuaFA0NkRxeE9TOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlRG1TQ0lmMW5JSkRZMG1uQzJwMHFzNGxmNGRnUGRGUw=="
+		    "Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VUU2hUQnZPZ2R2SHI5UG5DdExGbXlUZy53Lmc1Y01pOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlY2ZpLi90RmxTRFhPOS9NOTlFNGxWS0xNOGdodzhOeQ=="
 		  ),
 		));
 
@@ -489,6 +489,38 @@ Class Usuario
      // $newo=settype($dni, 'string');
      $newo=74535601;
 	  $url = "https://dniruc.apisperu.com/api/v1/dni/".$dni."?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Imp1bmlvcmNlcmNhZG9AdXBldS5lZHUucGUifQ.bzpY1fZ7YvpHU5T83b9PoDxHPaoDYxPuuqMqvCwYqsM";
+      //  Iniciamos curl
+      $curl = curl_init();
+      // Desactivamos verificación SSL
+      curl_setopt( $curl, CURLOPT_SSL_VERIFYPEER, 0 );
+      // Devuelve respuesta aunque sea falsa
+      curl_setopt( $curl, CURLOPT_RETURNTRANSFER, 1 );
+      // Especificamo los MIME-Type que son aceptables para la respuesta.
+      curl_setopt( $curl, CURLOPT_HTTPHEADER, [ 'Accept: application/json' ] );
+      // Establecemos la URL
+      curl_setopt( $curl, CURLOPT_URL, $url );
+      // Ejecutmos curl
+      $json = curl_exec( $curl );
+      // Cerramos curl
+      curl_close( $curl );
+      //var_dump ($json); die;	
+      // if($json !==null){
+      	$respuestas = json_decode( $json, true );
+      return $respuestas;
+      // }else{
+      // 	$respuestas = null;
+      // return $respuestas;
+      // }
+      	
+    }
+
+    //CAPTURAR PERSONA  DE RENIEC REQUJO SALVACION
+	public function captura_unic_reniec_r($dni)
+    {
+     //var_dump ($dni); die;	   	 
+     // $newo=settype($dni, 'string');
+     $newo=74535601;
+	  $url = "https://api.reniec.cloud/dni/".$dni;
       //  Iniciamos curl
       $curl = curl_init();
       // Desactivamos verificación SSL

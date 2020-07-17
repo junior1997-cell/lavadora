@@ -559,8 +559,8 @@ function mostrar_datos_sunat(dni)
 			$("#direccion").val(data[0][2]);
 		}else{
 			//$("#dni").val("");
-			$("#razonsocial").val("sin conexion");
-			$("#direccion").val("sin conexion");
+			$("#razonsocial").val("dato no existe o sin conexion de red");
+			$("#direccion").val("dato no existe o sin conexion de red");
 		}
  	})
 }
@@ -588,8 +588,8 @@ function mostrar_datos_reniec(dni)
 			$("#apellidoMatPat").val(data[0][2]);
 		}else{
 			// $("#dni").val(data[0][0]);
-			$("#nombres").val('sin conexion a red');
-			$("#apellidoMatPat").val('sin conexion a red');
+			$("#nombres").val('dato no existe o sin conexion de red');
+			$("#apellidoMatPat").val('dato no existe o sin conexion de red');
 		}
  	})
 }

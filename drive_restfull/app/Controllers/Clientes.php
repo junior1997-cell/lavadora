@@ -274,18 +274,8 @@ class Clientes extends Controller {
                     if (!empty($datos)) {
                         //Validar datos
                         $validation->setRules([
-                            'nombre' => 'required|string|max_length[255]',
-                            'apellidos' => 'string|max_length[255]',
-                            'id_sexo' => 'required|string|max_length[255]',
-                            'id_tipo_doc' => 'required|string|max_length[255]', 
-                            'num_doc' => 'required|string|max_length[255]',
-                            'email' => 'required|string|max_length[255]',
-                            'direccion' => 'required|string|max_length[255]',
-                            'password' => 'required|string|max_length[255]',
-                            'celular' => 'required|string|max_length[255]',
-                            'id_cargo' => 'required|string|max_length[255]',
-                            'id_distrito' => 'required|string|max_length[255]',
-                            'imagen' => 'string|max_length[255]'
+                            'nombre' => 'string|max_length[255]',
+                            
                         ]);
 
                         $validation->withRequest($this->request)

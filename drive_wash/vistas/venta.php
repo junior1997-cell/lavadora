@@ -57,15 +57,18 @@ if ($_SESSION['ventas']==1)
                     </div>
                     <div class="panel-body" style="height: absolute;" id="formularioregistros">
                         <form name="formulario" id="formulario" method="POST">
+                          <!-- ETIQUETA -->
                           <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-6">
                             <label>Etiqueta(*):</label>
                             <input type="text" class="form-control" name="numero_pedido" id="numero_pedido" maxlength="10" placeholder="Etiqueta" required="">
                           </div>
+                          <!-- TIPO PEDIDO -->
                           <div class="form-group col-lg-3 col-md-5 col-sm-6 col-xs-6">
                             <label>tipo pedido(*):</label>
                             <select id="id_tipo_pedido" name="id_tipo_pedido" class=" form-control selectpicker" data-live-search="true"  required>
                             </select>
                           </div>
+                          <!-- CLIENTE -->
                           <div class="form-group col-lg-6 col-md-8 col-sm-8 col-xs-12">
                             <label>Cliente(*):</label>
                             <input type="hidden" name="idventa" id="idventa">
@@ -73,6 +76,7 @@ if ($_SESSION['ventas']==1)
                               
                             </select>
                           </div>
+                          <!-- TIPO DE COMPROBANTE -->
                           <div class="form-group col-lg-3 col-md-6 col-sm-6 col-xs-12">
                             <label>Tipo Comprobante(*):</label>
                             <select name="id_tipo_comprobante" id="id_tipo_comprobante" class="form-control selectpicker" required="">
@@ -81,18 +85,22 @@ if ($_SESSION['ventas']==1)
                                <option value="Ticket">Ticket</option>
                             </select>
                           </div>
+                          <!-- SERIO DE BOLETA O FATURA -->
                           <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
                             <label>Serie:</label>
                             <input type="text" class="form-control" name="serie_comprobante" id="serie_comprobante" maxlength="7" placeholder="Serie">
                           </div>
+                          <!-- NUMERO DE BOLETA O FACTURA -->
                           <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
                             <label>Número:</label>
                             <input type="text" class="form-control" name="numero_comprobante" id="numero_comprobante" maxlength="10" placeholder="Número" required="">
                           </div>
+                          <!-- IMPUESTO -->
                           <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
                             <label>Impuesto:</label>
                             <input type="text" class="form-control" name="impuesto" id="impuesto" required="">
                           </div>
+                          <!-- SELECIONAR PAGO -->
                           <div class="form-group col-lg-3 col-md-6 col-sm-6 col-xs-12">
                             <label>Seleccionar pago (*):</label>
                             <select name="pagoAl" id="pagoAl" class="form-control selectpicker" required="">
@@ -102,26 +110,30 @@ if ($_SESSION['ventas']==1)
 
                             </select>
                           </div>
-
+                          <!-- SERVICIO DE LAVADO -->
                           <div class="form-group col-lg-2 col-md-6 col-sm-6 col-xs-12">
                             <label>servicio de lavado (*):</label>
                             <select name="id_tipo_servicio" id="id_tipo_servicio" class="form-control selectpicker" class="form-control selectpicker" data-live-search="true" required="">
                             </select>
                           </div>
+                          <!-- FECHA DE RECOJO DEL LA PRENDA -->
                           <div class="form-group col-lg-2 col-md-4 col-sm-4 col-xs-12">
                             <label>Fecha recojo(*):</label>
                             <input type="text" class="form-control" name="hora_recojo" id="hora_recojo" required="" value="" disabled="true">
                           </div>
+                          <!-- FECHA DE ENTREGA APROXIMADA DE LA PRENDA -->
                           <div class="form-group col-lg-3 col-md-4 col-sm-4 col-xs-12">
                             <label>Fecha Entrega(*):</label>
                             <input type="datetime-local" class="form-control" name="fecha_hora" id="fecha_hora" required=""> 
                           </div>
+                          <!-- DELIVERY -->
                           <div class="form-group col-lg-3 col-md-4 col-sm-4 col-xs-12">
                             <label>Delivery (*):</label>
                             <select name="delivery" id="delivery" class="form-control selectpicker"data-live-search="true" required onchange="ShowSelected();">
 
                             </select>
                           </div>
+                          <!-- AGREGAR ARTICULOS -->
                           <div class="form-group col-lg-12 col-md-3 col-sm-6 col-xs-12">
                             <a data-toggle="modal" href="#myModal">           
                               <button id="btnAgregarArt" type="button" class="btn btn-primary"> <span class="fa fa-plus"></span> Agregar Artículos</button>
@@ -130,7 +142,7 @@ if ($_SESSION['ventas']==1)
                               <button id="btnAgregartipolav" type="button" class="btn btn-primary"> <span class="fa fa-plus"></span> tipo lavado</button>
                             </a>
                           </div>
-
+                            <!-- TABLA EN MODAL DEL AGREGAR ARTICULO -->
                           <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
                             <table id="detalles" class="table table-striped table-bordered table-condensed table-hover">
                               <thead style="background-color:#A9D0F5">
@@ -156,7 +168,7 @@ if ($_SESSION['ventas']==1)
                                 </tfoot>
                             </table>
                           </div>
-
+                          <!-- BOTONES CANCELAR O GUARDAR -->
                           <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <button class="btn btn-primary" type="submit" id="btnGuardar"><i class="fa fa-save"></i> Guardar</button>
 

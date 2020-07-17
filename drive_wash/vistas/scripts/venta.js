@@ -1,4 +1,5 @@
 var tabla;
+ var delivey;
 
 //Función que se ejecuta al inicio
 function init(){
@@ -112,6 +113,7 @@ function hora_fecha(){
 	getCurrentMinutes = getCurrentMinutes < 10 ? '0'+getCurrentMinutes : getCurrentMinutes;
 	var getCurrentDateTime = getTodayDate + '/' + getTodayMonth + '/' + getTodayFullYear + ' ' + getCurrentHours + ':' + getCurrentMinutes + ':' +getCurrentSeconds+ ' ' + getCurrentAmPm;
 	$("#hora_recojo").val(getCurrentDateTime);
+
 	var n_pedido=getTodayDate+''+getTodayMonth+''+getTodayFullYear+''+getCurrentHours+''+getCurrentMinutes+''+getCurrentSeconds;
 	console.log(n_pedido);
 	$("#numero_pedido").val(n_pedido);
@@ -317,25 +319,42 @@ $('.selectpicker').on('changed.bs.select', function (e) {
 
     	// NO SELECT
     if(selected == "1"){
+
     	$("#delivery").hide();
-    
+    	 delivey=0;
+       $("#deliv").val("deliv"); 
+       modificarSubototales();
+       calcularTotales();
     }
-        if(selected == "2"){
-    	$("#delivery").show();
-    
+    if(selected == "2"){
+    	 delivey=0.15;
+    	
+    	 $("#deliv").val("deliv"); 
+    	 modificarSubototales();
+    	 calcularTotales();
     }
-        if(selected == "3"){
-    	$("#delivery").show();
-    
+    if(selected == "3"){
+    	 delivey=0.15;
+    	$("#deliv").val("deliv"); 
+    	modificarSubototales();
+    	calcularTotales();
+    }
+     if(selected == "4"){
+    	 delivey=0.15;
+    	$("#deliv").val("deliv");
+    	modificarSubototales();
+    	calcularTotales(); 
     }
 
 });
+
+
 
 function agregarDetalle(idarticulo,articulo,precio_venta)
   {
   	var cantidad=1;
     var descuento=0;
-    var delivey=0.15;
+   
 
     if (idarticulo!="")
     {
@@ -347,7 +366,7 @@ function agregarDetalle(idarticulo,articulo,precio_venta)
     	'<td><input type="number" name="cantidad[]" id="cantidad[]" value="'+cantidad+'"></td>'+
     	'<td><input type="number" name="precio_venta[]" id="precio_venta[]" value="'+precio_venta+'"></td>'+
     	'<td><input type="number" name="descuento[]" value="'+descuento+'"></td>'+
-    	'<td><input type="number" disabled name="descuento[]" value="'+delivey+'"></td>'+
+    	'<td><input type="number" id="deliv" name="descuento[]" value="'+delivey+'"></td>'+
     	'<td><span name="subtotal" id="subtotal'+cont+'">'+subtotal+'</span></td>'+
     	'<td><button type="button" onclick="modificarSubototales()" class="btn btn-info"><i class="fa fa-refresh"></i></button></td>'+
     	'</tr>';
