@@ -95,7 +95,7 @@ if ($_SESSION['acceso']==1)
                               <label id="mos_ruc">RUC(*):</label> 
                               <label id="mos_carnet">CARNET DE EXTRANJERIA(*):</label>  
                               <label id="mos_pasaporte">PASAPORTE(*):</label>                                            
-                              <input type="number" class="form-control " name="dni" id="dni"  maxlength="100" placeholder="Num Doc."  style=" padding:0px 0px !important;" required>
+                              <input type="number" class="form-control " name="dni" id="dni" min="1000000" max="99999999999" placeholder="Num Doc."  style=" padding:0px 0px !important;" required>
                             </div>
 
                             <div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
@@ -107,10 +107,11 @@ if ($_SESSION['acceso']==1)
                           </div>
 
                           <!-- NOMBRE -->
+                          <input type="hidden" name="id" id="id">
                           <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3" 
                           id="ocultar_div_nombre">
                             <label>nombre(*):</label>
-                            <input type="hidden" name="id" id="id">
+                            
                             <input type="text" class="form-control" name="nombres" id="nombres" maxlength="25" placeholder="Nombre" required>
                           </div>
 
@@ -131,7 +132,7 @@ if ($_SESSION['acceso']==1)
                             <!-- APELLIDOS -->
                           <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3" id="div_sexo" >
                             <label>Sexo:</label>
-                            <select class="form-control select-picker" name="sexo" id="sexo" required> 
+                            <select class="form-control select-picker" name="sexo" id="sexo" > 
                             </select>
                           </div>
                           <!-- CORREO USUARIO -->
@@ -150,13 +151,13 @@ if ($_SESSION['acceso']==1)
                           <!-- CELULAR -->
                           <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
                             <label>Celular:</label>
-                            <input type="number" class="form-control" name="celular" id="celular" maxlength="13" minlength="6" placeholder="celular" required>
+                            <input type="number" class="form-control" name="celular" id="celular" max="999999999" min="9999999" placeholder="celular" required>
                           </div>
                           <!-- CARGO -->
                           <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
                             <label id="antiguo_cargo">Cargo(*):</label> 
                             <label id="nuevo_cargo">Nuevo Cargo(*):</label>                                                  
-                            <select id="id_cargo" name="id_cargo" class="form-control selectpicker" data-live-search="true" ></select>  
+                            <select id="id_cargo" name="id_cargo" class="form-control selectpicker" data-live-search="true" required ></select>  
                             
                           </div>
                           <!-- DISTRITO -->
@@ -188,7 +189,7 @@ if ($_SESSION['acceso']==1)
                           <!-- IMAGEN -->
                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <label>Imagen:</label>
-                            <input type="file" class="form-control" name="imagen" id="imagen">
+                            <input type="file" class="form-control" name="imagen" id="imagen" accept="image/*">
                             <input type="hidden" name="imagenactual" id="imagenactual">
                             <img src="" width="150px" height="120px" id="imagenmuestra">
                           </div>

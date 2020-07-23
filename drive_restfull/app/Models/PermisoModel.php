@@ -6,9 +6,9 @@ use CodeIgniter\Model;
 class PermisoModel extends Model{
 
 	protected $table ='permiso';
-	protected $id ='id';
+	protected $primaryKey ='idpermiso';
 	protected $returnType='array';
-	protected $allowedFields = ['id','nombre'];
+	protected $allowedFields = ['nombre_permiso'];
 }
 
 

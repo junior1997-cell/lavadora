@@ -28,7 +28,7 @@ class Permiso extends Controller {
 
                     $permisoModel = new PermisoModel();
                     
-                    $permiso = $permisoModel->orderBy('id', 'asc')
+                    $permiso = $permisoModel
                             ->findAll();
 
                     
@@ -86,12 +86,8 @@ class Permiso extends Controller {
                     $permisoModel = new permisoModel();
 
                     $permiso = $permisoModel
-                            ->select('up.id_usuario as id_usuario,per.nombre as permiso')
-                            ->from('usuario_permiso as up')
-                            ->join('persona as p','up.id_usuario=p.id')
-                            ->join('permiso as per','up.id_permiso=per.id')
-                            ->where('up.id_usuario',$id)
-                            ->find();
+                            
+                            ->find($id);
                     if (!empty($permiso)) {
 
                         $data = array(

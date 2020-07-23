@@ -3,10 +3,10 @@
 namespace App\Controllers;
 
 use CodeIgniter\Controller;
-use App\Models\CargoModel;
+use App\Models\TipocomprobanteModel;
 use App\Models\RegistrosModel;
 
-class Cargo extends Controller {
+class Tipocomprobante extends Controller {
 
     public function index() {
         //realiza solicitud a services y le decimos que ejecute el metodo request()
@@ -18,26 +18,21 @@ class Cargo extends Controller {
         $registro = $registroModel->where('estado', 1)
                 ->findAll();
 
-        //$db = \Config\Database::connect();
-        //$pager = \Config\Services::pager();
         foreach ($registro as $key => $value) {
 
             if (array_key_exists('Authorization', $headers) && !empty($headers['Authorization'])) {
 
                 if ($request->getHeader('Authorization') == 'Authorization: Basic ' . base64_encode($value["cliente_id"] . ":" . $value["llave_secreta"])) {
 
-                    $cargoModel = new CargoModel();
+                    $tipoModel = new TipocomprobanteModel($db);
+                    $tipo = $tipoModel->findAll();
                     
-                    $cargo = $cargoModel->where('estado_cargo',1)
-                            ->findAll();
-
-                    
-                    if (!empty($cargo)) {
+                    if (!empty($tipo)) {
 
                         $data = array(
                             "Status" => 200,
-                            "Total_Resultados" => count($cargo),
-                            "Detalle" => $cargo
+                            "Total_Resultados" => count($tipo),
+                            "Detalle" => $tipo
                                 //"Paginador"=>$paginador
                         );
                     } else {
@@ -67,7 +62,7 @@ class Cargo extends Controller {
         return json_encode($data, true);
     }
 
-    public function show($id) {
+    /*public function show($id) {
         //realiza solicitud a services y le decimos que ejecute el metodo request()
         $request = \Config\Services::request();
         $validation = \Config\Services::validation();
@@ -83,7 +78,7 @@ class Cargo extends Controller {
 
                 if ($request->getHeader('Authorization') == 'Authorization: Basic ' . base64_encode($value["cliente_id"] . ":" . $value["llave_secreta"])) {
                     
-                    $clienteModel = new ClientesModel();
+                    $clienteModel = new InsumosModel1();
                     $cliente = $clienteModel->where('estado', 1)
                             ->find($id);
                     if (!empty($cliente)) {
@@ -356,6 +351,6 @@ class Cargo extends Controller {
         }
 
         return json_encode($data, true);
-    }
+    }*/
 
 }

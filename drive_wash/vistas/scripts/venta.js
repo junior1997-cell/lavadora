@@ -32,6 +32,11 @@ function init(){
         $("#id_cliente").html(r);
         $('#id_cliente').selectpicker('refresh');
 	});
+	//Cargamos los comprobantes de pago
+	$.post("../ajax/venta.php?op=listar_tiposcomprobante", function(r){
+        $("#id_comprobante").html(r);
+        $('#id_comprobante').selectpicker('refresh');
+	});
 
 
 	$('#mVentas').addClass("treeview active");

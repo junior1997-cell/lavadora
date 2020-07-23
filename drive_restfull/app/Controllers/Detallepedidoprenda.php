@@ -3,10 +3,10 @@
 namespace App\Controllers;
 
 use CodeIgniter\Controller;
-use App\Models\ClientesModel;
+use App\Models\DetallepedidoprendaModel;
 use App\Models\RegistrosModel;
 
-class Clientes extends Controller {
+class Detallepedidoprenda extends Controller {
 
     public function index() {
         //realiza solicitud a services y le decimos que ejecute el metodo request()
@@ -26,17 +26,17 @@ class Clientes extends Controller {
 
                 if ($request->getHeader('Authorization') == 'Authorization: Basic ' . base64_encode($value["cliente_id"] . ":" . $value["llave_secreta"])) {
 
-                    $clienteModel = new ClientesModel();
+                    $usuariosModel = new DetallepedidoprendaModel();
                     
-                    $cliente = $clienteModel->getclientesAll();
+                    $usuarios = $usuariosModel->getDetallepedidoAll();
 
                     
-                    if (!empty($cliente)) {
+                    if (!empty($usuarios)) {
 
                         $data = array(
                             "Status" => 200,
-                            "Total_Resultados" => count($cliente),
-                            "Detalle" => $cliente
+                            "Total_Resultados" => count($usuarios),
+                            "Detalle" => $usuarios
                                 //"Paginador"=>$paginador
                         );
                     } else {
@@ -44,7 +44,7 @@ class Clientes extends Controller {
                         $data = array(
                             "Status" => 404,
                             "Total_Resultados" => 0,
-                            "Detalle" => "Ningun registro de cliente cargado"
+                            "Detalle" => "Ningun Detalle de pedido registrado  cargado"
                         );
                     }
                 } else {
@@ -66,64 +66,7 @@ class Clientes extends Controller {
         return json_encode($data, true);
     }
 
-    public function clienteall($id) {
-        //realiza solicitud a services y le decimos que ejecute el metodo request()
-        $request = \Config\Services::request();
-        $validation = \Config\Services::validation();
-        $headers = $request->getHeaders();
-
-        $registroModel = new RegistrosModel($db);
-        $registro = $registroModel->where('estado', 1)
-                ->findAll();
-
-        //$db = \Config\Database::connect();
-        //$pager = \Config\Services::pager();
-        foreach ($registro as $key => $value) {
-
-            if (array_key_exists('Authorization', $headers) && !empty($headers['Authorization'])) {
-
-                if ($request->getHeader('Authorization') == 'Authorization: Basic ' . base64_encode($value["cliente_id"] . ":" . $value["llave_secreta"])) {
-
-                    $clienteModel = new ClientesModel();
-                    
-                    $cliente = $clienteModel
-                    ->getClienteAll($id);
-
-                    
-                    if (!empty($cliente)) {
-
-                        $data = array(
-                            "Status" => 200,
-                            "Total_Resultados" => count($cliente),
-                            "Detalle" => $cliente
-                                //"Paginador"=>$paginador
-                        );
-                    } else {
-
-                        $data = array(
-                            "Status" => 404,
-                            "Total_Resultados" => 0,
-                            "Detalle" => "Ningún registro cargado"
-                        );
-                    }
-                } else {
-
-                    $data = array(
-                        "Status" => 404,
-                        "Detalle" => "El token es inválido"
-                    );
-                }
-            } else {
-
-                $data = array(
-                    "Status" => 404,
-                    "Detalle" => "No está autorizado para recibir los registros"
-                );
-            }
-        }
-
-        return json_encode($data, true);
-    }
+  
 
     public function show($id) {
         //realiza solicitud a services y le decimos que ejecute el metodo request()
@@ -141,16 +84,16 @@ class Clientes extends Controller {
 
                 if ($request->getHeader('Authorization') == 'Authorization: Basic ' . base64_encode($value["cliente_id"] . ":" . $value["llave_secreta"])) {
                     
-                    $clienteModel = new ClientesModel();
-                    $cliente = $clienteModel
-                                ->getclientesOne($id);
+                    $usuariosModel = new DetallepedidoprendaModel();
+                    $usuarios = $usuariosModel
+                                ->getDetallepedidoOne($id);
                            
-                    if (!empty($cliente)) {
+                    if (!empty($usuarios)) {
 
                         $data = array(
                             "Status" => 200,
                             "Número Registro" =>$id,
-                            "Detalle" => $cliente
+                            "Detalle" => $usuarios
                         );
                     } else {
 
@@ -194,18 +137,18 @@ class Clientes extends Controller {
 
                     // Registro de datos
                     
-                    $datos = array("nombre_clientes"=>$request->getVar("nombre_clientes"),
-                                "apellidos_clientes" => $request->getVar("apellidos_clientes"),
-                                "imagen_clientes" => $request->getVar("imagen_clientes"),
-                                "id_sexo_clientes" => $request->getVar("id_sexo_clientes"),
-                                "id_tipo_doc_clientes" => $request->getVar("id_tipo_doc_clientes"),
-                                "num_doc_clientes" => $request->getVar("num_doc_clientes"),
-                                "email_clientes" => $request->getVar("email_clientes"),
-                                "password_clientes" => $request->getVar("password_clientes"),
-                                "celular_clientes" => $request->getVar("celular_clientes"),
-                                "id_cargo_clientes" => $request->getVar("id_cargo_clientes"),
-                                "id_distrito_clientes" => $request->getVar("id_distrito_clientes"),
-                                "direccion_clientes" => $request->getVar("direccion_clientes"),                               
+                    $datos = array("nombre_persona"=>$request->getVar("nombre_persona"),
+                                "apellidos_persona" => $request->getVar("apellidos_persona"),
+                                "imagen_persona" => $request->getVar("imagen_persona"),
+                                "id_sexo" => $request->getVar("id_sexo"),
+                                "id_tipo_doc" => $request->getVar("id_tipo_doc"),
+                                "num_doc_persona" => $request->getVar("num_doc_persona"),
+                                "email" => $request->getVar("email"),
+                                "password" => $request->getVar("password"),
+                                "celular" => $request->getVar("celular"),
+                                "id_cargo" => $request->getVar("id_cargo"),
+                                "id_distrito" => $request->getVar("id_distrito"),
+                                "direccion" => $request->getVar("direccion"),                               
                     );
 
                     if(!empty($datos)){
@@ -213,10 +156,10 @@ class Clientes extends Controller {
                         // Validar los datos
 
                         $validation->setRules([
-                            'nombre_clientes' => 'string|max_length[255]',                          
-                            'id_tipo_doc_clientes' => 'string|max_length[255]',                           
-                            'id_cargo_clientes' => 'string|max_length[255]',
-                            'id_distrito_clientes' => 'string|max_length[255]'                           
+                            'nombre_persona' => 'string|max_length[255]',                          
+                            'id_tipo_doc' => 'string|max_length[255]',                           
+                            'id_cargo' => 'string|max_length[255]',
+                            'id_distrito' => 'string|max_length[255]'                           
                         ]);
 
                         $validation->withRequest($this->request)
@@ -230,28 +173,28 @@ class Clientes extends Controller {
                             );                          
                             return json_encode($data, true); 
                         }else{
-                            $datos = array("nombre_clientes"=>$datos["nombre_clientes"],
-                                            "apellidos_clientes" => $datos["apellidos_clientes"],
-                                            "imagen_clientes" => $datos["imagen_clientes"],
-                                            "id_sexo_clientes" => $datos["id_sexo_clientes"],
-                                            "id_tipo_doc_clientes" => $datos["id_tipo_doc_clientes"],
-                                            "num_doc_clientes" => $datos["num_doc_clientes"],
-                                            "email_clientes" => $datos["email_clientes"],
-                                            "password_clientes" => $datos["password_clientes"],
-                                            "celular_clientes" => $datos["celular_clientes"],
-                                            "id_cargo_clientes" => $datos["id_cargo_clientes"],
-                                            "id_distrito_clientes" => $datos["id_distrito_clientes"],
-                                            "direccion_clientes" => $datos["direccion_clientes"],
+                            $datos = array("nombre_persona"=>$datos["nombre_persona"],
+                                            "apellidos_persona" => $datos["apellidos_persona"],
+                                            "imagen_persona" => $datos["imagen_persona"],
+                                            "id_sexo" => $datos["id_sexo"],
+                                            "id_tipo_doc" => $datos["id_tipo_doc"],
+                                            "num_doc_persona" => $datos["num_doc_persona"],
+                                            "email" => $datos["email"],
+                                            "password" => $datos["password"],
+                                            "celular" => $datos["celular"],
+                                            "id_cargo" => $datos["id_cargo"],
+                                            "id_distrito" => $datos["id_distrito"],
+                                            "direccion" => $datos["direccion"],
                                              
                                             
                             );
                                        
                             
-                            $clienteModel = new ClientesModel($db);
-                            $cliente = $clienteModel->insert($datos);
+                            $usuariosModel = new UsuariosModel($db);
+                            $usuarios = $usuariosModel->insert($datos);
                             $data = array(
                                 "Status"=>200,
-                                "Detalle"=>"Registro exitoso, cliente guardado"
+                                "Detalle"=>"Registro exitoso, usuario guardado"
                             );              
                             return json_encode($data, true);
                         }
@@ -322,7 +265,7 @@ class Clientes extends Controller {
                         //Validar datos
 
                         $validation->setRules([
-                            'nombre_clientes' => 'required|string|max_length[255]',
+                            'nombre_persona' => 'required|string|max_length[255]',
                              
                                
                         ]);
@@ -343,25 +286,25 @@ class Clientes extends Controller {
 
                         }else{
 
-                            $clienteModel = new ClientesModel();
-                            $cliente = $clienteModel->find($id);
+                            $usuariosModel = new UsuariosModel();
+                            $usuarios = $usuariosModel->find($id);
                             
-                            $datos = array( "nombre_clientes" => $datos["nombre_clientes"],
-                                "apellidos_clientes" => $datos["apellidos_clientes"],
-                                "id_sexo_clientes" => $datos["id_sexo_clientes"],
-                                "id_tipo_doc_clientes" => $datos["id_tipo_doc_clientes"],
-                                "num_doc_clientes" => $datos["num_doc_clientes"],
-                                "email_clientes" => $datos["email_clientes"],
-                                "direccion_clientes" => $datos["direccion_clientes"],
-                                "password_clientes" => $datos["password_clientes"],
-                                "celular_clientes" => $datos["celular_clientes"],
-                                "id_cargo_clientes" => $datos["id_cargo_clientes"],
-                                "id_tipo_clientes" => $datos["id_tipo_clientes"],
-                                "id_distrito_clientes" => $datos["id_distrito_clientes"],
-                                "imagen_clientes" => $datos["imagen_clientes"]
+                            $datos = array( "nombre_persona" => $datos["nombre_persona"],
+                                "apellidos_persona" => $datos["apellidos_persona"],
+                                "id_sexo" => $datos["id_sexo"],
+                                "id_tipo_doc" => $datos["id_tipo_doc"],
+                                "num_doc_persona" => $datos["num_doc_persona"],
+                                "email" => $datos["email"],
+                                "direccion" => $datos["direccion"],
+                                "password" => $datos["password"],
+                                "celular" => $datos["celular"],
+                                "id_cargo" => $datos["id_cargo"],
+                                "id_tipo_persona" => $datos["id_tipo_persona"],
+                                "id_distrito" => $datos["id_distrito"],
+                                "imagen_persona" => $datos["imagen_persona"]
                             );
                                 
-                            $cliente = $clienteModel->update($id, $datos);
+                            $usuarios = $usuariosModel->update($id, $datos);
 
                             $data = array(
                                 "Status"=>200,
@@ -430,13 +373,13 @@ class Clientes extends Controller {
 
                 if($request->getHeader('Authorization') == 'Authorization: Basic '.base64_encode($value["cliente_id"].":".$value["llave_secreta"])){
 
-                    $clienteModel = new ClientesModel();
-                    $cliente = $clienteModel->find($id);
+                    $usuariosModel = new UsuariosModel();
+                    $usuarios = $usuariosModel->find($id);
                     
 
-                    if(!empty($cliente)){
-                        $datos = array( 'estado_clientes' => 0 );
-                        $cliente = $clienteModel->update($id , $datos);
+                    if(!empty($usuarios)){
+                        $datos = array( 'estado_persona' => 0 );
+                        $usuarios = $usuariosModel->update($id , $datos);
                         
                         $data = array(
 
@@ -452,7 +395,7 @@ class Clientes extends Controller {
                         $data = array(
 
                             "Status"=>404,
-                            "Detalle"=>"El cliente no existe"
+                            "Detalle"=>"El usuario no existe"
                         );
 
                         return json_encode($data, true);
@@ -507,13 +450,13 @@ class Clientes extends Controller {
 
                 if ($request->getHeader('Authorization') == 'Authorization: Basic ' . base64_encode($value["cliente_id"] . ":" . $value["llave_secreta"])) {
 
-                    $clienteModel = new ClientesModel($db);
-                    $cliente = $clienteModel->find($id);
+                    $usuariosModel = new UsuariosModel($db);
+                    $usuarios = $usuariosModel->find($id);
 
 
-                    if (!empty($cliente)) {
-                        $datos = array('estado_clientes' => 1);
-                        $cliente = $clienteModel->update($id, $datos);
+                    if (!empty($usuarios)) {
+                        $datos = array('estado_persona' => 1);
+                        $usuarios = $usuariosModel->update($id, $datos);
 
                         $data = array(
                             "Status" => 200,
@@ -525,7 +468,7 @@ class Clientes extends Controller {
 
                         $data = array(
                             "Status" => 404,
-                            "Detalle" => "El cliente no existe"
+                            "Detalle" => "El usuario no existe"
                         );
 
                         return json_encode($data, true);
@@ -542,6 +485,59 @@ class Clientes extends Controller {
                 $data = array(
                     "Status" => 404,
                     "Detalles" => "No está autorizado para editar los registros"
+                );
+            }
+        }
+
+        return json_encode($data, true);
+    }
+
+    public function cargo($id) {
+        //realiza solicitud a services y le decimos que ejecute el metodo request()
+        $request = \Config\Services::request();
+        $validation = \Config\Services::validation();
+        $headers = $request->getHeaders();
+
+        $registroModel = new RegistrosModel($db);
+        $registro = $registroModel->where('estado', 1)
+                ->findAll();
+
+        foreach ($registro as $key => $value) {
+            //verificacion del toquen de seguridad 
+            if (array_key_exists('Authorization', $headers) && !empty($headers['Authorization'])) {
+
+                if ($request->getHeader('Authorization') == 'Authorization: Basic ' . base64_encode($value["cliente_id"] . ":" . $value["llave_secreta"])) {
+                    
+                    $usuariosModel = new UsuariosModel();
+                    $usuarios = $usuariosModel
+                                ->getCargoPersona($id);
+                           
+                    if (!empty($usuarios)) {
+
+                        $data = array(
+                            "Status" => 200,
+                            "Número Registro" =>$id,
+                            "Detalle" => $usuarios
+                        );
+                    } else {
+
+                        $data = array(
+                            "Status" => 404,
+                            "Detalle" => "No hay ninguuuuuuuuuuuuun cliente registrado"
+                        );
+                    }
+                } else {
+
+                    $data = array(
+                        "Status" => 404,
+                        "Detalle" => "El token es inválido"
+                    );
+                }
+            } else {
+
+                $data = array(
+                    "Status" => 404,
+                    "Detalle" => "No está autorizado para recibir los registros"
                 );
             }
         }

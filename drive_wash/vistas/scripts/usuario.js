@@ -61,16 +61,39 @@ function limpiar()
 	$("#apellidoMatPat").val("");
 	$("#razonsocial").val("");
 	$("#option_sexo").val("");
+	$('#option_sexo').selectpicker('refresh');
 	$("#login").val("");
 	$("#clave").val("");
 	$("#celular").val("");
 	$("#id_cargo").val("");
+	$('#id_cargo').selectpicker('refresh');
 	$("#id_distrito").val("");
+	$('#id_distrito').selectpicker('refresh');
 	$("#direccion").val("");
+	$("#tipo_documento").val("");
+	$('#tipo_documento').selectpicker('refresh');
 	$("#imagenmuestra").hide();
 	$("#imagenmuestra").attr("src","");
 	$("#imagenactual").val("");
+	$("#imagen").val("");
 	$("#idusuario").val("");
+	$("#antigua_clave").hide();
+
+	
+	$("#id").val("");
+	$("#dni").val("");
+	$("#razonsocial").val("");	
+	$("#nombres").val("");
+	$("#apellidoMatPat").val("");				
+	$("#tipo_documento").val("");
+	$("#sexo").val("");
+	$("#login").val("");
+	$("#clave_actual").val("");
+	$("#celular").val("");
+	$("#id_cargo").val("");
+	$("#id_distrito").val("");
+	$("#direccion").val("");
+	$("#imagenactual").val("");
 }
 
 //Función mostrar formulario
@@ -79,8 +102,10 @@ function mostrarform(flag)
 	limpiar();
 	if (flag)
 	{	 
+		$("#antigua_clave").show();
 		$("#div_sexo").show();
 	 	$("#btnareniec").prop("disabled",true);
+	 	$("#btnareniec").show();
 	 	$("#btnsunat").hide();
 	 	$("#dni").prop("disabled",true);
 		$("#mos_no_select").show();
@@ -139,6 +164,7 @@ $('.selectpicker').on('changed.bs.select', function (e) {
          $("#nuevo_tipo_doc").hide();
     
     }
+    var sexto=1;
 
     // DNI
     if ( selected == "21" ){
@@ -162,6 +188,9 @@ $('.selectpicker').on('changed.bs.select', function (e) {
         $("#nuevo_mos_no_select").hide();
         $("#antiguo_tipo_doc").show();
         $("#nuevo_tipo_doc").hide();
+        $("#razonsocial").val("");
+        $("#option_sexo").val(sexto);
+		$('#option_sexo').selectpicker('refresh');
 
     }
 
@@ -185,7 +214,14 @@ $('.selectpicker').on('changed.bs.select', function (e) {
         $("#dni").val("");   
         $("#nuevo_mos_no_select").hide(); 
         $("#antiguo_tipo_doc").show(); 
-        $("#nuevo_tipo_doc").hide();    
+        $("#nuevo_tipo_doc").hide();   
+
+        $("#nombres").val("");
+		$("#apellidoMatPat").val("");
+		
+		$("#option_sexo").val("");
+		$('#option_sexo').selectpicker('refresh'); 
+
     }
 
 
@@ -198,6 +234,7 @@ $('.selectpicker').on('changed.bs.select', function (e) {
         $("#mos_no_select").hide();        
         $("#btnareniec").prop("disabled",true);
         $("#btnsunat").prop("disabled",true);
+         $("#razonsocial").prop("disabled",true);
         $("#dni").prop("disabled",false);
         $("#nombres").prop("disabled",false);
         $("#habilitar_razon_social").hide();
@@ -208,6 +245,7 @@ $('.selectpicker').on('changed.bs.select', function (e) {
         $("#nuevo_mos_no_select").hide();
         $("#antiguo_tipo_doc").show();
         $("#nuevo_tipo_doc").hide();
+        $("#razonsocial").val("");
     }
 
     // PASAPORTE
@@ -219,6 +257,7 @@ $('.selectpicker').on('changed.bs.select', function (e) {
         $("#mos_no_select").hide();       
         $("#dni").prop("disabled",false);
         $("#btnareniec").prop("disabled",true);
+         $("#razonsocial").prop("disabled",true);
         $("#btnsunat").prop("disabled",true);
         $("#nombres").prop("disabled",false);
         $("#habilitar_razon_social").hide();
@@ -229,6 +268,7 @@ $('.selectpicker').on('changed.bs.select', function (e) {
         $("#nuevo_mos_no_select").hide();
         $("#antiguo_tipo_doc").show();
         $("#nuevo_tipo_doc").hide(); 
+        $("#razonsocial").val("");
 
 
     }
@@ -239,7 +279,7 @@ function tipo_doc_select_ruc_dni()
 	 // var zone = document.getElementById("tipo_documento");
 
 	
-	 console.log(selected);
+	console.log(selected);
 
     if ( text == "1" ){
 
@@ -334,18 +374,15 @@ function tipo_doc_select_ruc_dni()
         $("#div_sexo").show();
 
 
-    }
-	
-		
-		 
-	
+    }		 
 }
 
 
 
 //Función cancelarform
 function cancelarform()
-{
+{	
+	limpiar();
 	 $("#antiguo_tipo_doc").show();
 	 $("#antigua_clave").show();
 	 $("#antiguo_cargo").show();
@@ -429,6 +466,7 @@ function sexo(sas){
 
 function mostrar(id)
 {
+
 	sexo(id);
 	console.log(id);
 	$.post("../ajax/usuario.php?op=mostrar",{id : id}, function(data, status)
@@ -443,21 +481,16 @@ function mostrar(id)
 		
 		$("#antigua_clave").hide();
 		$("#nueva_clave").show();
-		
+		$("#id").val(data['Detalle'][0]['idpersona']);
+		$("#dni").val(data['Detalle'][0]['num_doc_persona']);
+		var ap =data['Detalle'][0]['apellidos_persona'];
 
-		
-		
-		
-		$("#id").val(data['Detalle']['id']);
-		$("#dni").val(data['Detalle']['num_doc']);
-		$("#actual_tipo_doc").val(data['Detalle']['num_doc']);
-
-		if(data['Detalle']['apellidospatmat']==""){
+		if(data['Detalle'][0]['apellidos_persona']==""){
 			// mostramos datos de sunat
 			$("#ocultar_div_nombre").hide();
 			$("#ocultar_div_apellidos").hide();
 			$("#habilitar_razon_social").show();
-			$("#razonsocial").val(data['Detalle']['cliente']);
+			$("#razonsocial").val(data['Detalle'][0]['nombre_persona']);
 			$("#razonsocial").prop("disabled",false);
 			$("#nombres").prop("disabled",true);
 			$("#dni").prop("disabled",false);
@@ -470,8 +503,8 @@ function mostrar(id)
 			// mostramos datos de reniec
 			$("#nombres").show();
 			$("#apellidoMatPat").show();
-			$("#nombres").val(data['Detalle']['cliente']);
-			$("#apellidoMatPat").val(data['Detalle']['apellidospatmat']);		
+			$("#nombres").val(data['Detalle'][0]['nombre_persona']);
+			$("#apellidoMatPat").val(data['Detalle'][0]['apellidos_persona']);		
 			$("#razonsocial").prop("disabled",true);
 			$("#nombres").prop("disabled",false);
 			$("#dni").prop("disabled",false);
@@ -482,24 +515,23 @@ function mostrar(id)
        		$("#div_sexo").show();
 		}
 				
-		$("#tipo_documento").val(data['Detalle']['id_tipo_doc']);
+		$("#tipo_documento").val(data['Detalle'][0]['id_tipo_doc']);
 		$("#tipo_documento").selectpicker('refresh');
-		$("#option_sexo").html(data['Detalle']['sexo']);
-		$("#sexo").val(data['Detalle']['id_sexo']);
+		$("#sexo").val(data['Detalle'][0]['id_sexo']);
 		$("#sexo").selectpicker('refresh');
-		$("#login").val(data['Detalle']['email']);
-		$("#clave_actual").val(data['Detalle']['clave']);
-		$("#celular").val(data['Detalle']['celular']);
-		$("#id_cargo").val(data['Detalle']['id_cargo']);
+		$("#login").val(data['Detalle'][0]['email']);
+		$("#clave_actual").val(data['Detalle'][0]['password']);
+		$("#celular").val(data['Detalle'][0]['celular']);
+		$("#id_cargo").val(data['Detalle'][0]['id_cargo']);
 		$("#id_cargo").selectpicker('refresh');
 		// $("#cargo_actual").val(data['Detalle']['id_cargo']);
-		$("#id_distrito").val(data['Detalle']['id_distrito']);
+		$("#id_distrito").val(data['Detalle'][0]['id_distrito']);
 		$("#id_distrito").selectpicker('refresh');
-		$("#direccion").val(data['Detalle']['direccion']);
+		$("#direccion").val(data['Detalle'][0]['direccion']);
 		$("#imagenmuestra").show();
-		$("#imagenmuestra").attr("src","../files/usuarios/"+data['Detalle']['imagen']);
-		$("#imagenactual").val(data['Detalle']['imagen']);
-		$("#idusuario").val(data['Detalle']['id']);
+		$("#imagenmuestra").attr("src","../files/usuarios/"+data['Detalle'][0]['imagen_persona']);
+		$("#imagenactual").val(data['Detalle'][0]['imagen_persona']);
+ 
 
  	});
 

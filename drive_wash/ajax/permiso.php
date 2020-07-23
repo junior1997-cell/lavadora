@@ -19,13 +19,13 @@ $permiso=new Permiso();
 switch ($_GET["op"]){
 	
 	case 'listar':
-		$rspta=$permiso->listar();
+		$rspta=$permiso->api_permisoAll();
  		//Vamos a declarar un array
  		$data= Array();
 
- 		while ($reg=$rspta->fetch_object()){
+ 		foreach ($rspta["Detalle"] as $reg){
  			$data[]=array(
- 				"0"=>$reg->nombre
+ 				"0"=>$reg["nombre_permiso"]
  				);
  		}
  		$results = array(

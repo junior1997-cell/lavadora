@@ -3,9 +3,9 @@ ob_start();
 if (strlen(session_id()) < 1){
 	session_start();//Validamos si existe o no la sesión
 }
-require_once "../modelos/Usuario.php";
+require_once "../modelos/Persona.php";
 
-$usuario=new Usuario();
+$usuario=new Persona();
 
 // id ES UNA VARIABLE ENVIADA DESDE LA VISTA USUARIOS PARA EDITAR
 $id=isset($_POST["id"])? limpiarCadena($_POST["id"]):"";
@@ -15,15 +15,15 @@ $dni=isset($_POST["dni"])? limpiarCadena($_POST["dni"]):"";
 $nombres=isset($_POST["nombres"])? limpiarCadena($_POST["nombres"]):"";
 $apellidos=isset($_POST["apellidos"])? limpiarCadena($_POST["apellidos"]):"";
 $razonsocial=isset($_POST["razonsocial"])? limpiarCadena($_POST["razonsocial"]):"";
-$sexo=isset($_POST["sexo"])? limpiarCadena($_POST["sexo"]):"";
-$login=isset($_POST["login"])? limpiarCadena($_POST["login"]):"";
+$sex=isset($_POST["sexo"])? limpiarCadena($_POST["sexo"]):"";
+$logi=isset($_POST["login"])? limpiarCadena($_POST["login"]):"";
 $clave=isset($_POST["clave"])? limpiarCadena($_POST["clave"]):"";
 $celular=isset($_POST["celular"])? limpiarCadena($_POST["celular"]):"";
 $id_cargo=isset($_POST["id_cargo"])? limpiarCadena($_POST["id_cargo"]):"";
-$id_distrito=isset($_POST["id_distrito"])? limpiarCadena($_POST["id_distrito"]):"";
+$id_distri=isset($_POST["id_distrito"])? limpiarCadena($_POST["id_distrito"]):"";
 $direccion=isset($_POST["direccion"])? limpiarCadena($_POST["direccion"]):"";
 $imagen=isset($_POST["imagen"])? limpiarCadena($_POST["imagen"]):"";
-
+$imagencita="";
 
 
 switch ($_GET["op"]){
@@ -59,6 +59,7 @@ switch ($_GET["op"]){
 				if(empty($razonsocial)){
 					$nomb=$nombres;
 				}else{
+					//enviamos "RAZON SOCIAL" INGRESADO POR INPUT
 					$nomb=$razonsocial;
 				}
 
@@ -66,28 +67,49 @@ switch ($_GET["op"]){
 				if(empty($clave)){
 					$clavehash=$_POST["clave_actual"];
 				}else{
-
 					//Hash SHA256 en la contraseña, para encriptar.
 					$clavehash=hash("SHA256",$clave);
 				}
-				// validamos "sexo" SI ESTA VACIA O TIENE DATOS
-				if(empty($sexo)){
-					$sex=$_POST["sexo_actual"];
+
+				// validamos "SEXO" SI ESTA VACIA O TIENE DATOS
+				if(empty($sex)){
+					$sexo=1;
 				}else{
-					$sex=$sexo;
+					 //ENVIA SEXO SELECIONADO
+					$sexo=$sex;
 				}
 
+				// validamos "DISTRITO" SI ESTA VACIA O TIENE DATOS
+				if(empty($id_distri)){
+					$id_distrito=250402;
+				}else{
+					//ENVIA DISTRITO SELECIONADO
+					$id_distrito=$id_distri;
+				}
+
+				// validamos "EMAIL" SI ESTA VACIA O TIENE DATOS
+				if(empty($logi)){
+					$login="NO DEFINIDO";
+				}else{
+					//ENVIA EMAIL INGRESADO POR INPUT
+					$login=$logi;
+				}
+
+				// validamos "imagen" SI ESTA VACIA  
+				if(empty($imagen)){
+					$imagen="nosabe.png";
+				}
 
 				// Validamos "id" SI ESTA VACIA O TIENE DATOS para "guardar" o "editar"
 				if (empty($id)){
-					$rspta=$usuario->guardar_api_usuario($tipo_doc,$dni,$nomb,$apellidos,$sex,$login,
+					$rspta=$usuario->guardar_api_usuario($tipo_doc,$dni,$nomb,$apellidos,$sexo,$login,
 						$clavehash,$celular,$id_cargo,$id_distrito,$direccion,$imagen);
 
 						// $_POST['permiso']
 					echo $rspta ? "Usuario registrado" : "No se pudieron registrar todos los datos del usuario";
 				}
 				else {
-					$rspta=$usuario->editar_api_usuario($id,$tipo_doc,$dni,$nomb,$apellidos,$sex,$login,$clavehash,$celular,$id_cargo,$id_distrito,$direccion,$imagen);
+					$rspta=$usuario->edit_api_usuario($id,$tipo_doc,$dni,$nomb,$apellidos,$sexo,$login,$clavehash,$celular,$id_cargo,$id_distrito,$direccion,$imagen);
 
 						// $_POST['permiso']
 					echo $rspta ? "Usuario actualizado" : "Usuario no se pudo actualizar";
@@ -180,33 +202,20 @@ switch ($_GET["op"]){
 				$rspta=$usuario->listar_all_api_persona_local();				
 		 		//Vamos a declarar un array
 		 		//var_dump($rspta); die;
-		 		$a="Admi";
+		 		$a="1";
 		 		$data =array();
 		 		foreach($rspta["Detalle"] as $reg ){
 		 			$data[]=array(
-		 				"0"=>($reg['estado'])?'<button class="btn btn-warning" onclick="mostrar('.$reg['id'].')">
-			 				<i class="fa fa-pencil">
-			 				</i>
-			 				</button>'.
-			 				'<button class="btn btn-danger" onclick="desactivar('.$reg['id'].')"><i class="fa fa-trash"></i>
-			 				</button>':'<button class="btn btn-warning" onclick="mostrar('.$reg['id'].')"><i class="fa fa-pencil"></i>
-			 				</button>'.
-			 				'<button class="btn btn-primary" onclick="activar('.$reg['id'].')">
-			 				<i class="fa fa-check"></i>
-			 				</button>',	
-		 				"1"=>$reg['nombre']." ".$reg['apellidos'],
-		 				"2"=>$reg['id_sexo'],	 				
-		 				"3"=>$reg['id_tipo_doc'].": ".$reg['num_doc'],
-		 				"4"=>$reg['email'],		 				
-		 				"5"=>$reg['celular'],
-		 				if($reg['id_cargo']==4){
-		 					"6"=>$a,
-		 				}
-		 				"6"=>$reg['id_cargo'],
-		 				"7"=>$reg['id_distrito'],
-		 				"8"=>"<img src='../files/usuarios/".$reg['imagen']."' height='40px' width='40px' >",
-		 				"9"=>($reg['estado'])?'<span class="label bg-green">Activado</span>':
-		 				'<span class="label bg-red">Desactivado</span>'
+		 				"0"=>($reg['estado_clientes'])?'<button class="btn btn-warning" onclick="mostrar('.$reg['idclientes'].')"><i class="fa fa-pencil"></i></button>'.' <button class="btn btn-danger" onclick="desactivar('.$reg['idclientes'].')"><i class="fa fa-trash"></i></button>':'<button class="btn btn-warning" onclick="mostrar('.$reg['idclientes'].')"><i class="fa fa-pencil"></i></button>'.' <button class="btn btn-primary" onclick="activar('.$reg['idclientes'].')"><i class="fa fa-check"></i></button>',	
+		 				"1"=>$reg['nombre_clientes']." ".$reg['apellidos_clientes'],
+		 				"2"=>$reg['nombre_sexo'],	 				
+		 				"3"=>$reg['nombre_tipo_doc'].": ".$reg['num_doc_clientes'],
+		 				"4"=>$reg['email_clientes'],		 				
+		 				"5"=>$reg['celular_clientes'],
+		 				"6"=>$reg['nombre_cargo'],
+		 				"7"=>$reg['nombre_distrito'],
+		 				"8"=>"<img src='../files/usuarios/".$reg['imagen_clientes']."' height='40px' width='40px' >",
+		 				"9"=>($reg['estado_clientes'])?'<span class="label bg-green">Activd.</span>':'<span class="label bg-red">Borrdo.</span>'
 		 			);
 		 		}
 
@@ -258,9 +267,9 @@ switch ($_GET["op"]){
 	    $clavea=$_POST['clavea'];
 
 	    //Hash SHA256 en la contraseña
-		 $clavehash=hash("SHA256",$clavea);
+		 // $clavehash=hash("SHA256",$clavea);
 
-		$rspta=$usuario->verificar($logina, $clavehash);
+		$rspta=$usuario->verificar($logina, $clavea);
 
 		$fetch=$rspta->fetch_object(); 
 
@@ -269,28 +278,27 @@ switch ($_GET["op"]){
 	        //Declaramos las variables de sesión
  
 
-	        $_SESSION['id']=$fetch->id;
-	        $_SESSION['nombre']=$fetch->nombre;
-	        $_SESSION['apellidos']=$fetch->apellidos;
+	        $_SESSION['id']=$fetch->idpersona;
+	        $_SESSION['nombre']=$fetch->nombre_persona;
+	        $_SESSION['apellidos']=$fetch->apellidos_persona;
 	        $_SESSION['id_sexo']=$fetch->id_sexo;
 	        $_SESSION['id_tipo_doc']=$fetch->id_tipo_doc;
 	        $_SESSION['email']=$fetch->email;
 	        $_SESSION['password'] =$fetch->password;
 	        $_SESSION['celular']=$fetch->celular;
-	        $_SESSION['id_cargo'] =$fetch->id_cargo;
-	        $_SESSION['id_tipo_persona'] =$fetch->id_tipo_persona;
+	        $_SESSION['cargo'] =$fetch->nombre_cargo;
 	        $_SESSION['id_distrito'] =$fetch->id_distrito;
 	        $_SESSION['direccion']=$fetch->direccion;
-	       	$_SESSION['imagen'] =$fetch->imagen;
-	        $_SESSION['fecha'] =$fetch->fecha;
-	        $_SESSION['ultimo_login'] =$fetch->ultimo_login;
-	        $_SESSION['estado'] =$fetch->estado;
-	        $_SESSION['cargo'] =$fetch->cargo;
+	       	$_SESSION['imagen'] =$fetch->imagen_persona;
+	        $_SESSION['fecha'] =$fetch->fecha_persona;
+
+	        $_SESSION['estado'] =$fetch->estado_persona;
+
 	        
 
 
 	        //Obtenemos los permisos del usuario
-	    	$marcados = $usuario->listarmarcados($fetch->id);
+	    	$marcados = $usuario->listarmarcados($fetch->idpersona);
 
 	    	//Declaramos el array para almacenar todos los permisos marcados
 			$valores=array();
@@ -357,7 +365,7 @@ switch ($_GET["op"]){
 			if ($_SESSION['almacen']==1)
 			{			
 				// var_dump($dni);
-				$rspta=$usuario->captura_unic_reniec($dni);
+				$rspta=$usuario->captura_unic_reniec_r($dni);
 		 		//Codificar el resultado utilizando json
 		 		// var_dump($rspta); die;
 		 		$data =array();
@@ -365,7 +373,7 @@ switch ($_GET["op"]){
 		 		 		$data[]=array(
 		 				"0"=>$rspta['dni'],	
 		 				"1"=>$rspta['nombres'],
-		 				"2"=>$rspta['apellidoPaterno']." ".$rspta['apellidoMaterno'],
+		 				"2"=>$rspta['apellido_paterno']." ".$rspta['apellido_materno'],
 		 				"3"=>"DNI(*):"
 		 				 
 		 				);
@@ -395,7 +403,7 @@ switch ($_GET["op"]){
 		 		//var_dump($rspta); die;		 		 
 		 			foreach($rspta["Detalle"] as $reg ){	
 		 		 		 
-		 				echo '<option value=' . $reg['id'] . '>' . $reg['nombre'] . '</option>';		 				 		 
+		 				echo '<option value=' . $reg['iddistrito'] . '>' . $reg['nombre_distrito'] . '</option>';		 				 		 
 		 		 	}
 		 			 
 			//Fin de las validaciones de acceso
@@ -422,7 +430,7 @@ switch ($_GET["op"]){
 		 		//var_dump($rspta); die;		 		 
 		 			foreach($rspta["Detalle"] as $reg ){	
 		 		 		 
-		 				echo '<option value=' . $reg['id'] . '>' . $reg['nombre'] . '</option>';		 				 		 
+		 				echo '<option value=' . $reg['idcargo'] . '>' . $reg['nombre_cargo'] . '</option>';		 				 		 
 		 		 	}
 		 			 
 			//Fin de las validaciones de acceso
@@ -450,7 +458,7 @@ switch ($_GET["op"]){
 		 		//var_dump($rspta); die;		 		 
 		 			foreach($rspta["Detalle"] as $reg ){	
 		 		 		 
-		 				echo '<option value="' . $reg['id'] . '">' . $reg['nombre'] . '</option>';		 				 		 
+		 				echo '<option value="' . $reg['idtipo_doc'] . '">' . $reg['nombre_tipo_doc'] . '</option>';		 				 		 
 		 		 	}
 		 			 
 			//Fin de las validaciones de acceso
@@ -478,13 +486,59 @@ switch ($_GET["op"]){
 		 		//var_dump($rspta); die;		 		 
 		 			foreach($rspta["Detalle"] as $reg ){	
 		 		 		 
-		 				echo '<option value="' . $reg['id'] . '">' . $reg['nombre'] . '</option>';		 				 		 
+		 				echo '<option value="' . $reg['idsexo'] . '">' . $reg['nombre_sexo'] . '</option>';		 				 		 
 		 		 	}
 		 			 
 			//Fin de las validaciones de acceso
 			}
 			else
 			{
+		  	require 'noacceso.php';
+			}
+		}		
+	break;
+
+	case 'prueba_tabla':
+		if (!isset($_SESSION["nombre"]))
+		{
+		  header("Location: ../vistas/login.html");//Validamos el acceso solo a los usuarios logueados al sistema.
+		}
+		else
+		{
+			//Validamos el acceso solo al usuario logueado y autorizado.
+			if ($_SESSION['almacen']==1)
+			{			
+				//var_dump($dni); die;
+				 $rspta=$usuario->listar_all_api_sexo();
+		 		//Codificar el resultado utilizando json
+		 		//var_dump($rspta); die;
+				 echo '<table class="table" ">
+							  <thead  >
+							    <tr>
+							      <th scope="col">N°</th>
+
+							       <th scope="col">Nombre</th>
+							      
+							    </tr>
+							  </thead>';
+
+		 			 foreach($rspta["Detalle"] as $reg ){	
+		 		 		 
+		 				echo'
+							  <tbody>
+							    <tr>
+							      <th scope="row">1</th>
+							      <td>' . $reg['nombre_sexo'] . '</td>
+							       
+							    </tr>
+							    
+							  </tbody>';
+								 				 		 
+		 		 	 }
+		 		 	 echo '</table>';	
+		 			 
+			//Fin de las validaciones de acceso
+			}else{
 		  	require 'noacceso.php';
 			}
 		}		
