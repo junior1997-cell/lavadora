@@ -18,11 +18,11 @@ require('Factura.php');
 //Establecemos los datos de la empresa
 $logo = "logo.jpg";
 $ext_logo = "jpg";
-$empresa = "Soluciones Innovadoras Perú S.A.C.";
+$empresa = "Drive Wash";
 $documento = "20477157772";
-$direccion = "Chongoyape, José Gálvez 1368";
+$direccion = "Tarapoto, José Gálvez 1368";
 $telefono = "931742904";
-$email = "jcarlos.ad7@gmail.com";
+$email = "drive_wash@gmail.com";
 
 //Obtenemos los datos de la cabecera de la venta actual
 require_once "../modelos/Venta.php";
@@ -84,7 +84,7 @@ while ($regd = $rsptad->fetch_object()) {
 //Convertimos el total en letras
 require_once "Letras.php";
 $V=new EnLetras(); 
-$con_letra=strtoupper($V->ValorEnLetras($regv->total_venta,"NUEVOS SOLES"));
+$con_letra=strtoupper($V->ValorEnLetras($regv->total_venta,"SOLES"));
 $pdf->addCadreTVAs("---".$con_letra);
 
 //Mostramos el impuesto

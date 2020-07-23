@@ -53,6 +53,10 @@ $routes->resource('Distrito');
 $routes->resource('Cargo'); 
 $routes->resource('Permiso'); 
 $routes->resource('Tipodoc');
+$routes->resource('Pedidos');
+$routes->resource('Usuarios');
+$routes->resource('Tipocomprobante');
+$routes->resource('Detallepedidoprenda');
 
 
 /**

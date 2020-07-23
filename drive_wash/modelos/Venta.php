@@ -70,12 +70,13 @@ Class Venta
 		return ejecutarConsulta($sql);
 	}
 
-	public function select_api_delivey(){
+	//lista todas las ventas echas
+	public function lista_all_ventas(){
 
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/Delivery",
+		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/pedidos",
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -94,12 +95,39 @@ Class Venta
 		$data=json_decode($response,true);
 		return $data;
 	}
+
+	//LISTA TODOS LOS TIPOS DE DELIVERY
+	public function select_api_delivey(){
+
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/delivery",
+		  CURLOPT_RETURNTRANSFER => true,
+		  CURLOPT_ENCODING => "",
+		  CURLOPT_MAXREDIRS => 10,
+		  CURLOPT_TIMEOUT => 0,
+		  CURLOPT_FOLLOWLOCATION => true,
+		  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+		  CURLOPT_CUSTOMREQUEST => "GET",
+		  CURLOPT_HTTPHEADER => array(
+		    "Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VUU2hUQnZPZ2R2SHI5UG5DdExGbXlUZy53Lmc1Y01pOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlY2ZpLi90RmxTRFhPOS9NOTlFNGxWS0xNOGdodzhOeQ=="
+		  ),
+		));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+		$data=json_decode($response,true);
+		return $data;
+	}
+	//LISTA LOS TIPO DE PEDIDO PESONAL LAAMADA WEB
 	public function selct_api_tipoPedido(){
 
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/Tipopedido",
+		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/Tipopedido",
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -120,13 +148,44 @@ Class Venta
 
 	}
 
-	public function listar_all_api_persona_local()
+	//LISTA TODOS LOS CLIENTES PARA HACER EL PEDIDO
+	public function listar_all_clientes()
 	{
 		 
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/clientes",
+		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/clientes",
+		  CURLOPT_RETURNTRANSFER => true,
+		  CURLOPT_ENCODING => "",
+		  CURLOPT_MAXREDIRS => 10,
+		  CURLOPT_TIMEOUT => 0,
+		  CURLOPT_FOLLOWLOCATION => true,
+		  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+		  CURLOPT_CUSTOMREQUEST => "GET",
+		  CURLOPT_HTTPHEADER => array(
+		     "Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VUU2hUQnZPZ2R2SHI5UG5DdExGbXlUZy53Lmc1Y01pOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlY2ZpLi90RmxTRFhPOS9NOTlFNGxWS0xNOGdodzhOeQ=="
+		  ),
+		));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+		
+		$data= json_decode( $response,true);
+
+		return $data;	
+
+	//var_dump ($data); die;	
+	}
+	//LISTAMOS TIPO DE COMPROBANTE DE PAGO
+	public function listar_all_tipocomprobante()
+	{
+		 
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/Tipocomprobante",
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,

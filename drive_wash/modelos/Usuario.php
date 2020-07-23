@@ -94,7 +94,7 @@ Class Usuario
     {
     	$sql="SELECT *
     	 FROM persona 
-    	 WHERE email='$login' AND password='$clave' AND estado=1 "; 
+    	 WHERE email='$login' AND password='$clave' AND estado_persona=1 "; 
     	return ejecutarConsulta($sql);  
     }
 
@@ -112,7 +112,7 @@ Class Usuario
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/clientes",
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/usuarios",
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -146,7 +146,7 @@ Class Usuario
 		//$estado = 1;
 		//var_dump($estado);
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/clientes/create",
+		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/usuarios/create",
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -156,9 +156,9 @@ Class Usuario
 		  CURLOPT_CUSTOMREQUEST => "POST",
 		  CURLOPT_POSTFIELDS => 
 		  "id_tipo_doc=".$tipo_doc. 
-		  "&num_doc=".$dni.
-		  "&nombre=".$nomb.
-		  "&apellidos=".$apellidos.
+		  "&num_doc_persona=".$dni.
+		  "&nombre_persona=".$nomb.
+		  "&apellidos_persona=".$apellidos.
 		  "&id_sexo=".$sex.
 		  "&email=".$login.
 		  "&password=".$clavehash.
@@ -166,7 +166,7 @@ Class Usuario
 		  "&id_cargo=".$id_cargo.
 		  "&id_distrito=".$id_distrito.
 		  "&direccion=".$direccion.
-		  "&imagen=".$imagen,	  
+		  "&imagen_persona=".$imagen,	  
 		  CURLOPT_HTTPHEADER => array(
 		    "Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VUU2hUQnZPZ2R2SHI5UG5DdExGbXlUZy53Lmc1Y01pOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlY2ZpLi90RmxTRFhPOS9NOTlFNGxWS0xNOGdodzhOeQ=="
 		  ),
@@ -183,17 +183,17 @@ Class Usuario
 
 	//------------------------------------------------------------------------------
 	// EDITAR USUARIO PASANDOLE UN "ID"
-	public function editar_api_usuario($id,$tipo_doc,$dni,$nomb,$apellidos,$sex,$login,
+	public function edit_api_usuario($id,$tipo_doc,$dni,$nomb,$apellidos,$sex,$login,
 		$clavehash,$celular,$id_cargo,$id_distrito,$direccion,$imagen)
 	{
 		 
-		 // var_dump($id,$tipo_doc,$dni,$nomb,$apellidos,$sex,$login,$clavehash,$celular,$id_cargo,$id_distrito,$direccion,$imagen); die;
+		  // var_dump($id,$tipo_doc,$dni,$nomb,$apellidos,$sex,$login,$clavehash,$celular,$id_cargo,$id_distrito,$direccion,$imagen); die;
 
 		$curl = curl_init();
 		//$estado = 1;
 		//var_dump($estado);
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/clientes/".$id,
+		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/usuarios/update/".$id,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -203,9 +203,9 @@ Class Usuario
 		  CURLOPT_CUSTOMREQUEST => "PUT",
 		  CURLOPT_POSTFIELDS => 
 		  "id_tipo_doc=".$tipo_doc. 
-		  "&num_doc=".$dni.
-		  "&nombre=".$nomb.
-		  "&apellidos=".$apellidos.
+		  "&num_doc_persona=".$dni.
+		  "&nombre_persona=".$nomb.
+		  "&apellidos_persona=".$apellidos.
 		  "&id_sexo=".$sex.
 		  "&email=".$login.
 		  "&password=".$clavehash.
@@ -213,9 +213,10 @@ Class Usuario
 		  "&id_cargo=".$id_cargo.
 		  "&id_distrito=".$id_distrito.
 		  "&direccion=".$direccion.
-		  "&imagen=".$imagen,	  
+		  "&imagen_persona=".$imagen,	  
 		  CURLOPT_HTTPHEADER => array(
-		    "Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VUU2hUQnZPZ2R2SHI5UG5DdExGbXlUZy53Lmc1Y01pOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlY2ZpLi90RmxTRFhPOS9NOTlFNGxWS0xNOGdodzhOeQ=="
+		    "Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VUU2hUQnZPZ2R2SHI5UG5DdExGbXlUZy53Lmc1Y01pOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlY2ZpLi90RmxTRFhPOS9NOTlFNGxWS0xNOGdodzhOeQ==",
+    		"Content-Type: application/x-www-form-urlencoded"
 		  ),
 		));
 
@@ -240,7 +241,7 @@ Class Usuario
 		//$estado = 1;
 		//var_dump($estado);
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/clientes/delete/".$id,
+		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/usuarios/delete/".$id,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -274,7 +275,7 @@ Class Usuario
 		//$estado = 1;
 		//var_dump($estado);
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/clientes/recuperar/".$id,
+		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/usuarios/recuperar/".$id,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -304,7 +305,7 @@ Class Usuario
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/clientes",
+		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/usuarios",
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -334,7 +335,7 @@ Class Usuario
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/clientes/".$id,
+		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/usuarios/show/".$id,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -365,7 +366,7 @@ Class Usuario
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/distrito",
+		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/distrito",
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -396,7 +397,7 @@ Class Usuario
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/cargo",
+		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/usuarios/cargo/0",
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -427,7 +428,7 @@ Class Usuario
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/tipodoc",
+		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/tipodoc",
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -457,7 +458,7 @@ Class Usuario
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/sexo",
+		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/sexo",
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,

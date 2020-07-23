@@ -76,32 +76,33 @@ switch ($_GET["op"]){
                                     <th><h4 id="total">S/.'.$total.'</h4><input type="hidden" name="total_venta" id="total_venta"></th> 
                                 </tfoot>';
 	break;
-
-	/*case 'listar':
-		$rspta=$venta->listar();
+	//LISTAR TODOS LO PEDIDOS DE PRENDA
+	case 'listar':
+		$rspta=$venta->lista_all_ventas();
+		// var_dump($rspta); die;
  		//Vamos a declarar un array
  		$data= Array();
 
- 		while ($reg=$rspta->fetch_object()){
- 			if($reg->tipo_comprobante=='Ticket'){
- 				$url='../reportes/exTicket.php?id=';
+ 		foreach ( $rspta['Detalle'] as $reg){
+ 			if($rspta['Detalle'][0]['id_tipo_comprobante']==1){
+ 			 	$url='../reportes/exTicket.php?id=';
  			}
- 			else{
+ 			 else{
  				$url='../reportes/exFactura.php?id=';
  			}
 
  			$data[]=array(
- 				"0"=>(($reg->estado=='Aceptado')?'<button class="btn btn-warning" onclick="mostrar('.$reg->idventa.')"><i class="fa fa-eye"></i></button>'.
- 					' <button class="btn btn-danger" onclick="anular('.$reg->idventa.')"><i class="fa fa-close"></i></button>':
- 					'<button class="btn btn-warning" onclick="mostrar('.$reg->idventa.')"><i class="fa fa-eye"></i></button>').
- 					'<a target="_blank" href="'.$url.$reg->idventa.'"> <button class="btn btn-info"><i class="fa fa-file"></i></button></a>',
- 				"1"=>$reg->fecha,
- 				"2"=>$reg->cliente,
- 				"3"=>$reg->usuario,
- 				"4"=>$reg->tipo_comprobante,
- 				"5"=>$reg->serie_comprobante.'-'.$reg->num_comprobante,
- 				"6"=>$reg->total_venta,
- 				"7"=>($reg->estado=='Aceptado')?'<span class="label bg-green">Aceptado</span>':
+ 				"0"=>(($reg['estado_pedido_prenda'])?'<button class="btn btn-warning" onclick="mostrar('.$reg['idpedido_prenda'].')"><i class="fa fa-eye"></i></button>'.
+ 					' <button class="btn btn-danger" onclick="anular('.$reg['idpedido_prenda'].')"><i class="fa fa-close"></i></button>':
+ 					'<button class="btn btn-warning" onclick="mostrar('.$reg['idpedido_prenda'].')"><i class="fa fa-eye"></i></button>').
+ 					'<a target="_blank" href="'.$url.$reg['idpedido_prenda'].'"> <button class="btn btn-info"><i class="fa fa-file"></i></button></a>',
+ 				"1"=>$reg['fecha_pedido_prenda'],
+ 				"2"=>$reg['nombre_clientes'],
+ 				"3"=>$reg['nombre_persona'],
+ 				"4"=>$reg['nombre_tipo_comprobante'],
+ 				"5"=>$reg['serie_comprobante'].'-'.$reg['numero_comprobante'],
+ 				"6"=>$reg['total_pedido'],
+ 				"7"=>($reg['estado_pedido_prenda'])?'<span class="label bg-green">Aceptado</span>':
  				'<span class="label bg-red">Anulado</span>'
  				);
  		}
@@ -112,7 +113,7 @@ switch ($_GET["op"]){
  			"aaData"=>$data);
  		echo json_encode($results);
 
-	break;*/
+	break;
 
 	
 
@@ -162,19 +163,22 @@ switch ($_GET["op"]){
  			"aaData"=>$data);
  		echo json_encode($results);
 	break;*/
-
+	//LISTA LOS TIPO DE DELIVERIS
 	case 'listardelivey':
 		require_once "../modelos/Venta.php";
-		$select=new Venta();
+		 
 
-		$rspta=$select->select_api_delivey();
+		$rspta=$venta->select_api_delivey();
 			//Vamos a declarar un array
-		foreach ($rspta['Detalle'] as $reg){
+		// if($rspta['Detalle'][0]['iddelivery']==7){
+		// 	echo '<option value="1">hola</option>';
+		// }
+		 foreach ($rspta['Detalle'] as $reg){
 
-			echo '<option value=' . $reg['id'] . '>' . $reg['nombre'] . '</option>';
-		}
+			echo '<option value=' . $reg['iddelivery'] . '>' . $reg['nombre_delivery'] . '</option>';
+		 }
 	break;
-
+	//LISTA EL TIPO DE SERVICIO DE LAVADO
 	case 'listartipolavado':
 		require_once "../modelos/Tipo_lavado.php";
 		$tipo=new TipoLavado();
@@ -186,7 +190,7 @@ switch ($_GET["op"]){
 			echo '<option value=' . $reg['id'] . '>' . $reg['nombre'] . '</option>';
 		}
 	break;
-
+	//LISTA LOS TIPOS DE PEDIDDOS PERSONAL, LLAMDA, WEB
 	case 'listartipopedido':
 		require_once "../modelos/Venta.php";
 		$select=new Venta();
@@ -195,19 +199,30 @@ switch ($_GET["op"]){
 			//Vamos a declarar un array
 		foreach ($rspta['Detalle'] as $reg){
 
-			echo '<option value=' . $reg['id'] . '>' . $reg['nombre'] . '</option>';
+			echo '<option value=' . $reg['idtipo_pedido'] . '>' . $reg['nombre_tipo_pedido'] . '</option>';
 		}
 	break;
-
+	//LISTA ATODOS LOS CLIENTES PRA HACER UNA VENTA
 	case 'listar_clientes':
 		require_once "../modelos/Venta.php";
 		$select=new Venta();
 
-		$rspta=$select->listar_all_api_persona_local();
+		$rspta=$select->listar_all_clientes();
 			//Vamos a declarar un array
 		foreach ($rspta['Detalle'] as $reg){
 
-			echo '<option value=' . $reg['id'] . '>' . $reg['nombre'] ." ".$reg['apellidos']. '</option>';
+			echo '<option value=' . $reg['idclientes'] . '>' . $reg['nombre_clientes'] ." ".$reg['apellidos_clientes']. '</option>';
+		}
+	break;
+	//LISTA TOOS LOS COMPROVANTES
+	case 'listar_tiposcomprobante':
+		require_once "../modelos/Venta.php";
+		 
+		$rspta=$venta->listar_all_tipocomprobante();
+			//Vamos a declarar un array
+		foreach ($rspta['Detalle'] as $reg){
+
+			echo '<option value=' . $reg['idtipo_comprobante'] . '>' . $reg['nombre_tipo_comprobante'].'</option>';
 		}
 	break;
 

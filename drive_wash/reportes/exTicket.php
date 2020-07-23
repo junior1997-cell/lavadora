@@ -31,11 +31,11 @@ $rspta = $venta->ventacabecera($_GET["id"]);
 $reg = $rspta->fetch_object();
 
 //Establecemos los datos de la empresa
-$empresa = "Soluciones Innovadoras Perú S.A.C.";
+$empresa = "Drive Wash Perú S.A.C.";
 $documento = "20477157772";
-$direccion = "Chongoyape, José Gálvez 1368";
+$direccion = "Tarapoto, José Gálvez 1368";
 $telefono = "931742904";
-$email = "jcarlos.ad7@gmail.com";
+$email = "drive_wash@gmail.com";
 
 ?>
 <div class="zona_impresion">

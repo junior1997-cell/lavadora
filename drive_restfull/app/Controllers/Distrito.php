@@ -29,6 +29,7 @@ class Distrito extends Controller {
                     $distritoModel = new DistritoModel();
                     
                     $distrito = $distritoModel
+                             ->orderby('iddistrito','DESC')
                             ->findAll();
 
                     

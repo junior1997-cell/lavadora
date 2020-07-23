@@ -79,10 +79,8 @@ if ($_SESSION['ventas']==1)
                           <!-- TIPO DE COMPROBANTE -->
                           <div class="form-group col-lg-3 col-md-6 col-sm-6 col-xs-12">
                             <label>Tipo Comprobante(*):</label>
-                            <select name="id_tipo_comprobante" id="id_tipo_comprobante" class="form-control selectpicker" required="">
-                               <option value="Boleta">Boleta</option>
-                               <option value="Factura">Factura</option>
-                               <option value="Ticket">Ticket</option>
+                            <select name="id_comprobante" id="id_comprobante" class="form-control selectpicker" required="">
+                               
                             </select>
                           </div>
                           <!-- SERIO DE BOLETA O FATURA -->
