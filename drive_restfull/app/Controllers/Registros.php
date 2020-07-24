@@ -18,7 +18,14 @@ class Registros extends Controller {
             $data = json_encode($respuesta);
          } else {
 
-             $data = json_encode($registro);
+             $r = array(
+                            "Status" => 200,
+                            "Total_Resultados" => count($registro),
+                            "Det" => $registro
+                                //"Paginador"=>$paginador
+                        );
+
+             $data = json_encode($r);
          }
          return $data;
     }
@@ -51,6 +58,8 @@ class Registros extends Controller {
                 $data = array('Status' => 404, 'Detalle' => $errors);
                 return json_encode($data, true);
             } else {
+                $cli =$datos["nombres"] .' '. $datos["apellidos"] ;
+                
                 $cliente_id = crypt(
                         $datos["nombres"] . $datos["apellidos"] . $datos["email"],
                         '$2a$07$dfhdfrexfhgdfhdferttgsad$'
@@ -71,7 +80,8 @@ class Registros extends Controller {
                 $registro = $registroModel->insert($datos);
                 $data = array('Status' => 200, 'Detalle' => 'Registro satisfactorio, guarde sus credenciales',
                     'Credenciales' => array("cliente_id" => str_replace('$', 'a', $cliente_id),
-                        "llave_secreta" => str_replace('$', 'o', $llave_secreta)
+                        "llave_secreta" => str_replace('$', 'o', $llave_secreta),
+                        'nom'=>$cli
                     )
                 );
                 return json_encode($data, true);

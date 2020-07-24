@@ -1,4 +1,4 @@
- <?php
+<?php
 
     $curl = curl_init();
     if($_SERVER["REQUEST_METHOD"]=="POST"){
@@ -6,7 +6,7 @@
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-          CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/registros",
+          CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/registros",
           CURLOPT_RETURNTRANSFER => true,
           CURLOPT_ENCODING => "",
           CURLOPT_MAXREDIRS => 10,
@@ -33,6 +33,7 @@
 ?>
 
 
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -47,7 +48,7 @@
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="public/jhefry/css/styles.css" rel="stylesheet" />
+        <link href="css/styles.css" rel="stylesheet" />
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -68,7 +69,7 @@
         <!-- Masthead-->
         <header class="masthead bg-primary text-white text-center">
             <div class="container d-flex align-items-center flex-column" id="inicio">
-                <!-- Masthead Avatar Image--><img class="masthead-avatar mb-5" src="public/jhefry/assets/img/avataaars.svg" alt="" /><!-- Masthead Heading-->
+                <!-- Masthead Avatar Image--><img class="masthead-avatar mb-5" src="assets/img/avataaars.svg" alt="" /><!-- Masthead Heading-->
                 <h1 class="masthead-heading text-uppercase mb-0">El Mundo de las Apis</h1>
                 <!-- Icon Divider-->
                 <div class="divider-custom divider-light">
@@ -108,9 +109,9 @@
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid" src="public/jhefry/assets/img/portfolio/paso1.PNG" alt="" />
+                            <img class="img-fluid" src="assets/img/portfolio/paso1.PNG" alt="" />
                             <br><br><br>
-                            <img class="img-fluid" src="public/jhefry/assets/img/portfolio/paso2.1.png" alt=""/>
+                            <img class="img-fluid" src="assets/img/portfolio/paso2.1.png" alt=""/>
                         </div>
                     </div>
                     <!-- Portfolio Item 2-->
@@ -121,9 +122,9 @@
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                             <img class="img-fluid" src="public/jhefry/assets/img/portfolio/paso2.1.1.png" alt="" />
+                             <img class="img-fluid" src="assets/img/portfolio/paso2.1.1.png" alt="" />
                              <br><br>
-                            <img class="img-fluid" src="public/jhefry/assets/img/portfolio/paso2.jpg"/>
+                            <img class="img-fluid" src="assets/img/portfolio/paso2.jpg"/>
                         </div>
                     </div>
                     <!-- Portfolio Item 3-->
@@ -133,7 +134,7 @@
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid" src="public/jhefry/assets/img/portfolio/paso3.jpg"/>
+                            <img class="img-fluid" src="assets/img/portfolio/paso3.jpg"/>
                         </div>
                     </div>
                     <!-- Portfolio Item 4-->
@@ -143,9 +144,9 @@
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid" src="public/jhefry/assets/img/portfolio/paso4.png"/>
+                            <img class="img-fluid" src="assets/img/portfolio/paso4.png"/>
                             <br><br><br>
-                            <img class="img-fluid" src="public/jhefry/assets/img/portfolio/paso4.1.png"/>
+                            <img class="img-fluid" src="assets/img/portfolio/paso4.1.png"/>
                         </div>
                     </div>
                     <!-- Portfolio Item 5-->
@@ -155,8 +156,8 @@
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid" src="public/jhefry/assets/img/portfolio/paso5.png"/>
-                            <img class="img-fluid" src="public/jhefry/assets/img/portfolio/paso5.1.png"/>
+                            <img class="img-fluid" src="assets/img/portfolio/paso5.png"/>
+                            <img class="img-fluid" src="assets/img/portfolio/paso5.1.png"/>
                         </div>
                     </div>
                     <!-- Portfolio Item 6-->
@@ -167,7 +168,7 @@
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
                             <br><br><br>
-                            <img class="img-fluid" src="public/jhefry/assets/img/portfolio/paso6.jpg" width="500" />
+                            <img class="img-fluid" src="assets/img/portfolio/paso6.jpg" width="500" />
                         </div>
                     </div>
                 </div>
@@ -223,18 +224,14 @@
                                 </div>
                             </div>
                             <div class="row col-xl-12 offset-2">
-                                <!-- FORMULARIO DE REGISTRO -->
                                 <form method="post" class="col-sm-8">
                                     <div class="form-row">
-                                        <!-- NOMBRES -->
                                         <div class="form-group col-sm-6">
                                             <input type="text" name="nombres" placeholder="Nombres" class="form-control form-control-sm" required >
                                         </div>
-                                        <!-- APELLIDOS -->
                                         <div class="form-group col-sm-6 ">
                                             <input type="text" name="apellidos" placeholder="Apellidos" class="form-control form-control-sm" required>
                                         </div>
-                                        <!-- EMAIL -->
                                         <div class="form-group col-sm-12">
                                             <input title="El email debe de ser Único" type="email" name="email" placeholder="E-mail" class="form-control form-control-sm" required>
                                         </div>
@@ -244,7 +241,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-sm-9">
-                                            <button type="submit" class="btn btn-success btn-sm btn-block registrar" id="registrar" onclick="modales()">Registrar</button>
+                                            <button type="submit" class="btn btn-success btn-sm btn-block registrar" id="registrar">Registrar</button>
                                         </div>
                                         <div class="form-group col-sm-3">
                                             <button type="button" class="btn btn-danger btn-sm btn-block"data-toggle="modal" data-target=".bd-example-modal-lg">Verificar</button>
@@ -258,11 +255,11 @@
                         <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="x" aria-hidden="true">
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
-                                    <div class="modal-header" style=" background: #5DADE2; padding:16px 16px 0px 16px !important;" >
+                                    <div class="modal-header" style=" background: #5DADE2;">
                                         <div class="row col-xl-11 offset-0 p-3 mb-2 bg-white text-dark" style="margin-left: .1rem!important; background: #5DADE2!important;">
                                             <?php
                                             if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                                                print_r($datos['Detalle'].' amigo <b>'.$datos['Credenciales']['nom'].'</b>');
+                                                print_r($datos['Detalle']);
                                             }
                                             ?>
                                         </div>
@@ -271,21 +268,21 @@
                                         </button>
                                     </div>
                                     
-                                    <div class="modal-body" style=" padding:16px 16px 16px 16px !important;">
-                                        <div class="row col-xl-12 offset-0 p-3 mb-2 bg-info text-dark" style="margin-left: .1rem!important; background: #E8F917!important;" >
+                                    <div class="modal-body">
+                                        <div class="row col-xl-12 offset-0 p-3 mb-2 bg-info text-dark" style="margin-left: .1rem!important; background: #FEF9E7!important;" >
                                                 <?php
                                                 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                                                    print_r('<b>'."Cliente id: ".'</b><i>'.$datos['Credenciales']['cliente_id'].'</i>');
+                                                    print_r("Cliente id: ".$datos['Credenciales']['cliente_id']);
                                                     //echo "Aquie el cliente id de la api";
                                                 }
                                                 ?>
                                         </div>
                                     
-                                        <div class="row col-xl-12 offset-0 p-3 mb-2 bg-secondary text-dark" style="margin-left: .1rem!important; background: #70F917!important;">
+                                        <div class="row col-xl-12 offset-0 p-3 mb-2 bg-secondary text-dark" style="margin-left: .1rem!important; background: #FEF9E7!important;">
 
                                                 <?php
                                                 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                                                    print_r('<b>'."Llave secreta: ".'</b><i>'.$datos['Credenciales']['llave_secreta'].'</i>');
+                                                    print_r("Llave secreta: ".$datos['Credenciales']['llave_secreta']);
                                                 }
                                                // echo "hola soy soy tu ";
                                                 ?>
@@ -326,7 +323,7 @@
                 <div class="row">
                     <div class="col-lg-4 col-sm-6 col-md-6 col-12 mt-2 mb-2">
                         <div class="card">
-                            <img style="" src="public/jhefry/assets/img/goku4.jpg" class="card-img-top" width="200" height="300">
+                            <img style="" src="assets/img/goku4.jpg" class="card-img-top" width="200" height="300">
                             <div class="card-body">
 
                                 <center><h4 class="card-title" ><i class="badge badge-info" style="color: black;" >Descripción</i></h4>
@@ -341,7 +338,7 @@
 
                     <div class="col-lg-4 col-sm-6 col-md-6 col-12 mt-2 mb-2">
                         <div class="card">
-                            <img style="" src="public/jhefry/assets/img/david.jpeg" class="card-img-top" width="200" height="300">
+                            <img style="" src="assets/img/david.jpeg" class="card-img-top" width="200" height="300">
                             <div class="card-body">
 
                                 <center><h4 class="card-title" ><i class="badge badge-info" style="color: black;" >Descripción</i></h4>
@@ -356,7 +353,7 @@
 
                     <div class="col-lg-4 col-sm-6 col-md-6 col-12 mt-2 mb-2">
                         <div class="card">
-                            <img style="" src="public/jhefry/assets/img/goku2.jpg" class="card-img-top" width="200" height="300">
+                            <img style="" src="assets/img/goku2.jpg" class="card-img-top" width="200" height="300">
                             <div class="card-body">
 
                                 <center><h4 class="card-title" ><i class="badge badge-info" style="color: black;" >Descripción</i></h4>
@@ -374,7 +371,7 @@
                     
                     <div class="col-lg-4 col-sm-6 col-md-6 col-12 mt-2 mb-2">
                         <div class="card">
-                            <img style="" src="public/jhefry/assets/img/goku3.jpg" class="card-img-top" width="200" height="300">
+                            <img style="" src="assets/img/goku3.jpg" class="card-img-top" width="200" height="300">
                             <div class="card-body">
 
                                 <center><h4 class="card-title" ><i class="badge badge-info" style="color: black;" >Descripción</i></h4>
@@ -389,7 +386,7 @@
 
                     <div class="col-lg-4 col-sm-6 col-md-6 col-12 mt-2 mb-2">
                         <div class="card">
-                            <img style="" src="public/jhefry/assets/img/goku5.jpg" class="card-img-top" width="200" height="300">
+                            <img style="" src="assets/img/goku5.jpg" class="card-img-top" width="200" height="300">
                             <div class="card-body">
 
                                 <center><h4 class="card-title" ><i class="badge badge-info" style="color: black;" >Descripción</i></h4>
@@ -459,8 +456,8 @@
                                         <div class="divider-custom-line"></div>
                                     </div>
                                     <!-- Portfolio Modal - Image-->
-                                    <img class="img-fluid rounded mb-5" src="public/jhefry/assets/img/portfolio/paso1.PNG" alt="" />
-                                    <img class="img-fluid rounded mb-5" src="public/jhefry/assets/img/portfolio/paso2.1.png" alt="" />
+                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/paso1.PNG" alt="" />
+                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/paso2.1.png" alt="" />
                                     <!-- Portfolio Modal - Text-->
                                     <p class="mb-5"><b>Completa todos tus datos y dirigete al boton <a href="#">Registrar</a>, Cuando hayas presionado el boton <a href="#">Registrar</a> dirigite al boton <a href="#">Verificar</a> para obtener tu <i>Cliente Id y tu Llave secreta</i></b><a class="btn btn-outline-light btn-social mx-1" title="Dirigete al paso Numero 2"><i class="fas fa-star fa-arrow-circle-right fa-lg"></i></a></p>
                                     <!--<button class="btn btn-primary" href="#" data-dismiss="modal"><i class="fas fa-times fa-fw"></i>Close Window</button>-->
@@ -491,8 +488,8 @@
                                         <div class="divider-custom-line"></div>
                                     </div>
                                     <!-- Portfolio Modal - Image-->
-                                    <img class="img-fluid rounded mb-5" src="public/jhefry/assets/img/portfolio/paso2.1.1.png" alt="" />
-                                    <img class="img-fluid rounded mb-5" src="public/jhefry/assets/img/portfolio/paso2.jpg" alt="" /><!-- Portfolio Modal - Text-->
+                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/paso2.1.1.png" alt="" />
+                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/paso2.jpg" alt="" /><!-- Portfolio Modal - Text-->
                                     <p class="mb-5"><b>Luego de haber llenado todos los campos dirigete al boton <a href="#">Verificar</a> tal como vez en la imagen, para poder visualizar tu <i>Ciente Id y tu Llave secreta</i></b></p>
                                     <a class="btn btn-outline-light btn-social mx-1" title="Dirigete al paso Numero 2"><i class="fas fa-star fa-arrow-circle-right fa-lg"></i></a>
                                 </div>
@@ -522,8 +519,8 @@
                                         <div class="divider-custom-line"></div>
                                     </div>
                                     <!-- Portfolio Modal - Image-->
-                                    <img class="img-fluid rounded mb-5" src="public/jhefry/assets/img/portfolio/paso3.1.png" alt="" />
-                                    <img class="img-fluid rounded mb-5" src="public/jhefry/assets/img/portfolio/paso3.png" alt="" />
+                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/paso3.1.png" alt="" />
+                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/paso3.png" alt="" />
                                     <!-- Portfolio Modal - Text-->
                                     <p class="mb-5"><b>Copia tu <i>Cliente Id y tu Llave secreta</i> y dirigite al <a href="#">Postman</a> tal como ves en la imagen, Luego de eso dirigete ah <i>Autorización</i> para poder pegar tu <i>Cliente Id y tu Llave secreta</i>.</b></p>
                                     <a class="btn btn-outline-light btn-social mx-1" title="Dirigete al paso Numero 2"><i class="fas fa-star fa-arrow-circle-right fa-lg"></i></a>
@@ -554,8 +551,8 @@
                                         <div class="divider-custom-line"></div>
                                     </div>
                                     <!-- Portfolio Modal - Image-->
-                                    <img class="img-fluid rounded mb-5" src="public/jhefry/assets/img/portfolio/paso4.png"/>
-                                    <img class="img-fluid rounded mb-5" src="public/jhefry/assets/img/portfolio/paso4.1.png"/>
+                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/paso4.png"/>
+                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/paso4.1.png"/>
                                     <!-- Portfolio Modal - Text-->
                                     <p class="mb-5"><b>Una ves que hayas pegado da clic en enviar("Send") con la ruta respectiva y el metodo que desees realizar.</b></p>
                                 </div>
@@ -585,8 +582,8 @@
                                         <div class="divider-custom-line"></div>
                                     </div>
                                     <!-- Portfolio Modal - Image-->
-                                    <img class="img-fluid rounded mb-5" src="public/jhefry/assets/img/portfolio/paso5.png" alt="" />
-                                    <img class="img-fluid rounded mb-5" src="public/jhefry/assets/img/portfolio/paso5.1.png" alt="" />
+                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/paso5.png" alt="" />
+                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/paso5.1.png" alt="" />
                                     <!-- Portfolio Modal - Text-->
                                     <p class="mb-5"><b>Al presionar <i>CODE</i> te saldra un formulario conun respectivo codigo, luego de eso <i>COPIA</i> el código y pegalo en el código de tu sistema que estés trabajando</b></p>
                                 </div>
@@ -616,7 +613,7 @@
                                         <div class="divider-custom-line"></div>
                                     </div>
                                     <!-- Portfolio Modal - Image-->
-                                    <img class="img-fluid rounded mb-5" src="public/jhefry/assets/img/portfolio/paso5.1.jpg" width="500" height="500" /><!-- Portfolio Modal - Text-->
+                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/paso5.1.jpg" width="500" height="500" /><!-- Portfolio Modal - Text-->
                                     <p class="mb-5"><b><i>MUCHAS GRACIAS POR SEGUIR LOS PASOS</i></b></p>
                             </div>
                         </div>
@@ -630,10 +627,10 @@
         <!-- Third party plugin JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
         <!-- Contact form JS-->
-        <script src="public/jhefry/assets/mail/jqBootstrapValidation.js"></script>
-        <script src="public/jhefry/assets/mail/contact_me.js"></script>
+        <script src="assets/mail/jqBootstrapValidation.js"></script>
+        <script src="assets/mail/contact_me.js"></script>
         <!-- Core theme JS-->
-        <script src="public/jhefry/js/scripts.js"></script>
+        <script src="js/scripts.js"></script>
     </body>
 </html>
 
@@ -641,11 +638,6 @@
     .tamaño {height: 100% !important;}
 </style>
 
-<script>
-    function modales(){
-        $('#modal').modal('show');
-    }
-</script>
 
 <script>
     

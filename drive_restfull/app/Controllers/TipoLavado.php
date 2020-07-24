@@ -37,6 +37,7 @@ class TipoLavado extends Controller {
                             "Detalle" => $tipo
                                 //"Paginador"=>$paginador
                         );
+                         return json_encode($data, true);
                     } else {
 
                         $data = array(
@@ -81,7 +82,7 @@ class TipoLavado extends Controller {
                 if ($request->getHeader('Authorization') == 'Authorization: Basic ' . base64_encode($value["cliente_id"] . ":" . $value["llave_secreta"])) {
                     
                     $TipoLavadoModel = new TipoLavadoModel();
-                    $tipo = $TipoLavadoModel->find($id);
+                    $tipo = $TipoLavadoModel->getTipoLavadoOne($id);
                     if (!empty($tipo)) {
 
                         $data = array(
@@ -89,11 +90,12 @@ class TipoLavado extends Controller {
                             "Número Registro" =>$id,
                             "Detalle" => $tipo
                         );
+                         return json_encode($data, true);
                     } else {
 
                         $data = array(
                             "Status" => 404,
-                            "Detalle" => "No hay ningún prendas registrado"
+                            "Detalle" => "No hay ningún Tipo d  registrado"
                         );
                     }
                 } else {
@@ -297,12 +299,12 @@ class TipoLavado extends Controller {
 
 
                     if (!empty($prendas)) {
-                        $datos = array('estado' => 0);
+                        $datos = array('estado_tipo_lavado' => 0);
                         $prendas = $TipoLavadoModel->update($id, $datos);
 
                         $data = array(
                             "Status" => 200,
-                            "Detalle" => "Se ha borrado con éxito"
+                            "Detalle" => $prendas
                         );
 
                         return json_encode($data, true);
@@ -310,7 +312,7 @@ class TipoLavado extends Controller {
 
                         $data = array(
                             "Status" => 404,
-                            "Detalle" => "El cliente no existe"
+                            "Detalle" => "El tipo lavado a borrar no existe"
                         );
 
                         return json_encode($data, true);
@@ -357,7 +359,7 @@ class TipoLavado extends Controller {
 
 
                     if (!empty($prendas)) {
-                        $datos = array('estado' => 1);
+                        $datos = array('estado_tipo_lavado' => 1);
                         $prendas = $TipoLavadoModel->update($id, $datos);
 
                         $data = array(

@@ -65,13 +65,13 @@ switch ($_GET["op"]){
         //var_dump($rspta);die;
  		foreach($rspta["Detalle"] as $reg ){
  			$data[]=array(
- 				"0"=>($reg['estado'])?'<button class="btn btn-warning" onclick="mostrar('.$reg['id'].')"><i class="fa fa-pencil"></i></button>'.
- 					' <button class="btn btn-danger" onclick="desactivar('.$reg['id'].')"><i class="fa fa-trash"></i></button>':
- 					'<button class="btn btn-warning" onclick="mostrar('.$reg['id'].')"><i class="fa fa-pencil"></i></button>'.
- 					' <button class="btn btn-primary" onclick="activar('.$reg['id'].')"><i class="fa fa-check"></i></button>',
- 				"1"=>$reg['nombre'],
- 				"2"=>$reg['precio'],
- 				"3"=>($reg['estado'])?'<span class="label bg-green">Activado</span>':
+ 				"0"=>($reg['estado_tipo_lavado'])?'<button class="btn btn-warning" onclick="mostrar('.$reg['idtipo_lavado'].')"><i class="fa fa-pencil"></i></button>'.
+ 					' <button class="btn btn-danger" onclick="desactivar('.$reg['idtipo_lavado'].')"><i class="fa fa-trash"></i></button>':
+ 					'<button class="btn btn-warning" onclick="mostrar('.$reg['idtipo_lavado'].')"><i class="fa fa-pencil"></i></button>'.
+ 					' <button class="btn btn-primary" onclick="activar('.$reg['idtipo_lavado'].')"><i class="fa fa-check"></i></button>',
+ 				"1"=>$reg['nombre_tipo_lavado'],
+ 				"2"=>$reg['precio_tipo_lavado'],
+ 				"3"=>($reg['estado_tipo_lavado'])?'<span class="label bg-green">Activado</span>':
  				'<span class="label bg-red">Desactivado</span>'
  				);
  		}

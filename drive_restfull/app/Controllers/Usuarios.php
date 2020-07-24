@@ -39,6 +39,7 @@ class Usuarios extends Controller {
                             "Detalle" => $usuarios
                                 //"Paginador"=>$paginador
                         );
+                        return json_encode($data, true);
                     } else {
 
                         $data = array(
@@ -441,8 +442,7 @@ class Usuarios extends Controller {
                         $data = array(
 
                                 "Status"=>200,
-                                "Detalle"=>"Se ha borrado con éxito"
-                                
+                                "Detalle"=>"Se ha borrado con éxito"                             
                         );
 
                         return json_encode($data, true);    
