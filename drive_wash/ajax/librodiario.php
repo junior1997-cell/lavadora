@@ -92,8 +92,8 @@ switch ($_GET["op"]){
  				"1"=>$reg['n_operacion'],
  				"2"=>$reg['fecha'],
  				"3"=>$reg['glosa'],
- 				"4"=>$reg['codigo'],
- 				"5"=>$reg['descripcion'],
+ 				"4"=>$reg['codigo_plan_contable'],
+ 				"5"=>$reg['descripcion_plan_contable'],
  				"6"=>$reg['debe'],
  				"7"=>$reg['haber']
  				
@@ -137,13 +137,13 @@ switch ($_GET["op"]){
 
  		foreach($rspta["Detalle"] as $reg ){
  			$data[]=array(
- 				"0"=>'<button class="btn btn-warning" onclick="agregarDetalle('.$reg['idpedidoprenda'].',\''.$reg['numero_comprobante'].'\')"><span class="fa fa-plus"></span></button> <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModall" onclick="Listar_detalle_unico_reg('.$reg['idpedidoprenda'].')"><span class="fa fa-eye"></span></button> ',
+ 				"0"=>'<button class="btn btn-warning" onclick="agregarDetalle('.$reg['idpedido_prenda'].',\''.$reg['numero_comprobante'].'\')"><span class="fa fa-plus"></span></button> <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModall" onclick="Listar_detalle_unico_reg('.$reg['idpedido_prenda'].')"><span class="fa fa-eye"></span></button> ',
  				"1"=>$reg['numero_pedido'],
- 				"2"=>$reg['nombreC'],
+ 				"2"=>$reg['nombre_tipo_comprobante'],
  				"3"=>$reg['serie_comprobante'],
  				"4"=>$reg['numero_comprobante'],
  				"4"=>$reg['total_pedido'],
- 				"5"=>$reg['fecha']
+ 				"5"=>$reg['fecha_pedido_prenda']
  				);
  		}
  		$results = array(

@@ -27,7 +27,7 @@ class ActivarPrenda extends Controller {
                 if ($request->getHeader('Authorization') == 'Authorization: Basic ' . base64_encode($value["cliente_id"] . ":" . $value["llave_secreta"])) {
 
                     $PrendasModel = new PrendasModel($db);
-                    $prendas = $PrendasModel->where('estado', 1)
+                    $prendas = $PrendasModel->where('estado_prenda', 1)
                     ->findAll();
                     
                     if (!empty($prendas)) {
@@ -89,7 +89,7 @@ class ActivarPrenda extends Controller {
 
 
                     if (!empty($prenda)) {
-                        $datos = array('estado' => 1);
+                        $datos = array('estado_prenda' => 1);
                         $prenda = $PrendasModel->update($id, $datos);
 
                         $data = array(

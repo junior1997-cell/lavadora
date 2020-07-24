@@ -72,13 +72,13 @@ Class Librodiario
 		$sql="SELECT a.nombre as articulo,a.codigo,d.cantidad,d.precio_compra,d.precio_venta,(d.cantidad*d.precio_compra) as subtotal FROM detalle_ingreso d INNER JOIN articulo a ON d.idarticulo=a.idarticulo WHERE d.idingreso='$idingreso'";
 		return ejecutarConsulta($sql);
 	}
-
+//listamos todos los registros
 	public function api_listar_libro_diario(){
 
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/Librodiario",
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/Librodiario",
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -87,7 +87,7 @@ Class Librodiario
 		  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 		  CURLOPT_CUSTOMREQUEST => "GET",
 		  CURLOPT_HTTPHEADER => array(
-		    "Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VUU2hUQnZPZ2R2SHI5UG5DdExGbXlUZy53Lmc1Y01pOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlY2ZpLi90RmxTRFhPOS9NOTlFNGxWS0xNOGdodzhOeQ=="
+		    "Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VTY3lMbm9oTUwuN2tFWGNzNkt4cEk2SzRrU1FORGdpOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlL21wOHNrcHVaZzBUdC52RDFUNzV3UVNjSnJwSDU1dQ=="
 		  ),
 		));
 
@@ -98,22 +98,23 @@ Class Librodiario
 		return $data;
 
 	}
-
+   //listar ventas
 	public function api_listar_pedidop_ld(){
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/lventas",
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/Librodiario/listarvent",
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
 		  CURLOPT_TIMEOUT => 0,
 		  CURLOPT_FOLLOWLOCATION => true,
 		  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-		  CURLOPT_CUSTOMREQUEST => "GET",
+		  CURLOPT_CUSTOMREQUEST => "POST",
 		  CURLOPT_HTTPHEADER => array(
 		    "Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VUU2hUQnZPZ2R2SHI5UG5DdExGbXlUZy53Lmc1Y01pOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlY2ZpLi90RmxTRFhPOS9NOTlFNGxWS0xNOGdodzhOeQ=="
 		  ),
+
 		));
 
 		$response = curl_exec($curl);

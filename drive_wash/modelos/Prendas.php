@@ -15,32 +15,32 @@ Class Prendas
 	public function crear_Prendas_api($nombre,$precio,$imagen){
 
      //var_dump($nombre,$precio,$imagen);die;
-			$curl = curl_init();
+		$curl = curl_init();
 
-			curl_setopt_array($curl, array(
-			  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/Prendas",
-			  CURLOPT_RETURNTRANSFER => true,
-			  CURLOPT_ENCODING => "",
-			  CURLOPT_MAXREDIRS => 10,
-			  CURLOPT_TIMEOUT => 0,
-			  CURLOPT_FOLLOWLOCATION => true,
-			  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-			  CURLOPT_CUSTOMREQUEST => "POST",
-			  CURLOPT_POSTFIELDS => 
-			  "imagen=".$imagen.
-			  "&nombre=".$nombre.
-			  "&precio=".$precio,
-			  CURLOPT_HTTPHEADER => array(
-			    "Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VUU2hUQnZPZ2R2SHI5UG5DdExGbXlUZy53Lmc1Y01pOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlY2ZpLi90RmxTRFhPOS9NOTlFNGxWS0xNOGdodzhOeQ==",
-			    "Content-Type: application/x-www-form-urlencoded"
-			  ),
-			));
+		curl_setopt_array($curl, array(
+		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/Prendas",
+		  CURLOPT_RETURNTRANSFER => true,
+		  CURLOPT_ENCODING => "",
+		  CURLOPT_MAXREDIRS => 10,
+		  CURLOPT_TIMEOUT => 0,
+		  CURLOPT_FOLLOWLOCATION => true,
+		  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+		  CURLOPT_CUSTOMREQUEST => "POST",
+		  CURLOPT_POSTFIELDS => 
+		  "imagen_prenda=".$imagen.
+		  "&nombre_prenda=".$nombre.
+		  "&precio_prenda=".$precio,
+		  CURLOPT_HTTPHEADER => array(
+		    "Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VUU2hUQnZPZ2R2SHI5UG5DdExGbXlUZy53Lmc1Y01pOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlY2ZpLi90RmxTRFhPOS9NOTlFNGxWS0xNOGdodzhOeQ==",
+		    "Content-Type: application/x-www-form-urlencoded"
+		  ),
+		));
 
-			$response = curl_exec($curl);
+		$response = curl_exec($curl);
 
-			curl_close($curl);
-			$data = json_decode($response,true);
-			return $data;
+		curl_close($curl);
+		$data=json_decode($response,true);
+		return $data;
 			//print_r($data["Detalle"]);
 			#var_dump($data);die;
 
@@ -80,7 +80,7 @@ Class Prendas
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/Prendas/".$id,
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/Prendas".$id,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -92,12 +92,12 @@ Class Prendas
 		    "Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VUU2hUQnZPZ2R2SHI5UG5DdExGbXlUZy53Lmc1Y01pOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlY2ZpLi90RmxTRFhPOS9NOTlFNGxWS0xNOGdodzhOeQ=="
 		  ),
 		));
-
 		$response = curl_exec($curl);
 
 		curl_close($curl);
-		$data= json_decode($response, true);
-		return $data;
+		$data = json_decode($response, true);
+		//return $data;
+		var_dump($data);die;
 
 	}
 	/*============================
@@ -119,9 +119,9 @@ Class Prendas
 		  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 		  CURLOPT_CUSTOMREQUEST => "PUT",
 		  CURLOPT_POSTFIELDS => 
-		  "imagen=".$imagen.
-		  "&nombre=".$nombre.
-		  "&precio=".$precio,
+		  "imagen_prenda=".$imagen.
+		  "&nombre_prenda=".$nombre.
+		  "&precio_prenda=".$precio,
 		  CURLOPT_HTTPHEADER => array(
 		    "Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VUU2hUQnZPZ2R2SHI5UG5DdExGbXlUZy53Lmc1Y01pOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlY2ZpLi90RmxTRFhPOS9NOTlFNGxWS0xNOGdodzhOeQ==",
 		    "Content-Type: application/x-www-form-urlencoded"
@@ -193,6 +193,10 @@ Class Prendas
 		return $data;
 
 	}
+
+		/*============================
+	 funcion prendas de lavado activo
+	 ============================*/
 
 	public function listar_api_prendaslavadoact(){
 

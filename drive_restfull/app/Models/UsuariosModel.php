@@ -32,18 +32,7 @@ class UsuariosModel extends Model{
         ->get()->getResultArray();
     }  
 
-    public function getClienteAll($id){
-       return $this->db->table('persona p')
-       ->where('p.id_cargo',$id)
-        ->join('sexo s', 'p.id_sexo = s.idsexo')
-        ->join('tipo_doc td', 'td.idtipo_doc = p.id_tipo_doc')
-        ->join('cargo c', 'c.idcargo = p.id_cargo')
-        ->join('distrito d', 'd.iddistrito = p.id_distrito')
-        ->orderby('p.idpersona','DESC')
-        ->get()->getResultArray();
-    }  
-
-     public function getCargoPersona($id){
+    public function getCargoPersona($id){
        return $this->db->table('cargo c')
        ->where('c.idcargo >',$id)   
        ->where('c.nombre_cargo !=','Cliente')   

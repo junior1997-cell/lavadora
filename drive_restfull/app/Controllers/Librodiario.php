@@ -37,6 +37,7 @@ class Librodiario extends Controller {
                             "Detalle" => $librodiario
                                 //"Paginador"=>$paginador
                         );
+                         return json_encode($data, true);
                     } else {
 
                         $data = array(
@@ -89,6 +90,7 @@ class Librodiario extends Controller {
                             "Número Registro" =>$id,
                             "Detalle" => $prendas
                         );
+                         return json_encode($data, true);
                     } else {
 
                         $data = array(
@@ -367,6 +369,7 @@ class Librodiario extends Controller {
                             "Detalle" => $ListarV
                                 //"Paginador"=>$paginador
                         );
+                         return json_encode($data, true);
                     } else {
 
                         $data = array(
@@ -424,6 +427,7 @@ class Librodiario extends Controller {
                             "Detalle" => $ListarV
                                 //"Paginador"=>$paginador
                         );
+                         return json_encode($data, true);
                     } else {
 
                         $data = array(
@@ -481,6 +485,7 @@ class Librodiario extends Controller {
                             "Detalle" => $ListarV
                                 //"Paginador"=>$paginador
                         );
+                         return json_encode($data, true);
                     } else {
 
                         $data = array(

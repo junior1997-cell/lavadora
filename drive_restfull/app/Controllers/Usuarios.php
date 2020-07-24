@@ -39,65 +39,7 @@ class Usuarios extends Controller {
                             "Detalle" => $usuarios
                                 //"Paginador"=>$paginador
                         );
-                    } else {
-
-                        $data = array(
-                            "Status" => 404,
-                            "Total_Resultados" => 0,
-                            "Detalle" => "Ningún registro cargado"
-                        );
-                    }
-                } else {
-
-                    $data = array(
-                        "Status" => 404,
-                        "Detalle" => "El token es inválido"
-                    );
-                }
-            } else {
-
-                $data = array(
-                    "Status" => 404,
-                    "Detalle" => "No está autorizado para recibir los registros"
-                );
-            }
-        }
-
-        return json_encode($data, true);
-    }
-
-    public function clienteall($id) {
-        //realiza solicitud a services y le decimos que ejecute el metodo request()
-        $request = \Config\Services::request();
-        $validation = \Config\Services::validation();
-        $headers = $request->getHeaders();
-
-        $registroModel = new RegistrosModel($db);
-        $registro = $registroModel->where('estado', 1)
-                ->findAll();
-
-        //$db = \Config\Database::connect();
-        //$pager = \Config\Services::pager();
-        foreach ($registro as $key => $value) {
-
-            if (array_key_exists('Authorization', $headers) && !empty($headers['Authorization'])) {
-
-                if ($request->getHeader('Authorization') == 'Authorization: Basic ' . base64_encode($value["cliente_id"] . ":" . $value["llave_secreta"])) {
-
-                    $clienteModel = new UsuariosModel();
-                    
-                    $cliente = $clienteModel
-                    ->getClienteAll($id);
-
-                    
-                    if (!empty($cliente)) {
-
-                        $data = array(
-                            "Status" => 200,
-                            "Total_Resultados" => count($cliente),
-                            "Detalle" => $cliente
-                                //"Paginador"=>$paginador
-                        );
+                        return json_encode($data, true);
                     } else {
 
                         $data = array(
@@ -152,11 +94,12 @@ class Usuarios extends Controller {
                             "Número Registro" =>$id,
                             "Detalle" => $usuarios
                         );
+                        return json_encode($data, true);
                     } else {
 
                         $data = array(
                             "Status" => 404,
-                            "Detalle" => "No hay ninguuuuuuuuuuuuun cliente registrado"
+                            "Detalle" => "No hay ningún cliente registrado"
                         );
                     }
                 } else {
@@ -576,11 +519,12 @@ class Usuarios extends Controller {
                             "Número Registro" =>$id,
                             "Detalle" => $usuarios
                         );
+                        return json_encode($data, true);
                     } else {
 
                         $data = array(
                             "Status" => 404,
-                            "Detalle" => "No hay ninguuuuuuuuuuuuun cliente registrado"
+                            "Detalle" => "No hay ningún cliente registrado"
                         );
                     }
                 } else {

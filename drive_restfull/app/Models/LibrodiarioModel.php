@@ -14,15 +14,17 @@ class LibrodiarioModel extends Model{
 
 		return $this->db->table('libro_diario ld')
 		->join('libro_contable lc','ld.id_libro_contable=lc.idlibrocontable')
-		->join('plan_contable pc','ld.id_plan_contable= pc.idplancontable')
+		->join('plan_contable pc','ld.id_plan_contable= pc.idplan_contable')
 		->get()->getResultArray();
 	}
 
 	public function getpedido_prenda(){
 
 		return $this->db->table('pedido_prenda pp')
-		->select('pp.idpedidoprenda, pp.numero_pedido, pp.id_tipo_comprobante,tc.nombreC, pp.serie_comprobante,pp.numero_comprobante,pp.fecha,pp.total_pedido')
-		->join('tipo_comprobante tc','pp.id_tipo_comprobante=tc.idtipocomprobante')
+		->select('pp.idpedido_prenda, pp.numero_pedido, pp.id_tipo_comprobante, tc.nombre_tipo_comprobante,pp.serie_comprobante,pp.numero_comprobante,pp.fecha_pedido_prenda,pp.total_pedido')
+
+		->join('tipo_comprobante tc','pp.id_tipo_comprobante=tc.idtipo_comprobante')
+
 		->get()->getResultArray();
 	}
 

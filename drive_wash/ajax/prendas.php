@@ -64,7 +64,7 @@ switch ($_GET["op"]){
 
 	case 'mostrar':
 	//var_dump($id);
-		$rspta=$prendas->mostrar_uniq_api_prendas($id);
+		$rspta=$prendas->mostrar_uniq_api_prendas($idprenda);
  		//Codificar el resultado utilizando json
  		//var_dump($rspta);die;
  		//var_dump($rspta);
@@ -79,14 +79,14 @@ switch ($_GET["op"]){
         //var_dump($rspta);die;
  		foreach($rspta["Detalle"] as $reg ){
  			$data[]=array(
- 				"0"=>($reg['estado'])?'<button class="btn btn-warning" onclick="mostrar('.$reg['id'].')"><i class="fa fa-pencil"></i></button>'.
- 					' <button class="btn btn-danger" onclick="desactivar('.$reg['id'].')"><i class="fa fa-trash"></i></button>':
- 					'<button class="btn btn-warning" onclick="mostrar('.$reg['id'].')"><i class="fa fa-pencil"></i></button>'.
- 					' <button class="btn btn-primary" onclick="activar('.$reg['id'].')"><i class="fa fa-check"></i></button>',
- 				"1"=>$reg['nombre'],
- 				"2"=>$reg['precio'],
- 				"3"=>"<img src='../files/prendas/".$reg['imagen']."' height='40px' width='40px' >",
- 				"4"=>($reg['estado'])?'<span class="label bg-green">Activado</span>':
+ 				"0"=>($reg['estado_prenda'])?'<button class="btn btn-warning" onclick="mostrar('.$reg['idprenda'].')"><i class="fa fa-pencil"></i></button>'.
+ 					' <button class="btn btn-danger" onclick="desactivar('.$reg['idprenda'].')"><i class="fa fa-trash"></i></button>':
+ 					'<button class="btn btn-warning" onclick="mostrar('.$reg['idprenda'].')"><i class="fa fa-pencil"></i></button>'.
+ 					' <button class="btn btn-primary" onclick="activar('.$reg['idprenda'].')"><i class="fa fa-check"></i></button>',
+ 				"1"=>$reg['nombre_prenda'],
+ 				"2"=>$reg['precio_prenda'],
+ 				"3"=>"<img src='../files/prendas/".$reg['imagen_prenda']."' height='40px' width='40px' >",
+ 				"4"=>($reg['estado_prenda'])?'<span class="label bg-green">Activado</span>':
  				'<span class="label bg-red">Desactivado</span>'
  				);
  		}

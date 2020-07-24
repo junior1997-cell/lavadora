@@ -120,23 +120,23 @@ function guardaryeditar(e)
 	limpiar();
 }
 
-function mostrar(id)
+function mostrar(idprenda)
 {
 
 	//console.log(id);
-	$.post("../ajax/prendas.php?op=mostrar",{id : id}, function(data, status)
+	$.post("../ajax/prendas.php?op=mostrar",{idprenda : idprenda}, function(data, status)
 	{
 		mostrarform(true);
 		data = JSON.parse(data);	
 		//alert(data);	
-		
+		console.log(data);
 
-		$("#id").val(data["Detalle"]["id"]);
-		$("#nombre").val(data["Detalle"]["nombre"]);
-		$("#precio").val(data["Detalle"]["precio"]);
+		$("#id").val(data["Detalle"]["idprenda"]);
+		$("#nombre").val(data["Detalle"]["nombre_prenda"]);
+		$("#precio").val(data["Detalle"]["precio_prenda"]);
 		$("#imagenmuestra").show();
-		$("#imagenmuestra").attr("src","../files/prendas/"+data["Detalle"]["imagen"]);
-		$("#imagenactual").val(data["Detalle"]["imagen"]);
+		$("#imagenmuestra").attr("src","../files/prendas/"+data["Detalle"]["imagen_prenda"]);
+		$("#imagenactual").val(data["Detalle"]["imagen_prenda"]);
  		//$("#ide").val(data["Detalle"]["id"]);
  		
 

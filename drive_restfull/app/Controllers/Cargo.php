@@ -40,6 +40,7 @@ class Cargo extends Controller {
                             "Detalle" => $cargo
                                 //"Paginador"=>$paginador
                         );
+                        return json_encode($data, true);
                     } else {
 
                         $data = array(
@@ -93,6 +94,7 @@ class Cargo extends Controller {
                             "Número Registro" =>$id,
                             "Detalle" => $cliente
                         );
+                        return json_encode($data, true);
                     } else {
 
                         $data = array(
