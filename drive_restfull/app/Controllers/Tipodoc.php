@@ -40,6 +40,7 @@ class Tipodoc extends Controller {
                             "Detalle" => $tipodoc
                                 //"Paginador"=>$paginador
                         );
+                        return json_encode($data, true);
                     } else {
 
                         $data = array(

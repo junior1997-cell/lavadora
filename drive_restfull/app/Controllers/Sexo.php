@@ -40,6 +40,9 @@ class Sexo extends Controller {
                             "Detalle" => $sexo
                                 //"Paginador"=>$paginador
                         );
+
+                        return json_encode($data, true);
+
                     } else {
 
                         $data = array(
@@ -93,6 +96,8 @@ class Sexo extends Controller {
                             "Número Registro" =>$id,
                             "Detalle" => $sexo
                         );
+
+                        return json_encode($data, true);
                     } else {
 
                         $data = array(

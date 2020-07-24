@@ -13,9 +13,9 @@ else
 if ($_SESSION['compras']==1)
 {
 
-require_once "../modelos/Ingreso.php";
+require_once "../modelos/Librodiario.php";
 
-$ingreso=new Ingreso();
+$Librodiario=new Librodiario();
 
 $idingreso=isset($_POST["idingreso"])? limpiarCadena($_POST["idingreso"]):"";
 $idproveedor=isset($_POST["idproveedor"])? limpiarCadena($_POST["idproveedor"]):"";
@@ -30,7 +30,7 @@ $total_compra=isset($_POST["total_compra"])? limpiarCadena($_POST["total_compra"
 switch ($_GET["op"]){
 	case 'guardaryeditar':
 		if (empty($idingreso)){
-			$rspta=$ingreso->insertar($idproveedor,$idusuario,$tipo_comprobante,$serie_comprobante,$num_comprobante,$fecha_hora,$impuesto,$total_compra,$_POST["idarticulo"],$_POST["cantidad"],$_POST["precio_compra"],$_POST["precio_venta"]);
+			$rspta=$Librodiario->insertar($idproveedor,$idusuario,$tipo_comprobante,$serie_comprobante,$num_comprobante,$fecha_hora,$impuesto,$total_compra,$_POST["idarticulo"],$_POST["cantidad"],$_POST["precio_compra"],$_POST["precio_venta"]);
 			echo $rspta ? "Ingreso registrado" : "No se pudieron registrar todos los datos del ingreso";
 		}
 		else {
@@ -38,12 +38,12 @@ switch ($_GET["op"]){
 	break;
 
 	case 'anular':
-		$rspta=$ingreso->anular($idingreso);
+		$rspta=$Librodiario->anular($idingreso);
  		echo $rspta ? "Ingreso anulado" : "Ingreso no se puede anular";
 	break;
 
 	case 'mostrar':
-		$rspta=$ingreso->mostrar($idingreso);
+		$rspta=$Librodiario->mostrar($idingreso);
  		//Codificar el resultado utilizando json
  		echo json_encode($rspta);
 	break;
@@ -52,7 +52,7 @@ switch ($_GET["op"]){
 		//Recibimos el idingreso
 		$id=$_GET['id'];
 
-		$rspta = $ingreso->listarDetalle($id);
+		$rspta = $Librodiario->listarDetalle($id);
 		$total=0;
 		echo '<thead style="background-color:#A9D0F5">
                                     <th>Opciones</th>
@@ -79,21 +79,24 @@ switch ($_GET["op"]){
 	break;
 
 	case 'listar':
-		$rspta=$ingreso->listar();
+		$rspta=$Librodiario->api_listar_libro_diario();
  		//Vamos a declarar un array
  		$data= Array();
-
- 		while ($reg=$rspta->fetch_object()){
+        //var_dump($rspta);die;
+ 		foreach($rspta["Detalle"] as $reg ){
  			$data[]=array(
- 				"0"=>$reg->id,
- 				"1"=>$reg->n_operacion,
- 				"2"=>$reg->fecha,
- 				"3"=>$reg->cuenta,
- 				"4"=>$reg->descripcion,
- 				"5"=>$reg->debe,
- 				"6"=>$reg->haber,
- 				"7"=>($reg->estado=='Aceptado')?'<span class="label bg-green">Aceptado</span>':
- 				'<span class="label bg-red">Anulado</span>'
+ 				"0"=>($reg['estado'])?'<button class="btn btn-warning" onclick="mostrar('.$reg['idlibrodiario'].')"><i class="fa fa-pencil"></i></button>'.
+ 					' <button class="btn btn-danger" onclick="desactivar('.$reg['idlibrodiario'].')" disabled><i class="fa fa-trash" ></i></button>':
+ 					'<button class="btn btn-warning" onclick="mostrar('.$reg['idlibrodiario'].')"><i class="fa fa-pencil"></i></button>'.
+ 					' <button class="btn btn-primary" onclick="activar('.$reg['idlibrodiario'].')"><i class="fa fa-check"></i></button>',
+ 				"1"=>$reg['n_operacion'],
+ 				"2"=>$reg['fecha'],
+ 				"3"=>$reg['glosa'],
+ 				"4"=>$reg['codigo_plan_contable'],
+ 				"5"=>$reg['descripcion_plan_contable'],
+ 				"6"=>$reg['debe'],
+ 				"7"=>$reg['haber']
+ 				
  				);
  		}
  		$results = array(
@@ -102,7 +105,6 @@ switch ($_GET["op"]){
  			"iTotalDisplayRecords"=>count($data), //enviamos el total registros a visualizar
  			"aaData"=>$data);
  		echo json_encode($results);
-
 	break;
 
 	case 'selectProveedor':
@@ -117,22 +119,31 @@ switch ($_GET["op"]){
 				}
 	break;
 
-	case 'listarArticulos':
-		require_once "../modelos/Articulo.php";
-		$articulo=new Articulo();
+	case 'SelecLibroContable':
 
-		$rspta=$articulo->listarActivos();
+		$rspta = $Librodiario->listar_libro_diario();
+
+		foreach($rspta["Detalle"] as $reg ){
+				echo '<option value=' . $reg['idlibrocontable'] . '>' . $reg['codigoCont'].' '.$reg['nombrelibroCont']. '</option>';
+				}
+	break;
+
+	case 'listarArticulos':
+
+		$rspta=$Librodiario->api_listar_pedidop_ld();
  		//Vamos a declarar un array
  		$data= Array();
+        //var_dump($rspta);die;
 
- 		while ($reg=$rspta->fetch_object()){
+ 		foreach($rspta["Detalle"] as $reg ){
  			$data[]=array(
- 				"0"=>'<button class="btn btn-warning" onclick="agregarDetalle('.$reg->idarticulo.',\''.$reg->nombre.'\')"><span class="fa fa-plus"></span></button>',
- 				"1"=>$reg->nombre,
- 				"2"=>$reg->categoria,
- 				"3"=>$reg->codigo,
- 				"4"=>$reg->stock,
- 				"5"=>"<img src='../files/articulos/".$reg->imagen."' height='50px' width='50px' >"
+ 				"0"=>'<button class="btn btn-warning" onclick="agregarDetalle('.$reg['idpedido_prenda'].',\''.$reg['numero_comprobante'].'\')"><span class="fa fa-plus"></span></button> <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModall" onclick="Listar_detalle_unico_reg('.$reg['idpedido_prenda'].')"><span class="fa fa-eye"></span></button> ',
+ 				"1"=>$reg['numero_pedido'],
+ 				"2"=>$reg['nombre_tipo_comprobante'],
+ 				"3"=>$reg['serie_comprobante'],
+ 				"4"=>$reg['numero_comprobante'],
+ 				"4"=>$reg['total_pedido'],
+ 				"5"=>$reg['fecha_pedido_prenda']
  				);
  		}
  		$results = array(
@@ -141,6 +152,44 @@ switch ($_GET["op"]){
  			"iTotalDisplayRecords"=>count($data), //enviamos el total registros a visualizar
  			"aaData"=>$data);
  		echo json_encode($results);
+	break;
+
+	case 'listarDetalleuniq':
+
+		$iddetalle = $_POST['iddetalle'];
+
+
+		$rspta=$Librodiario->listar_detalle_unico_enmodal($iddetalle);
+ 		//Vamos a declarar un array
+ 		$data= Array();
+ 		$count = 1;
+        //var_dump($rspta);die;
+        echo '<table class="table">
+				  <thead>
+				    <tr>
+				      <th scope="col">#</th>
+				      <th scope="col">cantidad</th>
+				      <th scope="col">prenda</th>
+				    </tr>
+				  </thead>';
+
+ 		foreach($rspta["Detalle"] as $reg ){
+
+ 			echo '
+				  <tbody>
+				    <tr>
+				      <th scope="row">'.$count.'</th>
+				      <td>'.$reg['cantidad'].'</td>
+				      <td>'.$reg['prenda'].'</td>
+				    </tr>
+				  </tbody>
+				';
+				$count=$count+1;
+				
+ 		}
+ 		echo '</table>';
+
+ 		
 	break;
 }
 //Fin de las validaciones de acceso

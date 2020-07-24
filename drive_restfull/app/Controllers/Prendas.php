@@ -37,6 +37,7 @@ class Prendas extends Controller {
                             "Detalle" => $prendas
                                 //"Paginador"=>$paginador
                         );
+                         return json_encode($data, true);
                     } else {
 
                         $data = array(
@@ -89,6 +90,7 @@ class Prendas extends Controller {
                             "Número Registro" =>$id,
                             "Detalle" => $prendas
                         );
+                         return json_encode($data, true);
                     } else {
 
                         $data = array(
@@ -132,9 +134,9 @@ class Prendas extends Controller {
 
                     // Registro de datos
                     //El getVar()método extraerá de $ _REQUEST, por lo que devolverá cualquier dato de $ _GET, $ POST 
-                    $datos = array("imagen" => $request->getVar("imagen"),
-                        "nombre" => $request->getVar("nombre"),
-                        "precio" => $request->getVar("precio")
+                    $datos = array("imagen_prenda" => $request->getVar("imagen_prenda"),
+                        "nombre_prenda" => $request->getVar("nombre_prenda"),
+                        "precio_prenda" => $request->getVar("precio_prenda")
                         );
 
                     if (!empty($datos)) {
@@ -142,9 +144,8 @@ class Prendas extends Controller {
                         // Validar los datos
 
                         $validation->setRules([
-                            'imagen' => 'required|string|max_length[255]',
-                            'nombre' => 'required|string',
-                            'precio' => 'required|max_length[255]'
+                            'nombre_prenda' => 'required|string',
+                            'precio_prenda' => 'required|max_length[255]'
                         ]);
 
                         $validation->withRequest($this->request)
@@ -158,9 +159,9 @@ class Prendas extends Controller {
                             );
                             return json_encode($data, true);
                         } else {
-                            $datos = array("imagen" => $datos["imagen"],
-                                "nombre" => $datos["nombre"],
-                                "precio" => $datos["precio"]);
+                            $datos = array("imagen_prenda" => $datos["imagen_prenda"],
+                                "nombre_prenda" => $datos["nombre_prenda"],
+                                "precio_prenda" => $datos["precio_prenda"]);
 
                             $PrendasModel = new PrendasModel($db);
                             $prendas = $PrendasModel->insert($datos);
@@ -214,9 +215,8 @@ class Prendas extends Controller {
                     if (!empty($datos)) {
                         //Validar datos
                         $validation->setRules([
-                            'imagen' => 'required|string|max_length[255]',
-                            'nombre' => 'required|string',
-                            'precio' => 'required|max_length[255]'
+                            'nombre_prenda' => 'required|string',
+                            'precio_prenda' => 'required|max_length[255]'
                             
                         ]);
 
@@ -236,9 +236,9 @@ class Prendas extends Controller {
                             $PrendasModel = new PrendasModel($db);
                             $prendas = $PrendasModel->find($id);
                             $datos = array(
-                                "imagen" => $datos["imagen"],
-                                "nombre" => $datos["nombre"],
-                                "precio" => $datos["precio"]
+                                "imagen_prenda" => $datos["imagen_prenda"],
+                                "nombre_prenda" => $datos["nombre_prenda"],
+                                "precio_prenda" => $datos["precio_prenda"]
                             
                             );
 
@@ -300,7 +300,7 @@ class Prendas extends Controller {
 
 
                     if (!empty($prendas)) {
-                        $datos = array('estado' => 0);
+                        $datos = array('estado_prenda' => 0);
                         $prendas = $PrendasModel->update($id, $datos);
 
                         $data = array(

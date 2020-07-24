@@ -41,6 +41,7 @@ class Distrito extends Controller {
                             "Detalle" => $distrito
                                 //"Paginador"=>$paginador
                         );
+                        return json_encode($data, true);
                     } else {
 
                         $data = array(

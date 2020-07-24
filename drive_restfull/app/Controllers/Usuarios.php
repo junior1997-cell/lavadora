@@ -40,6 +40,7 @@ class Usuarios extends Controller {
                                 //"Paginador"=>$paginador
                         );
                         return json_encode($data, true);
+<<<<<<< HEAD
                     } else {
 
                         $data = array(
@@ -99,6 +100,8 @@ class Usuarios extends Controller {
                             "Detalle" => $cliente
                                 //"Paginador"=>$paginador
                         );
+=======
+>>>>>>> d165820259fab004a07f495f29fe58ae88ca527c
                     } else {
 
                         $data = array(
@@ -153,11 +156,12 @@ class Usuarios extends Controller {
                             "Número Registro" =>$id,
                             "Detalle" => $usuarios
                         );
+                        return json_encode($data, true);
                     } else {
 
                         $data = array(
                             "Status" => 404,
-                            "Detalle" => "No hay ninguuuuuuuuuuuuun cliente registrado"
+                            "Detalle" => "No hay ningún cliente registrado"
                         );
                     }
                 } else {
@@ -576,11 +580,12 @@ class Usuarios extends Controller {
                             "Número Registro" =>$id,
                             "Detalle" => $usuarios
                         );
+                        return json_encode($data, true);
                     } else {
 
                         $data = array(
                             "Status" => 404,
-                            "Detalle" => "No hay ninguuuuuuuuuuuuun cliente registrado"
+                            "Detalle" => "No hay ningún cliente registrado"
                         );
                     }
                 } else {

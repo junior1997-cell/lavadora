@@ -43,6 +43,9 @@ $routes->resource('Prendas');
 $routes->resource('Delivery');
 $routes->resource('TipoLavado');
 $routes->resource('Tipopedido');
+$routes->resource('Librodiario');
+$routes->resource('Lventas');
+
 
 // junior rutas
 $routes->resource('Usuariopermiso');

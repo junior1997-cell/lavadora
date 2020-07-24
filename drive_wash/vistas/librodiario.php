@@ -34,52 +34,53 @@ if ($_SESSION['compras']==1)
                           <thead>
                             <th>Opciones</th>
                             <th>N°</th>
+                            <th>Fecha</th>
                             <th>Glosa</th>
                             <th>Cuenta</th>
                             <th>Denominación</th>
                             <th>Debe</th>
                             <th>Haber</th>
-                            <th>Estado</th>
                           </thead>
                           <tbody>                            
                           </tbody>
                           <tfoot>
                             <th>Opciones</th>
                             <th>N°</th>
+                            <th>Fecha</th>
                             <th>Glosa</th>
                             <th>Cuenta</th>
                             <th>Denominación</th>
                             <th>Debe</th>
                             <th>Haber</th>
-                            <th>Estado</th>
                           </tfoot>
                         </table>
                     </div>
                 <style type="text/css">
                   .debe>thead>tr>th, .debe>tbody>tr>th, .debe>tfoot>tr>th, .debe>thead>tr>td, .debe>tbody>tr>td, .debe>tfoot>tr>td 
-                  {border: 1px solid #a73838;font-size: 8pt}
+                  {border: 1px solid #a73838;font-size: 10pt}
                 </style>
                     <div class="panel-body" style="height: 400px;" id="formularioregistros">
                         <form name="formulario" id="formulario" method="POST">
                           <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             <a data-toggle="modal" href="#myModal">           
-                              <button id="btnAgregarArt" type="button" class="btn btn-primary"> <span class="fa fa-plus"></span> Agregar Artículos</button>
+                              <button id="btnAgregarArt" type="button" class="btn btn-primary"> <span class="fa fa-plus"></span> Agregar venta</button>
+                              <button id="btnAgregarfila" type="button" class="btn btn-primary" onclick="agregarfila()"> <span class="fa fa-plus"></span></button>
                             </a>
                           </div>
                           <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
                             <table id="detalles" class="table table-striped debe  table-sm " style="border:red 1px solid">
-                         <thead>
-                            <tr>
-                              <th rowspan="2">Oppciones</th>
+                         <thead style="font-weight: 40;">
+                            <tr >
+                              <th rowspan="2">Opciones</th>
                               <th rowspan="2">N°</th>
                               <th rowspan="2">FECHA</th> 
                               <th rowspan="2">GLOSA</th>
                               <th colspan="3" style="text-align: center">DETALLE DE OPERACION</th>
                               <th colspan="2" style="text-align: center">CUENTA CONTABLE ASOCIADA A LA OPERACION</th>
                               <th rowspan="2">DEBE</th>
-                              <th rowspan="2">HABEL</th>
+                              <th rowspan="2">HABER</th>
                             </tr>
-                            <tr>
+                            <tr style="padding: 2.6px;">
                               <th>COD.LIBRO</th>
                               <th>N°</th>
                               <th>N° DOC SUST</th>
@@ -89,7 +90,7 @@ if ($_SESSION['compras']==1)
                             </tr>
                           </thead>
                                                        
-                                <tbody>
+                                <tbody id="filas">
                                   
                                 </tbody>
                             </table>
@@ -117,28 +118,28 @@ if ($_SESSION['compras']==1)
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title">Seleccione un Artículo</h4>
+          <h4 class="modal-title">Seleccione un registro</h4>
         </div>
         <div class="modal-body">
           <table id="tblarticulos" class="table table-striped table-bordered table-condensed table-hover">
             <thead>
-                <th>Opciones</th>
-                <th>Nombre</th>
-                <th>Categoría</th>
-                <th>Código</th>
-                <th>Stock</th>
-                <th>Imagen</th>
+                <th>OPCIONES</th>
+                <th>NUN PEDIDO</th>
+                <th>TIPO COMPR.</th>
+                <th>N° COMPR.</th>
+                <th>TOTAL</th>
+                <th>FECHA</th>
             </thead>
             <tbody>
               
             </tbody>
             <tfoot>
-              <th>Opciones</th>
-                <th>Nombre</th>
-                <th>Categoría</th>
-                <th>Código</th>
-                <th>Stock</th>
-                <th>Imagen</th>
+              <th>OPCIONES</th>
+                <th>NUN PEDIDO</th>
+                <th>TIPO COMPR.</th>
+                <th>N° COMPR.</th>
+                <th>TOTAL</th>
+                <th>FECHA</th>
             </tfoot>
           </table>
         </div>
@@ -149,6 +150,30 @@ if ($_SESSION['compras']==1)
     </div>
   </div>  
   <!-- Fin modal -->
+
+  <!-- Modal detalle -->
+  <div class="modal fade" id="myModall" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Detalle del registro</h4>
+        </div>
+        <div class="modal-body">
+          <div id="iddetalle">
+            
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
 <?php
 }
 else

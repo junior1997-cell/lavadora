@@ -6,9 +6,19 @@ use CodeIgniter\Model;
 class PrendasModel extends Model{
 
 	protected $table ='prenda';
-	protected $id ='id';
+	protected $primaryKey ='idprenda';
 	protected $returnType='array';
-	protected $allowedFields = ['nombre','imagen','precio','estado'];
+	protected $allowedFields = ['imagen_prenda','nombre_prenda','precio_prenda','estado_prenda'];
+
+
+
+	public function getPrendaOne($idprenda){
+        return $this->db->table('prenda p') 
+        //->select('p.imagen_prenda')  
+        ->where('p.idprenda', $idprenda)
+        ->get()->getResultArray();
+    }  
+
 
 }
 

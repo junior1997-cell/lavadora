@@ -1,13 +1,12 @@
-<?php
-
+<?php 
 namespace App\Controllers;
 
 use CodeIgniter\Controller;
-use App\Models\CargoModel;
+use App\Models\LibrodiarioModel;
 use App\Models\RegistrosModel;
 
-class Cargo extends Controller {
-
+class Lventas extends Controller {
+    //lista de todos los campos de prendas
     public function index() {
         //realiza solicitud a services y le decimos que ejecute el metodo request()
         $request = \Config\Services::request();
@@ -26,21 +25,18 @@ class Cargo extends Controller {
 
                 if ($request->getHeader('Authorization') == 'Authorization: Basic ' . base64_encode($value["cliente_id"] . ":" . $value["llave_secreta"])) {
 
-                    $cargoModel = new CargoModel();
+                    $Librodiario = new LibrodiarioModel();
+                    //$librodiario = $Librodiario->findAll();
+                    $librodiario = $Librodiario->getpedido_prenda();
                     
-                    $cargo = $cargoModel->where('estado_cargo',1)
-                            ->findAll();
-
-                    
-                    if (!empty($cargo)) {
+                    if (!empty($librodiario)) {
 
                         $data = array(
                             "Status" => 200,
-                            "Total_Resultados" => count($cargo),
-                            "Detalle" => $cargo
+                            "Total_Resultados" => count($librodiario),
+                            "Detalle" => $librodiario
                                 //"Paginador"=>$paginador
                         );
-                        return json_encode($data, true);
                     } else {
 
                         $data = array(
@@ -68,7 +64,7 @@ class Cargo extends Controller {
         return json_encode($data, true);
     }
 
-    public function show($id) {
+    /*public function show($id) {
         //realiza solicitud a services y le decimos que ejecute el metodo request()
         $request = \Config\Services::request();
         $validation = \Config\Services::validation();
@@ -84,22 +80,20 @@ class Cargo extends Controller {
 
                 if ($request->getHeader('Authorization') == 'Authorization: Basic ' . base64_encode($value["cliente_id"] . ":" . $value["llave_secreta"])) {
                     
-                    $clienteModel = new ClientesModel();
-                    $cliente = $clienteModel->where('estado', 1)
-                            ->find($id);
-                    if (!empty($cliente)) {
+                    $PrendasModel = new PrendasModel();
+                    $prendas = $PrendasModel->find($id);
+                    if (!empty($prendas)) {
 
                         $data = array(
                             "Status" => 200,
                             "Número Registro" =>$id,
-                            "Detalle" => $cliente
+                            "Detalle" => $prendas
                         );
-                        return json_encode($data, true);
                     } else {
 
                         $data = array(
                             "Status" => 404,
-                            "Detalle" => "No hay ningún cliente registrado"
+                            "Detalle" => "No hay ningún prendas registrado"
                         );
                     }
                 } else {
@@ -138,27 +132,19 @@ class Cargo extends Controller {
 
                     // Registro de datos
                     //El getVar()método extraerá de $ _REQUEST, por lo que devolverá cualquier dato de $ _GET, $ POST 
-                    $datos = array("nombre" => $request->getVar("nombre"),
-                        "correo" => $request->getVar("correo"),
-                        "zip" => $request->getVar("zip"),
-                        "telefono1" => $request->getVar("telefono1"),
-                        "telefono2" => $request->getVar("telefono2"),
-                        "pais" => $request->getVar("pais"),
-                        "direccion" => $request->getVar("direccion")
-                    );
+                    $datos = array("imagen" => $request->getVar("imagen"),
+                        "nombre" => $request->getVar("nombre"),
+                        "precio" => $request->getVar("precio")
+                        );
 
                     if (!empty($datos)) {
 
                         // Validar los datos
 
                         $validation->setRules([
-                            'nombre' => 'required|string|max_length[255]',
-                            'correo' => 'required|valid_email',
-                            'zip' => 'required|string|max_length[255]',
-                            'telefono1' => 'required|string|max_length[255]',
-                            'telefono2' => 'required|string|max_length[255]',
-                            'pais' => 'required|string|max_length[255]',
-                            'direccion' => 'required|string|max_length[255]'
+                            'imagen' => 'required|string|max_length[255]',
+                            'nombre' => 'required|string',
+                            'precio' => 'required|max_length[255]'
                         ]);
 
                         $validation->withRequest($this->request)
@@ -172,19 +158,15 @@ class Cargo extends Controller {
                             );
                             return json_encode($data, true);
                         } else {
-                            $datos = array("nombre" => $datos["nombre"],
-                                "correo" => $datos["correo"],
-                                "zip" => $datos["zip"],
-                                "telefono1" => $datos["telefono1"],
-                                "telefono2" => $datos["telefono2"],
-                                "pais" => $datos["pais"],
-                                "direccion" => $value["direccion"]);
+                            $datos = array("imagen" => $datos["imagen"],
+                                "nombre" => $datos["nombre"],
+                                "precio" => $datos["precio"]);
 
-                            $clienteModel = new ClientesModel($db);
-                            $cliente = $clienteModel->insert($datos);
+                            $PrendasModel = new PrendasModel($db);
+                            $prendas = $PrendasModel->insert($datos);
                             $data = array(
                                 "Status" => 200,
-                                "Detalle" => "Registro exitoso, cliente guardado"
+                                "Detalle" => "Registro exitoso, prendas guardado"
                             );
                             return json_encode($data, true);
                         }
@@ -227,17 +209,15 @@ class Cargo extends Controller {
         foreach ($registro as $key => $value) {
             if (array_key_exists('Authorization', $headers) && !empty($headers['Authorization'])) {
                 if ($request->getHeader('Authorization') == 'Authorization: Basic ' . base64_encode($value["cliente_id"] . ":" . $value["llave_secreta"])) {
-                    // Tomar datos    	
+                    // Tomar datos      
                     $datos = $this->request->getRawInput();
                     if (!empty($datos)) {
                         //Validar datos
                         $validation->setRules([
-                            'nombre' => 'required|string|max_length[255]',
-                            'correo' => 'required|valid_email',
-                            'zip' => 'required|string|max_length[255]',
-                            'telefono1' => 'required|string|max_length[255]', 'telefono2' => 'required|string|max_length[255]',
-                            'pais' => 'required|string|max_length[255]',
-                            'direccion' => 'required|string|max_length[255]'
+                            'imagen' => 'required|string|max_length[255]',
+                            'nombre' => 'required|string',
+                            'precio' => 'required|max_length[255]'
+                            
                         ]);
 
                         $validation->withRequest($this->request)
@@ -253,19 +233,16 @@ class Cargo extends Controller {
                             return json_encode($data, true);
                         } else {
 
-                            $clienteModel = new ClientesModel($db);
-                            $cliente = $clienteModel->find($id);
+                            $PrendasModel = new PrendasModel($db);
+                            $prendas = $PrendasModel->find($id);
                             $datos = array(
+                                "imagen" => $datos["imagen"],
                                 "nombre" => $datos["nombre"],
-                                "correo" => $datos["correo"],
-                                "zip" => $datos["zip"],
-                                "telefono1" => $datos["telefono1"],
-                                "telefono2" => $datos["telefono2"],
-                                "pais" => $datos["pais"],
-                                "direccion" => $datos["direccion"]
+                                "precio" => $datos["precio"]
+                            
                             );
 
-                            $cliente = $clienteModel->update($id, $datos);
+                            $prendas = $PrendasModel->update($id, $datos);
                             $data = array(
                                 "Status" => 200,
                                 "Detalle" => "Datos de cliente actualizado"
@@ -318,13 +295,13 @@ class Cargo extends Controller {
 
                 if ($request->getHeader('Authorization') == 'Authorization: Basic ' . base64_encode($value["cliente_id"] . ":" . $value["llave_secreta"])) {
 
-                    $clienteModel = new ClientesModel($db);
-                    $cliente = $clienteModel->find($id);
+                    $PrendasModel = new PrendasModel($db);
+                    $prendas = $PrendasModel->find($id);
 
 
-                    if (!empty($cliente)) {
-                        $datos = array('activo' => 0);
-                        $cliente = $clienteModel->update($id, $datos);
+                    if (!empty($prendas)) {
+                        $datos = array('estado' => 0);
+                        $prendas = $PrendasModel->update($id, $datos);
 
                         $data = array(
                             "Status" => 200,
@@ -359,5 +336,63 @@ class Cargo extends Controller {
 
         return json_encode($data, true);
     }
+
+    public function listarvent() {
+        //realiza solicitud a services y le decimos que ejecute el metodo request()
+        $request = \Config\Services::request();
+        $validation = \Config\Services::validation();
+        $headers = $request->getHeaders();
+
+        $registroModel = new RegistrosModel($db);
+        $registro = $registroModel->where('estado', 1)
+                ->findAll();
+
+        //$db = \Config\Database::connect();
+        //$pager = \Config\Services::pager();
+        foreach ($registro as $key => $value) {
+
+            if (array_key_exists('Authorization', $headers) && !empty($headers['Authorization'])) {
+
+                if ($request->getHeader('Authorization') == 'Authorization: Basic ' . base64_encode($value["cliente_id"] . ":" . $value["llave_secreta"])) {
+
+                    $Librodiario = new LibrodiarioModel();
+                    //$librodiario = $Librodiario->findAll();
+                    $ListarV = $Librodiario->getpedido_prenda();
+                    
+                    if (!empty($ListarV)) {
+
+                        $data = array(
+                            "Status" => 200,
+                            "Total_Resultados" => count($ListarV),
+                            "Detalle" => $ListarV
+                                //"Paginador"=>$paginador
+                        );
+                    } else {
+
+                        $data = array(
+                            "Status" => 404,
+                            "Total_Resultados" => 0,
+                            "Detalle" => "Ningún registro cargado"
+                        );
+                    }
+                } else {
+
+                    $data = array(
+                        "Status" => 404,
+                        "Detalle" => "El token es inválido"
+                    );
+                }
+            } else {
+
+                $data = array(
+                    "Status" => 404,
+                    "Detalle" => "No está autorizado para recibir los registros"
+                );
+            }
+        }
+
+        return json_encode($data, true);
+    }*/
+
 
 }
