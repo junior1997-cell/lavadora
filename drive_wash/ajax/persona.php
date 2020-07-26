@@ -414,7 +414,7 @@ switch ($_GET["op"]){
 			}
 		}		
 	break;
-	case 'select_cargo':
+	case 'select_cargo_cliente':
 		if (!isset($_SESSION["nombre"]))
 		{
 		  header("Location: ../vistas/login.html");//Validamos el acceso solo a los usuarios logueados al sistema.
@@ -425,7 +425,7 @@ switch ($_GET["op"]){
 			if ($_SESSION['almacen']==1)
 			{			
 				//var_dump($dni); die;
-				$rspta=$persona->listar_all_api_cargo();
+				$rspta=$persona->listar_all_api_cargo_cliente();
 		 		//Codificar el resultado utilizando json
 		 		//var_dump($rspta); die;		 		 
 		 			foreach($rspta["Detalle"] as $reg ){	

@@ -28,7 +28,7 @@ function init(){
 	});
 
 	 //Cargamos los items al select cargo
-	$.post("../ajax/persona.php?op=select_cargo", function(r){
+	$.post("../ajax/persona.php?op=select_cargo_cliente", function(r){
 
 	            $("#id_cargo").html(r);
 	            $('#id_cargo').selectpicker('refresh');

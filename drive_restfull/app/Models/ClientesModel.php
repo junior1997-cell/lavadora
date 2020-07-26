@@ -42,11 +42,14 @@ class ClientesModel extends Model{
         ->get()->getResultArray();
     }  
 
-    public function getCargoCliente($id){
+    public function getCargoCliente(){
        return $this->db->table('cargo c')
-       ->where('c.idcargo >',$id)   
-       ->where('c.nombre_cargo =','NO DEFINIDO')   
-        ->where('c.nombre_cargo =','Cliente')
+         ->where('c.nombre_cargo !=','Usuario/lavadores')
+       ->where('c.nombre_cargo !=','Usuario/cajero')   
+         ->where('c.nombre_cargo !=','Administrador')
+          ->where('c.nombre_cargo !=','Usuario/Quimica')
+          ->where('c.nombre_cargo !=','Usuario/Deliverista')
+          ->where('c.nombre_cargo !=','Proveedores')
         ->orderby('c.idcargo','ASC')
         ->get()->getResultArray();
     }  

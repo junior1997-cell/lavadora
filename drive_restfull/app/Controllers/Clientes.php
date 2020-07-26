@@ -562,7 +562,7 @@ class Clientes extends Controller {
         return json_encode($data, true);
     }
 
-    public function cargocliente($id) {
+    public function cargocliente() {
         //realiza solicitud a services y le decimos que ejecute el metodo request()
         $request = \Config\Services::request();
         $validation = \Config\Services::validation();
@@ -580,7 +580,7 @@ class Clientes extends Controller {
                     
                     $usuariosModel = new ClientesModel();
                     $usuarios = $usuariosModel
-                                ->getCargoCliente($id);
+                                ->getCargoCliente();
                            
                     if (!empty($usuarios)) {
 

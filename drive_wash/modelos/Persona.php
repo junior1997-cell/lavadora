@@ -146,7 +146,7 @@ Class Persona
 		//$estado = 1;
 		//var_dump($estado);
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/clientes/create",
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/clientes/create",
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -193,7 +193,7 @@ Class Persona
 		//$estado = 1;
 		//var_dump($estado);
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/clientes/update/".$id,
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/clientes/update/".$id,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -241,7 +241,7 @@ Class Persona
 		//$estado = 1;
 		//var_dump($estado);
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/clientes/delete/".$id,
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/clientes/delete/".$id,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -275,7 +275,7 @@ Class Persona
 		//$estado = 1;
 		//var_dump($estado);
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/clientes/recuperar/".$id,
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/clientes/recuperar/".$id,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -305,7 +305,7 @@ Class Persona
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/clientes",
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/clientes",
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -335,7 +335,7 @@ Class Persona
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/clientes/show/".$id,
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/clientes/show/".$id,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -366,7 +366,7 @@ Class Persona
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/distrito",
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/distrito",
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -391,20 +391,20 @@ Class Persona
 	}
 
 	// LISTA CARGO
-	public function listar_all_api_cargo()
+	public function listar_all_api_cargo_cliente()
 	{
 		 
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/cargo",
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/clientes/cargocliente",
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
 		  CURLOPT_TIMEOUT => 0,
 		  CURLOPT_FOLLOWLOCATION => true,
 		  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-		  CURLOPT_CUSTOMREQUEST => "GET",
+		  CURLOPT_CUSTOMREQUEST => "POST",
 		  CURLOPT_HTTPHEADER => array(
 		     "Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VUU2hUQnZPZ2R2SHI5UG5DdExGbXlUZy53Lmc1Y01pOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlY2ZpLi90RmxTRFhPOS9NOTlFNGxWS0xNOGdodzhOeQ=="
 		  ),
@@ -428,7 +428,7 @@ Class Persona
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/tipodoc",
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/tipodoc",
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -458,7 +458,7 @@ Class Persona
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/sexo",
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/sexo",
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
