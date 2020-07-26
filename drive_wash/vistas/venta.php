@@ -142,14 +142,24 @@ if ($_SESSION['ventas']==1)
 
                             </select>
                           </div>
-                          <!-- AGREGAR ARTICULOS -->
+                          <!-- BOTON AGREGAR PRENDA -->
                           <div class="form-group col-lg-12 col-md-3 col-sm-6 col-xs-12">
-                            <a data-toggle="modal" href="#myModal">           
-                              <button id="btnAgregarArt" type="button" class="btn btn-primary"> <span class="fa fa-plus"></span> Agregar Prenda</button>
+                            <!-- BOTON AGREGAR PRENDA -->
+                            <a data-toggle="modal" href="#myModal">    
+                              <button id="btnAgregarArt" type="button" class="btn btn-primary"> 
+                                <span class="fa fa-plus">
+                                  
+                                </span> Agregar Prenda
+                              </button>
                             </a>
-                            <a data-toggle="modal" href="#myModalt">           
-                              <button id="btnAgregartipolav" type="button" class="btn btn-primary"> <span class="fa fa-plus"></span> tipo lavado</button>
-                            </a>
+
+                            <!-- <a data-toggle="modal" href="#myModalt">           
+                              <button id="btnAgregartipolav" type="button" class="btn btn-primary">
+                               <span class="fa fa-plus">
+                                 
+                               </span> tipo lavado
+                             </button>
+                            </a> -->
                           </div>
                             <!-- TABLA EN MODAL DEL AGREGAR ARTICULO -->
                           <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
