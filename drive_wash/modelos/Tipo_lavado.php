@@ -27,8 +27,8 @@ Class TipoLavado
 			  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 			  CURLOPT_CUSTOMREQUEST => "POST",
 			  CURLOPT_POSTFIELDS => 
-			  "nombre=".$nombre.
-			  "&precio=".$precio,
+			  "nombre_tipo_lavado=".$nombre.
+			  "&precio_tipo_lavado=".$precio,
 			  CURLOPT_HTTPHEADER => array(
 			    "Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VUU2hUQnZPZ2R2SHI5UG5DdExGbXlUZy53Lmc1Y01pOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlY2ZpLi90RmxTRFhPOS9NOTlFNGxWS0xNOGdodzhOeQ==",
 			    "Content-Type: application/x-www-form-urlencoded"
@@ -121,8 +121,8 @@ Class TipoLavado
 		  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 		  CURLOPT_CUSTOMREQUEST => "PUT",
 		  CURLOPT_POSTFIELDS => 
-		  "nombre=".$nombre.
-		  "&precio=".$precio,
+		  "nombre_tipo_lavado=".$nombre.
+		  "&precio_tipo_lavado=".$precio,
 		  CURLOPT_HTTPHEADER => array(
 		    "Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VUU2hUQnZPZ2R2SHI5UG5DdExGbXlUZy53Lmc1Y01pOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlY2ZpLi90RmxTRFhPOS9NOTlFNGxWS0xNOGdodzhOeQ==",
 		    "Content-Type: application/x-www-form-urlencoded"

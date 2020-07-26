@@ -135,8 +135,8 @@ class TipoLavado extends Controller {
                     // Registro de datos
                     //El getVar()método extraerá de $ _REQUEST, por lo que devolverá cualquier dato de $ _GET, $ POST 
                     $datos = array(
-                        "nombre" => $request->getVar("nombre"),
-                        "precio" => $request->getVar("precio")
+                        "nombre_tipo_lavado" => $request->getVar("nombre_tipo_lavado"),
+                        "precio_tipo_lavado" => $request->getVar("precio_tipo_lavado")
                         );
 
                     if (!empty($datos)) {
@@ -144,8 +144,8 @@ class TipoLavado extends Controller {
                         // Validar los datos
 
                         $validation->setRules([
-                            'nombre' => 'required',
-                            'precio' => 'required|max_length[255]'
+                            'nombre_tipo_lavado' => 'required',
+                            'precio_tipo_lavado' => 'required|max_length[255]'
                         ]);
 
                         $validation->withRequest($this->request)
@@ -160,8 +160,8 @@ class TipoLavado extends Controller {
                             return json_encode($data, true);
                         } else {
                             $datos = array(
-                                "nombre" => $datos["nombre"],
-                                "precio" => $datos["precio"]);
+                                "nombre_tipo_lavado" => $datos["nombre_tipo_lavado"],
+                                "precio_tipo_lavado" => $datos["precio_tipo_lavado"]);
 
                             $TipoLavadoModel = new TipoLavadoModel($db);
                             $prendas = $TipoLavadoModel->insert($datos);
@@ -215,8 +215,8 @@ class TipoLavado extends Controller {
                     if (!empty($datos)) {
                         //Validar datos
                         $validation->setRules([
-                            'nombre' => 'required',
-                            'precio' => 'required|max_length[255]'
+                            'nombre_tipo_lavado' => 'max_length[255]',
+                            'precio_tipo_lavado' => 'max_length[255]'
                             
                         ]);
 
@@ -236,8 +236,8 @@ class TipoLavado extends Controller {
                             $TipoLavadoModel = new TipoLavadoModel($db);
                             $prendas = $TipoLavadoModel->find($id);
                             $datos = array(
-                                "nombre" => $datos["nombre"],
-                                "precio" => $datos["precio"]
+                                "nombre_tipo_lavado" => $datos["nombre_tipo_lavado"],
+                                "precio_tipo_lavado" => $datos["precio_tipo_lavado"]
                             
                             );
 

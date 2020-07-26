@@ -38,6 +38,7 @@ class ActivarPrenda extends Controller {
                             "Detalle" => $prendas
                                 //"Paginador"=>$paginador
                         );
+                         return json_encode($data, true);
                     } else {
 
                         $data = array(
@@ -89,7 +90,7 @@ class ActivarPrenda extends Controller {
 
 
                     if (!empty($prenda)) {
-                        $datos = array('estado_prenda' => 1);
+                        $datos = array('estado_tipo_lavado' => 1);
                         $prenda = $PrendasModel->update($id, $datos);
 
                         $data = array(
