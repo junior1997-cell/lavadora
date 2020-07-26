@@ -42,6 +42,15 @@ class ClientesModel extends Model{
         ->get()->getResultArray();
     }  
 
+    public function getCargoCliente($id){
+       return $this->db->table('cargo c')
+       ->where('c.idcargo >',$id)   
+       ->where('c.nombre_cargo =','NO DEFINIDO')   
+        ->where('c.nombre_cargo =','Cliente')
+        ->orderby('c.idcargo','ASC')
+        ->get()->getResultArray();
+    }  
+
     
 }
 

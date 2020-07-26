@@ -200,7 +200,7 @@ Class Persona
 		  CURLOPT_TIMEOUT => 0,
 		  CURLOPT_FOLLOWLOCATION => true,
 		  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-		  CURLOPT_CUSTOMREQUEST => "PUT",
+		  CURLOPT_CUSTOMREQUEST => "POST",
 		  CURLOPT_POSTFIELDS => 
 		  "id_tipo_doc_clientes=".$tipo_doc. 
 		  "&num_doc_clientes=".$dni.

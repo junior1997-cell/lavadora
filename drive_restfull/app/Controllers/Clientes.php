@@ -347,32 +347,42 @@ class Clientes extends Controller {
                         }else{
 
                             $clienteModel = new ClientesModel();
-                            $cliente = $clienteModel->find($id);
+                            $cliente = $clienteModel->getclientesOne($id);
+
+                            if(empty($cliente)){
+                                $data = array(
+                                    "Status"=>404,
+                                    "Detalle"=>"esta vacio"
+                                ); 
                             
-                            $datos = array( "nombre_clientes" => $datos["nombre_clientes"],
-                                "apellidos_clientes" => $datos["apellidos_clientes"],
-                                "id_sexo_clientes" => $datos["id_sexo_clientes"],
-                                "id_tipo_doc_clientes" => $datos["id_tipo_doc_clientes"],
-                                "num_doc_clientes" => $datos["num_doc_clientes"],
-                                "email_clientes" => $datos["email_clientes"],
-                                "direccion_clientes" => $datos["direccion_clientes"],
-                                "password_clientes" => $datos["password_clientes"],
-                                "celular_clientes" => $datos["celular_clientes"],
-                                "id_cargo_clientes" => $datos["id_cargo_clientes"],
-                                "id_tipo_clientes" => $datos["id_tipo_clientes"],
-                                "id_distrito_clientes" => $datos["id_distrito_clientes"],
-                                "imagen_clientes" => $datos["imagen_clientes"]
-                            );
+                                return json_encode($data, true); 
+                            }else{
                                 
-                            $cliente = $clienteModel->update($id, $datos);
+                                $datos = array( "nombre_clientes" => $datos["nombre_clientes"],
+                                    "apellidos_clientes" => $datos["apellidos_clientes"],
+                                    "id_sexo_clientes" => $datos["id_sexo_clientes"],
+                                    "id_tipo_doc_clientes" => $datos["id_tipo_doc_clientes"],
+                                    "num_doc_clientes" => $datos["num_doc_clientes"],
+                                    "email_clientes" => $datos["email_clientes"],
+                                    "direccion_clientes" => $datos["direccion_clientes"],
+                                    "password_clientes" => $datos["password_clientes"],
+                                    "celular_clientes" => $datos["celular_clientes"],
+                                    "id_cargo_clientes" => $datos["id_cargo_clientes"],
+                                    "id_tipo_clientes" => $datos["id_tipo_clientes"],
+                                    "id_distrito_clientes" => $datos["id_distrito_clientes"],
+                                    "imagen_clientes" => $datos["imagen_clientes"]
+                                );
+                                    
+                                $cliente = $clienteModel->update($id, $datos);
 
-                            $data = array(
-                                "Status"=>200,
-                                "Detalle"=>"Datos de usuario actualizado"
+                                $data = array(
+                                    "Status"=>200,
+                                    "Detalle"=>"Datos de cliente actualizado"
 
-                            ); 
-                                
-                            return json_encode($data, true);
+                                ); 
+                                    
+                                return json_encode($data, true);
+                            }
 
                         }
 
@@ -545,6 +555,60 @@ class Clientes extends Controller {
                 $data = array(
                     "Status" => 404,
                     "Detalles" => "No está autorizado para editar los registros"
+                );
+            }
+        }
+
+        return json_encode($data, true);
+    }
+
+    public function cargocliente($id) {
+        //realiza solicitud a services y le decimos que ejecute el metodo request()
+        $request = \Config\Services::request();
+        $validation = \Config\Services::validation();
+        $headers = $request->getHeaders();
+
+        $registroModel = new RegistrosModel($db);
+        $registro = $registroModel->where('estado', 1)
+                ->findAll();
+
+        foreach ($registro as $key => $value) {
+            //verificacion del toquen de seguridad 
+            if (array_key_exists('Authorization', $headers) && !empty($headers['Authorization'])) {
+
+                if ($request->getHeader('Authorization') == 'Authorization: Basic ' . base64_encode($value["cliente_id"] . ":" . $value["llave_secreta"])) {
+                    
+                    $usuariosModel = new ClientesModel();
+                    $usuarios = $usuariosModel
+                                ->getCargoCliente($id);
+                           
+                    if (!empty($usuarios)) {
+
+                        $data = array(
+                            "Status" => 200,
+                            "Número Registro" =>$id,
+                            "Detalle" => $usuarios
+                        );
+                        return json_encode($data, true);
+                    } else {
+
+                        $data = array(
+                            "Status" => 404,
+                            "Detalle" => "No hay ningún cliente registrado"
+                        );
+                    }
+                } else {
+
+                    $data = array(
+                        "Status" => 404,
+                        "Detalle" => "El token es inválido"
+                    );
+                }
+            } else {
+
+                $data = array(
+                    "Status" => 404,
+                    "Detalle" => "No está autorizado para recibir los registros"
                 );
             }
         }

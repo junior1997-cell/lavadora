@@ -95,7 +95,7 @@ if ($_SESSION['acceso']==1)
                               <label id="mos_ruc">RUC(*):</label> 
                               <label id="mos_carnet">CARNET DE EXTRANJERIA(*):</label>  
                               <label id="mos_pasaporte">PASAPORTE(*):</label>                                            
-                              <input type="number" class="form-control " name="dni" id="dni"  maxlength="100" placeholder="Num Doc."  style=" padding:0px 0px !important;" required>
+                              <input type="number" class="form-control " name="dni" id="dni"  min="10000000" max="99999999999" placeholder="Num Doc."  style=" padding:0px 0px !important;" required>
                             </div>
 
                             <div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
@@ -151,7 +151,7 @@ if ($_SESSION['acceso']==1)
                           <!-- CELULAR -->
                           <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
                             <label>Celular:</label>
-                            <input type="number" class="form-control" name="celular" id="celular" maxlength="13" minlength="6" placeholder="celular" required>
+                            <input type="number" class="form-control" name="celular" id="celular" max="999999999" min="9999999" placeholder="celular" required>
                           </div>
                           <!-- CARGO -->
                           <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
