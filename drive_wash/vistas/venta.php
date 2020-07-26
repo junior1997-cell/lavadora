@@ -58,12 +58,12 @@ if ($_SESSION['ventas']==1)
                     <div class="panel-body" style="height: absolute;" id="formularioregistros">
                         <form name="formulario" id="formulario" method="POST">
                           <!-- ETIQUETA -->
-                          <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                          <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-6">
                             <label>Etiqueta(*):</label>
                             <input type="text" class="form-control" name="numero_pedido" id="numero_pedido" maxlength="10" placeholder="Etiqueta" required="">
                           </div>
                           <!-- TIPO PEDIDO -->
-                          <div class="form-group col-lg-3 col-md-5 col-sm-6 col-xs-6">
+                          <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-6">
                             <label>tipo pedido(*):</label>
                             <select id="id_tipo_pedido" name="id_tipo_pedido" class=" form-control selectpicker" data-live-search="true"  required>
                             </select>
@@ -101,7 +101,7 @@ if ($_SESSION['ventas']==1)
                           <!-- SELECIONAR PAGO -->
                           <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
                             <label>Seleccionar pago (*):</label>
-                            <select name="pagoAl" id="pagoAl" class="form-control  " required="">
+                            <select name="pago" id="pago" class="form-control  " required="">
                               <option value="">NO SELECT</option>
                                <option value="0" >Al realizar el pedido</option>
                                <option value="1">Al recoger el pedido</option>
@@ -111,7 +111,7 @@ if ($_SESSION['ventas']==1)
                           <!-- SELECIONAR tipo de PAGO -->
                           <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
                             <label>Seleccionar tipo de pago (*):</label>
-                            <select name="pagoAl" id="pagoAl" class="form-control  " required="">
+                            <select name="tpo_pago" id="tipo_pago" class="form-control  " required="">
                               <option value="">NO SELECT</option>
                                <option value="0" title="Habilitado">Al contado</option>
                                <option value="1" disabled  title="Deshabilitado">Con tarjeta</option>

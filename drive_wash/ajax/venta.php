@@ -116,21 +116,21 @@ switch ($_GET["op"]){
 	break;
 
 	
-
+	//lista las prendas disponibles
 	case 'listarprendaslavado':
 		require_once "../modelos/Prendas.php";
 		$prendas=new Prendas();
 
-		$rspta=$prendas->listar_api_prendaslavadoact();
+		$rspta=$prendas->listar_api_prendas();
  		//Vamos a declarar un array
  		$data= Array();
  		//var_dump($rspta);die;
  		foreach ($rspta['Detalle'] as $reg) {
  			$data[]=array(
- 				"0"=>'<button class="btn btn-warning" onclick="agregarDetalle('.$reg['id'].',\''.$reg['nombre'].'\',\''.$reg['precio'].'\')"><span class="fa fa-plus"></span></button>',
- 				"1"=>$reg['nombre'],
- 				"2"=>$reg['precio'],
- 				"3"=>"<img src='../files/prendas/".$reg['imagen']."' height='50px' width='50px' >"
+ 				"0"=>'<button class="btn btn-warning" onclick="agregarDetalle('.$reg['idprenda'].',\''.$reg['nombre_prenda'].'\',\''.$reg['precio_prenda'].'\')"><span class="fa fa-plus"></span></button>',
+ 				"1"=>$reg['nombre_prenda'],
+ 				"2"=>$reg['precio_prenda'],
+ 				"3"=>"<img src='../files/prendas/".$reg['imagen_prenda']."' height='50px' width='50px' >"
  				);
  		}
  		$results = array(
@@ -180,14 +180,12 @@ switch ($_GET["op"]){
 	break;
 	//LISTA EL TIPO DE SERVICIO DE LAVADO
 	case 'listartipolavado':
-		require_once "../modelos/Tipo_lavado.php";
-		$tipo=new TipoLavado();
-
-		$rspta=$tipo->listar_api_tipolavado_enventa();
+		 
+		$rspta=$venta->listar_all_tipo_sevicio_lavado();
 			//Vamos a declarar un array
 		foreach($rspta['Detalle'] as $reg){
 
-			echo '<option value=' . $reg['id'] . '>' . $reg['nombre'] . '</option>';
+			echo '<option value=' . $reg['idtipo_lavado'] . '>' . $reg['nombre_tipo_lavado'] . '</option>';
 		}
 	break;
 	//LISTA LOS TIPOS DE PEDIDDOS PERSONAL, LLAMDA, WEB

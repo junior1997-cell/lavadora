@@ -37,6 +37,7 @@ class Delivery extends Controller {
                             "Detalle" => $delivery
                                 //"Paginador"=>$paginador
                         );
+                        return json_encode($data, true);
                     } else {
 
                         $data = array(

@@ -30,7 +30,22 @@ class PedidosModel extends Model{
         ->join('cargo c', 'c.idcargo = p.id_cargo')
         ->join('distrito d', 'd.iddistrito = p.id_distrito')
         ->get()->getResultArray();
-    }  
+    } 
+
+    public function getTipoLvadoAll(){
+        return $this->db->table('tipo_lavado tl')   
+
+        ->where('tl.estado_tipo_lavado',1)
+       
+        ->get()->getResultArray();
+    }
+    public function getTipoPedidoAll(){
+        return $this->db->table('tipo_pedido tp')   
+
+        ->where('tp.idtipo_pedido >=',1)
+       
+        ->get()->getResultArray();
+    }   
 
     
 }
