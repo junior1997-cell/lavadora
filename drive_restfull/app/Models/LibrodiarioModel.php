@@ -39,10 +39,25 @@ class LibrodiarioModel extends Model{
 
 		return $this->db->table('detalle_pedido_prenda dpp')
 
-		->select('dpp.id, dpp.cantidad,dpp.id_prenda, p.nombreP as prenda,dpp.id_pedido_prenda')
-		->join('pedido_prenda pp','dpp.id_pedido_prenda= pp.idpedidoprenda')
-		->join(' prenda p','dpp.id_prenda = p.id_prenda')
+		->select('dpp.iddetalle_pedido_prenda, 
+			dpp.cantidad_detalle_pedido_prenda,
+			p.idprenda, 
+			p.nombre_prenda as Prenda')
+
+		->join('pedido_prenda pp','dpp.id_pedido_prenda= pp.idpedido_prenda')
+		->join('prenda p','dpp.id_prenda=p.idprenda')
 		->where('dpp.id_pedido_prenda', $idpedido)
+		//->where dpp.id_pedido_prenda=2
+		->get()->getResultArray();
+	}
+
+	public function get_total_pedido_ld($total){
+
+		return $this->db->table('pedido_prenda pp')
+
+		->select('pp.total_pedido')
+
+		->where('pp.idpedido_prenda', $total)
 		//->where dpp.id_pedido_prenda=2
 		->get()->getResultArray();
 	}

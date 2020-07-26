@@ -64,8 +64,9 @@ if ($_SESSION['compras']==1)
                           <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             <a data-toggle="modal" href="#myModal">           
                               <button id="btnAgregarArt" type="button" class="btn btn-primary"> <span class="fa fa-plus"></span> Agregar venta</button>
-                              <button id="btnAgregarfila" type="button" class="btn btn-primary" onclick="agregarfila()"> <span class="fa fa-plus"></span></button>
                             </a>
+                            <button id="btnAgregarfila" type="button" class="btn btn-primary" 
+                              onclick="agregarfila()"> <span class="fa fa-plus"></span></button>
                           </div>
                           <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
                             <table id="detalles" class="table table-striped debe  table-sm " style="border:red 1px solid">

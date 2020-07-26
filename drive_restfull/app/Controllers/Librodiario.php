@@ -81,8 +81,8 @@ class Librodiario extends Controller {
 
                 if ($request->getHeader('Authorization') == 'Authorization: Basic ' . base64_encode($value["cliente_id"] . ":" . $value["llave_secreta"])) {
                     
-                    $PrendasModel = new PrendasModel();
-                    $prendas = $PrendasModel->find($id);
+                    $Librodiario = new LibrodiarioModel();
+                    $prendas = $Librodiario->getdetalle_pedido_prenda($id);
                     if (!empty($prendas)) {
 
                         $data = array(
@@ -492,6 +492,58 @@ class Librodiario extends Controller {
                             "Status" => 404,
                             "Total_Resultados" => 0,
                             "Detalle" => "Ningún registro cargado"
+                        );
+                    }
+                } else {
+
+                    $data = array(
+                        "Status" => 404,
+                        "Detalle" => "El token es inválido"
+                    );
+                }
+            } else {
+
+                $data = array(
+                    "Status" => 404,
+                    "Detalle" => "No está autorizado para recibir los registros"
+                );
+            }
+        }
+
+        return json_encode($data, true);
+    }
+
+    public function total_pedido($id) {
+        //realiza solicitud a services y le decimos que ejecute el metodo request()
+        $request = \Config\Services::request();
+        $validation = \Config\Services::validation();
+        $headers = $request->getHeaders();
+
+        $registroModel = new RegistrosModel($db);
+        $registro = $registroModel->where('estado', 1)
+                ->findAll();
+
+        foreach ($registro as $key => $value) {
+            //verificacion del toquen de seguridad 
+            if (array_key_exists('Authorization', $headers) && !empty($headers['Authorization'])) {
+
+                if ($request->getHeader('Authorization') == 'Authorization: Basic ' . base64_encode($value["cliente_id"] . ":" . $value["llave_secreta"])) {
+                    
+                    $Librodiario = new LibrodiarioModel();
+                    $prendas = $Librodiario->get_total_pedido_ld($id);
+                    if (!empty($prendas)) {
+
+                        $data = array(
+                            "Status" => 200,
+                            "Número Registro" =>$id,
+                            "Detalle" => $prendas
+                        );
+                         return json_encode($data, true);
+                    } else {
+
+                        $data = array(
+                            "Status" => 404,
+                            "Detalle" => "No hay ningún total pedido registrado"
                         );
                     }
                 } else {
