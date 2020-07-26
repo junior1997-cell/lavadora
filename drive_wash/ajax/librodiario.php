@@ -128,7 +128,7 @@ switch ($_GET["op"]){
 				}
 	break;
 
-	case 'listarArticulos':
+	case 'listarPedido_venta':
 
 		$rspta=$Librodiario->api_listar_pedidop_ld();
  		//Vamos a declarar un array
@@ -137,7 +137,7 @@ switch ($_GET["op"]){
 
  		foreach($rspta["Detalle"] as $reg ){
  			$data[]=array(
- 				"0"=>'<button class="btn btn-warning" onclick="agregarDetalle('.$reg['idpedido_prenda'].',\''.$reg['numero_comprobante'].'\')"><span class="fa fa-plus"></span></button> <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModall" onclick="Listar_detalle_unico_reg('.$reg['idpedido_prenda'].')"><span class="fa fa-eye"></span></button> ',
+ 				"0"=>'<button class="btn btn-warning" onclick="agregarDatellepedido('.$reg['idpedido_prenda'].',\''.$reg['numero_comprobante'].'\')"><span class="fa fa-plus"></span></button> <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModall" onclick="Listar_detalle_unico_reg('.$reg['idpedido_prenda'].')"><span class="fa fa-eye"></span></button> ',
  				"1"=>$reg['numero_pedido'],
  				"2"=>$reg['nombre_tipo_comprobante'],
  				"3"=>$reg['serie_comprobante'],

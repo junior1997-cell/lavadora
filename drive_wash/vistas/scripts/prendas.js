@@ -123,13 +123,13 @@ function guardaryeditar(e)
 function mostrar(idprenda)
 {
 
-	//console.log(id);
+	console.log(idprenda);
 	$.post("../ajax/prendas.php?op=mostrar",{idprenda : idprenda}, function(data, status)
 	{
 		mostrarform(true);
 		data = JSON.parse(data);	
 		//alert(data);	
-		console.log(data);
+		//console.log(data);
 
 		$("#id").val(data["Detalle"]["idprenda"]);
 		$("#nombre").val(data["Detalle"]["nombre_prenda"]);

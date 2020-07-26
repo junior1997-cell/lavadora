@@ -90,7 +90,7 @@ class Prendas extends Controller {
                             "Número Registro" =>$id,
                             "Detalle" => $prendas
                         );
-                         return json_encode($data, true);
+                        return json_encode($data, true);
                     } else {
 
                         $data = array(

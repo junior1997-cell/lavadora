@@ -75,12 +75,12 @@ Class Prendas
 	/*============================
 	 funcion mostrar 1 
 	 ============================*/
-	public function mostrar_uniq_api_prendas($id){
+	public function mostrar_uniq_api_prendas($idprenda){
 		//var_dump($id);
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/Prendas".$id,
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/Prendas/".$idprenda,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -96,8 +96,8 @@ Class Prendas
 
 		curl_close($curl);
 		$data = json_decode($response, true);
-		//return $data;
-		var_dump($data);die;
+		return $data;
+		//var_dump($data);die;
 
 	}
 	/*============================

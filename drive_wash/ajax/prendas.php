@@ -63,6 +63,7 @@ switch ($_GET["op"]){
 	break;
 
 	case 'mostrar':
+		$idprenda=isset($_POST["idprenda"])? limpiarCadena($_POST["idprenda"]):"";
 	//var_dump($id);
 		$rspta=$prendas->mostrar_uniq_api_prendas($idprenda);
  		//Codificar el resultado utilizando json

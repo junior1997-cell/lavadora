@@ -169,7 +169,7 @@ function listarArticulos()
 		        ],
 		"ajax":
 				{
-					url: '../ajax/librodiario.php?op=listarArticulos',
+					url: '../ajax/librodiario.php?op=listarPedido_venta',
 					type : "get",
 					dataType : "json",						
 					error: function(e){
@@ -296,7 +296,7 @@ function marcarImpuesto()
     }
   }
 
-function agregarDetalle(idarticulo,articulo){
+function agregarDatellepedido(idarticulo,articulo){
   	var cantidad=0;
     var precio_compra=1;
     var precio_venta=1;
@@ -307,9 +307,9 @@ function agregarDetalle(idarticulo,articulo){
     	var subtotal=cantidad*precio_compra;
     	var fila='<tr class="filas" id="fila'+cont+'">'+
     	'<td><button type="button" class="btn btn-danger" onclick="eliminarDetalle('+cont+')">X</button></td>'+
-    	'<td><input type="text" style="width: 50px" name="cantidad[]" id="cantidad[]" value="'+cantidad+'"></td>'+
-    	'<td><input type="Date" style="width: 118px" name="fechald[]" id="fechald[]" value="" required></td>'+
-    	'<td><textarea type="text" cols="15" rows="2" style="resize: both;" name="cantidad[]" id="cantidad[]" value="'+cantidad+'"></textarea></td>'+
+    	'<td><input type="text" style="width: 50px" name="n_operacion[]" id="n_operacion[]" value="'+cantidad+'"></td>'+
+    	'<td><input type="Date" style="width: 118px" name="fecha[]" id="fecha[]" value="" required></td>'+
+    	'<td><textarea type="text" cols="15" rows="2" style="resize: both;" name="glosa[]" id="glosa[]" value="" placeholder="Escribe la glosa de la operacion"></textarea></td>'+
     	'<td><select id="id_libroC[]" name="id_libroC[]" style="width: 90px" class="form-control" required>'+
     	'<option value="33">select</option>'+
     	'<option value="1"> 1 Libro Caja y Bancos</option>'+
@@ -349,7 +349,7 @@ function agregarDetalle(idarticulo,articulo){
     	'<td><input type="number"  style="width: 70px" name="idarticulo[]" min="10" value="'+idarticulo+'">'+'</td>'+
     	'<td><input type="text" name="precio_compra[]" id="precio_compra[]" value="'+denominacion+'"></td>'+
     	'<td><input type="number" style="width: 70px" name="precio_compra[]" id="precio_compra[]" value="'+articulo+'"></td>'+
-    	'<td><input type="number" style="width: 70px" name="precio_compra[]" id="precio_compra[]" value="'+precio_compra+'"></td>'+
+    	'<td><input type="number" style="width: 70px" name="precio_compra[]" id="precio_compra[]" value="'+articulo+'"></td>'+
     	'<td><button type="button" onclick="modificarSubototales()" class="btn btn-info"><i class="fa fa-refresh"></i></button></td>'+
     	'</tr>';
     	cont++;
@@ -364,67 +364,6 @@ function agregarDetalle(idarticulo,articulo){
     }
 }
 
-function agregarfila(){
-	var cantidad=0;
-    var precio_compra=1;
-    var precio_venta=1;
-    var denominacion='Denominación';
-
-	var subtotal=cantidad*precio_compra;
-	var fila='<tr class="filas" id="fila'+cont+'">'+
-	'<td><button type="button" class="btn btn-danger" onclick="eliminarDetalle('+cont+')">X</button></td>'+
-	'<td><input type="text" style="width: 50px" name="cantidad[]" id="cantidad[]" value="'+cantidad+'"></td>'+
-	'<td><input type="Date" style="width: 118px" name="fechald[]" id="fechald[]" value="" required></td>'+
-	'<td><textarea type="text" cols="15" rows="2" style="resize: both;" name="cantidad[]" id="cantidad[]" value="'+cantidad+'"></textarea></td>'+
-	'<td><select id="id_libroC[]" name="id_libroC[]" style="width: 90px" class="form-control" required>'+
-	'<option value="33">select</option>'+
-	'<option value="1"> 1 Libro Caja y Bancos</option>'+
-	'<option value="2"> 2 Libro Ingresos y Gastos</option>'+
-	'<option value="3"> 3 Libro de Inventarios y Balances</option>'+
-	'<option value="4"> 4 Libro de Retenciones Incisos E) y F) del Articulo</option>'+
-	'<option value="5"> 5 Libro Diario</option>'+
-	'<option value="6"> 5-A Libro Diario de Formato Simplificado</option>'+
-	'<option value="7"> 6 Libro Mayor</option>'+
-	'<option value="8"> 7 Registro de Activos Fijos</option>'+
-	'<option value="9"> 8 Registro de Compras</option>'+
-	'<option value="10">9 Registro de Consignaciones</option>'+
-	'<option value="11">10 Registro de Costos</option>'+
-	'<option value="12">11 Registro de Huéspedes</option>'+
-	'<option value="13">12 Registro de Inventario Permanente Unidades Físicas</option>'+
-	'<option value="14">13 Registro de Inventario Permanente Valorizado</option>'+
-	'<option value="15">14 Registro de Ventas e Ingresos</option>'+
-	'<option value="16">15 Registro de Ventas e Ingresos-Artículo 23° Res. de Superintendencia N° 266-2004/SUNAT</option>'+
-  	'<option value="17">16 Registro del Régimen de Percepciones</option>'+
- 	'<option value="18">17 Registro del Régimen de Retenciones</option>'+
-  	'<option value="19">18 Registro IVAP</option>'+
-  	'<option value="20">19 Registro(s) Auxiliar(es) de Adquisiciones-Articulo 8° Resolución de Superintendencia N° 022-98/SUNAT</option>'+
-  	'<option value="21">20 Registro(s) Auxiliar(es) de Adquisiciones-Insiso A) Primer Párrafo Artículo 5° Res. de Superintendencia N° 021-99/SUNAT</option>'+
-  	'<option value="22">21 Registro(s) Auxiliar(es) de Adquisiciones-Insiso A) Primer Párrafo Artículo 5° Res. de Superintendencia N° 142-2001/SUNAT</option>'+
-  	'<option value="23">22 Registro(s) Auxiliar(s) de Adquisiciones-Insiso A) Primer Párrafo Artículo 5° Resolución de Superintendencia N° 256-2004/SUNAT</option>'+
-  	'<option value="24">23 Registro(s) Auxiliar(s) de Adquisiciones-Insiso A) Primer Párrafo Artículo 5° Res. de Superintendencia N° 257-2004/SUNAT</option>'+
-  	'<option value="25">24 Registro(s) Auxiliar(s) de Adquisiciones-Insiso A) Primer Párrafo Artículo 5° Res. de Superintendencia N° 258-2004/SUNAT</option>'+
-  	'<option value="26">25 Registro(s) Auxiliar(s) de Adquisiciones-Insiso A) Primer Párrafo Artículo 5° Res. de Superintendencia N° 259-2004/SUNAT</option>'+
-  	'<option value="27">26 Registro de Retenciones Artículo 77-A de la Ley de Impuesto a la Renta</option>'+
-  	'<option value="28">27 Libro de Actas de la Empresa Individual de Responsabilidad Limitada</option>'+
-  	'<option value="29">28 Libro de Actas de la Junta General de Accionistas</option>'+
-  	'<option value="30">29 Libro de Actas del Directorio</option>'+
-  	'<option value="31">30 Libro de Matrícula de Acciones</option>'+
-  	'<option value="32">31 Libro de Planillas</option>'+'</select>'+'</td>'+
-	'<td><input type="text" style="width: 40px" name="idarticulo[]" value="">'+'</td>'+
-	'<td><input type="text" readonly style="width: 70px" name="idarticulo[]" value="'+articulo+'">'+'</td>'+
-	'<td><input type="number"  style="width: 70px" name="idarticulo[]" min="10" value="'+idarticulo+'">'+'</td>'+
-	'<td><input type="text" name="precio_compra[]" id="precio_compra[]" value="'+denominacion+'"></td>'+
-	'<td><input type="number" style="width: 70px" name="precio_compra[]" id="precio_compra[]" value="'+articulo+'"></td>'+
-	'<td><input type="number" style="width: 70px" name="precio_compra[]" id="precio_compra[]" value="'+precio_compra+'"></td>'+
-	'<td><button type="button" onclick="modificarSubototales()" class="btn btn-info"><i class="fa fa-refresh"></i></button></td>'+
-	'</tr>';
-	cont++;
-	detalles=detalles+1;
-	$('#filas').append(fila);
-	//$('#fila').append(fila);
-	modificarSubototales();
-
-}
 
 function modificarSubototales(){
   	var cant = document.getElementsByName("cantidad[]");
