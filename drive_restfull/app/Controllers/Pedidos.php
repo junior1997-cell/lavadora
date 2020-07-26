@@ -39,6 +39,7 @@ class Pedidos extends Controller {
                             "Detalle" => $pedido
                                 //"Paginador"=>$paginador
                         );
+                        return json_encode($data, true);
                     } else {
 
                         $data = array(

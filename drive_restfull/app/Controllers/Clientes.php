@@ -39,6 +39,7 @@ class Clientes extends Controller {
                             "Detalle" => $cliente
                                 //"Paginador"=>$paginador
                         );
+                        return json_encode($data, true);
                     } else {
 
                         $data = array(
@@ -152,6 +153,7 @@ class Clientes extends Controller {
                             "Número Registro" =>$id,
                             "Detalle" => $cliente
                         );
+                        return json_encode($data, true);
                     } else {
 
                         $data = array(

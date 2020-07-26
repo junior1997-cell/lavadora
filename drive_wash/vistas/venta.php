@@ -77,7 +77,7 @@ if ($_SESSION['ventas']==1)
                             </select>
                           </div>
                           <!-- TIPO DE COMPROBANTE -->
-                          <div class="form-group col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                          <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
                             <label>Tipo Comprobante(*):</label>
                             <select name="id_comprobante" id="id_comprobante" class="form-control selectpicker" required="">
                                
@@ -99,12 +99,23 @@ if ($_SESSION['ventas']==1)
                             <input type="text" class="form-control" name="impuesto" id="impuesto" required="">
                           </div>
                           <!-- SELECIONAR PAGO -->
-                          <div class="form-group col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                          <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
                             <label>Seleccionar pago (*):</label>
-                            <select name="pagoAl" id="pagoAl" class="form-control selectpicker" required="">
-                              <option value=""></option>
-                               <option value="0">Al realizar el pedido</option>
+                            <select name="pagoAl" id="pagoAl" class="form-control  " required="">
+                              <option value="">NO SELECT</option>
+                               <option value="0" >Al realizar el pedido</option>
                                <option value="1">Al recoger el pedido</option>
+
+                            </select>
+                          </div>
+                          <!-- SELECIONAR tipo de PAGO -->
+                          <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                            <label>Seleccionar tipo de pago (*):</label>
+                            <select name="pagoAl" id="pagoAl" class="form-control  " required="">
+                              <option value="">NO SELECT</option>
+                               <option value="0" title="Habilitado">Al contado</option>
+                               <option value="1" disabled  title="Deshabilitado">Con tarjeta</option>
+                               <option value="1" disabled  title="Deshabilitados">Con Paypal</option>
 
                             </select>
                           </div>
@@ -134,7 +145,7 @@ if ($_SESSION['ventas']==1)
                           <!-- AGREGAR ARTICULOS -->
                           <div class="form-group col-lg-12 col-md-3 col-sm-6 col-xs-12">
                             <a data-toggle="modal" href="#myModal">           
-                              <button id="btnAgregarArt" type="button" class="btn btn-primary"> <span class="fa fa-plus"></span> Agregar Artículos</button>
+                              <button id="btnAgregarArt" type="button" class="btn btn-primary"> <span class="fa fa-plus"></span> Agregar Prenda</button>
                             </a>
                             <a data-toggle="modal" href="#myModalt">           
                               <button id="btnAgregartipolav" type="button" class="btn btn-primary"> <span class="fa fa-plus"></span> tipo lavado</button>

@@ -35,6 +35,7 @@ class Tipocomprobante extends Controller {
                             "Detalle" => $tipo
                                 //"Paginador"=>$paginador
                         );
+                         return json_encode($data, true);
                     } else {
 
                         $data = array(
