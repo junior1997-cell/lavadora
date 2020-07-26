@@ -187,8 +187,8 @@ switch ($_GET["op"]){
 				  <tbody>
 				    <tr>
 				      <th scope="row">'.$count.'</th>
-				      <td>'.$reg['cantidad'].'</td>
-				      <td>'.$reg['prenda'].'</td>
+				      <td>'.$reg['cantidad_detalle_pedido_prenda'].'</td>
+				      <td>'.$reg['Prenda'].'</td>
 				    </tr>
 				  </tbody>
 				';
