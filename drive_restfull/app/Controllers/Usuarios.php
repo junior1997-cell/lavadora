@@ -40,6 +40,68 @@ class Usuarios extends Controller {
                                 //"Paginador"=>$paginador
                         );
                         return json_encode($data, true);
+<<<<<<< HEAD
+                    } else {
+
+                        $data = array(
+                            "Status" => 404,
+                            "Total_Resultados" => 0,
+                            "Detalle" => "Ningún registro cargado"
+                        );
+                    }
+                } else {
+
+                    $data = array(
+                        "Status" => 404,
+                        "Detalle" => "El token es inválido"
+                    );
+                }
+            } else {
+
+                $data = array(
+                    "Status" => 404,
+                    "Detalle" => "No está autorizado para recibir los registros"
+                );
+            }
+        }
+
+        return json_encode($data, true);
+    }
+
+    public function clienteall($id) {
+        //realiza solicitud a services y le decimos que ejecute el metodo request()
+        $request = \Config\Services::request();
+        $validation = \Config\Services::validation();
+        $headers = $request->getHeaders();
+
+        $registroModel = new RegistrosModel($db);
+        $registro = $registroModel->where('estado', 1)
+                ->findAll();
+
+        //$db = \Config\Database::connect();
+        //$pager = \Config\Services::pager();
+        foreach ($registro as $key => $value) {
+
+            if (array_key_exists('Authorization', $headers) && !empty($headers['Authorization'])) {
+
+                if ($request->getHeader('Authorization') == 'Authorization: Basic ' . base64_encode($value["cliente_id"] . ":" . $value["llave_secreta"])) {
+
+                    $clienteModel = new UsuariosModel();
+                    
+                    $cliente = $clienteModel
+                    ->getClienteAll($id);
+
+                    
+                    if (!empty($cliente)) {
+
+                        $data = array(
+                            "Status" => 200,
+                            "Total_Resultados" => count($cliente),
+                            "Detalle" => $cliente
+                                //"Paginador"=>$paginador
+                        );
+=======
+>>>>>>> d165820259fab004a07f495f29fe58ae88ca527c
                     } else {
 
                         $data = array(
@@ -384,8 +446,7 @@ class Usuarios extends Controller {
                         $data = array(
 
                                 "Status"=>200,
-                                "Detalle"=>"Se ha borrado con éxito"
-                                
+                                "Detalle"=>"Se ha borrado con éxito"                             
                         );
 
                         return json_encode($data, true);    

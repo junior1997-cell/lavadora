@@ -129,11 +129,11 @@ function mostrar(id)
 		mostrarform(true);
 		data = JSON.parse(data);	
 		//alert(data);	
-		
+		console.log(data);
 
-		$("#id").val(data["Detalle"]["id"]);
-		$("#nombre").val(data["Detalle"]["nombre"]);
-		$("#precio").val(data["Detalle"]["precio"]);
+		$("#id").val(data["Detalle"][0]["idtipo_lavado"]);
+		$("#nombre").val(data["Detalle"][0]["nombre_tipo_lavado"]);
+		$("#precio").val(data["Detalle"][0]["precio_tipo_lavado"]);
  		
 
  	})
@@ -142,6 +142,7 @@ function mostrar(id)
 //Función para desactivar registros
 function desactivar(id)
 {
+	console.log(id);
 	bootbox.confirm("¿Está Seguro de desactivar el insumo?", function(result){
 		if(result)
         {
