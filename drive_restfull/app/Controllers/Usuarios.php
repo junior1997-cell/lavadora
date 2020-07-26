@@ -40,7 +40,7 @@ class Usuarios extends Controller {
                                 //"Paginador"=>$paginador
                         );
                         return json_encode($data, true);
-<<<<<<< HEAD
+
                     } else {
 
                         $data = array(
@@ -100,8 +100,7 @@ class Usuarios extends Controller {
                             "Detalle" => $cliente
                                 //"Paginador"=>$paginador
                         );
-=======
->>>>>>> d165820259fab004a07f495f29fe58ae88ca527c
+
                     } else {
 
                         $data = array(

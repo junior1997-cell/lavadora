@@ -549,7 +549,7 @@ function mostrar(id)
 function desactivar(id)
 {
 	console.log(id);
-	bootbox.confirm("¿Está Seguro de desactivar el usuario?", function(result){
+	bootbox.confirm("¿Está Seguro de desactivar el Cliente?", function(result){
 		if(result)
         {
         	$.post("../ajax/persona.php?op=desactivar", {id : id}, function(e){
@@ -564,7 +564,7 @@ function desactivar(id)
 //Función para activar registros
 function activar(id)
 {
-	bootbox.confirm("¿Está Seguro de activar el Usuario?", function(result){
+	bootbox.confirm("¿Está Seguro de activar el Cliente?", function(result){
 		if(result)
         {
         	$.post("../ajax/persona.php?op=activar", {id : id}, function(e){

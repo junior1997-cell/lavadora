@@ -140,7 +140,7 @@ Class Persona
 		$celular,$id_cargo,$id_distrito,$direccion,$imagen)
 	{
 		 
-		 // var_dump($tipo_doc,$dni,$nomb,$apellidos,$sex,$login,$clavehash,$celular,$id_cargo,$id_distrito,$direccion,$imagen); die;
+		// var_dump($tipo_doc,$dni,$nomb,$apellidos,$sex,$login,$clavehash,$celular,$id_cargo,$id_distrito,$direccion,$imagen); die;
 
 		$curl = curl_init();
 		//$estado = 1;
@@ -187,7 +187,7 @@ Class Persona
 		$clavehash,$celular,$id_cargo,$id_distrito,$direccion,$imagen)
 	{
 		 
-		  // var_dump($id,$tipo_doc,$dni,$nomb,$apellidos,$sex,$login,$clavehash,$celular,$id_cargo,$id_distrito,$direccion,$imagen); die;
+		// var_dump($id,$tipo_doc,$dni,$nomb,$apellidos,$sex,$login,$clavehash,$celular,$id_cargo,$id_distrito,$direccion,$imagen); die;
 
 		$curl = curl_init();
 		//$estado = 1;
@@ -227,12 +227,12 @@ Class Persona
 		// return $data;
 		 var_dump($data); die;
 
-	//var_dump ($data); die;	
+	 //var_dump ($data); die;	
 	}
 
 	//------------------------------------------------------------------------------
 	// borrar USUARIO PASANDOLE UN "ID"
-	public function borrar_api_usuario($id)
+	public function borrar_api_cliente($id)
 	{
 		 
 		 // var_dump($id); die;
@@ -266,10 +266,10 @@ Class Persona
 
 	//------------------------------------------------------------------------------
 	// recuperar USUARIO PASANDOLE UN "ID"
-	public function recuperar_api_usuario($id)
+	public function recuperar_api_cliente($id)
 	{
 		 
-		 // var_dump($id); die;
+		// var_dump($id); die;
 
 		$curl = curl_init();
 		//$estado = 1;
@@ -295,11 +295,11 @@ Class Persona
 		// return $data;
 		 var_dump($data); die;
 
-	//var_dump ($data); die;	
+	 //var_dump ($data); die;	
 	}
 
 	// LISTA TODAS LA PERSONAS DE LA TABLA PERSONAS
-	public function listar_all_api_persona_local()
+	public function listar_all_api_clientes()
 	{
 		 
 		$curl = curl_init();
@@ -326,11 +326,11 @@ Class Persona
 
 		return $data;	
 
-	//var_dump ($data); die;	
+	 //var_dump ($data); die;	
 	}
 
 	// LISTA UNA PERSONA PARA EDITAR
-	public function listar_one_api_persona_local($id)
+	public function listar_one_api_cliente($id)
 	{
 		$curl = curl_init();
 
@@ -356,7 +356,7 @@ Class Persona
 
 		return $data;	
 
-	//var_dump ($data); die;	
+	 //var_dump ($data); die;	
 	}
 
 	// LISTA TODO LOS DISTRITOS
@@ -387,7 +387,7 @@ Class Persona
 
 		return $data;	
 
-	//var_dump ($data); die;	
+	 //var_dump ($data); die;	
 	}
 
 	// LISTA CARGO
@@ -418,7 +418,7 @@ Class Persona
 
 		return $data;	
 
-	//var_dump ($data); die;	
+	 //var_dump ($data); die;	
 	}
 
 	// LISTA TIPO DE DOCUMENTOS 
@@ -449,7 +449,7 @@ Class Persona
 
 		return $data;	
 
-	//var_dump ($data); die;	
+	 //var_dump ($data); die;	
 	}
 	// LISTAR SEXO USANDO API
 	public function listar_all_api_sexo()
@@ -479,7 +479,7 @@ Class Persona
 
 		return $data;	
 
-	//var_dump ($data); die;	
+	 //var_dump ($data); die;	
 	}
 
 

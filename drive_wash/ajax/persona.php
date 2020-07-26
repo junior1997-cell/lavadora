@@ -5,7 +5,7 @@ if (strlen(session_id()) < 1){
 }
 require_once "../modelos/Persona.php";
 
-$usuario=new Persona();
+$persona=new Persona();
 
 // id ES UNA VARIABLE ENVIADA DESDE LA VISTA USUARIOS PARA EDITAR
 $id=isset($_POST["id"])? limpiarCadena($_POST["id"]):"";
@@ -102,14 +102,14 @@ switch ($_GET["op"]){
 
 				// Validamos "id" SI ESTA VACIA O TIENE DATOS para "guardar" o "editar"
 				if (empty($id)){
-					$rspta=$usuario->guardar_api_usuario($tipo_doc,$dni,$nomb,$apellidos,$sexo,$login,
+					$rspta=$persona->guardar_api_usuario($tipo_doc,$dni,$nomb,$apellidos,$sexo,$login,
 						$clavehash,$celular,$id_cargo,$id_distrito,$direccion,$imagen);
 
 						// $_POST['permiso']
 					echo $rspta ? "Usuario registrado" : "No se pudieron registrar todos los datos del usuario";
 				}
 				else {
-					$rspta=$usuario->edit_api_usuario($id,$tipo_doc,$dni,$nomb,$apellidos,$sexo,$login,$clavehash,$celular,$id_cargo,$id_distrito,$direccion,$imagen);
+					$rspta=$persona->edit_api_usuario($id,$tipo_doc,$dni,$nomb,$apellidos,$sexo,$login,$clavehash,$celular,$id_cargo,$id_distrito,$direccion,$imagen);
 
 						// $_POST['permiso']
 					echo $rspta ? "Usuario actualizado" : "Usuario no se pudo actualizar";
@@ -133,8 +133,8 @@ switch ($_GET["op"]){
 			//Validamos el acceso solo al usuario logueado y autorizado.
 			if ($_SESSION['almacen']==1)
 			{
-				$rspta=$usuario->borrar_api_usuario($id);
- 				echo $rspta ? "Usuario Desactivado" : "Usuario no se puede desactivar";
+				$rspta=$persona->borrar_api_cliente($id);
+ 				echo $rspta ? "Cliente Desactivado" : "Cliente no se puede desactivar";
 			//Fin de las validaciones de acceso
 			}
 			else
@@ -154,8 +154,8 @@ switch ($_GET["op"]){
 			//Validamos el acceso solo al usuario logueado y autorizado.
 			if ($_SESSION['almacen']==1)
 			{
-				$rspta=$usuario->recuperar_api_usuario($id);
- 				echo $rspta ? "Usuario activado" : "Usuario no se puede activar";
+				$rspta=$persona->recuperar_api_cliente($id);
+ 				echo $rspta ? "Cliente activado" : "Cliente no se puede activar";
 			//Fin de las validaciones de acceso
 			}
 			else
@@ -177,7 +177,7 @@ switch ($_GET["op"]){
 			{
 				
 				//var_dump($dni); die;
-				$rspta=$usuario->listar_one_api_persona_local($id);				
+				$rspta=$persona->listar_one_api_cliente($id);				
 			 		//Vamos a declarar un srray	 		
 			 	echo json_encode($rspta);
 		
@@ -199,7 +199,7 @@ switch ($_GET["op"]){
 			//Validamos el acceso solo al usuario logueado y autorizado.
 			if ($_SESSION['almacen']==1)
 			{
-				$rspta=$usuario->listar_all_api_persona_local();				
+				$rspta=$persona->listar_all_api_clientes();				
 		 		//Vamos a declarar un array
 		 		//var_dump($rspta); die;
 		 		$a="1";
@@ -243,7 +243,7 @@ switch ($_GET["op"]){
 
 		//Obtener los permisos asignados al usuario
 		 $id=$_GET['id'];
-		$marcados = $usuario->listar_api_permiso_marcado_local($id);
+		$marcados = $persona->listar_api_permiso_marcado_local($id);
 		// //Declaramos el array para almacenar todos los permisos marcados
 		// $valores=array();
 
@@ -267,9 +267,9 @@ switch ($_GET["op"]){
 	    $clavea=$_POST['clavea'];
 
 	    //Hash SHA256 en la contraseña
-		 // $clavehash=hash("SHA256",$clavea);
+		 //$clavehash=hash("SHA256",$clavea);
 
-		$rspta=$usuario->verificar($logina, $clavea);
+		$rspta=$persona->verificar($logina, $clavea);
 
 		$fetch=$rspta->fetch_object(); 
 
@@ -298,7 +298,7 @@ switch ($_GET["op"]){
 
 
 	        //Obtenemos los permisos del usuario
-	    	$marcados = $usuario->listarmarcados($fetch->idpersona);
+	    	$marcados = $persona->listarmarcados($fetch->idpersona);
 
 	    	//Declaramos el array para almacenar todos los permisos marcados
 			$valores=array();
@@ -333,7 +333,7 @@ switch ($_GET["op"]){
 			if ($_SESSION['almacen']==1)
 			{			
 				//var_dump($dni); die;
-				$rspta=$usuario->captura_unic_sunat($dni);
+				$rspta=$persona->captura_unic_sunat($dni);
 		 		//Codificar el resultado utilizando json
 		 		//var_dump($rspta); die;
 		 		$data =array();
@@ -365,7 +365,7 @@ switch ($_GET["op"]){
 			if ($_SESSION['almacen']==1)
 			{			
 				// var_dump($dni);
-				$rspta=$usuario->captura_unic_reniec_r($dni);
+				$rspta=$persona->captura_unic_reniec_r($dni);
 		 		//Codificar el resultado utilizando json
 		 		// var_dump($rspta); die;
 		 		$data =array();
@@ -398,7 +398,7 @@ switch ($_GET["op"]){
 			if ($_SESSION['almacen']==1)
 			{			
 				//var_dump($dni); die;
-				$rspta=$usuario->listar_all_api_distrito();
+				$rspta=$persona->listar_all_api_distrito();
 		 		//Codificar el resultado utilizando json
 		 		//var_dump($rspta); die;		 		 
 		 			foreach($rspta["Detalle"] as $reg ){	
@@ -425,7 +425,7 @@ switch ($_GET["op"]){
 			if ($_SESSION['almacen']==1)
 			{			
 				//var_dump($dni); die;
-				$rspta=$usuario->listar_all_api_cargo();
+				$rspta=$persona->listar_all_api_cargo();
 		 		//Codificar el resultado utilizando json
 		 		//var_dump($rspta); die;		 		 
 		 			foreach($rspta["Detalle"] as $reg ){	
@@ -453,7 +453,7 @@ switch ($_GET["op"]){
 			if ($_SESSION['almacen']==1)
 			{			
 				//var_dump($dni); die;
-				$rspta=$usuario->listar_all_api_tipo_doc();
+				$rspta=$persona->listar_all_api_tipo_doc();
 		 		//Codificar el resultado utilizando json
 		 		//var_dump($rspta); die;		 		 
 		 			foreach($rspta["Detalle"] as $reg ){	
@@ -481,7 +481,7 @@ switch ($_GET["op"]){
 			if ($_SESSION['almacen']==1)
 			{			
 				//var_dump($dni); die;
-				$rspta=$usuario->listar_all_api_sexo();
+				$rspta=$persona->listar_all_api_sexo();
 		 		//Codificar el resultado utilizando json
 		 		//var_dump($rspta); die;		 		 
 		 			foreach($rspta["Detalle"] as $reg ){	
@@ -509,7 +509,7 @@ switch ($_GET["op"]){
 			if ($_SESSION['almacen']==1)
 			{			
 				//var_dump($dni); die;
-				 $rspta=$usuario->listar_all_api_sexo();
+				 $rspta=$persona->listar_all_api_sexo();
 		 		//Codificar el resultado utilizando json
 		 		//var_dump($rspta); die;
 				 echo '<table class="table" ">

@@ -99,6 +99,7 @@ class Clientes extends Controller {
                             "Detalle" => $cliente
                                 //"Paginador"=>$paginador
                         );
+                        return json_encode($data, true);
                     } else {
 
                         $data = array(
@@ -324,7 +325,7 @@ class Clientes extends Controller {
                         //Validar datos
 
                         $validation->setRules([
-                            'nombre_clientes' => 'required|string|max_length[255]',
+                            'nombre_clientes' => 'required|string|max_length[255]'
                              
                                
                         ]);

@@ -116,7 +116,7 @@ Class Usuario
 		//$estado = 1;
 		//var_dump($estado);
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/usuarios/create",
+		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/usuarios/create",
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -163,7 +163,7 @@ Class Usuario
 		//$estado = 1;
 		//var_dump($estado);
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/usuarios/update/".$id,
+		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/usuarios/update/".$id,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -211,7 +211,7 @@ Class Usuario
 		//$estado = 1;
 		//var_dump($estado);
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/usuarios/delete/".$id,
+		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/usuarios/delete/".$id,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -245,7 +245,7 @@ Class Usuario
 		//$estado = 1;
 		//var_dump($estado);
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/usuarios/recuperar/".$id,
+		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/usuarios/recuperar/".$id,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -275,7 +275,7 @@ Class Usuario
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/usuarios",
+		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/usuarios",
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -305,7 +305,7 @@ Class Usuario
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/usuario_permiso/show/".$id,
+		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/usuarios/show/".$id,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -367,7 +367,7 @@ Class Usuario
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/cargo",
+		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/usuarios/cargo/0",
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
