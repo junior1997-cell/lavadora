@@ -166,7 +166,7 @@ if ($_SESSION['ventas']==1)
                             <table id="detalles" class="table table-striped table-bordered table-condensed table-hover">
                               <thead style="background-color:#A9D0F5">
                                     <th>Opciones</th>
-                                    <th>Artículo</th>
+                                    <th>Prendas</th>
                                     <th>Cantidad</th>
                                     <th>Precio Venta</th>
                                     <th>Descuento</th>
