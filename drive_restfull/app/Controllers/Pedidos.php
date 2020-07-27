@@ -377,7 +377,7 @@ class Pedidos extends Controller {
                     
 
                     if(!empty($cliente)){
-                        $datos = array( 'estado_persona' => 0 );
+                        $datos = array( 'estado_pedido_prenda' => 0 );
                         $cliente = $clienteModel->update($id , $datos);
                         
                         $data = array(
@@ -454,7 +454,7 @@ class Pedidos extends Controller {
 
 
                     if (!empty($cliente)) {
-                        $datos = array('estado_persona' => 1);
+                        $datos = array('estado_pedido_prenda' => 1);
                         $cliente = $clienteModel->update($id, $datos);
 
                         $data = array(

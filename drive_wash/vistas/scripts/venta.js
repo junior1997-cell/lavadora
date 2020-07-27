@@ -285,10 +285,24 @@ function mostrar(idventa)
 //Función para anular registros
 function anular(idventa)
 {
-	bootbox.confirm("¿Está Seguro de anular la venta?", function(result){
+	bootbox.confirm("¿Está Seguro de enviar el pedido?", function(result){
 		if(result)
         {
         	$.post("../ajax/venta.php?op=anular", {idventa : idventa}, function(e){
+        		bootbox.alert(e);
+	            tabla.ajax.reload();
+        	});	
+        }
+	})
+}
+
+//Función para recuperar registros
+function recuperar(idventa)
+{
+	bootbox.confirm("¿Está Seguro de recuperar el envio?", function(result){
+		if(result)
+        {
+        	$.post("../ajax/venta.php?op=recuperar", {idventa : idventa}, function(e){
         		bootbox.alert(e);
 	            tabla.ajax.reload();
         	});	
