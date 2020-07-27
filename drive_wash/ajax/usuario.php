@@ -505,7 +505,7 @@ switch ($_GET["op"]){
         //Destruìmos la sesión
         session_destroy();
         //Redireccionamos al login
-        header("Location: ../index.php");
+        header("Location: ../vistas/virtua/index.html");
 
 	break;
 }
