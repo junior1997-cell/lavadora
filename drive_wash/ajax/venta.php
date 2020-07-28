@@ -98,16 +98,18 @@ switch ($_GET["op"]){
 
  			$data[]=array(
  				"0"=>(($reg['estado_pedido_prenda'])?'<button class="btn btn-warning" onclick="mostrar('.$reg['idpedido_prenda'].')"><i class="fa fa-eye"></i></button>'.
- 					' <button class="btn btn-danger" title="Enviar prenda" onclick="anular('.$reg['idpedido_prenda'].')"><i class="fa fa-paper-plane"></i></button>':'<button class="btn btn-warning" onclick="mostrar('.$reg['idpedido_prenda'].')"><i class="fa fa-eye"></i></button>'.
- 					' <button class="btn btn-success" title="Recuperar prenda"onclick="recuperar('.$reg['idpedido_prenda'].')"><i class="fa fa-reply"></i></button>').
+ 					' <button class="btn btn-danger" title="Anular Boleta o Factura" onclick="anular('.$reg['idpedido_prenda'].')"><i class="fa fa-close"></i></button>':
+ 					'<button class="btn btn-warning" onclick="mostrar('.$reg['idpedido_prenda'].')"><i class="fa fa-eye"></i></button>').
  					'<a target="_blank" href="'.$url.$reg['idpedido_prenda'].'"> <button class="btn btn-info"><i class="fa fa-file"></i></button></a>',
  				"1"=>$reg['fecha_pedido_prenda'],
- 				"2"=>$reg['nombre_clientes'],
- 				"3"=>$reg['nombre_persona'],
+ 				"2"=>$reg['nombre_clientes'].' '.$reg['apellidos_clientes'],
+ 				"3"=>$reg['nombre_persona'].' '.$reg['apellidos_persona'],
  				"4"=>$reg['nombre_tipo_comprobante'],
  				"5"=>$reg['serie_comprobante'].'-'.$reg['numero_comprobante'],
  				"6"=>$reg['total_pedido'],
- 				"7"=>($reg['estado_pedido_prenda'])?'<span class="label bg-red">No Entregado</span>':
+ 				"7"=>($reg['estado_pedido_prenda'])?'<span class="label bg-green">Aceptado</span>':
+ 				'<span class="label bg-red">Anulado</span>',
+ 				"8"=>($reg['estado_pedido_prenda'])?'<span class="label bg-red">No Entregado</span>':
  				'<span class="label bg-green">Entregado</span>'
  				);
  		}
