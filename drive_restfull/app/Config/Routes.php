@@ -58,6 +58,8 @@ $routes->resource('Usuarios');
 $routes->resource('Tipocomprobante');
 $routes->resource('Detallepedidoprenda');
 
+//jheyfer
+$routes->resource('Libromayor');
 
 /**
  * --------------------------------------------------------------------
