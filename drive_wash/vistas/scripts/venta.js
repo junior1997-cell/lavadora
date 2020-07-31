@@ -542,9 +542,24 @@ function agregarDetalle(idarticulo,articulo,precio_venta){
 	}
 
   	function calcularTotales(){
+
+  		porcen_deli=0;
+    	var sub = document.getElementsByName("subtotal");
+	  	var total = 0.0;
+	  	// var delivey = 1.0;
+	  	// var porcentaje=0.15;
+	  	for (var i = 0; i <sub.length; i++) {
+			total += document.getElementsByName("subtotal")[i].value;
+		}
+		
+		$("#total").html("S/. " + total);
+	    $("#total_venta").val(total);
+    	$("#total_delivery").html("S/. 0.0");
+	    	
 	  	$('select[name=delivery]').selectpicker().on('changed.bs.select', function (e) {
 	    	var select_d = e.target.value;
 	    	// console.log(select_d);
+	    	
 
 		    if(select_d == "1"){
 		    	porcen_deli=0;

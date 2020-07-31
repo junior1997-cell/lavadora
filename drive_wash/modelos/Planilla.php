@@ -14,7 +14,7 @@ Class Planilla
 			$curl = curl_init();
 
 			curl_setopt_array($curl, array(
-			  CURLOPT_URL => "http://localhost/lavadora/drive_restfull/index.php/Planilla",
+			  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/Planilla",
 			  CURLOPT_RETURNTRANSFER => true,
 			  CURLOPT_ENCODING => "",
 			  CURLOPT_MAXREDIRS => 10,

@@ -79,7 +79,7 @@ Class Venta
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/pedidos/create",
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/pedidos/create",
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -130,7 +130,7 @@ Class Venta
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/pedidos/delete/".$id,
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/pedidos/delete/".$id,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -156,7 +156,7 @@ Class Venta
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/pedidos/enviarPedido/".$id,
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/pedidos/enviarPedido/".$id,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -182,7 +182,7 @@ Class Venta
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/pedidos/recuperarPedido/".$id,
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/pedidos/recuperarPedido/".$id,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -209,7 +209,7 @@ Class Venta
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/pedidos",
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/pedidos",
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -235,7 +235,7 @@ Class Venta
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/delivery",
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/delivery",
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -260,7 +260,7 @@ Class Venta
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/pedidos/TipoPedidoAll",
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/pedidos/TipoPedidoAll",
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -288,7 +288,7 @@ Class Venta
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/clientes",
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/clientes",
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -318,7 +318,7 @@ Class Venta
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/pedidos/TipoComprobanteAll",
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/pedidos/TipoComprobanteAll",
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -348,7 +348,7 @@ Class Venta
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/pedidos/ServicioLavadoAll",
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/pedidos/ServicioLavadoAll",
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,

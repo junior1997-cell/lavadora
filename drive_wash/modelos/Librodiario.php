@@ -11,24 +11,21 @@ Class Librodiario
 	}
 
 	//Implementamos un método para insertar registros
-	public function insertar($idproveedor,$idusuario,$tipo_comprobante,$serie_comprobante,$num_comprobante,$fecha_hora,$impuesto,$total_compra,$idarticulo,$cantidad,$precio_compra,$precio_venta)
-	{
-		$sql="INSERT INTO ingreso (idproveedor,idusuario,tipo_comprobante,serie_comprobante,num_comprobante,fecha_hora,impuesto,total_compra,estado)
-		VALUES ('$idproveedor','$idusuario','$tipo_comprobante','$serie_comprobante','$num_comprobante','$fecha_hora','$impuesto','$total_compra','Aceptado')";
-		//return ejecutarConsulta($sql);
-		$idingresonew=ejecutarConsulta_retornarID($sql);
+	public function insertar($idpedidoprenda,$n_operacion,$fecha,$glosa,$id_libro_contable,$doc_sustet,$id_plan_contable,$debe,$haber){
 
 		$num_elementos=0;
 		$sw=true;
 
-		while ($num_elementos < count($idarticulo))
+		while ($num_elementos < count($idpedidoprenda))
 		{
-			$sql_detalle = "INSERT INTO detalle_ingreso(idingreso, idarticulo,cantidad,precio_compra,precio_venta) VALUES ('$idingresonew', '$idarticulo[$num_elementos]','$cantidad[$num_elementos]','$precio_compra[$num_elementos]','$precio_venta[$num_elementos]')";
+			$sql_detalle = "INSERT INTO libro_diario(n_operacion, fecha, glosa, id_libro_contable, doc_sustet, id_plan_contable, debe, haber,estado) VALUES ('$n_operacion[$num_elementos]', '$fecha[$num_elementos]', '$glosa[$num_elementos]', '$id_libro_contable[$num_elementos]', '$doc_sustet[$num_elementos]', '$id_plan_contable[$num_elementos]', '$debe[$num_elementos]', '$haber[$num_elementos]')";
 			ejecutarConsulta($sql_detalle) or $sw = false;
 			$num_elementos=$num_elementos + 1;
 		}
 
+
 		return $sw;
+		var_dump($sw);die;
 	}
 
 	
@@ -71,6 +68,42 @@ Class Librodiario
 	public function ingresodetalle($idingreso){
 		$sql="SELECT a.nombre as articulo,a.codigo,d.cantidad,d.precio_compra,d.precio_venta,(d.cantidad*d.precio_compra) as subtotal FROM detalle_ingreso d INNER JOIN articulo a ON d.idarticulo=a.idarticulo WHERE d.idingreso='$idingreso'";
 		return ejecutarConsulta($sql);
+	}
+	
+	public function api_crear_libro_diario($n_operacion,$fecha,$glosa,$id_libro_contable,$doc_sustet,$id_plan_contable,$debe,$haber){
+
+	$curl = curl_init();
+
+	curl_setopt_array($curl, array(
+	  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/Librodiario/create",
+	  CURLOPT_RETURNTRANSFER => true,
+	  CURLOPT_ENCODING => "",
+	  CURLOPT_MAXREDIRS => 10,
+	  CURLOPT_TIMEOUT => 0,
+	  CURLOPT_FOLLOWLOCATION => true,
+	  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+	  CURLOPT_CUSTOMREQUEST => "POST",
+	  CURLOPT_POSTFIELDS => array(
+	  	'n_operacion'=>$n_operacion,
+	  	'fecha'=>$fecha,
+	  	'glosa'=>$glosa,
+	  	'id_libro_contable'=>$id_libro_contable,
+	  	'doc_sustet' =>$doc_sustet,
+	  	'id_plan_contable'=>$id_plan_contable,
+	  	'debe'=>$debe,
+	  	'haber'=>$haber,
+	  ),
+	  CURLOPT_HTTPHEADER => array(
+	    "Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VUU2hUQnZPZ2R2SHI5UG5DdExGbXlUZy53Lmc1Y01pOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlY2ZpLi90RmxTRFhPOS9NOTlFNGxWS0xNOGdodzhOeQ=="
+	  ),
+	));
+
+	$response = curl_exec($curl);
+
+	curl_close($curl);
+	$data= json_decode($response,true);
+	//return $data;
+	var_dump($data);die;
 	}
 //listamos todos los registros
 	public function api_listar_libro_diario(){
