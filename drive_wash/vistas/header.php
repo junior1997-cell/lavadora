@@ -188,8 +188,10 @@ if (strlen(session_id()) < 1)
               </a>
               <ul class="treeview-menu">
                 <li id="lUsuarios"><a href="librodiario.php"><i class="fa fa-book"></i> libro diario</a></li>
+<<<<<<< HEAD
                 <li id="lPermisos"><a href="libromayor.php"><i class="fa fa-book"></i> libro mayor</a></li>
                 <li id="lPermisos"><a href="ingreso.php"><i class="fa fa-table"></i> Planilla de remuneraciones </a></li>
+=======
                 <li id="lPermisos"><a href="ingreso.php"><i class="fa fa-book"></i> libro mayor</a></li>
                 <li id="lPermisos"><a href=""><i class="fa fa-university"></i> Planilla</a>
                  <ul class="treeview-menu">
@@ -197,6 +199,8 @@ if (strlen(session_id()) < 1)
                 <li id="lClientes"><a href="datos_descuento.php"><i class="fa fa-circle-o"></i> Datos Generales</a></li>
               </ul>
                 </li> 
+                               
+>>>>>>> 09b5feb9c933a3096eaef50e5dd337808b5320ee
                 <li id="lPermisos"><a href="ingreso.php"><i class="fa fa-table"></i> Balance de comprobación </a></li>
                  <li id="lPermisos"><a href="ingreso.php"><i class="fa fa-circle-o"></i>EEFF</a></li>
                   <li id="lPermisos"><a href="ingreso.php"><i class="fa fa-circle-o"></i>ERI</a></li>
