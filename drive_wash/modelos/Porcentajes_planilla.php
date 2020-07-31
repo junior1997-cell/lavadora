@@ -15,7 +15,7 @@ Class Porcentajep
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/lavadora/drive_restfull/index.php/porcentajes/porcentajes_pago",
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/porcentajes/porcentajes_pago",
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -42,7 +42,7 @@ Class Porcentajep
 			$curl = curl_init();
 
 			curl_setopt_array($curl, array(
-			  CURLOPT_URL => "http://localhost/lavadora/drive_restfull/index.php/porcentajes",
+			  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/porcentajes",
 			  CURLOPT_RETURNTRANSFER => true,
 			  CURLOPT_ENCODING => "",
 			  CURLOPT_MAXREDIRS => 10,
