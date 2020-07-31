@@ -73,7 +73,7 @@ Class Venta
 
 	//crear pedido de lavado
 	public function crear_pedido($numero_pedido,$id_tipo_pedido,$id_usuario,$id_cliente,$id_comprobante,$serie_comprobante,
-		$numero_comprobante,$impuesto,$pago,$tipo_pago,$id_tipo_servicio,$fecha_hora_entrega,$delivery,$costo_delivery,
+		$numero_comprobante,$impuesto,$pago,$id_tipo_servicio,$fecha_hora_entrega,$delivery,$costo_delivery,
 		$total_venta, $idarticulo,$id_color,$cantidad,$descuento){
 
 		$curl = curl_init();

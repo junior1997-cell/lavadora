@@ -40,6 +40,7 @@ class Usuariopermiso extends Controller {
                             "Detalle" => $usuariopermiso
                                 //"Paginador"=>$paginador
                         );
+                        return json_encode($data, true);
                     } else {
 
                         $data = array(
@@ -47,6 +48,7 @@ class Usuariopermiso extends Controller {
                             "Total_Resultados" => 0,
                             "Detalle" => "Ningún registro cargado"
                         );
+                        return json_encode($data, true);
                     }
                 } else {
 
@@ -54,6 +56,7 @@ class Usuariopermiso extends Controller {
                         "Status" => 404,
                         "Detalle" => "El token es inválido"
                     );
+                    return json_encode($data, true);
                 }
             } else {
 
@@ -61,6 +64,7 @@ class Usuariopermiso extends Controller {
                     "Status" => 404,
                     "Detalle" => "No está autorizado para recibir los registros"
                 );
+                return json_encode($data, true);
             }
         }
 

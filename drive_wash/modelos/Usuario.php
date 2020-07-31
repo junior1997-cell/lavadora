@@ -107,7 +107,7 @@ Class Usuario
 
 
 	 public function guardar_api_usuario($tipo_doc,$dni,$nomb,$apellidos,$sex,$login,$clavehash,
-		$celular,$id_cargo,$id_distrito,$direccion,$imagen)
+		$celular,$id_cargo,$id_distrito,$direccion,$imagen,$permiso)
 	{
 		 
 		 // var_dump($tipo_doc,$dni,$nomb,$apellidos,$sex,$login,$clavehash,$celular,$id_cargo,$id_distrito,$direccion,$imagen); die;
@@ -116,7 +116,7 @@ Class Usuario
 		//$estado = 1;
 		//var_dump($estado);
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/usuarios/create",
+		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/usuarios/create",
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -136,6 +136,7 @@ Class Usuario
 		  "&id_cargo=".$id_cargo.
 		  "&id_distrito=".$id_distrito.
 		  "&direccion=".$direccion.
+		  "&permiso=".$permiso.
 		  "&imagen_persona=".$imagen,	  
 		  CURLOPT_HTTPHEADER => array(
 		    "Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VUU2hUQnZPZ2R2SHI5UG5DdExGbXlUZy53Lmc1Y01pOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlY2ZpLi90RmxTRFhPOS9NOTlFNGxWS0xNOGdodzhOeQ=="
@@ -146,8 +147,8 @@ Class Usuario
 
 		curl_close($curl);
 		$data = json_decode($response,true);
-		return $data;
-		 //var_dump($data); die;	
+		// return $data;
+		 var_dump($data); die;	
 	}
 
 
@@ -163,7 +164,7 @@ Class Usuario
 		//$estado = 1;
 		//var_dump($estado);
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/usuarios/update/".$id,
+		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/usuarios/update/".$id,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -211,7 +212,7 @@ Class Usuario
 		//$estado = 1;
 		//var_dump($estado);
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/usuarios/delete/".$id,
+		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/usuarios/delete/".$id,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -245,7 +246,7 @@ Class Usuario
 		//$estado = 1;
 		//var_dump($estado);
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/usuarios/recuperar/".$id,
+		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/usuarios/recuperar/".$id,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -275,7 +276,7 @@ Class Usuario
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/usuarios",
+		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/usuarios",
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -305,7 +306,7 @@ Class Usuario
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/usuarios/show/".$id,
+		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/usuarios/show/".$id,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -336,7 +337,7 @@ Class Usuario
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/Distrito",
+		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/Distrito",
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -367,7 +368,7 @@ Class Usuario
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/usuarios/cargo/0",
+		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/usuarios/cargo/0",
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -398,7 +399,7 @@ Class Usuario
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/tipodoc",
+		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/tipodoc",
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -428,7 +429,7 @@ Class Usuario
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/sexo",
+		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/sexo",
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -451,6 +452,37 @@ Class Usuario
 
 	//var_dump ($data); die;	
 	}
+
+	public function listar_api_permiso_marcado($id)
+	{
+		 
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/usuariopermiso".$id,
+		  CURLOPT_RETURNTRANSFER => true,
+		  CURLOPT_ENCODING => "",
+		  CURLOPT_MAXREDIRS => 10,
+		  CURLOPT_TIMEOUT => 0,
+		  CURLOPT_FOLLOWLOCATION => true,
+		  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+		  CURLOPT_CUSTOMREQUEST => "GET",
+		  CURLOPT_HTTPHEADER => array(
+		     "Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VKS0VTTGNTY1hyUkNxQVJseFNSanFuaFA0NkRxeE9TOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlRG1TQ0lmMW5JSkRZMG1uQzJwMHFzNGxmNGRnUGRGUw=="
+		  ),
+		));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+		
+		$data= json_decode( $response,true);
+
+		return $data;	
+
+	//var_dump ($data); die;	
+	}
+
 
 
 	//CAPTURAR PERSONA  DE RENIEC

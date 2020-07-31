@@ -12,8 +12,9 @@ function init(){
 	})
 
 	$("#imagenmuestra").hide();
+
 	//Mostramos los permisos
-	$.post("../ajax/usuario.php?op=permisos&id=",function(r){
+	$.post("../ajax/usuario.php?op=permisos",function(r){
 	        $("#permisos").html(r);
 	});
 	$('#mAcceso').addClass("treeview active");

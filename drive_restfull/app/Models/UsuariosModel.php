@@ -41,6 +41,23 @@ class UsuariosModel extends Model{
         ->get()->getResultArray();
     }  
 
+    // public function getPermisoAll($id){
+    //    return $this->db->table('permiso p')
+    //    ->where('c.idcargo >',$id)   
+    //    ->where('c.nombre_cargo !=','Cliente')   
+    //    ->where('c.nombre_cargo !=','Proveedores')    
+    //     ->orderby('c.idcargo','ASC')
+    //     ->get()->getResultArray();
+    // } 
+
+     public function getUltimoUsu(){
+        return $this->db->table('persona p')
+         ->select('p.idpersona')
+         ->limit(1)
+        ->orderby('p.idpersona','DESC')
+        ->get()->getResultArray();
+    }
+
     
 }
 
