@@ -132,46 +132,52 @@ class Librodiario extends Controller {
 
                 if ($request->getHeader('Authorization') == 'Authorization: Basic ' . base64_encode($value["cliente_id"] . ":" . $value["llave_secreta"])) {
 
-                    // Registro de datos
-                    //El getVar()método extraerá de $ _REQUEST, por lo que devolverá cualquier dato de $ _GET, $ POST 
-                    $datos = array("imagen" => $request->getVar("imagen"),
-                        "nombre" => $request->getVar("nombre"),
-                        "precio" => $request->getVar("precio")
-                        );
+                        // Registro de datos
 
-                    if (!empty($datos)) {
+                        //CAPTURAMOS TODOS LOS DATOS TIPO ARRAY, ENVIADOS DESDE EL FORMULARIO 
 
-                        // Validar los datos
+                        $n_operacion = $request->getVar("n_operacion");
+                        $fecha = $request->getVar("fecha");
+                        $glosa = $request->getVar("glosa");
+                        $id_libro_contable = $request->getVar("id_libro_contable");
+                        $doc_sustet = $request->getVar("doc_sustet");
+                        $id_plan_contable = $request->getVar("id_plan_contable");
+                        $debe = $request->getVar("debe");
+                        $haber = $request->getVar("haber");
 
-                        $validation->setRules([
-                            'imagen' => 'required|string|max_length[255]',
-                            'nombre' => 'required|string',
-                            'precio' => 'required|max_length[255]'
-                        ]);
+                        //DECODIFICAMOS EL ARRAY QUE SE HA CAPTURADO COMO STRING
+                        $deco_n_operacion =json_decode($n_operacion,true);
+                        $deco_fecha = json_decode($fecha,true);
+                        $deco_glosa =json_decode($glosa,true);
+                        $deco_id_libro_contable = json_decode($id_libro_contable,true);
+                        $deco_doc_sustet =json_decode($doc_sustet,true);
+                        $deco_id_plan_contable = json_decode($id_plan_contable,true);
+                        $deco_debe =json_decode($debe,true);
+                        $deco_haber = json_decode($haber,true);
 
-                        $validation->withRequest($this->request)
-                                ->run();
+                        //return json_encode($deco_haber, true);
+                        //print_r($deco_haber);
 
-                        if ($validation->getErrors()) {
-                            $errors = $validation->getErrors();
-                            $data = array(
-                                "Status" => 404,
-                                "Detalle" => $errors
-                            );
-                            return json_encode($data, true);
-                        } else {
-                            $datos = array("imagen" => $datos["imagen"],
-                                "nombre" => $datos["nombre"],
-                                "precio" => $datos["precio"]);
+                        //CREAMOS UN CONTADOR PARA RECORRER EL ARRAY
+                        $cont_elementos=0;
 
-                            $PrendasModel = new PrendasModel($db);
-                            $prendas = $PrendasModel->insert($datos);
-                            $data = array(
-                                "Status" => 200,
-                                "Detalle" => "Registro exitoso, prendas guardado"
-                            );
-                            return json_encode($data, true);
+                        while ($cont_elementos < count($n_operacion)) {
+                            $datitos=array('n_operacion' => $n_operacion[$cont_elementos],
+                                        'fecha' => $fecha[$cont_elementos],
+                                        'glosa'=>$glosa[$cont_elementos],
+                                        'id_libro_contable'=>$id_libro_contable[$cont_elementos],
+                                        'doc_sustet'=>$doc_sustet[$cont_elementos],
+                                        'id_plan_contable'=>$id_plan_contable[$cont_elementos],
+                                        'debe'=>$debe[$cont_elementos],
+                                        'haber'=>$haber[$cont_elementos]
+                                    );
+                            $detatitos_insert = $LibrodiarioModel->insert($datitos);
+                            $cont_elementos=$cont_elementos + 1 ;
                         }
+                        $data = array(
+                            "Status" => 200,
+                            "Detalle" => "Registro exitoso, prendas guardado"
+                        );
                     } else {
 
                         $data = array(

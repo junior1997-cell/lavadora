@@ -77,8 +77,7 @@ function cancelarform()
 }
 
 //Función Listar
-function listar()
-{
+function listar(){
 	tabla=$('#tbllistado').dataTable(
 	{
 		"lengthMenu": [ 5, 10, 25, 75, 100],//mostramos el menú de registros a revisar
@@ -118,8 +117,7 @@ function listar()
 
 
 //Función ListarArticulos
-function listarArticulos()
-{
+function listarArticulos(){
 	tabla=$('#tblarticulos').dataTable(
 	{
 		"aProcessing": true,//Activamos el procesamiento del datatables
@@ -144,8 +142,7 @@ function listarArticulos()
 }
 //Función para guardar o editar
 
-function guardaryeditar(e)
-{
+function guardaryeditar(e){
 	e.preventDefault(); //No se activará la acción predeterminada del evento
 	//$("#btnGuardar").prop("disabled",true);
 	var formData = new FormData($("#formulario")[0]);
@@ -168,8 +165,7 @@ function guardaryeditar(e)
 	limpiar();
 }
 
-function mostrar(idingreso)
-{
+function mostrar(idingreso){
 	$.post("../ajax/ingreso.php?op=mostrar",{idingreso : idingreso}, function(data, status)
 	{
 		data = JSON.parse(data);		
@@ -244,7 +240,7 @@ function agregarDetalle(idarticulo,articulo)
     	var fila='<tr class="filas" id="fila'+cont+'">'+
     	'<td><button type="button" class="btn btn-danger" onclick="eliminarDetalle('+cont+')">X</button></td>'+
     	'<td><input type="hidden" name="idarticulo[]" value="'+idarticulo+'">'+articulo+'</td>'+
-    	'<td><input type="number" name="cantidad[]" id="cantidad[]" value="'+cantidad+'"></td>'+
+            '<td><input type="number" name="cantidad[]" id="cantidad[]" value="'+cantidad+'"></td>'+
     	'<td><input type="number" name="precio_compra[]" id="precio_compra[]" value="'+precio_compra+'"></td>'+
     	'<td><input type="number" name="precio_venta[]" value="'+precio_venta+'"></td>'+
     	'<td><span name="subtotal" id="subtotal'+cont+'">'+subtotal+'</span></td>'+

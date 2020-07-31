@@ -27,11 +27,32 @@ $fecha_hora=isset($_POST["fecha_hora"])? limpiarCadena($_POST["fecha_hora"]):"";
 $impuesto=isset($_POST["impuesto"])? limpiarCadena($_POST["impuesto"]):"";
 $total_compra=isset($_POST["total_compra"])? limpiarCadena($_POST["total_compra"]):"";
 
+$idlibrodiario=isset($_POST["idlibrodiario"])? limpiarCadena($_POST["idlibrodiario"]):"";
+
 switch ($_GET["op"]){
 	case 'guardaryeditar':
-		if (empty($idingreso)){
-			$rspta=$Librodiario->insertar($idproveedor,$idusuario,$tipo_comprobante,$serie_comprobante,$num_comprobante,$fecha_hora,$impuesto,$total_compra,$_POST["idarticulo"],$_POST["cantidad"],$_POST["precio_compra"],$_POST["precio_venta"]);
-			echo $rspta ? "Ingreso registrado" : "No se pudieron registrar todos los datos del ingreso";
+		if (empty($idlibrodiario)){
+
+
+			//$idpedidoprenda=$_POST["idpedidoprenda"];
+			$n_operacion=json_encode($_POST["n_operacion"],true);
+			$fecha=json_encode($_POST["fecha"],true);
+			$glosa=json_encode($_POST["glosa"],true);
+			$id_libro_contable=json_encode($_POST["id_libro_contable"],true);
+			$doc_sustet=json_encode($_POST["doc_sustet"],true);
+			$id_plan_contable=json_encode($_POST["id_plan_contable"],true);
+			$debe=json_encode($_POST["debe"],true);
+			$haber=json_encode($_POST["haber"],true);
+
+			//echo "Haber: ",  json_encode($haber);
+			//$data = '{"n_operacion": 12345}';
+			//print_r('Haber: ',$_POST["haber"]);
+			//echo Console::log('Haber', $haber);
+			$datitos = array();
+			//var_dump($n_operacion,$fecha,$glosa,$id_libro_contable,$doc_sustet,$id_plan_contable,$debe,$haber);die;
+
+			$rspta=$Librodiario->api_crear_libro_diario($n_operacion,$fecha,$glosa,$id_libro_contable,$doc_sustet,$id_plan_contable,$debe,$haber);
+			echo $rspta ? "Operación registrada" : "No se pudieron registrar todos los datos del ingreso";
 		}
 		else {
 		}
@@ -153,7 +174,8 @@ switch ($_GET["op"]){
  			"aaData"=>$data);
  		echo json_encode($results);
 	break;
-
+    
+    //listar el total pedido
 	case 'total_pedido_ld':
 		$total=$_POST["total"];
 
