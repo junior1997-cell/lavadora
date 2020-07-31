@@ -17,7 +17,7 @@ Class Libromayor
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/lavadora/drive_restfull/index.php/Libromayor/".$id,
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/Libromayor/".$id,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -46,7 +46,7 @@ Class Libromayor
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/lavadora/drive_restfull/index.php/Libromayor/total_debe_haber/".$cuenta,
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/Libromayor/total_debe_haber/".$cuenta,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -73,7 +73,7 @@ Class Libromayor
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/lavadora/drive_restfull/index.php/Libromayor/".$id,
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/Libromayor/".$id,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -102,7 +102,7 @@ Class Libromayor
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/lavadora/drive_restfull/index.php/Libromayor/total_debe_haber/".$cuenta,
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/Libromayor/total_debe_haber/".$cuenta,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -129,7 +129,7 @@ Class Libromayor
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/lavadora/drive_restfull/index.php/Libromayor/".$id,
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/Libromayor/".$id,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -158,7 +158,7 @@ Class Libromayor
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/lavadora/drive_restfull/index.php/Libromayor/total_debe_haber/".$cuenta,
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/Libromayor/total_debe_haber/".$cuenta,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -185,7 +185,7 @@ Class Libromayor
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/lavadora/drive_restfull/index.php/Libromayor/".$id,
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/Libromayor/".$id,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -214,7 +214,7 @@ Class Libromayor
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/lavadora/drive_restfull/index.php/Libromayor/total_debe_haber/".$cuenta,
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/Libromayor/total_debe_haber/".$cuenta,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -241,7 +241,7 @@ Class Libromayor
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/lavadora/drive_restfull/index.php/Libromayor/".$id,
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/Libromayor/".$id,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -270,7 +270,7 @@ Class Libromayor
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/lavadora/drive_restfull/index.php/Libromayor/total_debe_haber/".$cuenta,
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/Libromayor/total_debe_haber/".$cuenta,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -297,7 +297,7 @@ Class Libromayor
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/lavadora/drive_restfull/index.php/Libromayor/".$id,
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/Libromayor/".$id,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -326,7 +326,7 @@ Class Libromayor
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/lavadora/drive_restfull/index.php/Libromayor/total_debe_haber/".$cuenta,
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/Libromayor/total_debe_haber/".$cuenta,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -353,7 +353,7 @@ Class Libromayor
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/lavadora/drive_restfull/index.php/Libromayor/".$id,
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/Libromayor/".$id,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -382,7 +382,7 @@ Class Libromayor
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/lavadora/drive_restfull/index.php/Libromayor/total_debe_haber/".$cuenta,
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/Libromayor/total_debe_haber/".$cuenta,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -409,7 +409,7 @@ Class Libromayor
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/lavadora/drive_restfull/index.php/Libromayor/".$id,
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/Libromayor/".$id,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -438,7 +438,7 @@ Class Libromayor
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/lavadora/drive_restfull/index.php/Libromayor/total_debe_haber/".$cuenta,
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/Libromayor/total_debe_haber/".$cuenta,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -465,7 +465,7 @@ Class Libromayor
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/lavadora/drive_restfull/index.php/Libromayor/".$id,
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/Libromayor/".$id,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -494,7 +494,7 @@ Class Libromayor
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/lavadora/drive_restfull/index.php/Libromayor/total_debe_haber/".$cuenta,
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/Libromayor/total_debe_haber/".$cuenta,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -521,7 +521,7 @@ Class Libromayor
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/lavadora/drive_restfull/index.php/Libromayor/".$id,
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/Libromayor/".$id,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -550,7 +550,7 @@ Class Libromayor
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/lavadora/drive_restfull/index.php/Libromayor/total_debe_haber/".$cuenta,
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/Libromayor/total_debe_haber/".$cuenta,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -577,7 +577,7 @@ Class Libromayor
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/lavadora/drive_restfull/index.php/Libromayor/".$id,
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/Libromayor/".$id,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -606,7 +606,7 @@ Class Libromayor
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/lavadora/drive_restfull/index.php/Libromayor/total_debe_haber/".$cuenta,
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/Libromayor/total_debe_haber/".$cuenta,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -633,7 +633,7 @@ Class Libromayor
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/lavadora/drive_restfull/index.php/Libromayor/".$id,
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/Libromayor/".$id,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -662,7 +662,7 @@ Class Libromayor
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/lavadora/drive_restfull/index.php/Libromayor/total_debe_haber/".$cuenta,
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/Libromayor/total_debe_haber/".$cuenta,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -689,7 +689,7 @@ Class Libromayor
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/lavadora/drive_restfull/index.php/Libromayor/".$id,
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/Libromayor/".$id,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -718,7 +718,7 @@ Class Libromayor
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/lavadora/drive_restfull/index.php/Libromayor/total_debe_haber/".$cuenta,
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/Libromayor/total_debe_haber/".$cuenta,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -745,7 +745,7 @@ Class Libromayor
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/lavadora/drive_restfull/index.php/Libromayor/".$id,
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/Libromayor/".$id,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -774,7 +774,7 @@ Class Libromayor
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/lavadora/drive_restfull/index.php/Libromayor/total_debe_haber/".$cuenta,
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/Libromayor/total_debe_haber/".$cuenta,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -801,7 +801,7 @@ Class Libromayor
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/lavadora/drive_restfull/index.php/Libromayor/".$id,
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/Libromayor/".$id,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -830,7 +830,7 @@ Class Libromayor
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/lavadora/drive_restfull/index.php/Libromayor/total_debe_haber/".$cuenta,
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/Libromayor/total_debe_haber/".$cuenta,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -857,7 +857,7 @@ Class Libromayor
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/lavadora/drive_restfull/index.php/Libromayor/".$id,
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/Libromayor/".$id,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -886,7 +886,7 @@ Class Libromayor
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/lavadora/drive_restfull/index.php/Libromayor/total_debe_haber/".$cuenta,
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/Libromayor/total_debe_haber/".$cuenta,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -913,7 +913,7 @@ Class Libromayor
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/lavadora/drive_restfull/index.php/Libromayor/".$id,
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/Libromayor/".$id,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -942,7 +942,7 @@ Class Libromayor
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/lavadora/drive_restfull/index.php/Libromayor/total_debe_haber/".$cuenta,
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/Libromayor/total_debe_haber/".$cuenta,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -969,7 +969,7 @@ Class Libromayor
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/lavadora/drive_restfull/index.php/Libromayor/".$id,
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/Libromayor/".$id,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -998,7 +998,7 @@ Class Libromayor
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/lavadora/drive_restfull/index.php/Libromayor/total_debe_haber/".$cuenta,
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/Libromayor/total_debe_haber/".$cuenta,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -1025,7 +1025,7 @@ Class Libromayor
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/lavadora/drive_restfull/index.php/Libromayor/".$id,
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/Libromayor/".$id,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -1054,7 +1054,7 @@ Class Libromayor
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/lavadora/drive_restfull/index.php/Libromayor/total_debe_haber/".$cuenta,
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/Libromayor/total_debe_haber/".$cuenta,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -1081,7 +1081,7 @@ Class Libromayor
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/lavadora/drive_restfull/index.php/Libromayor/".$id,
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/Libromayor/".$id,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -1110,7 +1110,7 @@ Class Libromayor
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/lavadora/drive_restfull/index.php/Libromayor/total_debe_haber/".$cuenta,
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/Libromayor/total_debe_haber/".$cuenta,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -1137,7 +1137,7 @@ Class Libromayor
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/lavadora/drive_restfull/index.php/Libromayor/".$id,
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/Libromayor/".$id,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -1166,7 +1166,7 @@ Class Libromayor
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/lavadora/drive_restfull/index.php/Libromayor/total_debe_haber/".$cuenta,
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/Libromayor/total_debe_haber/".$cuenta,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
