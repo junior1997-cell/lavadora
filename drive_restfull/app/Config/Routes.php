@@ -58,6 +58,10 @@ $routes->resource('Usuarios');
 $routes->resource('Tipocomprobante');
 $routes->resource('Detallepedidoprenda');
 
+//Jhon rutas
+$routes->resource('Planilla');
+$routes->resource('Porcentajes');
+
 
 /**
  * --------------------------------------------------------------------
