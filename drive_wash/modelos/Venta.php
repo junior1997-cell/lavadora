@@ -70,8 +70,62 @@ Class Venta
 		return ejecutarConsulta($sql);
 	}
 
+
+	//crear pedido de lavado
+	public function crear_pedido($numero_pedido,$id_tipo_pedido,$id_usuario,$id_cliente,$id_comprobante,$serie_comprobante,
+		$numero_comprobante,$impuesto,$pago,$tipo_pago,$id_tipo_servicio,$fecha_hora_entrega,$delivery,$costo_delivery,
+		$total_venta, $idarticulo,$id_color,$cantidad,$descuento){
+
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/pedidos/create",
+		  CURLOPT_RETURNTRANSFER => true,
+		  CURLOPT_ENCODING => "",
+		  CURLOPT_MAXREDIRS => 10,
+		  CURLOPT_TIMEOUT => 0,
+		  CURLOPT_FOLLOWLOCATION => true,
+		  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+		  CURLOPT_CUSTOMREQUEST => "POST",
+		  CURLOPT_POSTFIELDS => array(
+			  	'numero_pedido' => $numero_pedido,
+			  	'id_tipo_pedido' => $id_tipo_pedido,
+			  	'id_usuario' => $id_usuario,
+			  	'id_cliente' => $id_cliente,
+			  	'id_tipo_comprobante' => $id_comprobante,
+			  	'serie_comprobante' => $serie_comprobante,
+			  	'numero_comprobante' => $numero_comprobante,
+			  	'id_tipo_lavado' => $id_tipo_servicio,		  	
+			  	'id_estado_lavado' => 1,
+			  	'impuesto' => $impuesto,
+			  	'comision_por_recogo' => $costo_delivery,
+			  	'total_pedido' => $total_venta,
+			  	'estado_boleta' => 1,
+			  	'estado_pedido_prenda' => 1,
+			  	'momento_pago' => $pago,
+			  	'fecha_entrega' => $fecha_hora_entrega,
+			  	'id_delivery' => $delivery,
+
+			  	'id_prenda'=>$idarticulo,
+			  	'id_color'=>$id_color,
+			  	'cantidad_detalle_pedido_prenda'=>$cantidad,
+			  	'descuento_detalle_pedido_prenda'=>$descuento,
+		  	),
+		  CURLOPT_HTTPHEADER => array(
+		    "Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VUU2hUQnZPZ2R2SHI5UG5DdExGbXlUZy53Lmc1Y01pOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlY2ZpLi90RmxTRFhPOS9NOTlFNGxWS0xNOGdodzhOeQ=="
+		  ),
+		));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+		$data = json_decode( $response, true);
+		// var_dump($data); die;
+		 return $data;
+	}
+
 	//lista todas las ventas echas
-	public function enviar_pedido($id){
+	public function anular_boleta($id){
 
 		$curl = curl_init();
 
@@ -97,12 +151,38 @@ Class Venta
 	}
 
 	//lista todas las ventas echas
+	public function enviar_pedido($id){
+
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/pedidos/enviarPedido/".$id,
+		  CURLOPT_RETURNTRANSFER => true,
+		  CURLOPT_ENCODING => "",
+		  CURLOPT_MAXREDIRS => 10,
+		  CURLOPT_TIMEOUT => 0,
+		  CURLOPT_FOLLOWLOCATION => true,
+		  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+		  CURLOPT_CUSTOMREQUEST => "GET",
+		  CURLOPT_HTTPHEADER => array(
+		    "Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VUU2hUQnZPZ2R2SHI5UG5DdExGbXlUZy53Lmc1Y01pOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlY2ZpLi90RmxTRFhPOS9NOTlFNGxWS0xNOGdodzhOeQ=="
+		  ),
+		));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+		$data=json_decode($response,true);
+		return $data;
+	}
+
+	//lista todas las ventas echas
 	public function recuperar_pedido($id){
 
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/pedidos/recuperar/".$id,
+		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/pedidos/recuperarPedido/".$id,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -238,14 +318,14 @@ Class Venta
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/Tipocomprobante",
+		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/pedidos/TipoComprobanteAll",
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
 		  CURLOPT_TIMEOUT => 0,
 		  CURLOPT_FOLLOWLOCATION => true,
 		  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-		  CURLOPT_CUSTOMREQUEST => "GET",
+		  CURLOPT_CUSTOMREQUEST => "POST",
 		  CURLOPT_HTTPHEADER => array(
 		     "Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VUU2hUQnZPZ2R2SHI5UG5DdExGbXlUZy53Lmc1Y01pOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlY2ZpLi90RmxTRFhPOS9NOTlFNGxWS0xNOGdodzhOeQ=="
 		  ),

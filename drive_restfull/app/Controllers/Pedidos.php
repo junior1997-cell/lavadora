@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use CodeIgniter\Controller;
 use App\Models\PedidosModel;
+use App\Models\DetallepedidoprendaModel;
 use App\Models\RegistrosModel;
 
 class Pedidos extends Controller {
@@ -29,8 +30,8 @@ class Pedidos extends Controller {
                     $pedidoModel = new PedidosModel();
                     
                     $pedido = $pedidoModel->getPedidosAll();
-
-                    
+                    // var_dump($pedido); die;
+                    // $lola=count($pedido);
                     if (!empty($pedido)) {
 
                         $data = array(
@@ -85,7 +86,7 @@ class Pedidos extends Controller {
                     
                     $clienteModel = new PedidosModel();
                     $cliente = $clienteModel
-                                ->getPersonaOne($id);
+                                ->find($id);
                            
                     if (!empty($cliente)) {
 
@@ -94,6 +95,10 @@ class Pedidos extends Controller {
                             "Número Registro" =>$id,
                             "Detalle" => $cliente
                         );
+
+                        // $a=$data['Detalle']['idpedido_prenda'];
+
+                        return json_encode($data, true);
                     } else {
 
                         $data = array(
@@ -136,29 +141,37 @@ class Pedidos extends Controller {
 
                     // Registro de datos
                     
-                    $datos = array("nombre_persona"=>$request->getVar("nombre_persona"),
-                                "apellidos_persona" => $request->getVar("apellidos_persona"),
-                                "imagen_persona" => $request->getVar("imagen_persona"),
-                                "id_sexo" => $request->getVar("id_sexo"),
-                                "id_tipo_doc" => $request->getVar("id_tipo_doc"),
-                                "num_doc_persona" => $request->getVar("num_doc_persona"),
-                                "email" => $request->getVar("email"),
-                                "password" => $request->getVar("password"),
-                                "celular" => $request->getVar("celular"),
-                                "id_cargo" => $request->getVar("id_cargo"),
-                                "id_distrito" => $request->getVar("id_distrito"),
-                                "direccion" => $request->getVar("direccion"),                               
+                    $datos = array("numero_pedido"=>$request->getVar("numero_pedido"),
+                                "id_tipo_pedido" => $request->getVar("id_tipo_pedido"),                                
+                                "id_usuario" => $request->getVar("id_usuario"),
+                                "id_cliente" => $request->getVar("id_cliente"),
+                                "id_tipo_comprobante" => $request->getVar("id_tipo_comprobante"),
+                                "serie_comprobante" => $request->getVar("serie_comprobante"),
+                                "numero_comprobante" => $request->getVar("numero_comprobante"),
+                                "id_tipo_lavado" => $request->getVar("id_tipo_lavado"),                                
+                                "id_estado_lavado" => $request->getVar("id_estado_lavado"),
+                                "impuesto" => $request->getVar("impuesto"),
+                                "comision_por_recogo" => $request->getVar("comision_por_recogo"),
+                                "total_pedido" => $request->getVar("total_pedido"),
+                                "estado_boleta" => $request->getVar("estado_boleta"),
+                                "estado_pedido_prenda" => $request->getVar("estado_pedido_prenda"),
+                                "momento_pago" => $request->getVar("momento_pago"), 
+                                "fecha_entrega" => $request->getVar("fecha_entrega"), 
+                                "id_delivery" => $request->getVar("id_delivery"),
+                                                               
                     );
+                    // return json_encode($datos, true); 
+                    // var_dump($datos); die;
 
                     if(!empty($datos)){
-
+                         // return json_encode($datos, true);
                         // Validar los datos
 
                         $validation->setRules([
-                            'nombre_persona' => 'string|max_length[255]',                          
-                            'id_tipo_doc' => 'string|max_length[255]',                           
-                            'id_cargo' => 'string|max_length[255]',
-                            'id_distrito' => 'string|max_length[255]'                           
+                            'numero_pedido' => 'string|max_length[255]',                          
+                            'id_cliente' => 'string|max_length[255]',                           
+                            
+                            'id_estado_lavado' => 'string|max_length[255]'                           
                         ]);
 
                         $validation->withRequest($this->request)
@@ -172,18 +185,23 @@ class Pedidos extends Controller {
                             );                          
                             return json_encode($data, true); 
                         }else{
-                            $datos = array("nombre_persona"=>$datos["nombre_persona"],
-                                            "apellidos_persona" => $datos["apellidos_persona"],
-                                            "imagen_persona" => $datos["imagen_persona"],
-                                            "id_sexo" => $datos["id_sexo"],
-                                            "id_tipo_doc" => $datos["id_tipo_doc"],
-                                            "num_doc_persona" => $datos["num_doc_persona"],
-                                            "email" => $datos["email"],
-                                            "password" => $datos["password"],
-                                            "celular" => $datos["celular"],
-                                            "id_cargo" => $datos["id_cargo"],
-                                            "id_distrito" => $datos["id_distrito"],
-                                            "direccion" => $datos["direccion"],
+
+                            $datos = array("numero_pedido"=>$datos["numero_pedido"],
+                                            "id_tipo_pedido" => $datos["id_tipo_pedido"],                                            
+                                            "id_usuario" => $datos["id_usuario"],
+                                            "id_cliente" => $datos["id_cliente"],
+                                            "id_tipo_comprobante" => $datos["id_tipo_comprobante"],
+                                            "serie_comprobante" => $datos["serie_comprobante"],
+                                            "numero_comprobante" => $datos["numero_comprobante"],
+                                            "id_tipo_lavado" => $datos["id_tipo_lavado"],                                            
+                                            "id_estado_lavado" => $datos["id_estado_lavado"],
+                                            "comision_por_recogo" => $datos["comision_por_recogo"],
+                                            "total_pedido" => $datos["total_pedido"],
+                                            "estado_boleta" => $datos["estado_boleta"],
+                                            "estado_pedido_prenda" => $datos["estado_pedido_prenda"],
+                                            "momento_pago" => $datos["momento_pago"],
+                                            "fecha_entrega" => $datos["fecha_entrega"],
+                                            "id_delivery" => $datos["id_delivery"],
                                              
                                             
                             );
@@ -191,11 +209,65 @@ class Pedidos extends Controller {
                             
                             $clienteModel = new PedidosModel($db);
                             $cliente = $clienteModel->insert($datos);
+                            
                             $data = array(
                                 "Status"=>200,
-                                "Detalle"=>"Registro exitoso, cliente guardado"
-                            );              
-                            return json_encode($data, true);
+                                "Detalle"=>"Registro exitoso, Pedido de lavado guardado"
+                            ); 
+                            //CAPTURAMOS EL ULTIMO "ID"
+                            $detalle_ultimo_id = $clienteModel->getUltimoReg();                             
+                            // var_dump($detallefindall);die;
+                            
+                            //CAPTURAMOS EL "ID" EN UNA VARIABLE
+                            $id_pedido_prenda=$detalle_ultimo_id[0]['idpedido_prenda'];
+                            // var_dump($idpedidolav);die;
+
+                            //INSTANCIAMOS UN OBJETO DE LA CLASE DETALL...
+                            $detalleModel = new DetallepedidoprendaModel($db); 
+
+                            //CAPTURAMOS TODOS LOS DATOS TIPO ARRAY, ENVIADOS DESDE EL FORMULARIO
+                            $id_prenda =  $request->getVar("id_prenda");
+                            $id_color =  $request->getVar("id_color");
+                            $cantidad_pedido_prenda =  $request->getVar("cantidad_detalle_pedido_prenda");
+                            $descuento_pedido_prenda =  $request->getVar("descuento_detalle_pedido_prenda");
+                            //DECODIFICAMOS EL ARRAY QUE SE HA CAPTURADO COMO STRING
+                            $deco_id_prenda = json_decode($id_prenda,true);
+                            $deco_id_color = json_decode($id_color,true);
+                            $deco_cantidad_pedido_prenda=json_decode($cantidad_pedido_prenda,true);
+                            $deco_descuento_pedido_prenda=json_decode($descuento_pedido_prenda,true);
+
+                            //CREAMOS UN CONTADOR PARA RECORRER EL ARRAY
+                            $cont_elementos=0;
+                            while ($cont_elementos < count($deco_id_prenda)) {
+                                $datitos=array('id_prenda' => $deco_id_prenda[$cont_elementos],
+                                            'id_color' => $deco_id_color[$cont_elementos],
+                                            'cantidad_detalle_pedido_prenda'=>$deco_cantidad_pedido_prenda[$cont_elementos],
+                                            'descuento_detalle_pedido_prenda'=>$deco_descuento_pedido_prenda[$cont_elementos],
+                                            'id_pedido_prenda'=>$id_pedido_prenda
+                                        );
+                                $detatitos_insert = $detalleModel->insert($datitos);
+                                $cont_elementos=$cont_elementos + 1 ;
+                            }
+
+                            // $dat=array("precio"=>$no,
+                            //             "hola"=> $cont_elementos);
+                             // $datitos = array("cantidad_detalle_pedido_prenda"=>$datitoss["cantidad_detalle_pedido_prenda"]);
+                            
+
+                            // // $cantidad=$datitos["cantidad_detalle_pedido_prenda"];
+
+                            // var_dump($datitos); die;
+
+                            // $da=array('cantidad_detalle_pedido_prenda' => "7",
+                            //         'id_prenda' => "7",
+                            //         'id_color' => "7",
+                            //         'id_pedido_prenda'=>$id_pedido_prenda,
+                            //         'descuento_detalle_pedido_prenda'=>"0");
+                            // $detalle = $detalleModel->insert($da);  
+
+                            return json_encode($data, true);  
+
+                              // return json_encode($data, true);
                         }
 
                     }else{
@@ -295,7 +367,7 @@ class Pedidos extends Controller {
                                 "num_doc_persona" => $datos["num_doc_persona"],
                                 "email" => $datos["email"],
                                 "direccion" => $datos["direccion"],
-                                "password" => $datos["password"],
+                                "id_tipo_lavado" => $datos["id_tipo_lavado"],
                                 "celular" => $datos["celular"],
                                 "id_cargo" => $datos["id_cargo"],
                                 "id_tipo_persona" => $datos["id_tipo_persona"],
@@ -355,7 +427,68 @@ class Pedidos extends Controller {
 
     }
 
-    public function delete( $id ){
+     public function delete($id) {
+        //realiza solicitud a services y le decimos que ejecute el metodo request()
+        $request = \Config\Services::request();
+        $validation = \Config\Services::validation();
+
+        $headers = $request->getHeaders();
+
+        $registroModel = new RegistrosModel($db);
+
+        $registro = $registroModel->where('estado', 1)
+                ->findAll();
+
+        foreach ($registro as $key => $value) {
+
+            if (array_key_exists('Authorization', $headers) && !empty($headers['Authorization'])) {
+
+                if ($request->getHeader('Authorization') == 'Authorization: Basic ' . base64_encode($value["cliente_id"] . ":" . $value["llave_secreta"])) {
+
+                    $clienteModel = new PedidosModel($db);
+                    $cliente = $clienteModel->find($id);
+
+
+                    if (!empty($cliente)) {
+                        $datos = array('estado_boleta' => "0");
+                        $cliente = $clienteModel->update($id, $datos);
+
+                        $data = array(
+                            "Status" => 200,
+                            "Detalle" => "Se ha anulado la boleta"
+                        );
+
+                        return json_encode($data, true);
+                    } else {
+
+                        $data = array(
+                            "Status" => 404,
+                            "Detalle" => "El cliente no existe"
+                        );
+
+                        return json_encode($data, true);
+                    }
+                } else {
+
+                    $data = array(
+                        "Status" => 404,
+                        "Detalles" => "El token es inválido"
+                    );
+                }
+            } else {
+
+                $data = array(
+                    "Status" => 404,
+                    "Detalles" => "No está autorizado para editar los registros"
+                );
+            }
+        }
+
+        return json_encode($data, true);
+    }
+     
+
+    public function enviarPedido( $id ){
         $request = \Config\Services::request(); 
         $validation = \Config\Services::validation();
 
@@ -383,7 +516,7 @@ class Pedidos extends Controller {
                         $data = array(
 
                                 "Status"=>200,
-                                "Detalle"=>"Se ha borrado con éxito"
+                                "Detalle"=>"Se ha enviado el pedido con éxito"
                                 
                         );
 
@@ -431,7 +564,7 @@ class Pedidos extends Controller {
 
     }
 
-    public function recuperar($id) {
+    public function recuperarPedido($id) {
         //realiza solicitud a services y le decimos que ejecute el metodo request()
         $request = \Config\Services::request();
         $validation = \Config\Services::validation();
@@ -459,7 +592,7 @@ class Pedidos extends Controller {
 
                         $data = array(
                             "Status" => 200,
-                            "Detalle" => "Se ha recuperado con éxito"
+                            "Detalle" => "Se ha recuperado el pedido con éxito"
                         );
 
                         return json_encode($data, true);
@@ -564,6 +697,60 @@ class Pedidos extends Controller {
                     $usuariosModel = new PedidosModel();
                     $usuarios = $usuariosModel
                                 ->getTipoPedidoAll();
+                           
+                    if (!empty($usuarios)) {
+
+                        $data = array(
+                            "Status" => 200,
+                            "Número Registro" =>$id,
+                            "Detalle" => $usuarios
+                        );
+                        return json_encode($data, true);
+                    } else {
+
+                        $data = array(
+                            "Status" => 404,
+                            "Detalle" => "No hay ningún tipo de serviciode lavado registrado"
+                        );
+                    }
+                } else {
+
+                    $data = array(
+                        "Status" => 404,
+                        "Detalle" => "El token es inválido"
+                    );
+                }
+            } else {
+
+                $data = array(
+                    "Status" => 404,
+                    "Detalle" => "No está autorizado para recibir los registros"
+                );
+            }
+        }
+
+        return json_encode($data, true);
+    }
+
+    public function TipoComprobanteAll() {
+        //realiza solicitud a services y le decimos que ejecute el metodo request()
+        $request = \Config\Services::request();
+        $validation = \Config\Services::validation();
+        $headers = $request->getHeaders();
+
+        $registroModel = new RegistrosModel($db);
+        $registro = $registroModel->where('estado', 1)
+                ->findAll();
+
+        foreach ($registro as $key => $value) {
+            //verificacion del toquen de seguridad 
+            if (array_key_exists('Authorization', $headers) && !empty($headers['Authorization'])) {
+
+                if ($request->getHeader('Authorization') == 'Authorization: Basic ' . base64_encode($value["cliente_id"] . ":" . $value["llave_secreta"])) {
+                    
+                    $usuariosModel = new PedidosModel();
+                    $usuarios = $usuariosModel
+                                ->getTipoComprobanteAll();
                            
                     if (!empty($usuarios)) {
 

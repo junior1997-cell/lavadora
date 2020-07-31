@@ -47,7 +47,7 @@ class DetallepedidoprendaModel extends Model{
     //     ->orderby('c.idcargo','ASC')
     //     ->get()->getResultArray();
     // }  
-
+   
     
 }
 

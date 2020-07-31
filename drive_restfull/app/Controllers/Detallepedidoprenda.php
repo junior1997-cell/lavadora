@@ -39,6 +39,7 @@ class Detallepedidoprenda extends Controller {
                             "Detalle" => $usuarios
                                 //"Paginador"=>$paginador
                         );
+                         return json_encode($data, true);
                     } else {
 
                         $data = array(
@@ -46,6 +47,7 @@ class Detallepedidoprenda extends Controller {
                             "Total_Resultados" => 0,
                             "Detalle" => "Ningun Detalle de pedido registrado  cargado"
                         );
+                         return json_encode($data, true);
                     }
                 } else {
 
@@ -53,6 +55,7 @@ class Detallepedidoprenda extends Controller {
                         "Status" => 404,
                         "Detalle" => "El token es inválido"
                     );
+                     return json_encode($data, true);
                 }
             } else {
 
@@ -60,6 +63,7 @@ class Detallepedidoprenda extends Controller {
                     "Status" => 404,
                     "Detalle" => "No está autorizado para recibir los registros"
                 );
+                 return json_encode($data, true);
             }
         }
 
@@ -86,7 +90,7 @@ class Detallepedidoprenda extends Controller {
                     
                     $usuariosModel = new DetallepedidoprendaModel();
                     $usuarios = $usuariosModel
-                                ->getDetallepedidoOne($id);
+                                ->find($id);
                            
                     if (!empty($usuarios)) {
 
@@ -95,12 +99,14 @@ class Detallepedidoprenda extends Controller {
                             "Número Registro" =>$id,
                             "Detalle" => $usuarios
                         );
+                         return json_encode($data, true);
                     } else {
 
                         $data = array(
                             "Status" => 404,
-                            "Detalle" => "No hay ninguuuuuuuuuuuuun cliente registrado"
+                            "Detalle" => "No hay ningun detalle registrado"
                         );
+                         return json_encode($data, true);
                     }
                 } else {
 
@@ -108,6 +114,7 @@ class Detallepedidoprenda extends Controller {
                         "Status" => 404,
                         "Detalle" => "El token es inválido"
                     );
+                     return json_encode($data, true);
                 }
             } else {
 
@@ -115,6 +122,7 @@ class Detallepedidoprenda extends Controller {
                     "Status" => 404,
                     "Detalle" => "No está autorizado para recibir los registros"
                 );
+                 return json_encode($data, true);
             }
         }
 

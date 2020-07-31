@@ -6,6 +6,7 @@ function init(){
 	hora_fecha();	
 	mostrarform(false);
 	listar();
+	 
 
 	$("#formulario").on("submit",function(e)
 	{
@@ -93,6 +94,8 @@ function mostrarform(flag)
 		$("#btnCancelar").show();
 		$("#btnAgregarArt").show();
 		$("#btnAgregartipolav").show();
+		//OCULTAMOS EL IMPUESTO
+		$("#btnAgregartipolav").show();
 		detalles=0;
 	}
 	else
@@ -120,12 +123,12 @@ function hora_fecha(){
 	$("#hora_recojo").val(getCurrentDateTime);
 
 	var n_pedido=getTodayDate+''+getTodayMonth+''+getTodayFullYear+''+getCurrentHours+''+getCurrentMinutes+''+getCurrentSeconds;
-	console.log(n_pedido);
+	// console.log(n_pedido);
 	$("#numero_pedido").val(n_pedido);
 
-	console.log(getCurrentHours,getCurrentMinutes)
-	console.log(getCurrentHours)
-	console.log(getCurrentDateTime);
+// console.log(getCurrentHours,getCurrentMinutes)
+// console.log(getCurrentHours)
+// console.log(getCurrentDateTime);
 }
 
 //Función cancelarform
@@ -175,6 +178,8 @@ function listar()
 	    "order": [[ 0, "desc" ]]//Ordenar (columna,orden)
 	}).DataTable();
 }
+
+ 
 
 
 //Función ListarArticulos
@@ -283,9 +288,9 @@ function mostrar(idventa)
 }
 
 //Función para anular registros
-function anular(idventa)
+function anularboleta(idventa)
 {
-	bootbox.confirm("¿Está Seguro de enviar el pedido?", function(result){
+	bootbox.confirm("¿Está Seguro de anular la botela o factura?. ESTA ACCIÓSN ES IRREVERSIBLE", function(result){
 		if(result)
         {
         	$.post("../ajax/venta.php?op=anular", {idventa : idventa}, function(e){
@@ -295,14 +300,36 @@ function anular(idventa)
         }
 	})
 }
+//Función para enviar el pedido al cliente
+function enviarpedido(idventa)
+{
+	var pagito=' <select  name="pago_deudor" id="pago_deudor" class="form-control  " required="">'+
 
-//Función para recuperar registros
-function recuperar(idventa)
+                  '<option value="">NO SELECT</option>'+
+
+                  '<option value="1">PAGAR</option>'+
+
+                  '<option value="0">QUITAR PAGADO</option>'+   
+                '</select>';
+    // document.write(pagito);
+	bootbox.confirm("¿Está Seguro de enviar el pedido?", function(result){
+		if(result)
+        {
+        	$.post("../ajax/venta.php?op=enviar_pedido", {idventa : idventa}, function(e){
+        		bootbox.alert(e);
+	            tabla.ajax.reload();
+        	});	
+        }
+	})
+}
+
+//Función para recuperar el pedido
+function recuperarpedido(idventa)
 {
 	bootbox.confirm("¿Está Seguro de recuperar el envio?", function(result){
 		if(result)
         {
-        	$.post("../ajax/venta.php?op=recuperar", {idventa : idventa}, function(e){
+        	$.post("../ajax/venta.php?op=recuperar_pedido", {idventa : idventa}, function(e){
         		bootbox.alert(e);
 	            tabla.ajax.reload();
         	});	
@@ -382,10 +409,27 @@ function agregarDetalle(idarticulo,articulo,precio_venta)
     	var fila='<tr class="filas" id="fila'+cont+'">'+
     	'<td><button type="button" class="btn btn-danger" onclick="eliminarDetalle('+cont+')">X</button></td>'+
     	'<td><input type="hidden" name="idarticulo[]" value="'+idarticulo+'">'+articulo+'</td>'+
-    	'<td><input type="number" name="cantidad[]" id="cantidad[]" value="'+cantidad+'"></td>'+
-    	'<td><input type="number" name="precio_venta[]" id="precio_venta[]" value="'+precio_venta+'"></td>'+
-    	'<td><input type="number" name="descuento[]" value="'+descuento+'"></td>'+
-    	'<td><input type="number" id="deliv" name="descuento[]" value="'+delivey+'"></td>'+
+    	'<td> <select name="id_color[]" class="form-control " >'+
+    			'<option value="" id="id_color[]">NO SELECT</option>'+
+    			'<option value="101"> ROJO</option>'+
+    			'<option value="102"> AZUL</option>'+
+    			'<option value="103"> AMARILLO</option>'+
+    			'<option value="104"> VERDE</option>'+
+    			'<option value="105"> MORADO</option>'+
+    			'<option value="106"> ANARANJADO</option>'+
+    			'<option value="107"> MARRON</option>'+
+    			'<option value="108"> NEGRO</option>'+
+    			'<option value="109"> CELESTE</option>'+
+    			'<option value="110"> ROSADO</option>'+
+    			'<option value="111"> PLOMO</option>'+
+    			'<option value="112"> GRIS</option>'+
+    			'<option value="113"> BLANCO</option>'+
+    		 '</select>'+
+    	'</td>'+
+    	'<td><input type="number"  min="0" name="cantidad[]" id="cantidad[]" value="'+cantidad+'"></td>'+
+    	'<td><input type="number" readonly min="0" name="precio_venta[]" id="precio_venta[]" value="'+precio_venta+'"></td>'+
+    	'<td><input type="number"  min="0" name="descuento[]" value="'+descuento+'"></td>'+
+    	
     	'<td><span name="subtotal" id="subtotal'+cont+'">'+subtotal+'</span></td>'+
     	'<td><button type="button" onclick="modificarSubototales()" class="btn btn-info"><i class="fa fa-refresh"></i></button></td>'+
     	'</tr>';
@@ -421,6 +465,7 @@ function agregarDetalle(idarticulo,articulo,precio_venta)
     function ShowSelected(){
 		/* Para obtener el valor */
 		var cod = document.getElementById("delivery").value;
+		console.log(cod);
 		 if (cod == "2" || cod == "3" || cod == "4") {
 			    
 		}else{}
@@ -468,6 +513,10 @@ function agregarDetalle(idarticulo,articulo,precio_venta)
   	calcularTotales();
   	detalles=detalles-1;
   	evaluar()
+  }
+
+  function modalpagar(){
+  	$('#myModalPagar').modal('show');
   }
 
 init();

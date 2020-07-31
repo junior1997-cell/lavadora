@@ -33,41 +33,46 @@ if ($_SESSION['ventas']==1)
                         <table id="tbllistado" class="table table-striped table-bordered table-condensed table-hover">
                           <thead>
                             <th>Opciones</th>
+                            <th>Pagado</th>
                             <th>Fecha</th>
                             <th>Cliente</th>
                             <th>Usuario</th>
                             <th>Documento</th>
-                            <th>Número</th>
+                            <!-- <th>Número</th> -->
                             <th>Total Venta</th>
-                            <th>Estado</th>
+                            <!-- <th>Estado</th> -->
                             <th>Estado Prenda</th>
                           </thead>
                           <tbody>                            
                           </tbody>
                           <tfoot>
                             <th>Opciones</th>
+                            <th>Pagado</th>
                             <th>Fecha</th>
                             <th>Proveedor</th>
                             <th>Usuario</th>
                             <th>Documento</th>
-                            <th>Número</th>
+                            <!-- <th>Número</th> -->
                             <th>Total Venta</th>
-                            <th>Estado</th>
+                            <!-- <th>Estado</th> -->
                             <th>Estado Prenda</th>
                           </tfoot>
                         </table>
                     </div>
+
+                     
+
                     <div class="panel-body" style="height: absolute;" id="formularioregistros">
                         <form name="formulario" id="formulario" method="POST">
                           <!-- ETIQUETA -->
                           <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-6">
                             <label>Etiqueta(*):</label>
-                            <input type="text" class="form-control" name="numero_pedido" id="numero_pedido" maxlength="10" placeholder="Etiqueta" required="">
+                            <input type="text" class="form-control" name="numero_pedido" id="numero_pedido" maxlength="25" placeholder="Etiqueta" required>
                           </div>
                           <!-- TIPO PEDIDO -->
                           <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-6">
                             <label>tipo pedido(*):</label>
-                            <select id="id_tipo_pedido" name="id_tipo_pedido" class=" form-control selectpicker" data-live-search="true"  required>
+                            <select id="id_tipo_pedido" name="id_tipo_pedido" class=" form-control selectpicker" data-live-search="true"  required="true">
                             </select>
                           </div>
                           <!-- CLIENTE -->
@@ -81,8 +86,7 @@ if ($_SESSION['ventas']==1)
                           <!-- TIPO DE COMPROBANTE -->
                           <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
                             <label>Tipo Comprobante(*):</label>
-                            <select name="id_comprobante" id="id_comprobante" class="form-control selectpicker" required="">
-                               
+                            <select name="id_comprobante" id="id_comprobante" class="form-control selectpicker" required="">                               
                             </select>
                           </div>
                           <!-- SERIO DE BOLETA O FATURA -->
@@ -93,31 +97,31 @@ if ($_SESSION['ventas']==1)
                           <!-- NUMERO DE BOLETA O FACTURA -->
                           <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
                             <label>Número:</label>
-                            <input type="text" class="form-control" name="numero_comprobante" id="numero_comprobante" maxlength="10" placeholder="Número" required="">
+                            <input type="text" class="form-control" name="numero_comprobante" id="numero_comprobante" maxlength="10" placeholder="Número">
                           </div>
                           <!-- IMPUESTO -->
-                          <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                          <div id="impuesto_id" class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
                             <label>Impuesto:</label>
-                            <input type="text" class="form-control" name="impuesto" id="impuesto" required="">
+                            <input type="number" class="form-control" name="impuesto" id="impuesto" min="0" value="0" required="" >
                           </div>
                           <!-- SELECIONAR PAGO -->
                           <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
                             <label>Seleccionar pago (*):</label>
                             <select name="pago" id="pago" class="form-control  " required="">
                               <option value="">NO SELECT</option>
-                               <option value="0" >Al realizar el pedido</option>
-                               <option value="1">Al recoger el pedido</option>
+                               <option value="1" >PAGAR AHORA</option>
+                               <option value="0">PAGAR AL RECOJER EL PEDIDO</option>
 
                             </select>
                           </div>
                           <!-- SELECIONAR tipo de PAGO -->
                           <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
                             <label>Seleccionar tipo de pago (*):</label>
-                            <select name="tpo_pago" id="tipo_pago" class="form-control  " required="">
+                            <select name="tipo_pago" id="tipo_pago" class="form-control  " required="">
                               <option value="">NO SELECT</option>
-                               <option value="0" title="Habilitado">Al contado</option>
-                               <option value="1" disabled  title="Deshabilitado">Con tarjeta</option>
-                               <option value="1" disabled  title="Deshabilitados">Con Paypal</option>
+                               <option value="0" title="Habilitado">EFECTIVO</option>
+                               <option value="1" disabled  title="Deshabilitado">CON TARJETA</option>
+                               <option value="2" disabled  title="Deshabilitados">CCON PAYPAL</option>
 
                             </select>
                           </div>
@@ -130,17 +134,17 @@ if ($_SESSION['ventas']==1)
                           <!-- FECHA DE RECOJO DEL LA PRENDA -->
                           <div class="form-group col-lg-2 col-md-4 col-sm-4 col-xs-12">
                             <label>Fecha recojo(*):</label>
-                            <input type="text" class="form-control" name="hora_recojo" id="hora_recojo" required="" value="" disabled="true">
+                            <input type="text" class="form-control" name="hora_recojo" id="hora_recojo" required="" value="" readonly>
                           </div>
                           <!-- FECHA DE ENTREGA APROXIMADA DE LA PRENDA -->
                           <div class="form-group col-lg-3 col-md-4 col-sm-4 col-xs-12">
                             <label>Fecha Entrega(*):</label>
-                            <input type="datetime-local" class="form-control" name="fecha_hora" id="fecha_hora" required=""> 
+                            <input type="datetime-local" class="form-control" name="fecha_hora_entrega" id="fecha_hora_entrega" required=""> 
                           </div>
                           <!-- DELIVERY -->
                           <div class="form-group col-lg-3 col-md-4 col-sm-4 col-xs-12">
                             <label>Delivery (*):</label>
-                            <select name="delivery" id="delivery" class="form-control selectpicker"data-live-search="true" required onchange="ShowSelected();">
+                            <select name="delivery" id="delivery" class="form-control selectpicker"data-live-search="true"  onchange="ShowSelected();">
 
                             </select>
                           </div>
@@ -169,10 +173,10 @@ if ($_SESSION['ventas']==1)
                               <thead style="background-color:#A9D0F5">
                                     <th>Opciones</th>
                                     <th>Prendas</th>
+                                    <th>Color</th>
                                     <th>Cantidad</th>
-                                    <th>Precio Venta</th>
-                                    <th>Descuento</th>
-                                    <th>Delivery</th>
+                                    <th>Precio Prenda</th>
+                                    <th>Descuento</th>                                  
                                     <th>Subtotal</th>
                                 </thead>
                                 <tbody>
@@ -185,7 +189,22 @@ if ($_SESSION['ventas']==1)
                                     <th></th>
                                      <th></th>
                                     <th></th>
-                                     <th><h4 id="total">S/. 0.00</h4><input type="hidden" name="total_venta" id="total_venta"></th> 
+                                     <th>
+                                      <h4 id="total">S/. 0.00</h4>
+                                      <input type="hidden" name="total_venta" id="total_venta">
+                                    </th> 
+                                </tfoot>
+                                 <tfoot>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                     <th></th>
+                                    <th>Delivery</th>
+                                     <th>
+                                      <h4 id="total_delivery">S/. 0.00</h4>
+                                      <input type="hidden" name="costo_delivery" id="costo_delivery">
+                                    </th> 
                                 </tfoot>
                             </table>
                           </div>
@@ -206,7 +225,7 @@ if ($_SESSION['ventas']==1)
     </div><!-- /.content-wrapper -->
   <!--Fin-Contenido-->
 
-  <!-- Modal -->
+  <!-- Modal SELECIONA LA PRENDA -->
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
     <div class="modal-dialog">
       <div class="modal-content">
@@ -241,34 +260,67 @@ if ($_SESSION['ventas']==1)
   </div>  
   <!-- Fin modal -->
 
-    <!-- Modal de tipo lavado -->
-  <div class="modal fade" id="myModalt" tabindex="-1" role="dialog" aria-labelledby="myModaltLabel" aria-hidden="true" >
+    <!-- MODAL PARA EFECTUAR EL PAGO -->
+  <div class="modal fade" id="myModalPagar" tabindex="-1" role="dialog" aria-labelledby="myModaltLabel" aria-hidden="true" >
     <div class="modal-dialog">
       <div class="modal-content">
+
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title">Seleccione tipo de lavado</h4>
+          <h4 class="modal-title">PAGO AL RECOJER LA PRENDA</h4>
         </div>
-        <div class="modal-body">
-            <table id="tblPidopedido" class="table table-striped table-bordered table-condensed table-hover" style="width: 100% !important;">
-            <thead>
-                <th>Opciones</th>
-                <th>Nombre</th>
-                <th>Precio</th>
-            </thead>
-            <tbody>
-              
-            </tbody>
-            <tfoot>
-                <th>Opciones</th>
-                <th>Nombre</th>
-                <th>Precio</th>
-            </tfoot>
-          </table>
+
+        <div class="modal-body" style="padding: 35px 35px 15px 35px !important;">
+
+          <form name="formpago" id="formpago" method="POST">
+            
+            <div class="row">
+              <!-- SLECIONAR PARA ESTABLECER SI VA A PAGAR O CORREGIR ALGUNA CONFUCION CON EL PAGO  -->
+              <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+
+                <label>Estado de pago (*):</label>
+
+                <select  name="pago_deudor" id="pago_deudor" class="form-control  " required="">
+
+                  <option value="">NO SELECT</option>
+
+                  <option value="1">PAGAR</option>
+
+                  <option value="0">QUITAR PAGADO</option>   
+                </select>
+              </div>
+              <!-- SELECIONAR EL TIPO DE PAGO QUE HARA LUEGO DE SELECIONAR EL ESTADO DE PAGO -->
+              <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+
+                <label>Seleccionar tipo de pago (*):</label>
+
+                <select  name="tipo_pago_deudor" id="tipo_pago_deudor" class="form-control  " required="">
+
+                  <option value="">NO SELECT</option>
+
+                  <option value="0" title="Habilitado">EFECTIVO</option>
+
+                  <option value="1" disabled  title="Deshabilitado">CON TARJETA</option>
+
+                  <option value="2" disabled  title="Deshabilitados">CON PAYPAL</option>
+                </select>
+              </div>
+              <br><br><br><br><br><br>
+              <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-xl-7">
+              </div>
+              <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5" style="padding: 0px 0px 0px 70px !important;">
+                
+                <button  type="submit" class="btn btn-success" >GUARDAR</button>
+
+                <button type="button" class="btn btn-default" data-dismiss="modal">CERRAR</button>
+                
+              </div>
+            </div>
+          </form>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        </div>        
+
+        <!-- <div class="modal-footer">        
+        </div>  -->       
       </div>
     </div>
   </div>  
