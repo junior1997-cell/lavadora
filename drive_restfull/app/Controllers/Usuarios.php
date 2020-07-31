@@ -253,11 +253,38 @@ class Usuarios extends Controller {
                             
                             $usuariosModel = new UsuariosModel($db);
                             $usuarios = $usuariosModel->insert($datos);
+
+
+                             //CAPTURAMOS EL ULTIMO "ID"
+                            $usuari_ultimo_id = $usuariosModel->getUltimoUsu();                             
+                            // var_dump($usuari_ultimo_id);die;                            
+                            //CAPTURAMOS EL "ID" EN UNA VARIABLE
+                            $id_person=$usuari_ultimo_id[0]['idpersona'];
+                            // var_dump($id_person);die; 
+                            //LLAMAMOS AL MODELO DONDE SE VA HACER LA INCERCION
+                            $usupermiModel = new UsuariopermisoModel($db); 
+                            //CAPTURAMOS TODOS LOS DATOS TIPO ARRAY, ENVIADOS DESDE EL FORMULARIO
+                            $permiso =  $request->getVar("permiso");
+                            //DECODIFICAMOS EL ARRAY QUE SE HA CAPTURADO COMO STRING
+                            $deco_permiso = json_decode($permiso,true);
+                             return json_encode($deco_permiso, true);
+                            // var_dump($deco_permiso);die; 
+                            //CREAMOS UN CONTADOR PARA RECORRER EL ARRAY
+                            $cont_elementos=0;
+                            while ($cont_elementos < count($deco_permiso)) {
+                                $datitos=array('id_usuario' => $id_person,
+                                                'id_permiso' => $deco_permiso[$cont_elementos]
+                                            
+                                        );
+                                $permiso_insert = $usupermiModel->insert($datitos);
+                                $cont_elementos=$cont_elementos + 1 ;
+                            }
+
                             $data = array(
                                 "Status"=>200,
                                 "Detalle"=>"Registro exitoso, usuario guardado"
                             );              
-                            return json_encode($data, true);
+                            // return json_encode($deco_permiso, true);
                         }
 
                     }else{
@@ -605,6 +632,60 @@ class Usuarios extends Controller {
 
         return json_encode($data, true);
     }
+
+    // public function permisoAll($id) {
+    //     //realiza solicitud a services y le decimos que ejecute el metodo request()
+    //     $request = \Config\Services::request();
+    //     $validation = \Config\Services::validation();
+    //     $headers = $request->getHeaders();
+
+    //     $registroModel = new RegistrosModel($db);
+    //     $registro = $registroModel->where('estado', 1)
+    //             ->findAll();
+
+    //     foreach ($registro as $key => $value) {
+    //         //verificacion del toquen de seguridad 
+    //         if (array_key_exists('Authorization', $headers) && !empty($headers['Authorization'])) {
+
+    //             if ($request->getHeader('Authorization') == 'Authorization: Basic ' . base64_encode($value["cliente_id"] . ":" . $value["llave_secreta"])) {
+                    
+    //                 $usuariosModel = new UsuariosModel();
+    //                 $usuarios = $usuariosModel
+    //                             ->getCargoPersona($id);
+                           
+    //                 if (!empty($usuarios)) {
+
+    //                     $data = array(
+    //                         "Status" => 200,
+    //                         "Número Registro" =>$id,
+    //                         "Detalle" => $usuarios
+    //                     );
+    //                     return json_encode($data, true);
+    //                 } else {
+
+    //                     $data = array(
+    //                         "Status" => 404,
+    //                         "Detalle" => "No hay ningún cliente registrado"
+    //                     );
+    //                 }
+    //             } else {
+
+    //                 $data = array(
+    //                     "Status" => 404,
+    //                     "Detalle" => "El token es inválido"
+    //                 );
+    //             }
+    //         } else {
+
+    //             $data = array(
+    //                 "Status" => 404,
+    //                 "Detalle" => "No está autorizado para recibir los registros"
+    //             );
+    //         }
+    //     }
+
+    //     return json_encode($data, true);
+    // }
 
 
 

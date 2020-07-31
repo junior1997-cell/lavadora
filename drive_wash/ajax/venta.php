@@ -38,11 +38,11 @@ switch ($_GET["op"]){
 		$numero_comprobante=$_POST["numero_comprobante"];
 		$impuesto=$_POST["impuesto"];
 		$pago=$_POST["pago"];
-		$tipo_pago=$_POST["tipo_pago"];
+		// $tipo_pago=$_POST["tipo_pago"];
 		$id_tipo_servicio=$_POST["id_tipo_servicio"];
 		$hora_recojo=$_POST["hora_recojo"];
 		$fecha_hora_entrega=$_POST["fecha_hora_entrega"];
-		$delivery=$_POST["delivery"];
+		
 		$costo_delivery=$_POST["costo_delivery"];
 		$total_venta=$_POST["total_venta"];
 
@@ -51,11 +51,17 @@ switch ($_GET["op"]){
 		$cantidad=json_encode($_POST["cantidad"],true);
 		$precio_venta=json_encode( $_POST["precio_venta"],true);
 		$descuento=json_encode($_POST["descuento"],true);
-		// var_dump($precio_venta); die;
+		 // var_dump($id_color); die;
 
 		 // var_dump($numero_pedido,$id_tipo_pedido,$id_usuario,$id_cliente,$id_comprobante,$serie_comprobante,$impuesto,$pago,$tipo_pago,$id_tipo_servicio,$hora_recojo,$fecha_hora_entrega,$delivery,$costo_delivery,$idarticulo,$cantidad,$precio_venta,$descuento); die;
+		if(empty($_POST["delivery"])){
+		 	$delivery="1";
+		}else{
+		 	$delivery=$_POST["delivery"];
+		} //var_dump($delivery); die;
+		 
 		if (empty($idventa)){
-			$rspta=$venta->crear_pedido($numero_pedido,$id_tipo_pedido,$id_usuario,$id_cliente,$id_comprobante,$serie_comprobante,$numero_comprobante,$impuesto,$pago,$tipo_pago,$id_tipo_servicio,$fecha_hora_entrega,$delivery,$costo_delivery,$total_venta,$idarticulo,$id_color,$cantidad,$descuento);
+			$rspta=$venta->crear_pedido($numero_pedido,$id_tipo_pedido,$id_usuario,$id_cliente,$id_comprobante,$serie_comprobante,$numero_comprobante,$impuesto,$pago,$id_tipo_servicio,$fecha_hora_entrega,$delivery,$costo_delivery,$total_venta,$idarticulo,$id_color,$cantidad,$descuento);
 			echo $rspta ? "Venta registrada" : "No se pudieron registrar todos los datos de la venta";
 		}
 		else {

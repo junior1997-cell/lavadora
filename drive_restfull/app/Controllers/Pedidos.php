@@ -209,7 +209,6 @@ class Pedidos extends Controller {
                             
                             $clienteModel = new PedidosModel($db);
                             $cliente = $clienteModel->insert($datos);
-                            
                             $data = array(
                                 "Status"=>200,
                                 "Detalle"=>"Registro exitoso, Pedido de lavado guardado"

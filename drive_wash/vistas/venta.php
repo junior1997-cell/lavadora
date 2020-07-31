@@ -107,7 +107,7 @@ if ($_SESSION['ventas']==1)
                           <!-- SELECIONAR PAGO -->
                           <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
                             <label>Seleccionar pago (*):</label>
-                            <select name="pago" id="pago" class="form-control  " required="">
+                            <select name="pago" id="pago" class="form-control  " required="" onclick="select_pago()">
                               <option value="">NO SELECT</option>
                                <option value="1" >PAGAR AHORA</option>
                                <option value="0">PAGAR AL RECOJER EL PEDIDO</option>
@@ -115,8 +115,8 @@ if ($_SESSION['ventas']==1)
                             </select>
                           </div>
                           <!-- SELECIONAR tipo de PAGO -->
-                          <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
-                            <label>Seleccionar tipo de pago (*):</label>
+                          <div id="tipo_pago_id" class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                            <label>Tipo de pago (*):</label>
                             <select name="tipo_pago" id="tipo_pago" class="form-control  " required="">
                               <option value="">NO SELECT</option>
                                <option value="0" title="Habilitado">EFECTIVO</option>
@@ -137,14 +137,14 @@ if ($_SESSION['ventas']==1)
                             <input type="text" class="form-control" name="hora_recojo" id="hora_recojo" required="" value="" readonly>
                           </div>
                           <!-- FECHA DE ENTREGA APROXIMADA DE LA PRENDA -->
-                          <div class="form-group col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                          <div class="form-group col-lg-2 col-md-4 col-sm-4 col-xs-12">
                             <label>Fecha Entrega(*):</label>
                             <input type="datetime-local" class="form-control" name="fecha_hora_entrega" id="fecha_hora_entrega" required=""> 
                           </div>
                           <!-- DELIVERY -->
                           <div class="form-group col-lg-3 col-md-4 col-sm-4 col-xs-12">
                             <label>Delivery (*):</label>
-                            <select name="delivery" id="delivery" class="form-control selectpicker"data-live-search="true"  onchange="ShowSelected();">
+                            <select name="delivery" id="delivery" class="form-control selectpicker"data-live-search="true"  onchange="calcularTotales();">
 
                             </select>
                           </div>
@@ -183,12 +183,12 @@ if ($_SESSION['ventas']==1)
                                   
                                 </tbody>
                                 <tfoot>
-                                    <th>TOTAL</th>
+                                    <th></th>
                                     <th></th>
                                     <th></th>
                                     <th></th>
                                      <th></th>
-                                    <th></th>
+                                    <th>TOTAL</th>
                                      <th>
                                       <h4 id="total">S/. 0.00</h4>
                                       <input type="hidden" name="total_venta" id="total_venta">
@@ -200,7 +200,7 @@ if ($_SESSION['ventas']==1)
                                     <th></th>
                                     <th></th>
                                      <th></th>
-                                    <th>Delivery</th>
+                                    <th>Delivery (15%)</th>
                                      <th>
                                       <h4 id="total_delivery">S/. 0.00</h4>
                                       <input type="hidden" name="costo_delivery" id="costo_delivery">

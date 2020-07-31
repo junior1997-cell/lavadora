@@ -7,23 +7,23 @@ require_once "../modelos/Usuario.php";
 
 $usuario=new Usuario();
 
-// id ES UNA VARIABLE ENVIADA DESDE LA VISTA USUARIOS PARA EDITAR
-$id=isset($_POST["id"])? limpiarCadena($_POST["id"]):"";
-$tipo_doc=isset($_POST["tipo_documento"])? limpiarCadena($_POST["tipo_documento"]):"";
-// DNI ES UNA VARIABLE ENVIADA DESDE LA VISTA USUARIOS
-$dni=isset($_POST["dni"])? limpiarCadena($_POST["dni"]):"";
-$nombres=isset($_POST["nombres"])? limpiarCadena($_POST["nombres"]):"";
-$apellidos=isset($_POST["apellidos"])? limpiarCadena($_POST["apellidos"]):"";
-$razonsocial=isset($_POST["razonsocial"])? limpiarCadena($_POST["razonsocial"]):"";
-$sex=isset($_POST["sexo"])? limpiarCadena($_POST["sexo"]):"";
-$logi=isset($_POST["login"])? limpiarCadena($_POST["login"]):"";
-$clave=isset($_POST["clave"])? limpiarCadena($_POST["clave"]):"";
-$celular=isset($_POST["celular"])? limpiarCadena($_POST["celular"]):"";
-$id_cargo=isset($_POST["id_cargo"])? limpiarCadena($_POST["id_cargo"]):"";
-$id_distri=isset($_POST["id_distrito"])? limpiarCadena($_POST["id_distrito"]):"";
-$direccion=isset($_POST["direccion"])? limpiarCadena($_POST["direccion"]):"";
-$imagen=isset($_POST["imagen"])? limpiarCadena($_POST["imagen"]):"";
-$imagencita="";
+// // id ES UNA VARIABLE ENVIADA DESDE LA VISTA USUARIOS PARA EDITAR
+ // $id=isset($_POST["id"])? limpiarCadena($_POST["id"]):"";
+// $tipo_doc=isset($_POST["tipo_documento"])? limpiarCadena($_POST["tipo_documento"]):"";
+// // DNI ES UNA VARIABLE ENVIADA DESDE LA VISTA USUARIOS
+// $dni=isset($_POST["dni"])? limpiarCadena($_POST["dni"]):"";
+// $nombres=isset($_POST["nombres"])? limpiarCadena($_POST["nombres"]):"";
+// $apellidos=isset($_POST["apellidos"])? limpiarCadena($_POST["apellidos"]):"";
+// $razonsocial=isset($_POST["razonsocial"])? limpiarCadena($_POST["razonsocial"]):"";
+// $sex=isset($_POST["sexo"])? limpiarCadena($_POST["sexo"]):"";
+// $logi=isset($_POST["login"])? limpiarCadena($_POST["login"]):"";
+// $clave=isset($_POST["clave"])? limpiarCadena($_POST["clave"]):"";
+// $celular=isset($_POST["celular"])? limpiarCadena($_POST["celular"]):"";
+// $id_cargo=isset($_POST["id_cargo"])? limpiarCadena($_POST["id_cargo"]):"";
+// $id_distri=isset($_POST["id_distrito"])? limpiarCadena($_POST["id_distrito"]):"";
+// $direccion=isset($_POST["direccion"])? limpiarCadena($_POST["direccion"]):"";
+// $imagen=isset($_POST["imagen"])? limpiarCadena($_POST["imagen"]):"";
+// $imagencita="";
 
 
 switch ($_GET["op"]){
@@ -38,7 +38,29 @@ switch ($_GET["op"]){
 			if ($_SESSION['almacen']==1)
 			{
 
-			
+				$id=$_POST["id"];
+				$tipo_doc=$_POST["tipo_documento"];
+				// DNI ES UNA VARIABLE ENVIADA DESDE LA VISTA USUARIOS
+				$dni= $_POST["dni"];
+				$nombres= $_POST["nombres"];
+				$apellidos= $_POST["apellidos"];
+				// $razonsocial= $_POST["razonsocial"];
+				// $sex= $_POST["sexo"];
+				$logi= $_POST["login"];
+				$clave= $_POST["clave"];
+				$celular= $_POST["celular"];
+				$id_cargo= $_POST["id_cargo"];
+				$id_distri= $_POST["id_distrito"];
+				$direccion= $_POST["direccion"];
+				// $imagen= $_POST["imagen"];
+				 // $permiso= json_encode($_POST["permiso"],true);
+				$imagencita="";
+				 // var_dump($permiso); die;
+				// validamos "imagen" SI ESTA VACIA  
+				if(!empty($_POST["imagen"])){
+					
+					$imagen=$_POST["imagen"];
+				}
 
 				if (!file_exists($_FILES['imagen']['tmp_name']) || !is_uploaded_file($_FILES['imagen']['tmp_name']))
 				{
@@ -56,11 +78,11 @@ switch ($_GET["op"]){
 				
 
 				// validamos "razonsocial" SI ESTA VACIA O TIENE DATOS
-				if(empty($razonsocial)){
+				if(empty($_POST["razonsocial"])){
 					$nomb=$nombres;
 				}else{
 					//enviamos "RAZON SOCIAL" INGRESADO POR INPUT
-					$nomb=$razonsocial;
+					$nomb=$_POST["razonsocial"];
 				}
 
 				// validamos "clave_actual" SI ESTA VACIA O TIENE DATOS
@@ -72,11 +94,11 @@ switch ($_GET["op"]){
 				}
 
 				// validamos "SEXO" SI ESTA VACIA O TIENE DATOS
-				if(empty($sex)){
+				if(empty($_POST["sexo"])){
 					$sexo=1;
 				}else{
 					 //ENVIA SEXO SELECIONADO
-					$sexo=$sex;
+					$sexo=$_POST["sexo"];
 				}
 
 				// validamos "DISTRITO" SI ESTA VACIA O TIENE DATOS
@@ -94,16 +116,28 @@ switch ($_GET["op"]){
 					//ENVIA EMAIL INGRESADO POR INPUT
 					$login=$logi;
 				}
-
-				// validamos "imagen" SI ESTA VACIA  
-				if(empty($imagen)){
+				if(empty($_POST["imagen"])){
 					$imagen="nosabe.png";
 				}
 
+				 if(empty($_POST["permiso"])){
+				 	$a=array("0"=>"8",
+				 			"1"=>"8",
+					 		"2"=>"8",
+					 		"3"=>"8",
+					 		"4"=>"8",
+					 		"5"=>"8",
+					 		"6"=>"8");
+
+				 	 $permiso=json_encode($a,true);
+				 }else{
+				 	$permiso= json_encode($_POST["permiso"],true);
+				 }
+				 // var_dump($permiso,$_POST["permiso"],$a); die;
 				// Validamos "id" SI ESTA VACIA O TIENE DATOS para "guardar" o "editar"
 				if (empty($id)){
 					$rspta=$usuario->guardar_api_usuario($tipo_doc,$dni,$nomb,$apellidos,$sexo,$login,
-						$clavehash,$celular,$id_cargo,$id_distrito,$direccion,$imagen);
+						$clavehash,$celular,$id_cargo,$id_distrito,$direccion,$imagen,$permiso);
 
 						// $_POST['permiso']
 					echo $rspta ? "Usuario registrado" : "No se pudieron registrar todos los datos del usuario";
@@ -133,6 +167,8 @@ switch ($_GET["op"]){
 			//Validamos el acceso solo al usuario logueado y autorizado.
 			if ($_SESSION['almacen']==1)
 			{
+				$id=$_POST["id"];
+
 				$rspta=$usuario->borrar_api_usuario($id);
  				echo $rspta ? "Usuario Desactivado" : "Usuario no se puede desactivar";
 			//Fin de las validaciones de acceso
@@ -154,6 +190,8 @@ switch ($_GET["op"]){
 			//Validamos el acceso solo al usuario logueado y autorizado.
 			if ($_SESSION['almacen']==1)
 			{
+				$id=$_POST["id"];
+
 				$rspta=$usuario->recuperar_api_usuario($id);
  				echo $rspta ? "Usuario activado" : "Usuario no se puede activar";
 			//Fin de las validaciones de acceso
@@ -175,7 +213,7 @@ switch ($_GET["op"]){
 			//Validamos el acceso solo al usuario logueado y autorizado.
 			if ($_SESSION['almacen']==1)
 			{
-				
+				$id=$_POST["id"];
 				//var_dump($dni); die;
 				$rspta=$usuario->listar_one_api_persona_local($id);				
 			 		//Vamos a declarar un srray	 		
@@ -239,27 +277,15 @@ switch ($_GET["op"]){
 		//Obtenemos todos los permisos de la tabla permisos
 		require_once "../modelos/Permiso.php";
 		$permiso = new Permiso();
-		$rspta = $permiso->listar_all_api_permiso();
-
-		//Obtener los permisos asignados al usuario
-		 $id=$_GET['id'];
-		$marcados = $usuario->listar_api_permiso_marcado_local($id);
-		// //Declaramos el array para almacenar todos los permisos marcados
-		// $valores=array();
-
-		// //Almacenar los permisos asignados al usuario en el array
-		// foreach($marcados->fetch_object()as $per )
-		// 	{
-		// 		array_push($valores, $per->idpermiso);
-		// 	}
+		$rspta = $permiso->api_permisoAll();
+		
 
 		//Mostramos la lista de permisos en la vista y si están o no marcados
-		foreach($rspta['Detalle']as $reg)
-				{
-					$sw=in_array($reg->idpermiso,$valores)?'checked':'';
+		foreach($rspta['Detalle']as $reg){
 
-					echo '<li>SASS <input type="checkbox" '.$sw.'  name="'.$reg['nombre'].'" value="'.$reg['id'].'">'.$reg['nombre'].'</li>';
-				}
+			echo '<li><input type="checkbox"  name="permiso[]" value="'.$reg['idpermiso'].'">'.$reg['nombre_permiso'].'</li>';
+		}
+
 	break;
 
 	case 'verificar':
@@ -331,7 +357,8 @@ switch ($_GET["op"]){
 		{
 			//Validamos el acceso solo al usuario logueado y autorizado.
 			if ($_SESSION['almacen']==1)
-			{			
+			{	
+				$dni= $_POST["dni"];		
 				//var_dump($dni); die;
 				$rspta=$usuario->captura_unic_sunat($dni);
 		 		//Codificar el resultado utilizando json
@@ -363,7 +390,8 @@ switch ($_GET["op"]){
 		{
 			//Validamos el acceso solo al usuario logueado y autorizado.
 			if ($_SESSION['almacen']==1)
-			{			
+			{		
+				$dni= $_POST["dni"];	
 				// var_dump($dni);
 				$rspta=$usuario->captura_unic_reniec_r($dni);
 		 		//Codificar el resultado utilizando json

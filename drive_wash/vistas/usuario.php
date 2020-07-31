@@ -179,13 +179,7 @@ if ($_SESSION['acceso']==1)
                            
 
                           
-                          <!-- PERMISOS -->
-                         <!--  <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <label>Permisos:</label>
-                            <ul style="list-style: none;" id="permisos">
-                              
-                            </ul>
-                          </div> -->
+                       
                           <!-- IMAGEN -->
                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <label>Imagen:</label>
@@ -193,6 +187,24 @@ if ($_SESSION['acceso']==1)
                             <input type="hidden" name="imagenactual" id="imagenactual">
                             <img src="" width="150px" height="120px" id="imagenmuestra">
                           </div>
+
+                          <!-- PERMISOS -->
+                         <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <label>Permisos:  
+                             <i class="fa fa-tasks"> </i>
+                              <i class="fa fa-laptop"> </i>
+                              <i class="fa fa-th"> </i>
+                              <i class="fa fa-shopping-cart"> </i>
+                              <i class="fa fa-lock"> </i>
+                              <i class="fa fa-calculator"> </i>
+                            </label>
+                             
+
+                            <ul required style="list-style: none;" id="permisos">
+                              
+                            </ul>
+                          </div> 
+
                           <!-- BTN -->
                           <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <button class="btn btn-primary" type="submit" id="btnGuardar"><i class="fa fa-save"  ></i> Guardar</button>

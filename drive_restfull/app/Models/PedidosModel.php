@@ -55,7 +55,7 @@ class PedidosModel extends Model{
         ->get()->getResultArray();
     }  
 
-     public function getUltimoReg(){
+    public function getUltimoReg(){
         return $this->db->table('pedido_prenda pp')
          ->select('pp.idpedido_prenda')
          ->limit(1)
