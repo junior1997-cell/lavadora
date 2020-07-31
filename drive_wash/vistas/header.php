@@ -190,12 +190,11 @@ if (strlen(session_id()) < 1)
                 <li id="lUsuarios"><a href="librodiario.php"><i class="fa fa-book"></i> libro diario</a></li>
 
                 <li id="lPermisos"><a href="libromayor.php"><i class="fa fa-book"></i> libro mayor</a></li>
-                <li id="lPermisos"><a href="ingreso.php"><i class="fa fa-table"></i> Planilla de remuneraciones </a></li>
-
+                
                 <li id="lPermisos"><a href="ingreso.php"><i class="fa fa-book"></i> libro mayor</a></li>
-                <li id="lPermisos"><a href=""><i class="fa fa-university"></i> Planilla</a>
+                <li id="lPermisos"><a href=""><i class="fa fa-university"></i> Planilla </a>
                  <ul class="treeview-menu">
-                <li id="lVentas"><a href="planilla.php"><i class="fa fa-bar-chart"></i> Planilla de Remuneraciones</a></li>
+                <li id="lVentas"><a href="planilla.php"><i class="fa fa-bar-chart"></i> Planilla </a></li>
                 <li id="lClientes"><a href="datos_descuento.php"><i class="fa fa-circle-o"></i> Datos Generales</a></li>
               </ul>
                 </li> 
