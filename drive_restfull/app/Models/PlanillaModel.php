@@ -10,11 +10,18 @@ class PlanillaModel extends Model{
 	protected $returnType='array';
 	protected $allowedFields = ['codigo_plantilla','nombres_planilla','id_cargo_ocupacion','asig_familiar_planilla','sueldo_basico_planilla','monto_asig_familiar_planilla','otros_planilla','total_remuneracion_bruta_planilla','snp_onp_planilla','id_afp','aporte_obligatorio_planilla','comision_sobre_ra_planilla','prima_seguro_planilla','total_descuento_planilla','remuneracion_neta_planilla','aporte_salud_planilla','aporte_sctr_planilla','aporte_total_planilla','fecha_planilla'];
 
-	public function getplanilla(){
+	public function get_usuarios(){
 
-		return $this->db->table('planilla_remuneraciones ld')
-		->join('cargo lc','ld.id_cargo_ocupacion=lc.idcargo')
-		->join('afp pc','ld.id_afp= pc.idafp')
+		return $this->db->table('persona p')
+		->select(' p.idpersona,p.nombre_persona,p.apellidos_persona')
+		->where('p.estado_persona ',1)
+		->get()->getResultArray();
+	}
+
+	public function get_afp(){
+
+		return $this->db->table('afp p')
+		->select(' p.idafp,p.nombre_afp')
 		->get()->getResultArray();
 	}
 

@@ -29,8 +29,22 @@ if ($_SESSION['almacen']==1)
                     <!-- /.box-header -->
                     <!-- centro -->
                     <div class="row">
-                    <div class="panel-body table-responsive col-lg-8" id="listadoregistros">
-                        <table id="tbllistado" class="table table-striped table-bordered table-condensed table-hover">
+                      <div class="col-lg-3"></div>
+                      <div class="panel-body table-responsive col-lg-6" id="listadoafp" style="width: 50%;">
+                        <table id="listar_rmv" class="table table-striped table-bordered table-condensed table-hover" style="width: 100%;">
+                          <thead>
+                            <th>Opciones</th>
+                            <th>Nombre</th>
+                            <th>Monto/Porcentaje</th>                            
+                          </thead>
+                          <tbody>                                                   
+                          </tbody>
+                        </table>
+                    </div>
+                    <div class="col-lg-3"></div>
+
+                    <div class="panel-body table-responsive col-lg-12" id="listadoregistros" style="width: 98%;">
+                        <table id="tbllistado" class="table table-striped table-bordered table-condensed table-hover" style="width: 98%;">
                           <thead>
                             <th>Opciones</th>
                             <th>NOMBRE</th>
@@ -49,22 +63,7 @@ if ($_SESSION['almacen']==1)
                           </tfoot>
                         </table>
                     </div>
-                    <div class="panel-body table-responsive col-lg-4" id="listadoafp" style="width: 30%;">
-                        <table id="listar_rmv" class="table table-striped table-bordered table-condensed table-hover" style="width: 100%;">
-                          <thead>
-                            <th>Opciones</th>
-                            <th>Nombre</th>
-                            <th>Monto/Porcentaje</th>                            
-                          </thead>
-                          <tbody>                                                   
-                          </tbody>
-                          <tfoot>
-                            <th>Opciones</th>
-                            <th>Nombre</th>
-                            <th>Monto/Porcentaje</th>
-                          </tfoot>
-                        </table>
-                    </div>
+                    
                   </div>
                     <div class="panel-body" id="formularioregistros">
                         <form name="formulario" id="formulario" method="POST">

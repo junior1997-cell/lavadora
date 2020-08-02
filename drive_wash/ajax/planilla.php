@@ -139,6 +139,29 @@ switch ($_GET["op"]){
 					echo '<option value=' . $reg->idcategoria . '>' . $reg->nombre . '</option>';
 				}
 	break;
+
+		//LISTA ATODOS LOS CLIENTES PRA HACER UNA VENTA
+	case 'listar_usuarios_select':
+
+		$rspta=$planilla->api_select_usuario();
+			//Vamos a declarar un array
+		echo '<option value="">NO SELECT</option>';
+		foreach ($rspta['Detalle'] as $reg){
+
+			echo '<option value=' . $reg['idpersona'] . '>' . $reg['nombre_persona'] ." ".$reg['apellidos_persona']. '</option>';
+		}
+	break;
+
+	case 'afp_select':
+
+		$rspta=$planilla->api_select_afp();
+			//Vamos a declarar un array
+		echo '<option value="">NO SELECT</option>';
+		foreach ($rspta['Detalle'] as $reg){
+
+			echo '<option value=' . $reg['idafp'] . '>' . $reg['nombre_afp']. '</option>';
+		}
+	break;
 }
 //Fin de las validaciones de acceso
 }

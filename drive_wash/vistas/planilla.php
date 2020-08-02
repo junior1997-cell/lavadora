@@ -75,96 +75,109 @@ if ($_SESSION['acceso']==1)
                           
                           <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
                             <label>CODIGO / DNI:</label>
-                            <input type="text" class="form-control" name="codigo" id="codigo" maxlength="20" placeholder="Login"
-                            maxlength="15" minlength="3" >
+                            <input type="text" class="form-control" name="codigo" id="codigo" maxlength="20" placeholder="DNI" maxlength="15" minlength="3" >
                           </div>
                           <!-- CLAVE -->
-                          <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
-                            <label>APELLIDOS Y NOMRBES:</label>
-                            <input type="text" class="form-control" name="nombre" id="nombre" maxlength="20" placeholder="Login"
-                            maxlength="15" minlength="3" >
+                          <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">                  
+                            <label>APELLIDOS Y NOMBRES(*):</label>
+                            <input type="hidden" name="idventa" id="idventa">
+                            <select id="apellidos_nombres" name="apellidos_nombres" class="form-control selectpicker" data-live-search="true" required>
+                              
+                            </select>
                           </div>
                           <!-- CELULAR -->
                           <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
                             <label>CARGO U OCUPACIÓN:</label>
-                            <input type="text" class="form-control" name="cargo" id="cargo"  placeholder="celular" required>
+                            <input type="text" class="form-control" name="cargo" id="cargo"  placeholder="Cargo" required>
                           </div>
                           <!-- CARGO -->
                           <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
-                            <label id="antiguo_cargo">ASIGNACIÓN FAMILIAR:</label> 
-                                                                              
-                            <select id="id_asignacion" name="id_asignacion" class="form-control selectpicker" data-live-search="true"  ></select>                            
+                            <label id="antiguo_cargo">ASIGNACIÓN FAMILIAR:</label>                   <select id="id_asignacion" name="id_asignacion" onchange="ShowSelected();" class="form-control selectpicker" data-live-search="true"  >
+                              <option>SELECT</option>
+                              <option value="SI">SI</option>
+                              <option value="NO">NO</option>
+                            </select>                            
                           </div>
 
                           <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
                             <label>SUELDO BÁSICO:</label>
-                            <input type="number" class="form-control" name="sueldo_basico" id="sueldo_basico" placeholder="celular" required>
+                            <input type="number" class="form-control monto" name="sueldo_basico" id="sueldo_basico" placeholder="Sueldo Básico"  onkeyup="sumar();"  required>
                           </div>
 
                            <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
                             <label>ASIGNACIÓN FAMILIAR:</label>
-                            <input type="number" class="form-control" name="monto_asignacion" id="monto_asignacion"  placeholder="celular" required>
+                            <input type="number" class="form-control monto" name="monto_asignacion" id="monto_asignacion"   placeholder="Ingresa Monto"  onkeyup="sumar();" required>
                           </div>
 
-                          <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+                          <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-2 col-xl-2">
                             <label>OTROS :</label>
-                            <input type="number" class="form-control" name="otros" id="otros"  placeholder="celular" required>
+                            <input type="number" class="form-control monto" name="otros" id="otros"  placeholder="Otros"  onkeyup="sumar();" required>
                           </div>
 
                           <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
                             <label>TOTAL REMUNERACIÓN BRUTA :</label>
-                            <input type="number" class="form-control" name="total_remuneracion" id="total_remuneracion"  placeholder="celular" required>
+                            <input type="number" class="form-control " name="total_remuneracion" id="total_remuneracion" placeholder="total remuneracion"  required>
+
                           </div>
 
                           <!-- DISTRITO -->
                           <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-1 col-xl-1">
                             <label id="antiguo_distrito">SNP-ONP:</label>                 
-                            <select id="snp_onp" name="snp_onp" class="form-control selectpicker" data-live-search="true" ></select>                             
+                            <select id="snp_onp" name="snp_onp" class="form-control selectpicker" data-live-search="true" >
+                              <option>SELECT</option>
+                              <option>SI</option>
+                              <option>NO</option>
+                            </select>                             
                           </div>
 
-                          <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-1 col-xl-1">
+                          <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-2 col-xl-2">
+                            <label>SNP-ONP:</label>
+                            <input type="number" class="form-control" name="aporte_obligatario" id="aporte_obligatario"  placeholder="Ingresa Monto" required>
+                          </div>
+
+                          <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-2 col-xl-2">
                             <label id="antiguo_distrito">AFP:</label>                 
                             <select id="id_afp" name="id_afp" class="form-control selectpicker" data-live-search="true" ></select>                             
                           </div>
 
                           <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-2 col-xl-2">
                             <label>APORTE OBLIGATORIO:</label>
-                            <input type="number" class="form-control" name="aporte_obligatario" id="aporte_obligatario"  placeholder="celular" required>
+                            <input type="number" class="form-control" name="aporte_obligatario" id="aporte_obligatario"  placeholder="Aporte Obligatorio" required>
                           </div>
 
                           <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-2 col-xl-2">
                             <label>COMISIÓN % SOBRE R.A.:</label>
-                            <input type="number" class="form-control" name="comision_ra" id="comision_ra"  placeholder="celular" required>
+                            <input type="number" class="form-control" name="comision_ra" id="comision_ra"  placeholder="Comisión" required>
                           </div>
 
                           <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-2 col-xl-2">
                             <label>PRIMA DE SEGURO.:</label>
-                            <input type="number" class="form-control" name="prima_seguro" id="prima_seguro"  placeholder="celular" required>
+                            <input type="number" class="form-control" name="prima_seguro" id="prima_seguro"  placeholder="Aporte Prima" required>
                           </div>
 
                           <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-2 col-xl-2">
                             <label>TOTAL DE DESCUENTO:</label>
-                            <input type="number" class="form-control" name="total_descuento" id="total_descuento"  placeholder="celular" required>
+                            <input type="number" class="form-control" name="total_descuento" id="total_descuento"  placeholder="Total Descuento" required>
                           </div>
 
-                          <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-2 col-xl-2">
+                          <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
                             <label>REMUNERACIÓN NETA:</label>
-                            <input type="number" class="form-control" name="remuneracion_neta" id="remuneracion_neta"  placeholder="celular" required>
+                            <input type="number" class="form-control" name="remuneracion_neta" id="remuneracion_neta"  placeholder="Remuneración Total" required>
                           </div>
 
-                           <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                           <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
                             <label>SALUD:</label>
-                            <input type="number" class="form-control" name="salud" id="salud"  placeholder="celular" required>
+                            <input type="number" class="form-control" name="salud" id="salud"  placeholder="Comisión Salud" required>
                           </div>
 
-                           <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                           <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
                             <label>SCTR:</label>
-                            <input type="number" class="form-control" name="sctr" id="sctr"  placeholder="celular" required>
+                            <input type="number" class="form-control" name="sctr" id="sctr"  placeholder="Comisión SCTR" required>
                           </div>
 
-                           <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                           <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
                             <label>TOTAL APORTES:</label>
-                            <input type="number" class="form-control" name="total_aportes" id="total_aportes"  placeholder="celular" required>
+                            <input type="number" class="form-control" name="total_aportes" id="total_aportes"  placeholder="Total de Aportes" required>
                           </div>                                                   
                           <!-- BTN -->
                          <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -192,6 +205,7 @@ require 'footer.php';
 ?>
 
 <script type="text/javascript" src="scripts/planilla.js"></script>
+
 <?php 
 }
 ob_end_flush();
