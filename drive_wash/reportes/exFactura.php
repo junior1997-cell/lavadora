@@ -42,7 +42,8 @@ $pdf->addSociete(utf8_decode($empresa),
                   utf8_decode("Dirección: ").utf8_decode($direccion)."\n".
                   utf8_decode("Teléfono: ").$telefono."\n" .
                   "Email : ".$email,$logo,$ext_logo);
-$pdf->fact_dev( "$regv->tipo_comprobante ", "$regv->serie_comprobante-$regv->num_comprobante" );
+$ser=" ".$regv['serie_comprobante']." - ".$regv['numero_comprobante'];
+$pdf->fact_dev( $regv['nombre_tipo_comprobante'], $ser);
 $pdf->temporaire( "" );
 $pdf->addDate( $regv['fecha_pedido_prenda']);
 
@@ -73,29 +74,50 @@ $y= 89;
 //Obtenemos todos los detalles de la venta actual
 $rsptad = $venta->listar_one_detalle_pedido($_GET["id"]);
 // var_dump($rsptad);die;
+//COMPARAMOS SI EXISTE EL DELIVERY
+if($rsptad['Detalle'][0]['id_delivery']=="1"){
+  $delivery=0;
+}else{
+  $delivery=0.15;
+}
+//CREAMOS EL ONTADOR PARA SACAR LA SUMA DE USB TOTALES
+$cont_del=0;
 foreach ($rsptad['Detalle'] as $regd) {
   // var_dump($regd);die;
   $subtotala=($regd['cantidad_detalle_pedido_prenda']*$regd['precio_prenda']-$regd['descuento_detalle_pedido_prenda']);
-  $line = array( "CODIGO"=> "a",
-                "DESCRIPCION"=> utf8_decode("a"),
-                "CANTIDAD"=> "a",
-                "P.U."=> "a",
-                "DSCTO" => "a",
-                "SUBTOTAL"=> "a");
+  $line = array( "CODIGO"=> $regd['codigo_prenda'],
+                "DESCRIPCION"=> utf8_decode($regd['nombre_prenda']),
+                "CANTIDAD"=> $regd['cantidad_detalle_pedido_prenda'],
+                "P.U."=> $regd['precio_prenda'],
+                "DSCTO" => $regd['descuento_detalle_pedido_prenda'],
+                "SUBTOTAL"=> $subtotala);
   // var_dump($line);die;
             $size = $pdf->addLine( $y, $line );
             $y   += $size + 2;
+  $cont_del=$cont_del+$subtotala;
 }
-
+//REDONDEAMOS EL VALOR DEL DELIVERY
+$delivery=round($delivery*$cont_del, 1);
+//MOSTRAMOS EN LA BOLETA
+ $line = array( "CODIGO"=> "-",
+                "DESCRIPCION"=> utf8_decode("Delivery"),
+                "CANTIDAD"=> "-",
+                "P.U."=> "-",
+                "DSCTO" => "-",
+                "SUBTOTAL"=> $delivery);
+  // var_dump($line);die;
+            $size = $pdf->addLine( $y, $line );
+            $y   += $size + 2;
+$total_de_total=$delivery+$cont_del;
 //Convertimos el total en letras
 require_once "Letras.php";
 $V=new EnLetras(); 
-$con_letra=strtoupper($V->ValorEnLetras($regv->total_venta,"SOLES"));
+$con_letra=strtoupper($V->ValorEnLetras($total_de_total,"SOLES"));
 $pdf->addCadreTVAs("---".$con_letra);
 
 //Mostramos el impuesto
-$pdf->addTVAs( $regv->impuesto, $regv->total_venta,"S/ ");
-$pdf->addCadreEurosFrancs("IGV"." $regv->impuesto %");
+$pdf->addTVAs( $rsptad['Detalle'][0]['impuesto'], $total_de_total,"S/ ");
+$pdf->addCadreEurosFrancs("IGV ".$rsptad['Detalle'][0]['impuesto']." %");
 $pdf->Output('Reporte de Venta','I');
 
 
