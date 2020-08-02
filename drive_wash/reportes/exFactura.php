@@ -16,7 +16,7 @@ if ($_SESSION['ventas']==1)
 require('Factura.php');
 
 //Establecemos los datos de la empresa
-$logo = "logo.jpg";
+$logo = "drive.jpg";
 $ext_logo = "jpg";
 $empresa = "Drive Wash";
 $documento = "20477157772";
