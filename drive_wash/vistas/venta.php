@@ -281,25 +281,27 @@ if ($_SESSION['ventas']==1)
             
             <div class="row">
               <!-- SLECIONAR PARA ESTABLECER SI VA A PAGAR O CORREGIR ALGUNA CONFUCION CON EL PAGO  -->
-              <div id="pago_deudor_modal_id" class="">
-
+              <div id="pago_deudor_modal_id" class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+  
                 <label>Estado de pago (*):</label>
 
                 <select  name="pago_deudor_modal" id="pago_deudor_modal" class="form-control  " required="" onclick="select_pago_modal()">
 
                   <option value="">NO SELECT</option>
 
-                  <option value="1">PAGAR</option>
+                  <option value="1">REALIZAR PAGO</option>
 
                   <option value="0">QUITAR PAGADO</option>   
                 </select>
+
               </div>
+               <input type="hidden" name="id_oculto" id="id_oculto">
               <!-- SELECIONAR EL TIPO DE PAGO QUE HARA LUEGO DE SELECIONAR EL ESTADO DE PAGO -->
               <div id="tipo_pago_deudor_modal_id" class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
 
                 <label>Seleccionar tipo de pago (*):</label>
 
-                <select  name="tipo_pago_deudor_modal" id="tipo_pago_deudor_modal" class="form-control  " required="">
+                <select  name="tipo_pago_deudor_modal" id="tipo_pago_deudor_modal" disabled class="form-control"  required="">
 
                   <option value="">NO SELECT</option>
 

@@ -67,6 +67,31 @@ switch ($_GET["op"]){
 		else {
 		}
 	break;
+	case 'guardaryeditarpago':
+
+		$pago_deudor=$_POST["pago_deudor_modal"];
+		
+		
+		$id_oculto=$_POST["id_oculto"];
+		// $tipo_pago_deudor=$_POST["tipo_pago_deudor_modal"];		
+
+		// var_dump($pago_deudor,$id_oculto); die;
+
+		if($pago_deudor==1){
+			//REALIZAR PAGO
+		 	$rspta=$venta->realizar_pago($id_oculto);
+			echo $rspta ? "PAGO REALIZADO" : "ESTE PAGO NO SE PUEDO PROCESAR";
+		}
+		if($pago_deudor==0){
+			//QUITAR PAGO
+		 	$rspta=$venta->recuperar_pago($id_oculto);
+			echo $rspta ? "PAGO RECUPERADO" : "ESTE PAGO NO SE PUEDE RECUPERAR";
+		}  
+		 
+		 
+			
+		 
+	break;
 
 	case 'anular':
 		$idventa=$_POST["idventa"];
@@ -206,8 +231,8 @@ switch ($_GET["op"]){
  						<i class="fa fa-reply"></i>
  					</button>'),
  				"1"=>($reg['momento_pago'])?
- 					'<button class="label bg-green" onclick="modalrecuperarpago('.$reg['idpedido_prenda'].')">Pagado</button>':
- 					'<button class="label bg-red" onclick="modalrealizarpago('.$reg['idpedido_prenda'].')">Deudor</button>',
+ 					'<button class="label bg-green" onclick="select_pago_modal('.$reg['idpedido_prenda'].')">Pagado</button>':
+ 					'<button class="label bg-red" onclick="select_pago_modal('.$reg['idpedido_prenda'].')">Deudor</button>',
  				"2"=>$reg['fecha_pedido_prenda'],
  				"3"=>$reg['nombre_clientes'].' '.$reg['apellidos_clientes'],
  				"4"=>$reg['nombre_persona'].' '.$reg['apellidos_persona'],

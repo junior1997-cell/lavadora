@@ -7,12 +7,18 @@ function init(){
 	mostrarform(false);
 	listar();
 	 
-
+	//ESTO ES PARA GUARDAR LA VENTA
 	$("#formulario").on("submit",function(e)
 	{
 		guardaryeditar(e);	
 	});
 	 
+	//ESTO ES PARA PAGAR EL PEDIDO
+	$("#formpago").on("submit",function(e){
+		$('#myModalPagar').modal('hide');
+		  guardaryeditarpago(e);
+	});
+
 		//Cargamos los items al select delivery
 	$.post("../ajax/venta.php?op=listardelivey", function(r){
         $("#delivery").html(r);
@@ -45,8 +51,7 @@ function init(){
     $("#fecha_antiguo").show();
 	$("#fecha_nuevo").hide();
 	$("#fecha_nuevo").hide();
-	$("#tipo_pago_deudor_modal").prop("disabled",true);
-	$("#tipo_pago_deudor_modal_id").hide();
+	 
     
 }
 
@@ -463,6 +468,8 @@ $('select[name=id_comprobante]').selectpicker().on('changed.bs.select', function
      
 });
 
+
+
 function select_pago(){
 	var zone = document.getElementById("pagoo");
 	console.log(zone.value);
@@ -504,22 +511,61 @@ function modalrecuperarpago(pagaras){
 
 }
 
-function select_pago_modal(){
+function guardaryeditarpago(e)
+{
+	e.preventDefault(); //No se activará la acción predeterminada del evento
+	//$("#btnGuardar").prop("disabled",true);
+	var formData = new FormData($("#formpago")[0]);
+
+	$.ajax({
+		url: "../ajax/venta.php?op=guardaryeditarpago",
+	    type: "POST",
+	    data: formData,
+	    contentType: false,
+	    processData: false,
+
+	    success: function(datos)
+	    {                    
+	          bootbox.alert(datos);	          
+	          mostrarform(false);
+	          listar();
+	    }
+
+	});
+	limpiar();
+}
+
+function select_pago_modal(pag_mdl){
+	console.log(pag_mdl);
+	if(!pag_mdl || 0 === pag_mdl.length){
+
+	}else{
+		var pend=pag_mdl;
+		$('#id_oculto').val(pend);
+	}
+	
+	
+	$('#myModalPagar').modal('show');
 	
 	var zone = document.getElementById("pago_deudor_modal");
 	console.log(zone.value);
+	if(zone.value==""){
+		
+		$("#tipo_pago_deudor_modal").prop("disabled",true);
+		// $('#id_oculto').val(pag_mdl);
+	}
 	if(zone.value=="1"){
-		$("#tipo_pago_deudor_modal_id").show();
+		 // $('#id_oculto').val(pag_mdl);
 		$("#tipo_pago_deudor_modal").prop("disabled",false);
-		$('#pago_deudor_modal_id').addClass("col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6");
-		console.log(pagaras);
+		// $('#pago_deudor_modal_id').addClass("col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6");		 
 	}
 	if(zone.value=="0"){
-		$('#pago_deudor_modal_id').addClass("col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12");
-		$("#tipo_pago_deudor_modal").prop("disabled",true);
-		$("#tipo_pago_deudor_modal_id").hide();
-		
+		// $('#id_oculto').val(pag_mdl);
+		// $('#pago_deudor_modal_id').addClass("col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12");
+		$("#tipo_pago_deudor_modal").prop("disabled",true);		
 	}
+	
+	
 }
 
 
