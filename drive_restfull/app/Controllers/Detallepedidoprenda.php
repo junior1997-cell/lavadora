@@ -90,7 +90,7 @@ class Detallepedidoprenda extends Controller {
                     
                     $usuariosModel = new DetallepedidoprendaModel();
                     $usuarios = $usuariosModel
-                                ->find($id);
+                                ->getDetallepedidoOne($id);
                            
                     if (!empty($usuarios)) {
 
@@ -129,7 +129,7 @@ class Detallepedidoprenda extends Controller {
         return json_encode($data, true);
     }
 
-   public function create(){
+    public function create(){
         $request = \Config\Services::request(); 
         $validation = \Config\Services::validation();
         $headers = $request->getHeaders();
@@ -248,7 +248,7 @@ class Detallepedidoprenda extends Controller {
     }
 
 
-   public function update( $id ){
+    public function update( $id ){
         $request = \Config\Services::request(); 
         $validation = \Config\Services::validation();
 

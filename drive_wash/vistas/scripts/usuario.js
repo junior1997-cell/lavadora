@@ -580,9 +580,10 @@ function mostrar_datos_sunat2()
 }
 function mostrar_datos_sunat(dni)
 {
-
+	
 	$.post("../ajax/usuario.php?op=sunat",{dni : dni}, function(data, status)
 	{
+		$("#razonsocial").val("dato no existe, ingrese otro RUC");
 		data = JSON.parse(data);
 		var valor = typeof data;
 		console.log(data);
@@ -592,8 +593,8 @@ function mostrar_datos_sunat(dni)
 			$("#direccion").val(data[0][2]);
 		}else{
 			//$("#dni").val("");
-			$("#razonsocial").val("dato no existe o sin conexion de red");
-			$("#direccion").val("dato no existe o sin conexion de red");
+			$("#razonsocial").val("sin conexion de red");
+			$("#direccion").val("sin conexion de red");
 		}
  	})
 }
@@ -609,9 +610,11 @@ function mostrar_datos_reniec2()
 
 function mostrar_datos_reniec(dni)
 {
-
+	
 	$.post("../ajax/usuario.php?op=reniec",{dni : dni}, function(data, status)
 	{
+		$("#nombres").val('nombres no existen, ingrese otro DNI');
+		$("#apellidoMatPat").val('apellidos no existen, ingrese otro DNI');
 		data = JSON.parse(data);
 		 
 		console.log(data);
@@ -621,8 +624,8 @@ function mostrar_datos_reniec(dni)
 			$("#apellidoMatPat").val(data[0][2]);
 		}else{
 			// $("#dni").val(data[0][0]);
-			$("#nombres").val('dato no existe o sin conexion de red');
-			$("#apellidoMatPat").val('dato no existe o sin conexion de red');
+			$("#nombres").val('sin conexion de red');
+			$("#apellidoMatPat").val('sin conexion de red');
 		}
  	})
 }

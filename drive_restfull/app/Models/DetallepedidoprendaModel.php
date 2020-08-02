@@ -24,6 +24,12 @@ class DetallepedidoprendaModel extends Model{
     	->join('prenda p', 'p.idprenda = dpp.id_prenda')  	
     	->join('color c', 'c.idcolor = dpp.id_color')
     	->join('pedido_prenda pp', 'pp.idpedido_prenda = dpp.id_pedido_prenda')
+        ->join('tipo_comprobante tc', 'tc.idtipo_comprobante = pp.id_tipo_comprobante')
+        ->join('clientes cli', 'pp.id_cliente = cli.idclientes')
+        ->join('tipo_doc tdoc', 'tdoc.idtipo_doc = cli.id_tipo_doc_clientes')
+        ->join('distrito di', 'di.iddistrito = cli.id_distrito_clientes')
+        ->join('departamento dep', 'dep.iddepartamento = di.id_departamento')
+        ->join('provincia pro', 'pro.idprovincia = di.id_provincia') 
         ->where('pp.idpedido_prenda',$idpedido)
     	->get()->getResultArray();
     }  

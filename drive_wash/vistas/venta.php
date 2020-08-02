@@ -107,8 +107,8 @@ if ($_SESSION['ventas']==1)
                           <!-- SELECIONAR PAGO -->
                           <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
                             <label>Seleccionar pago (*):</label>
-                            <select name="pago" id="pago" class="form-control  " required="" onclick="select_pago()">
-                              <option value="">NO SELECT</option>
+                            <select name="pago" class="form-control  "  id="pagoo" required="" onclick="select_pago()">
+                              <option value="" id="pago"  >NO SELECT</option>
                                <option value="1" >PAGAR AHORA</option>
                                <option value="0">PAGAR AL RECOJER EL PEDIDO</option>
 
@@ -117,8 +117,8 @@ if ($_SESSION['ventas']==1)
                           <!-- SELECIONAR tipo de PAGO -->
                           <div id="tipo_pago_id" class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
                             <label>Tipo de pago (*):</label>
-                            <select name="tipo_pago" id="tipo_pago" class="form-control  " required="">
-                              <option value="">NO SELECT</option>
+                            <select name="tipo_pago"  class="form-control  "  id="tipo_pagoo"required="">
+                              <option value="" id="tipo_pago">NO SELECT</option>
                                <option value="0" title="Habilitado">EFECTIVO</option>
                                <option value="1" disabled  title="Deshabilitado">CON TARJETA</option>
                                <option value="2" disabled  title="Deshabilitados">CCON PAYPAL</option>
@@ -137,12 +137,17 @@ if ($_SESSION['ventas']==1)
                             <input type="text" class="form-control" name="hora_recojo" id="hora_recojo" required="" value="" readonly>
                           </div>
                           <!-- FECHA DE ENTREGA APROXIMADA DE LA PRENDA -->
-                          <div class="form-group col-lg-2 col-md-4 col-sm-4 col-xs-12">
+                          <div id="fecha_antiguo" class="form-group col-lg-2 col-md-4 col-sm-4 col-xs-12">
                             <label>Fecha Entrega(*):</label>
                             <input type="datetime-local" class="form-control" name="fecha_hora_entrega" id="fecha_hora_entrega" required=""> 
                           </div>
+
+                           <div id="fecha_nuevo" class="form-group col-lg-2 col-md-4 col-sm-4 col-xs-12">
+                            <label>Fecha Entrega(*):</label>
+                            <input type="text" class="form-control" name="fecha_hora_entregaa" id="fecha_hora_entregaa" readonly  > 
+                          </div>
                           <!-- DELIVERY -->
-                          <div class="form-group col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                          <div class="form-group col-lg-3 col-md-4 col-sm-4 col-xs-12"  >
                             <label>Delivery (*):</label>
                             <select name="delivery" id="delivery" class="form-control selectpicker"data-live-search="true"  onchange="calcularTotales();">
 
@@ -168,7 +173,7 @@ if ($_SESSION['ventas']==1)
                             </a> -->
                           </div>
                             <!-- TABLA EN MODAL DEL AGREGAR ARTICULO -->
-                          <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+                          <div  class="col-lg-12 col-sm-12 col-md-12 col-xs-12 panel-body table-responsive">
                             <table id="detalles" class="table table-striped table-bordered table-condensed table-hover">
                               <thead style="background-color:#A9D0F5">
                                     <th>Opciones</th>
@@ -183,28 +188,28 @@ if ($_SESSION['ventas']==1)
                                   
                                 </tbody>
                                 <tfoot>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                     <th></th>
-                                    <th>TOTAL</th>
-                                     <th>
-                                      <h4 id="total">S/. 0.00</h4>
-                                      <input type="hidden" name="total_venta" id="total_venta">
-                                    </th> 
+                                  <th></th>
+                                  <th></th>
+                                  <th></th>
+                                  <th></th>
+                                  <th></th>
+                                  <th style="background-color:#c8f7e7">TOTAL</th>
+                                   <th style="background-color:#c8f7e7">
+                                    <h4 id="total">S/. 0.00</h4>
+                                    <input type="hidden" name="total_venta" id="total_venta">
+                                  </th> 
                                 </tfoot>
-                                 <tfoot>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                     <th></th>
-                                    <th>Delivery (15%)</th>
-                                     <th>
-                                      <h4 id="total_delivery">S/. 0.00</h4>
-                                      <input type="hidden" name="costo_delivery" id="costo_delivery">
-                                    </th> 
+                                <tfoot>
+                                  <th></th>
+                                  <th></th>
+                                  <th></th>
+                                  <th></th>
+                                  <th></th>
+                                  <th>Delivery (15%)</th>
+                                   <th>
+                                    <h4 id="total_delivery">S/. 0.00</h4>
+                                    <input type="hidden" name="costo_delivery" id="costo_delivery">
+                                  </th> 
                                 </tfoot>
                             </table>
                           </div>
@@ -276,11 +281,11 @@ if ($_SESSION['ventas']==1)
             
             <div class="row">
               <!-- SLECIONAR PARA ESTABLECER SI VA A PAGAR O CORREGIR ALGUNA CONFUCION CON EL PAGO  -->
-              <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+              <div id="pago_deudor_modal_id" class="">
 
                 <label>Estado de pago (*):</label>
 
-                <select  name="pago_deudor" id="pago_deudor" class="form-control  " required="">
+                <select  name="pago_deudor_modal" id="pago_deudor_modal" class="form-control  " required="" onclick="select_pago_modal()">
 
                   <option value="">NO SELECT</option>
 
@@ -290,11 +295,11 @@ if ($_SESSION['ventas']==1)
                 </select>
               </div>
               <!-- SELECIONAR EL TIPO DE PAGO QUE HARA LUEGO DE SELECIONAR EL ESTADO DE PAGO -->
-              <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+              <div id="tipo_pago_deudor_modal_id" class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
 
                 <label>Seleccionar tipo de pago (*):</label>
 
-                <select  name="tipo_pago_deudor" id="tipo_pago_deudor" class="form-control  " required="">
+                <select  name="tipo_pago_deudor_modal" id="tipo_pago_deudor_modal" class="form-control  " required="">
 
                   <option value="">NO SELECT</option>
 
@@ -306,9 +311,8 @@ if ($_SESSION['ventas']==1)
                 </select>
               </div>
               <br><br><br><br><br><br>
-              <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-xl-7">
-              </div>
-              <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5" style="padding: 0px 0px 0px 70px !important;">
+               
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"  >
                 
                 <button  type="submit" class="btn btn-success" >GUARDAR</button>
 

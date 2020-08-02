@@ -16,7 +16,7 @@ require_once "../modelos/Venta.php";
 
 $venta=new Venta();
 
- $idventa=isset($_POST["idventa"])? limpiarCadena($_POST["idventa"]):"";
+
 // $idcliente=isset($_POST["idcliente"])? limpiarCadena($_POST["idcliente"]):"";
 // $id=$_SESSION["id"];
 // $tipo_comprobante=isset($_POST["tipo_comprobante"])? limpiarCadena($_POST["tipo_comprobante"]):"";
@@ -69,22 +69,38 @@ switch ($_GET["op"]){
 	break;
 
 	case 'anular':
+		$idventa=$_POST["idventa"];
 		$rspta=$venta->anular_boleta($idventa);
  		echo $rspta ? "PEDIDO ENVIADO" : "Pedido no se puede enviar";
 	break;
 
 	case 'enviar_pedido':
+		$idventa=$_POST["idventa"];
 		$rspta=$venta->enviar_pedido($idventa);
  		echo $rspta ? "PEDIDO ENVIADO" : "Pedido no se puede enviar";
 	break;
 
 	case 'recuperar_pedido':
+		$idventa=$_POST["idventa"];
 		$rspta=$venta->recuperar_pedido($idventa);
  		echo $rspta ? "PEDIDO RECUPERADO" : "Pedido no se puede recuperar";
 	break;
 
+	case 'realizar_pago':
+		$idventa=$_POST["pagaras"];
+		$rspta=$venta->realizar_pago($idventa);
+ 		echo $rspta ? "PAGO REALIZADO" : "ESTE PAGO NO SE PUEDO PROCESAR";
+	break;
+	case 'recuperar_pago':
+		$idventa=$_POST["pagaras"];
+		$rspta=$venta->recuperar_pago($idventa);
+ 		echo $rspta ? "PAGO RECUPERADO" : "ESTE PAGO NO SE PUEDE RECUPERAR";
+	break;
+
 	case 'mostrar':
-		$rspta=$venta->mostrar($idventa);
+
+		 $idventa=$_POST["idventa"];
+		$rspta=$venta->listar_one_detalle_pedido($idventa);
  		//Codificar el resultado utilizando json
  		echo json_encode($rspta);
 	break;
@@ -93,30 +109,64 @@ switch ($_GET["op"]){
 		//Recibimos el idingreso
 		$id=$_GET['id'];
 
-		$rspta = $venta->listarDetalle($id);
-		$total=0;
+		$rspta = $venta->listar_one_detalle_pedido($id);
+		
+		if($rspta['Detalle'][0]['id_delivery']=="1"){
+			$delivery=0;
+		}else{
+			$delivery=0.15;
+		}
+		$subtotal=0;
+		$cont_sub=0;
 		echo '<thead style="background-color:#A9D0F5">
-                                    <th>Opciones</th>
-                                    <th>Artículo</th>
-                                    <th>Cantidad</th>
-                                    <th>Precio Venta</th>
-                                    <th>Descuento</th>
-                                    <th>Subtotal</th>
-                                </thead>';
+                <th>Opciones</th>
+                <th>Prendas</th>
+                <th>Color</th>
+                <th>Cantidad</th>
+                <th>Precio Venta</th>
+                <th>Descuento</th>
+                <th>Subtotal</th>
+            </thead>';
 
-		while ($reg = $rspta->fetch_object())
-				{
-					echo '<tr class="filas"><td></td><td>'.$reg->nombre.'</td><td>'.$reg->cantidad.'</td><td>'.$reg->precio_venta.'</td><td>'.$reg->descuento.'</td><td>'.$reg->subtotal.'</td></tr>';
-					$total=$total+($reg->precio_venta*$reg->cantidad-$reg->descuento);
-				}
-		echo '<tfoot>
-                                    <th>TOTAL</th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th><h4 id="total">S/.'.$total.'</h4><input type="hidden" name="total_venta" id="total_venta"></th> 
-                                </tfoot>';
+		foreach ($rspta['Detalle'] as $reg){
+			$subtotal=($reg['cantidad_detalle_pedido_prenda']*$reg['precio_prenda']-$reg['descuento_detalle_pedido_prenda']);
+			echo '<tr class="filas">
+					<td></td>
+					<td>'.$reg['nombre_prenda'].'</td>
+					<td><input readonly type="text" value="'.$reg['nombre_prenda'].'" ></td>
+					<td><input readonly type="text" value="'.$reg['cantidad_detalle_pedido_prenda'].'"> </td>
+					<td><input readonly type="text" value="'.$reg['precio_prenda'].'"> </td>
+					<td><input readonly type="text" value="'.$reg['descuento_detalle_pedido_prenda'].'"> </td>
+					<td>'.$subtotal.'</td>
+				</tr>';
+			$cont_sub=$subtotal+$cont_sub;
+		}
+		$delivery=round($delivery*$cont_sub, 1);;
+
+		echo '<tfoot >
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th style="background-color:#c8f7e7">TOTAL</th>
+                <th style="background-color:#c8f7e7">
+                	<h4 id="total">S/.'.round($reg['total_pedido'],1).'</h4>
+                	<input type="hidden" name="total_venta" id="total_venta">
+                </th> 
+            </tfoot>
+            <tfoot >
+              <th></th>        
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th>Delivery (15%)</th>
+               	<th  >
+                	<h4 id="total_delivery">S/. '.$delivery.'</h4>
+                	<input type="hidden" name="costo_delivery" id="costo_delivery">
+              	</th> 
+            </tfoot>';
 	break;
 	//LISTAR TODOS LO PEDIDOS DE PRENDA
 	case 'listar':
@@ -156,8 +206,8 @@ switch ($_GET["op"]){
  						<i class="fa fa-reply"></i>
  					</button>'),
  				"1"=>($reg['momento_pago'])?
- 					'<button class="label bg-green" onclick="modalpagar()">Pagado</button>':
- 					'<button class="label bg-red" onclick="modalpagar()">Deudor</button>',
+ 					'<button class="label bg-green" onclick="modalrecuperarpago('.$reg['idpedido_prenda'].')">Pagado</button>':
+ 					'<button class="label bg-red" onclick="modalrealizarpago('.$reg['idpedido_prenda'].')">Deudor</button>',
  				"2"=>$reg['fecha_pedido_prenda'],
  				"3"=>$reg['nombre_clientes'].' '.$reg['apellidos_clientes'],
  				"4"=>$reg['nombre_persona'].' '.$reg['apellidos_persona'],
@@ -240,6 +290,7 @@ switch ($_GET["op"]){
 		// if($rspta['Detalle'][0]['iddelivery']==7){
 		// 	echo '<option value="1">hola</option>';
 		// }
+		echo '<option value="">- - - - - - - - - seleccione - - - - - - - - -</option>';
 		 foreach ($rspta['Detalle'] as $reg){
 
 			echo '<option value=' . $reg['iddelivery'] . '>' . $reg['nombre_delivery'] . '</option>';
