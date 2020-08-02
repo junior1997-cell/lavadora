@@ -141,7 +141,7 @@ switch ($_GET["op"]){
 				</tr>';
 			$cont_sub=$subtotal+$cont_sub;
 		}
-		$delivery=round($delivery*$cont_sub, 1);;
+		$delivery=round($delivery*$cont_sub, 1);
 
 		echo '<tfoot >
                 <th></th>
