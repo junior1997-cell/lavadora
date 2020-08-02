@@ -494,6 +494,31 @@ function addCadreEurosFrancs($impuesto)
 	$this->Cell(20,4, "TOTAL A PAGAR", 0, 0, "C");
 }
 
+function delivery($impuesto)
+{
+	$r1  = $this->w - 70;
+	$r2  = $r1 + 60;
+	$y1  = $this->h - 40;
+	$y2  = $y1+20;
+	$this->RoundedRect($r1, $y1, ($r2 - $r1), ($y2-$y1), 2.5, 'D');
+	$this->Line( $r1+20,  $y1, $r1+20, $y2); // avant EUROS
+	//$this->Line( $r1+20, $y1+4, $r2, $y1+4); // Sous Euros & Francs
+	//$this->Line( $r1+38,  $y1, $r1+38, $y2); // Entre Euros & Francs
+	$this->SetFont( "Arial", "B", 8);
+	$this->SetXY( $r1+22, $y1 );
+	$this->Cell(15,4, "TOTALES", 0, 0, "C");
+	$this->SetFont( "Arial", "", 8);
+	//$this->SetXY( $r1+42, $y1 );
+	//$this->Cell(15,4, "FRANCS", 0, 0, "C");
+	$this->SetFont( "Arial", "B", 6);
+	$this->SetXY( $r1, $y1+5 );
+	$this->Cell(20,4, "SUBTOTAL", 0, 0, "C");
+	$this->SetXY( $r1, $y1+10 );
+	$this->Cell(20,4, $impuesto, 0, 0, "C");
+	$this->SetXY( $r1, $y1+15 );
+	$this->Cell(20,4, "TOTAL A PAGAR", 0, 0, "C");
+}
+
 // remplit les cadres TVA / Totaux et la remarque
 // params  = array( "RemiseGlobale" => [0|1],
 //                      "remise_tva"     => [1|2...],  // {la remise s'applique sur ce code TVA}

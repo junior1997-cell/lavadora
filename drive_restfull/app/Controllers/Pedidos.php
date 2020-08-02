@@ -86,7 +86,7 @@ class Pedidos extends Controller {
                     
                     $clienteModel = new PedidosModel();
                     $cliente = $clienteModel
-                                ->find($id);
+                                ->getPedidosOne($id);
                            
                     if (!empty($cliente)) {
 
@@ -563,6 +563,82 @@ class Pedidos extends Controller {
 
     }
 
+    public function realizarPago( $id ){
+        $request = \Config\Services::request(); 
+        $validation = \Config\Services::validation();
+
+        $headers = $request->getHeaders();
+
+        $registroModel = new RegistrosModel();
+
+        $registro=$registroModel->where('estado', 1)
+        ->findAll();
+
+        foreach($registro as $key => $value){
+
+            if(array_key_exists('Authorization', $headers) && !empty($headers['Authorization'])){
+
+                if($request->getHeader('Authorization') == 'Authorization: Basic '.base64_encode($value["cliente_id"].":".$value["llave_secreta"])){
+
+                    $clienteModel = new PedidosModel();
+                    $cliente = $clienteModel->find($id);
+                    
+
+                    if(!empty($cliente)){
+                        $datos = array( 'momento_pago' => 1 );
+                        $cliente = $clienteModel->update($id , $datos);
+                        
+                        $data = array(
+
+                                "Status"=>200,
+                                "Detalle"=>"Se ha pagado con exito"
+                                
+                        );
+
+                        return json_encode($data, true);    
+
+                    }else{
+
+                        $data = array(
+
+                            "Status"=>404,
+                            "Detalle"=>"El cliente no existe"
+                        );
+
+                        return json_encode($data, true);
+
+                    }
+
+
+                }else{
+
+                    $data = array(
+
+                        "Status"=>404,
+                        "Detalles"=>"El token es inválido"
+                        
+                    );                                                      
+
+                }
+
+            }else{
+
+                $data = array(
+
+                        "Status"=>404,
+                        "Detalles"=>"No está autorizado para editar los registros"
+                        
+                    );  
+            
+            }
+
+        
+        }
+
+        return json_encode($data, true);
+
+    }
+
     public function recuperarPedido($id) {
         //realiza solicitud a services y le decimos que ejecute el metodo request()
         $request = \Config\Services::request();
@@ -587,6 +663,66 @@ class Pedidos extends Controller {
 
                     if (!empty($cliente)) {
                         $datos = array('estado_pedido_prenda' => 1);
+                        $cliente = $clienteModel->update($id, $datos);
+
+                        $data = array(
+                            "Status" => 200,
+                            "Detalle" => "Se ha recuperado el pedido con éxito"
+                        );
+
+                        return json_encode($data, true);
+                    } else {
+
+                        $data = array(
+                            "Status" => 404,
+                            "Detalle" => "El cliente no existe"
+                        );
+
+                        return json_encode($data, true);
+                    }
+                } else {
+
+                    $data = array(
+                        "Status" => 404,
+                        "Detalles" => "El token es inválido"
+                    );
+                }
+            } else {
+
+                $data = array(
+                    "Status" => 404,
+                    "Detalles" => "No está autorizado para editar los registros"
+                );
+            }
+        }
+
+        return json_encode($data, true);
+    }
+
+    public function recuperarPago($id) {
+        //realiza solicitud a services y le decimos que ejecute el metodo request()
+        $request = \Config\Services::request();
+        $validation = \Config\Services::validation();
+
+        $headers = $request->getHeaders();
+
+        $registroModel = new RegistrosModel($db);
+
+        $registro = $registroModel->where('estado', 1)
+                ->findAll();
+
+        foreach ($registro as $key => $value) {
+
+            if (array_key_exists('Authorization', $headers) && !empty($headers['Authorization'])) {
+
+                if ($request->getHeader('Authorization') == 'Authorization: Basic ' . base64_encode($value["cliente_id"] . ":" . $value["llave_secreta"])) {
+
+                    $clienteModel = new PedidosModel($db);
+                    $cliente = $clienteModel->find($id);
+
+
+                    if (!empty($cliente)) {
+                        $datos = array('momento_pago' => 0);
                         $cliente = $clienteModel->update($id, $datos);
 
                         $data = array(

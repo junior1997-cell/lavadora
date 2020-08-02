@@ -22,13 +22,17 @@ class PedidosModel extends Model{
         ->orderby('pp.idpedido_prenda','DESC')
     	->get()->getResultArray();
     }	
-    public function getPedidosOne($idpersona){
-        return $this->db->table('persona p')   
-        ->where('p.idpersona', $idpersona)
-        ->join('sexo s', 'p.id_sexo = s.idsexo')
-        ->join('tipo_doc td', 'td.idtipo_doc = p.id_tipo_doc')
-        ->join('cargo c', 'c.idcargo = p.id_cargo')
-        ->join('distrito d', 'd.iddistrito = p.id_distrito')
+    public function getPedidosOne($idpedido){
+        return $this->db->table('pedido_prenda pp')
+        ->join('tipo_pedido tp', 'pp.id_tipo_pedido = tp.idtipo_pedido')
+        ->join('persona p', 'pp.id_usuario = p.idpersona')
+        ->join('clientes c', 'pp.id_cliente = c.idclientes') 
+        ->join('tipo_comprobante tc', 'tc.idtipo_comprobante = pp.id_tipo_comprobante')
+        ->join('tipo_lavado tl', 'tl.idtipo_lavado = pp.id_tipo_lavado')
+        ->join('estado_lavado et', 'et.idestado_lavado = pp.id_estado_lavado')
+        ->join('delivery d', 'd.iddelivery = pp.id_delivery')
+        ->orderby('pp.idpedido_prenda','DESC')
+        ->where('pp.idpedido_prenda',$idpedido)
         ->get()->getResultArray();
     } 
 

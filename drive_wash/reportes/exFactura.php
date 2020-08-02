@@ -27,10 +27,11 @@ $email = "drive_wash@gmail.com";
 //Obtenemos los datos de la cabecera de la venta actual
 require_once "../modelos/Venta.php";
 $venta= new Venta();
-$rsptav = $venta->ventacabecera($_GET["id"]);
+$rsptav = $venta->listar_one_detalle_pedido($_GET["id"]);
 //Recorremos todos los valores obtenidos
-$regv = $rsptav->fetch_object();
-
+// var_dump($rsptav);die;
+$regv = $rsptav["Detalle"][0];
+// var_dump($regv);die;
 //Establecemos la configuración de la factura
 $pdf = new PDF_Invoice( 'P', 'mm', 'A4' );
 $pdf->AddPage();
@@ -43,10 +44,12 @@ $pdf->addSociete(utf8_decode($empresa),
                   "Email : ".$email,$logo,$ext_logo);
 $pdf->fact_dev( "$regv->tipo_comprobante ", "$regv->serie_comprobante-$regv->num_comprobante" );
 $pdf->temporaire( "" );
-$pdf->addDate( $regv->fecha);
+$pdf->addDate( $regv['fecha_pedido_prenda']);
 
 //Enviamos los datos del cliente al método addClientAdresse de la clase Factura
-$pdf->addClientAdresse(utf8_decode($regv->cliente),"Domicilio: ".utf8_decode($regv->direccion),$regv->tipo_documento.": ".$regv->num_documento,"Email: ".$regv->email,"Telefono: ".$regv->telefono);
+$pdf->addClientAdresse(utf8_decode($regv['nombre_clientes'].' '.$regv['apellidos_clientes']),"Domicilio: ".
+  utf8_decode($regv['direccion_clientes'].' - '.$regv['nombre_distrito'].' - '.$regv['nombre_provincia'].' - '.$regv['nombre_departamento']),
+  $regv['nombre_tipo_doc'].": ".$regv['num_doc_clientes'],"Email: ".$regv->email,"Telefono: ".$regv['celular_clientes']);
 
 //Establecemos las columnas que va a tener la sección donde mostramos los detalles de la venta
 $cols=array( "CODIGO"=>23,
@@ -68,15 +71,18 @@ $pdf->addLineFormat($cols);
 $y= 89;
 
 //Obtenemos todos los detalles de la venta actual
-$rsptad = $venta->ventadetalle($_GET["id"]);
-
-while ($regd = $rsptad->fetch_object()) {
-  $line = array( "CODIGO"=> "$regd->codigo",
-                "DESCRIPCION"=> utf8_decode("$regd->articulo"),
-                "CANTIDAD"=> "$regd->cantidad",
-                "P.U."=> "$regd->precio_venta",
-                "DSCTO" => "$regd->descuento",
-                "SUBTOTAL"=> "$regd->subtotal");
+$rsptad = $venta->listar_one_detalle_pedido($_GET["id"]);
+// var_dump($rsptad);die;
+foreach ($rsptad['Detalle'] as $regd) {
+  // var_dump($regd);die;
+  $subtotala=($regd['cantidad_detalle_pedido_prenda']*$regd['precio_prenda']-$regd['descuento_detalle_pedido_prenda']);
+  $line = array( "CODIGO"=> "a",
+                "DESCRIPCION"=> utf8_decode("a"),
+                "CANTIDAD"=> "a",
+                "P.U."=> "a",
+                "DSCTO" => "a",
+                "SUBTOTAL"=> "a");
+  // var_dump($line);die;
             $size = $pdf->addLine( $y, $line );
             $y   += $size + 2;
 }

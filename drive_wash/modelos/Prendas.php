@@ -52,7 +52,7 @@ Class Prendas
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/Prendas",
+		  CURLOPT_URL => "http://localhost/git/lavadora/drive_restfull/index.php/Prendas",
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,

@@ -22,8 +22,9 @@ $usuario=new Usuario();
 // $id_cargo=isset($_POST["id_cargo"])? limpiarCadena($_POST["id_cargo"]):"";
 // $id_distri=isset($_POST["id_distrito"])? limpiarCadena($_POST["id_distrito"]):"";
 // $direccion=isset($_POST["direccion"])? limpiarCadena($_POST["direccion"]):"";
-// $imagen=isset($_POST["imagen"])? limpiarCadena($_POST["imagen"]):"";
+//$imagen=isset($_POST["imagen"])? limpiarCadena($_POST["imagen"]):"";
 // $imagencita="";
+
 
 
 switch ($_GET["op"]){
@@ -38,7 +39,11 @@ switch ($_GET["op"]){
 			if ($_SESSION['almacen']==1)
 			{
 
+				// $imagen= $_POST["imagen"];
+					
+				 
 				$id=$_POST["id"];
+				
 				$tipo_doc=$_POST["tipo_documento"];
 				// DNI ES UNA VARIABLE ENVIADA DESDE LA VISTA USUARIOS
 				$dni= $_POST["dni"];
@@ -52,29 +57,39 @@ switch ($_GET["op"]){
 				$id_cargo= $_POST["id_cargo"];
 				$id_distri= $_POST["id_distrito"];
 				$direccion= $_POST["direccion"];
-				// $imagen= $_POST["imagen"];
+				
 				 // $permiso= json_encode($_POST["permiso"],true);
 				$imagencita="";
 				 // var_dump($permiso); die;
 				// validamos "imagen" SI ESTA VACIA  
-				if(!empty($_POST["imagen"])){
-					
-					$imagen=$_POST["imagen"];
-				}
+				
 
 				if (!file_exists($_FILES['imagen']['tmp_name']) || !is_uploaded_file($_FILES['imagen']['tmp_name']))
 				{
-					$imagen=$_POST["imagenactual"];
+					
+					 if(empty($_POST["imagenactual"])){
+					
+						$imagen="nosabe.png";
+					}else{
+						$imagen=$_POST["imagenactual"];
+					}
+					// var_dump($imagen,$id,$tipo_doc,$dni,$nombres,$apellidos,$logi,$clave,$celular,$celular,$id_cargo,$id_distri,$direccion);die;
 				}
 				else 
 				{
-					$ext = explode(".", $_FILES["imagen"]["name"]);
-					if ($_FILES['imagen']['type'] == "image/jpg" || $_FILES['imagen']['type'] == "image/jpeg" || $_FILES['imagen']['type'] == "image/png")
-					{
-						$imagen = round(microtime(true)) . '.' . end($ext);
-						move_uploaded_file($_FILES["imagen"]["tmp_name"], "../files/usuarios/" . $imagen);
-					}
+
+						
+						$ext = explode(".", $_FILES["imagen"]["name"]);
+						if ($_FILES['imagen']['type'] == "image/jpg" || $_FILES['imagen']['type'] == "image/jpeg" || $_FILES['imagen']['type'] == "image/png")
+						{
+							$imagen = round(microtime(true)) . '.' . end($ext);
+							move_uploaded_file($_FILES["imagen"]["tmp_name"], "../files/usuarios/" . $imagen);
+						}
+					 // var_dump($imagen,$id,$tipo_doc,$dni,$nombres,$apellidos,$logi,$clave,$celular,$celular,$id_cargo,$id_distri,$direccion);die;
+					
 				}
+
+				// var_dump($imagen,$id,$tipo_doc,$dni,$nombres,$apellidos,$logi,$clave,$celular,$celular,$id_cargo,$id_distri,$direccion);die;
 				
 
 				// validamos "razonsocial" SI ESTA VACIA O TIENE DATOS
@@ -116,9 +131,7 @@ switch ($_GET["op"]){
 					//ENVIA EMAIL INGRESADO POR INPUT
 					$login=$logi;
 				}
-				if(empty($_POST["imagen"])){
-					$imagen="nosabe.png";
-				}
+				 
 
 				 if(empty($_POST["permiso"])){
 				 	$a=array("0"=>"8",
