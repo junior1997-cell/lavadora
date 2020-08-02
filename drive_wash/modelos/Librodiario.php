@@ -111,7 +111,7 @@ Class Librodiario
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/Librodiario",
+		  CURLOPT_URL => "http://drymatch.informaticapp.com/index.php/librodiario",
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -120,7 +120,7 @@ Class Librodiario
 		  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 		  CURLOPT_CUSTOMREQUEST => "GET",
 		  CURLOPT_HTTPHEADER => array(
-		    "Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VTY3lMbm9oTUwuN2tFWGNzNkt4cEk2SzRrU1FORGdpOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlL21wOHNrcHVaZzBUdC52RDFUNzV3UVNjSnJwSDU1dQ=="
+		    "Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VUU2hUQnZPZ2R2SHI5UG5DdExGbXlUZy53Lmc1Y01pOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlY2ZpLi90RmxTRFhPOS9NOTlFNGxWS0xNOGdodzhOeQ=="
 		  ),
 		));
 
