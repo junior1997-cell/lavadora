@@ -176,8 +176,8 @@ Class Persona
 
 		curl_close($curl);
 		$data = json_decode($response,true);
-		// return $data;
-		 var_dump($data); die;	
+		return $data;
+		 // var_dump($data); die;	
 	}
 
 
@@ -224,8 +224,8 @@ Class Persona
 
 		curl_close($curl);
 		$data = json_decode($response,true);
-		// return $data;
-		 var_dump($data); die;
+		 return $data;
+		 // var_dump($data); die;
 
 	 //var_dump ($data); die;	
 	}
@@ -258,8 +258,8 @@ Class Persona
 
 		curl_close($curl);
 		$data = json_decode($response,true);
-		// return $data;
-		 var_dump($data); die;
+		 return $data;
+		 // var_dump($data); die;
 
 	//var_dump ($data); die;	
 	}
@@ -292,8 +292,8 @@ Class Persona
 
 		curl_close($curl);
 		$data = json_decode($response,true);
-		// return $data;
-		 var_dump($data); die;
+		 return $data;
+		 // var_dump($data); die;
 
 	 //var_dump ($data); die;	
 	}

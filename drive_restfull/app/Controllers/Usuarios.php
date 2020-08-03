@@ -267,7 +267,7 @@ class Usuarios extends Controller {
                             $permiso =  $request->getVar("permiso");
                             //DECODIFICAMOS EL ARRAY QUE SE HA CAPTURADO COMO STRING
                             $deco_permiso = json_decode($permiso,true);
-                             return json_encode($deco_permiso, true);
+                             // return json_encode($deco_permiso, true);
                             // var_dump($deco_permiso);die; 
                             //CREAMOS UN CONTADOR PARA RECORRER EL ARRAY
                             $cont_elementos=0;
@@ -284,7 +284,7 @@ class Usuarios extends Controller {
                                 "Status"=>200,
                                 "Detalle"=>"Registro exitoso, usuario guardado"
                             );              
-                            // return json_encode($deco_permiso, true);
+                             return json_encode($data, true);
                         }
 
                     }else{

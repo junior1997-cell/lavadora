@@ -106,13 +106,13 @@ switch ($_GET["op"]){
 						$clavehash,$celular,$id_cargo,$id_distrito,$direccion,$imagen);
 
 						// $_POST['permiso']
-					echo $rspta ? "Usuario registrado" : "No se pudieron registrar todos los datos del usuario";
+					echo $rspta ? "Cliente registrado" : "No se pudieron registrar todos los datos del Cliente";
 				}
 				else {
 					$rspta=$persona->edit_api_usuario($id,$tipo_doc,$dni,$nomb,$apellidos,$sexo,$login,$clavehash,$celular,$id_cargo,$id_distrito,$direccion,$imagen);
 
 						// $_POST['permiso']
-					echo $rspta ? "Usuario actualizado" : "Usuario no se pudo actualizar";
+					echo $rspta ? "Cliente actualizado" : "Cliente no se pudo actualizar";
 				}
 			//Fin de las validaciones de acceso
 			}

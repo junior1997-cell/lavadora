@@ -164,7 +164,7 @@ if ($_SESSION['acceso']==1)
                           <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
                             <label id="antiguo_distrito">Distrito(*):</label>                        
                             <label id="nuevo_distrito">Nuevo Distrito(*):</label> 
-                            <select id="id_distrito" name="id_distrito" class="form-control selectpicker" data-live-search="true" ></select>                             
+                            <select id="id_distrito" name="id_distrito" class="form-control selectpicker" required data-live-search="true" ></select>                             
                           </div>
                           <!-- DIRECCION -->
                           <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
