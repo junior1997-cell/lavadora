@@ -45,6 +45,7 @@ $routes->resource('TipoLavado');
 $routes->resource('Tipopedido');
 $routes->resource('Librodiario');
 $routes->resource('Lventas');
+$routes->resource('balance');
 
 
 // junior rutas

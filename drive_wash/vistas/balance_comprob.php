@@ -27,43 +27,25 @@ if ($_SESSION['almacen']==1)
                         </div>
                     </div>
                     <!-- /.box-header -->
-                    <!-- centro -->
                     <div class="panel-body table-responsive" id="listadoregistros">
-                        <table id="tbllistado" class="table table-striped table-bordered table-condensed table-hover">
-                          <thead>
-                            <th>Opciones</th>
-                            <th>Nombre</th>
-                            <th>Categoría</th>
-                            <th>Código</th>
-                            <th>Stock</th>
-                            <th>Imagen</th>
-                            <th>Estado</th>
-                          </thead>
-                          <tbody>                            
-                          </tbody>
-                          <tfoot>
-                            <th>Opciones</th>
-                            <th>Nombre</th>
-                            <th>Categoría</th>
-                            <th>Código</th>
-                            <th>Stock</th>
-                            <th>Imagen</th>
-                            <th>Estado</th>
-                          </tfoot>
-                        </table>
-                    </div>
-
-                    <div>
                       <table border="1" width=10 style=" width: 100%; text-align:center;" > 
                         <style type="text/css"> 
                           .st{
                              text-align: center;
+                             background-color: #ACB3B8;
+
+                          }
+                          .td{
+                             text-align: initial;
+                             font-weight: bold;
+                             font-weight: 900;
+
                           }
                         </style>
                         <thead>
                           <tr> 
                               <th rowspan="2" class="st" >CUENTA</th> 
-                              <th rowspan="2" class="st">DETALLE</th> 
+                              <th rowspan="2" class="st" >DETALLE</th> 
                               <th colspan="2" class="st">SUMAS</th> 
                               <th colspan="2" class="st">SALDOS</th> 
                               <th colspan="2" class="st">EST.SIT.FIN</th> 
@@ -71,17 +53,17 @@ if ($_SESSION['almacen']==1)
 
                           </tr> 
                           <tr> 
-                              <td>DEBE</td> 
-                              <td>HABER</td> 
-                              <td>DUEDOR</td> 
-                              <td>ACREEDOR</td> 
-                              <td>ACTIVO</td> 
-                              <td>PAS Y PAT</td> 
-                              <td>PERDIDA</td> 
-                              <td>GANANCIA</td> 
+                              <td class="st">DEBE</td> 
+                              <td class="st">HABER</td> 
+                              <td class="st">DUEDOR</td> 
+                              <td class="st">ACREEDOR</td> 
+                              <td class="st">ACTIVO</td> 
+                              <td class="st">PAS Y PAT</td> 
+                              <td class="st">PERDIDA</td> 
+                              <td class="st">GANANCIA</td> 
                           </tr>
                           </thead>
-                          <tbody id="filas" onclick="tdfilas()" >
+                          <tbody id="filas" class="td">
                           </tbody>
                       </table> 
                       </center>
@@ -101,10 +83,7 @@ else
 }
 require 'footer.php';
 ?>
-<script type="text/javascript" src="../public/js/JsBarcode.all.min.js"></script>
-<script type="text/javascript" src="../public/js/jquery.PrintArea.js"></script>
 <script type="text/javascript" src="scripts/balance.js"></script>
-<script type="text/javascript" src="scripts/articulo.js"></script>
 <?php 
 }
 ob_end_flush();
