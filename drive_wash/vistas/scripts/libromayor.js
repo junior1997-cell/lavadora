@@ -46,6 +46,7 @@ function init(){
 	listar79();
 	listar94();
 	listar95();
+	tdfilas();
 
 	$("#formulario").on("submit",function(e)
 	{
@@ -266,11 +267,9 @@ function suma_debe_haber10(){
 
 			var resta=tdebe-thaber;
 			var x= roundNumber(resta,3);
-			//console.log(x);
 			$("#saldo_haber").val(x);
 
 			$("#saldo_debe").val('0');
-			//$("#saldo_haber").val('0');
 		}else{
 			var restb=thaber-tdebe;
 			var y= roundNumber(restb,3);
@@ -334,6 +333,9 @@ function suma_debe_haber12(){
 		$("#haber12").val(totall);
 		var tdebe=parseFloat(total, 10);
 		var thaber=parseFloat(totall, 10);
+		//
+		//document.getElementById("bcdoced").innerHTML = tdebe;
+		//document.getElementById("bcdoceh").innerHTML = thaber;
 
 		if (tdebe>thaber) {
 
@@ -408,6 +410,10 @@ function suma_debe_haber14(){
 		var tdebe=parseFloat(total, 10);
 		var thaber=parseFloat(totall, 10);
 
+		//("bccatod").innerHTML = tdebe;
+		//("bccatoh").innerHTML = thaber;
+
+
 		if (tdebe>thaber) {
 
 			var resta=tdebe-thaber;
@@ -481,6 +487,9 @@ function suma_debe_haber20(){
 		$("#haber20").val(totall);
 		var tdebe=parseFloat(total, 10);
 		var thaber=parseFloat(totall, 10);
+		//
+		//("bcventd").innerHTML = tdebe;
+		//("bcventh").innerHTML = thaber;
 
 		if (tdebe>thaber) {
 
@@ -554,6 +563,8 @@ function suma_debe_haber33(){
 		$("#haber33").val(totall);
 		var tdebe=parseFloat(total, 10);
 		var thaber=parseFloat(totall, 10);
+		//("cbtresd").innerHTML = tdebe;
+		//("cbtresh").innerHTML = thaber;
 
 		if (tdebe>thaber) {
 
@@ -627,6 +638,9 @@ function suma_debe_haber40(){
 		$("#haber40").val(totall);
 		var tdebe=parseFloat(total, 10);
 		var thaber=parseFloat(totall, 10);
+		//
+		//("cbcuarentd").innerHTML = tdebe;cbcuarentdosd
+		//("cbcuarenth").innerHTML = thaber;
 
 		if (tdebe>thaber) {
 
@@ -700,6 +714,9 @@ function suma_debe_haber41(){
 		$("#haber41").val(totall);
 		var tdebe=parseFloat(total, 10);
 		var thaber=parseFloat(totall, 10);
+		//
+		//("cbcuarentunod").innerHTML = tdebe;
+		//("cbcuarentunoh").innerHTML = thaber;
 
 		if (tdebe>thaber) {
 
@@ -773,6 +790,9 @@ function suma_debe_haber42(){
 		$("#haber42").val(totall);
 		var tdebe=parseFloat(total, 10);
 		var thaber=parseFloat(totall, 10);
+		//
+		//("cbcuarentdosd").innerHTML = tdebe;
+		//("cbcuarentdosh").innerHTML = thaber;
 
 		if (tdebe>thaber) {
 
@@ -846,6 +866,9 @@ function suma_debe_haber45(){
 		$("#haber45").val(totall);
 		var tdebe=parseFloat(total, 10);
 		var thaber=parseFloat(totall, 10);
+		//
+		//("cbcuarentcincod").innerHTML = tdebe;
+		//("cbcuarentcincoh").innerHTML = thaber;
 
 		if (tdebe>thaber) {
 
@@ -919,6 +942,9 @@ function suma_debe_haber46(){
 		$("#haber46").val(totall);
 		var tdebe=parseFloat(total, 10);
 		var thaber=parseFloat(totall, 10);
+				//
+		//("cbcuarentseisd").innerHTML = tdebe;
+		//("cbcuarentseish").innerHTML = thaber;
 
 		if (tdebe>thaber) {
 
@@ -993,6 +1019,10 @@ function suma_debe_haber50(){
 		var tdebe=parseFloat(total, 10);
 		var thaber=parseFloat(totall, 10);
 
+		//
+		//("cbcincuentcerod").innerHTML = tdebe;
+		//("cbcincuentceroh").innerHTML = thaber;
+
 		if (tdebe>thaber) {
 
 			var resta=tdebe-thaber;
@@ -1065,6 +1095,9 @@ function suma_debe_haber59(){
 		$("#haber59").val(totall);
 		var tdebe=parseFloat(total, 10);
 		var thaber=parseFloat(totall, 10);
+		//
+		//("cbcincuentnueved").innerHTML = tdebe;
+		//("cbcincuentnueved").innerHTML = thaber;
 
 		if (tdebe>thaber) {
 
@@ -1138,6 +1171,10 @@ function suma_debe_haber60(){
 		$("#haber60").val(totall);
 		var tdebe=parseFloat(total, 10);
 		var thaber=parseFloat(totall, 10);
+		//
+		//
+		//("cbsesentcerod").innerHTML = tdebe;
+		//("cbsesentceroh").innerHTML = thaber;
 
 		if (tdebe>thaber) {
 
@@ -1211,6 +1248,10 @@ function suma_debe_haber61(){
 		$("#haber61").val(totall);
 		var tdebe=parseFloat(total, 10);
 		var thaber=parseFloat(totall, 10);
+		//
+		//
+		//("cbsesentunod").innerHTML = tdebe;
+		//("cbsesentunoh").innerHTML = thaber;
 
 		if (tdebe>thaber) {
 
@@ -1284,6 +1325,9 @@ function suma_debe_haber62(){
 		$("#haber62").val(totall);
 		var tdebe=parseFloat(total, 10);
 		var thaber=parseFloat(totall, 10);
+		//
+		//("cbcincuentnueved").innerHTML = tdebe;
+		//("cbcincuentnueveh").innerHTML = thaber;
 
 		if (tdebe>thaber) {
 
@@ -1357,6 +1401,9 @@ function suma_debe_haber63(){
 		$("#haber63").val(totall);
 		var tdebe=parseFloat(total, 10);
 		var thaber=parseFloat(totall, 10);
+		//
+		//("cbcincuentnueved").innerHTML = tdebe;
+		//("cbcincuentnueveh").innerHTML = thaber;
 
 		if (tdebe>thaber) {
 
@@ -1430,6 +1477,9 @@ function suma_debe_haber69(){
 		$("#haber69").val(totall);
 		var tdebe=parseFloat(total, 10);
 		var thaber=parseFloat(totall, 10);
+		//
+		//("cbcincuentnueved").innerHTML = tdebe;
+		//("cbcincuentnueveh").innerHTML = thaber;
 
 		if (tdebe>thaber) {
 
@@ -1503,6 +1553,9 @@ function suma_debe_haber70(){
 		$("#haber70").val(totall);
 		var tdebe=parseFloat(total, 10);
 		var thaber=parseFloat(totall, 10);
+		//
+		//("cbcincuentnueved").innerHTML = tdebe;
+		//("cbcincuentnueveh").innerHTML = thaber;
 
 		if (tdebe>thaber) {
 
@@ -1576,6 +1629,9 @@ function suma_debe_haber79(){
 		$("#haber79").val(totall);
 		var tdebe=parseFloat(total, 10);
 		var thaber=parseFloat(totall, 10);
+		//
+		//("cbcincuentnueved").innerHTML = tdebe;
+		//("cbcincuentnueveh").innerHTML = thaber;
 
 		if (tdebe>thaber) {
 
@@ -1649,6 +1705,9 @@ function suma_debe_haber94(){
 		$("#haber94").val(totall);
 		var tdebe=parseFloat(total, 10);
 		var thaber=parseFloat(totall, 10);
+		//
+		//("cbcincuentnueved").innerHTML = tdebe;
+		//("cbcincuentnueveh").innerHTML = thaber;
 
 		if (tdebe>thaber) {
 
@@ -1717,6 +1776,9 @@ function suma_debe_haber95(){
 
 		total= data['Detalle'][0]['debe'];
 		totall= data['Detalle'][0]['haber'];
+		//
+		//("cbcincuentnueved").innerHTML = tdebe;
+		//("cbcincuentnueveh").innerHTML = thaber;
 
 		$("#debe95").val(total);
 		$("#haber95").val(totall);
@@ -1743,335 +1805,281 @@ function suma_debe_haber95(){
  	});
 }
 
+function tdfilas(){
+	td=
 
-//funcion para la suma del debe y el haber
-//var diez=10;
+	'<tr>'+
+	'<td>10</td>'+
+	'<td>EFECTIVO Y EQUIVALENTES DE EFECTIVO</td>'+
+	'<td id="bcDiezd"></td>'+
+	'<td id="bcDiezh"></td>'+
+	'<td id="bcDeudordd"></td>'+
+	'<td id="bcacreedordd"></td>'+
+	'<td >10</td>'+
+	'<td >10</td>'+
+	'<td >10</td>'+
+	'<td >10</td>'+
+	'</tr>'+
+	'<tr>'+
+	'<td>12</td>'+
+	'<td>CUENTAS POR COBRAR COMERCIALES – TERCEROS</td>'+
+	'<td id="bcdoced"></td>'+
+	'<td id="bcdoceh"></td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'</tr>'+
+	'<tr>'+
+	'<td>14</td>'+
+	'<td>SERVICIOS Y OTROS CONTRATADOS POR ANTICIPADO</td>'+
+	'<td id="bccatod"></td>'+
+	'<td id="bccatoh"></td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'</tr>'+
+	'<tr>'+
+	'<td>20</td>'+
+	'<td>MERCADERÍAS</td>'+
+	'<td id="bcventd"></td>'+
+	'<td id="bcventh"></td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'</tr>'+
+	'<tr>'+
+	'<td>33</td>'+
+	'<td>PROPIEDAD, PLANTA Y EQUIPO</td>'+
+	'<td id="cbtresd"></td>'+
+	'<td id="cbtresh"></td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'</tr>'+
+	'<tr>'+
+	'<td>40</td>'+
+	'<td>TRIBUTOS, CONTRAP. Y APORTES AL SIST. PENSIONES Y DE SALUD POR PAGAR</td>'+
+	'<td id="cbcuarentd"></td>'+
+	'<td id="cbcuarenth"></td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'</tr>'+
+	'<tr>'+
+	'<td>41</td>'+
+	'<td>REMUNERACIONES Y PARTICIPACIONES POR PAGAR</td>'+
+	'<td id="cbcuarentunod"></td>'+
+	'<td id="cbcuarentunoh"></td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'</tr>'+
+	'<tr>'+
+	'<td>42</td>'+
+	'<td>CUENTAS POR PAGAR COMERCIALES TERCEROS</td>'+
+	'<td id="cbcuarentdosd"></td>'+
+	'<td id="cbcuarentdosh"></td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'</tr>'+
+	'<tr>'+
+	'<td>45</td>'+
+	'<td>OBLIGACIONES FINANCIERAS</td>'+
+	'<td id="cbcuarentcincod"></td>'+
+	'<td id="cbcuarentcincoh"></td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'</tr>'+
+	'<tr>'+
+	'<td>46</td>'+
+	'<td>CUENTAS POR PAGAR DIVERSAS – TERCEROS</td>'+
+	'<td id="cbcuarentseisd"></td>'+
+	'<td id="cbcuarentseish"></td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'</tr>'+
+	'<tr>'+
+	'<td>50</td>'+
+	'<td >CAPITAL</td>'+
+	'<td id="cbcincuentcerod"></td>'+
+	'<td id="cbcincuentceroh"></td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'</tr>'+
+	'<tr>'+
+	'<td>59</td>'+
+	'<td>RESULTADOS ACUMULADOS</td>'+
+	'<td id="cbcincuentnueved"></td>'+
+	'<td id="cbcincuentnueveh"></td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'</tr>'+
 
-//Función ListarArticulos
-/*function listarArticulos(){
-	tabla=$('#tblarticulos').dataTable(
-	{
-		"aProcessing": true,//Activamos el procesamiento del datatables
-	    "aServerSide": true,//Paginación y filtrado realizados por el servidor
-	    dom: 'Bfrtip',//Definimos los elementos del control de tabla
-	    buttons: [		          
-		            
-		        ],
-		"ajax":
-				{
-					url: '../ajax/libromayor.php?op=listarPedido_venta',
-					type : "get",
-					dataType : "json",						
-					error: function(e){
-						console.log(e.responseText);	
-					}
-				},
-		"bDestroy": true,
-		"iDisplayLength": 5,//Paginación
-	    "order": [[ 0, "desc" ]]//Ordenar (columna,orden)
-	}).DataTable();
-}
-//Función ListarArticulos
-function listarDetalleuniq(){
-		tabla=$('#detallesuniq').dataTable(
-		{
-			"aProcessing": true,//Activamos el procesamiento del datatables
-		    "aServerSide": true,//Paginación y filtrado realizados por el servidor
-		    dom: 'Bfrtip',//Definimos los elementos del control de tabla
-		    buttons: [		          
-			            
-			        ],
-			"ajax":
-					{
-						url: '../ajax/libromayor.php?op=listarDetalleuniq',
-						type : "get",
-						dataType : "json",						
-						error: function(e){
-							console.log(e.responseText);	
-						}
-					},
-			"bDestroy": true,
-			"iDisplayLength": 5,//Paginación
-		    "order": [[ 0, "desc" ]]//Ordenar (columna,orden)
-		}).DataTable();
-}
-//Función para guardar o editar
-
-function guardaryeditar(e){
-	e.preventDefault(); //No se activará la acción predeterminada del evento
-	//$("#btnGuardar").prop("disabled",true);
-	var formData = new FormData($("#formulario")[0]);
-
-	$.ajax({
-		url: "../ajax/ingreso.php?op=guardaryeditar",
-	    type: "POST",
-	    data: formData,
-	    contentType: false,
-	    processData: false,
-
-	    success: function(datos)
-	    {                    
-	          bootbox.alert(datos);	          
-	          mostrarform(false);
-	          listar();
-	    }
-
-	});
-	limpiar();
-}
-
-function mostrar(idingreso){
-	$.post("../ajax/ingreso.php?op=mostrar",{idingreso : idingreso}, function(data, status)
-	{
-		data = JSON.parse(data);		
-		mostrarform(true);
-
-		$("#idproveedor").val(data.idproveedor);
-		$("#idproveedor").selectpicker('refresh');
-		$("#tipo_comprobante").val(data.tipo_comprobante);
-		$("#tipo_comprobante").selectpicker('refresh');
-		$("#serie_comprobante").val(data.serie_comprobante);
-		$("#num_comprobante").val(data.num_comprobante);
-		$("#fecha_hora").val(data.fecha);
-		$("#impuesto").val(data.impuesto);
-		$("#idingreso").val(data.idingreso);
-
-		//Ocultar y mostrar los botones
-		$("#btnGuardar").hide();
-		$("#btnCancelar").show();
-		$("#btnAgregarArt").hide();
-		$("#btnAgregarfila").show();
- 	});
-
- 	$.post("../ajax/ingreso.php?op=listarDetalle&id="+idingreso,function(r){
-	        $("#detalles").html(r);
-	});
-}
-
-//Función para anular registros
-function anular(idingreso){
-	bootbox.confirm("¿Está Seguro de anular el ingreso?", function(result){
-		if(result)
-        {
-        	$.post("../ajax/ingreso.php?op=anular", {idingreso : idingreso}, function(e){
-        		bootbox.alert(e);
-	            tabla.ajax.reload();
-        	});	
-        }
-	})
-}
-
-//Declaración de variables necesarias para trabajar con las compras y
-//sus detalles
-var impuesto=18;
-var cont=0;
-var detalles=0;
-//$("#guardar").hide();
-$("#btnGuardar").hide();
-$("#tipo_comprobante").change(marcarImpuesto);
-
-function marcarImpuesto(){
-  	var tipo_comprobante=$("#tipo_comprobante option:selected").text();
-  	if (tipo_comprobante=='Factura')
-    {
-        $("#impuesto").val(impuesto); 
-    }
-    else
-    {
-        $("#impuesto").val("0"); 
-    }
-  }
-/*function total_pedido_ld(total){
-	console.log(total)
-	var totalll;
-
-	$.post("../ajax/libromayor.php?op=total_pedido_ld",{total : total}, function(data, status)
-	{
-		data = JSON.parse(data);		
-		//console.log(data);
-		totalll= data['Detalle'][0]['total_pedido'];
-		console.log(totalll);
- 	});
-}
-function agregarfila(){
-	//total_pedido_ld(idarticulo);
-  	var cantidad=1;
-    var precio_compra=1;
-    var precio_venta=1;
-    var denominacion='Denominación';
-  	//var totall=totalll;
-
-	var subtotal=cantidad*precio_compra;
-	var fila='<tr class="filas" id="fila'+cont+'">'+
-	'<td><button type="button" class="btn btn-danger" onclick="eliminarDetalle('+cont+')">X</button></td>'+
-	'<td><input type="text" style="width: 50px" name="n_operacion[]" id="n_operacion[]" value="'+cantidad+'"></td>'+
-	'<td><input type="Date" style="width: 118px" name="fecha[]" id="fecha[]" value="" required></td>'+
-	'<td><textarea type="text" cols="15" rows="2" style="resize: both;" name="glosa[]" id="glosa[]" value="" placeholder="Escribe la glosa de la operacion"></textarea></td>'+
-	'<td><select id="id_libroC[]" name="id_libroC[]" style="width: 90px" class="form-control" required>'+
-    	'<option value="33">select</option>'+
-    	'<option value="1"> 1 Libro Caja y Bancos</option>'+
-		'<option value="2"> 2 Libro Ingresos y Gastos</option>'+
-		'<option value="3"> 3 Libro de Inventarios y Balances</option>'+
-		'<option value="4"> 4 Libro de Retenciones Incisos E) y F) del Articulo</option>'+
-		'<option value="5"> 5 Libro Diario</option>'+
-		'<option value="6"> 5-A Libro Diario de Formato Simplificado</option>'+
-		'<option value="7"> 6 Libro Mayor</option>'+
-		'<option value="8"> 7 Registro de Activos Fijos</option>'+
-		'<option value="9"> 8 Registro de Compras</option>'+
-		'<option value="10">9 Registro de Consignaciones</option>'+
-		'<option value="11">10 Registro de Costos</option>'+
-		'<option value="12">11 Registro de Huéspedes</option>'+
-		'<option value="13">12 Registro de Inventario Permanente Unidades Físicas</option>'+
-		'<option value="14">13 Registro de Inventario Permanente Valorizado</option>'+
-		'<option value="15">14 Registro de Ventas e Ingresos</option>'+
-		'<option value="16">15 Registro de Ventas e Ingresos-Artículo 23° Res. de Superintendencia N° 266-2004/SUNAT</option>'+
-	  	'<option value="17">16 Registro del Régimen de Percepciones</option>'+
-	 	'<option value="18">17 Registro del Régimen de Retenciones</option>'+
-	  	'<option value="19">18 Registro IVAP</option>'+
-	  	'<option value="20">19 Registro(s) Auxiliar(es) de Adquisiciones-Articulo 8° Resolución de Superintendencia N° 022-98/SUNAT</option>'+
-	  	'<option value="21">20 Registro(s) Auxiliar(es) de Adquisiciones-Insiso A) Primer Párrafo Artículo 5° Res. de Superintendencia N° 021-99/SUNAT</option>'+
-	  	'<option value="22">21 Registro(s) Auxiliar(es) de Adquisiciones-Insiso A) Primer Párrafo Artículo 5° Res. de Superintendencia N° 142-2001/SUNAT</option>'+
-	  	'<option value="23">22 Registro(s) Auxiliar(s) de Adquisiciones-Insiso A) Primer Párrafo Artículo 5° Resolución de Superintendencia N° 256-2004/SUNAT</option>'+
-	  	'<option value="24">23 Registro(s) Auxiliar(s) de Adquisiciones-Insiso A) Primer Párrafo Artículo 5° Res. de Superintendencia N° 257-2004/SUNAT</option>'+
-	  	'<option value="25">24 Registro(s) Auxiliar(s) de Adquisiciones-Insiso A) Primer Párrafo Artículo 5° Res. de Superintendencia N° 258-2004/SUNAT</option>'+
-	  	'<option value="26">25 Registro(s) Auxiliar(s) de Adquisiciones-Insiso A) Primer Párrafo Artículo 5° Res. de Superintendencia N° 259-2004/SUNAT</option>'+
-	  	'<option value="27">26 Registro de Retenciones Artículo 77-A de la Ley de Impuesto a la Renta</option>'+
-	  	'<option value="28">27 Libro de Actas de la Empresa Individual de Responsabilidad Limitada</option>'+
-	  	'<option value="29">28 Libro de Actas de la Junta General de Accionistas</option>'+
-	  	'<option value="30">29 Libro de Actas del Directorio</option>'+
-	  	'<option value="31">30 Libro de Matrícula de Acciones</option>'+
-	  	'<option value="32">31 Libro de Planillas</option>'+'</select>'+'</td>'+
-	'<td><input type="text" style="width: 40px" name="idarticulo[]" value="">'+'</td>'+
-	'<td><input type="text" readonly style="width: 70px" name="idarticulo[]" value="">'+'</td>'+
-	'<td><input type="number"  style="width: 70px" name="idarticulo[]" min="10" value="">'+'</td>'+
-	'<td><input type="text" name="precio_compra[]" id="precio_compra[]" value=""></td>'+
-	'<td><input type="number" style="width: 70px" name="precio_compra[]" id="total_ld[]" value=""></td>'+
-	'<td><input type="number" style="width: 70px" name="precio_compra[]"  value=""></td>'+
-	'<td><button type="button" onclick="modificarSubototales()" class="btn btn-info"><i class="fa fa-refresh"></i></button></td>'+
+	'<tr>'+
+	'<td>60</td>'+
+	'<td>COMPRAS</td>'+
+	'<td id="cbsesentcerod"></td>'+
+	'<td id="cbsesentceroh"></td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'</tr>'+
+	'<tr>'+
+	'<td>61</td>'+
+	'<td>VARIACIÓN DE INVENTARIOS</td>'+
+	'<td id="cbsesenunotd"></td>'+
+	'<td id="cbsesentunoh"></td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'</tr>'+
+	'<tr>'+
+	'<td>63</td>'+
+	'<td>GASTOS DE PERSONAL Y DIRECTORES</td>'+
+	'<td id="cbcuarentunod">hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'</tr>'+
+	'<tr>'+
+	'<td>69</td>'+
+	'<td>COSTO DE VENTAS</td>'+
+	'<td id="cbcuarentunod">hola</td>'+
+	'<td id="cbcuarentunod">hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'</tr>'+
+	'<tr>'+
+	'<td>70</td>'+
+	'<td>VENTAS</td>'+
+	'<td id="cbcuarentunod">hola</td>'+
+	'<td id="cbcuarentunod">hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'</tr>'+
+	'<tr>'+
+	'<td>79</td>'+
+	'<td>CARGAS IMPUTABLES A CUENTAS DE COSTOS Y GASTOS</td>'+
+	'<td id="cbcuarentunod">hola</td>'+
+	'<td id="cbcuarentunod">hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'</tr>'+
+	'<tr>'+
+	'<td>94</td>'+
+	'<td>GASTOS DE ADMINISTRACIÓN</td>'+
+	'<td id="cbcuarentunod">hola</td>'+
+	'<td id="cbcuarentunod">hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'</tr>'+
+	'<tr>'+
+	'<td>95</td>'+
+	'<td>GASTO DE VENTAS</td>'+
+	'<td id="cbcuarentunod">hola</td>'+
+	'<td id="cbcuarentunod">hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'</tr>'+
+	'<tr style=" background-color: #94C1DF;">'+
+	'<td>TOTAL</td>'+
+	'<td></td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'</tr>'+
+	'<tr>'+
+	'<td>59</td>'+
+	'<td>RESULTADOS ACUMULADOS</td>'+
+	'<td ></td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
+	'<td>hola</td>'+
 	'</tr>';
-	cont++;
-	detalles=detalles+1;
-	$('#detalles').append(fila);
-	//$('#fila').append(fila);
-	modificarSubototales();
-}
 
-function agregarDatellepedido(idarticulo,articulo,totall){
-	//total_pedido_ld(idarticulo);
-  	var cantidad=1;
-    var precio_compra=1;
-    var precio_venta=1;
-    var denominacion='Denominación';
-  	//var totall=totalll;
-
-    if (idarticulo!="")
-    {
-    	var subtotal=cantidad*precio_compra;
-    	var fila='<tr class="filas" id="fila'+cont+'">'+
-    	'<td><button type="button" class="btn btn-danger" onclick="eliminarDetalle('+cont+')">X</button></td>'+
-    	'<td><input type="text" style="width: 50px" name="n_operacion[]" id="n_operacion[]" value="'+cantidad+'"></td>'+
-    	'<td><input type="Date" style="width: 118px" name="fecha[]" id="fecha[]" value="" required></td>'+
-    	'<td><textarea type="text" cols="15" rows="2" style="resize: both;" name="glosa[]" id="glosa[]" value="" placeholder="Escribe la glosa de la operacion"></textarea></td>'+
-    	'<td><select id="id_libroC[]" name="id_libroC[]" style="width: 90px" class="form-control" required>'+
-    	'<option value="33">select</option>'+
-    	'<option value="1"> 1 Libro Caja y Bancos</option>'+
-		'<option value="2"> 2 Libro Ingresos y Gastos</option>'+
-		'<option value="3"> 3 Libro de Inventarios y Balances</option>'+
-		'<option value="4"> 4 Libro de Retenciones Incisos E) y F) del Articulo</option>'+
-		'<option value="5"> 5 Libro Diario</option>'+
-		'<option value="6"> 5-A Libro Diario de Formato Simplificado</option>'+
-		'<option value="7"> 6 Libro Mayor</option>'+
-		'<option value="8"> 7 Registro de Activos Fijos</option>'+
-		'<option value="9"> 8 Registro de Compras</option>'+
-		'<option value="10">9 Registro de Consignaciones</option>'+
-		'<option value="11">10 Registro de Costos</option>'+
-		'<option value="12">11 Registro de Huéspedes</option>'+
-		'<option value="13">12 Registro de Inventario Permanente Unidades Físicas</option>'+
-		'<option value="14">13 Registro de Inventario Permanente Valorizado</option>'+
-		'<option value="15">14 Registro de Ventas e Ingresos</option>'+
-		'<option value="16">15 Registro de Ventas e Ingresos-Artículo 23° Res. de Superintendencia N° 266-2004/SUNAT</option>'+
-	  	'<option value="17">16 Registro del Régimen de Percepciones</option>'+
-	 	'<option value="18">17 Registro del Régimen de Retenciones</option>'+
-	  	'<option value="19">18 Registro IVAP</option>'+
-	  	'<option value="20">19 Registro(s) Auxiliar(es) de Adquisiciones-Articulo 8° Resolución de Superintendencia N° 022-98/SUNAT</option>'+
-	  	'<option value="21">20 Registro(s) Auxiliar(es) de Adquisiciones-Insiso A) Primer Párrafo Artículo 5° Res. de Superintendencia N° 021-99/SUNAT</option>'+
-	  	'<option value="22">21 Registro(s) Auxiliar(es) de Adquisiciones-Insiso A) Primer Párrafo Artículo 5° Res. de Superintendencia N° 142-2001/SUNAT</option>'+
-	  	'<option value="23">22 Registro(s) Auxiliar(s) de Adquisiciones-Insiso A) Primer Párrafo Artículo 5° Resolución de Superintendencia N° 256-2004/SUNAT</option>'+
-	  	'<option value="24">23 Registro(s) Auxiliar(s) de Adquisiciones-Insiso A) Primer Párrafo Artículo 5° Res. de Superintendencia N° 257-2004/SUNAT</option>'+
-	  	'<option value="25">24 Registro(s) Auxiliar(s) de Adquisiciones-Insiso A) Primer Párrafo Artículo 5° Res. de Superintendencia N° 258-2004/SUNAT</option>'+
-	  	'<option value="26">25 Registro(s) Auxiliar(s) de Adquisiciones-Insiso A) Primer Párrafo Artículo 5° Res. de Superintendencia N° 259-2004/SUNAT</option>'+
-	  	'<option value="27">26 Registro de Retenciones Artículo 77-A de la Ley de Impuesto a la Renta</option>'+
-	  	'<option value="28">27 Libro de Actas de la Empresa Individual de Responsabilidad Limitada</option>'+
-	  	'<option value="29">28 Libro de Actas de la Junta General de Accionistas</option>'+
-	  	'<option value="30">29 Libro de Actas del Directorio</option>'+
-	  	'<option value="31">30 Libro de Matrícula de Acciones</option>'+
-	  	'<option value="32">31 Libro de Planillas</option>'+'</select>'+'</td>'+
-    	'<td><input type="text" style="width: 40px" name="idarticulo[]" value="">'+'</td>'+
-    	'<td><input type="text" readonly style="width: 70px" name="idarticulo[]" value="'+articulo+'">'+'</td>'+
-    	'<td><input type="number"  style="width: 70px" name="idarticulo[]" min="10" value="'+idarticulo+'">'+'</td>'+
-    	'<td><input type="text" name="precio_compra[]" id="precio_compra[]" value="'+denominacion+'"></td>'+
-    	'<td><input type="number" style="width: 70px" name="precio_compra[]" id="total_ld[]" value="'+totall+'"></td>'+
-    	'<td><input type="number" style="width: 70px" name="precio_compra[]"  value="'+totall+'"></td>'+
-    	'<td><button type="button" onclick="modificarSubototales()" class="btn btn-info"><i class="fa fa-refresh"></i></button></td>'+
-    	'</tr>';
-    	cont++;
-    	detalles=detalles+1;
-    	$('#detalles').append(fila);
-    	//$('#fila').append(fila);
-    	modificarSubototales();
-    }
-    else
-    {
-    	alert("Error al ingresar el detalle, revisar los datos del artículo");
-    }
+	//console.log(td);
+	//$("#filas").val(td);
+	$('#filas').append(td);
 }
 
 
-function modificarSubototales(){
-  	var cant = document.getElementsByName("cantidad[]");
-    var prec = document.getElementsByName("precio_compra[]");
-    var sub = document.getElementsByName("subtotal");
 
-    for (var i = 0; i <cant.length; i++) {
-    	var inpC=cant[i];
-    	var inpP=prec[i];
-    	var inpS=sub[i];
-
-    	inpS.value=inpC.value * inpP.value;
-    	document.getElementsByName("subtotal")[i].innerHTML = inpS.value;
-    }
-    calcularTotales();
-
-}
-function calcularTotales(){
-  	var sub = document.getElementsByName("subtotal");
-  	var total = 0.0;
-
-  	for (var i = 0; i <sub.length; i++) {
-		total += document.getElementsByName("subtotal")[i].value;
-	}
-	$("#total").html("S/. " + total);
-    $("#total_compra").val(total);
-    evaluar();
-}
-
-function evaluar(){
-  	if (detalles>0)
-    {
-      $("#btnGuardar").show();
-    }
-    else
-    {
-      $("#btnGuardar").hide(); 
-      cont=0;
-    }
-}
-
-function eliminarDetalle(indice){
-  	$("#fila" + indice).remove();
-  	calcularTotales();
-  	detalles=detalles-1;
-  	evaluar();
-  }*/
 
 init();
