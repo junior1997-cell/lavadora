@@ -200,10 +200,10 @@ if (strlen(session_id()) < 1)
               </ul>
                 </li> 
                                
-                <li id="lPermisos"><a href="balance_comprob.php"><i class="fa fa-table"></i> Balance de comprobación </a></li>
-                 <li id="lPermisos"><a href="ingreso.php"><i class="fa fa-circle-o"></i>EEFF</a></li>
-                  <li id="lPermisos"><a href="ingreso.php"><i class="fa fa-circle-o"></i>ERI</a></li>
-                <li id="lUsuarios"><a href="ingreso.php"><i class="fa fa-book"></i> Topo de libro</a></li>
+                <li id="lPermisos"><a href="balance_comprob.php"><i class="fa fa-table"></i>Balance de Comprob.</a></li>
+                 <li id="lPermisos"><a href="estado_situacion.php"><i class="fa fa-circle-o"></i>EEFF</a></li>
+                  <li id="lPermisos"><a href="estado_resultado.php"><i class="fa fa-circle-o"></i>ERI</a></li>
+                <li id="lUsuarios"><a href="ingreso.php"><i class="fa fa-book"></i> Tipo de libro</a></li>
                 <li id="lPermisos"><a href="ingreso.php"><i class="fa fa-circle-o"></i></a></li>
                 
               </ul>
