@@ -86,13 +86,17 @@ if ($_SESSION['acceso']==1)
                             </select>
                           </div>
                           <!-- CELULAR -->
-                          <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+                           <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">                  
                             <label>CARGO U OCUPACIÓN:</label>
-                            <input type="text" class="form-control" name="cargo" id="cargo"  placeholder="Cargo" required>
+                            <input type="hidden" name="idventa" id="idventa">
+                            <select id="cargo" name="cargo" class="form-control selectpicker" data-live-search="true" required>
+                              
+                            </select>
                           </div>
+
                           <!-- CARGO -->
                           <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
-                            <label id="antiguo_cargo">ASIGNACIÓN FAMILIAR:</label>                   <select id="id_asignacion" name="id_asignacion" onchange="ShowSelected();" class="form-control selectpicker" data-live-search="true"  >
+                            <label id="antiguo_cargo">ASIGNACIÓN FAMILIAR:</label>         <select id="id_asignacion" name="id_asignacion" onchange="ShowSelected();" class="form-control selectpicker" data-live-search="true"  >
                               <option>SELECT</option>
                               <option value="SI">SI</option>
                               <option value="NO">NO</option>
@@ -104,26 +108,26 @@ if ($_SESSION['acceso']==1)
                             <input type="number" class="form-control monto" name="sueldo_basico" id="sueldo_basico" placeholder="Sueldo Básico"  onkeyup="sumar();"  required>
                           </div>
 
-                           <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+                           <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-2 col-xl-2">
                             <label>ASIGNACIÓN FAMILIAR:</label>
                             <input type="number" class="form-control monto" name="monto_asignacion" id="monto_asignacion"   placeholder="Ingresa Monto"  onkeyup="sumar();" required>
                           </div>
 
                           <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-2 col-xl-2">
                             <label>OTROS :</label>
-                            <input type="number" class="form-control monto" name="otros" id="otros"  placeholder="Otros"  onkeyup="sumar();" required>
+                            <input type="number" class="form-control monto" name="otros" id="otros"  placeholder="Otros"   onkeyup="sumar();" >
                           </div>
 
                           <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
                             <label>TOTAL REMUNERACIÓN BRUTA :</label>
-                            <input type="number" class="form-control " name="total_remuneracion" id="total_remuneracion" placeholder="total remuneracion"  required>
+                            <input type="text" class="form-control" name="total_remuneracion" id="total_remuneracion" placeholder="total remuneracion"  required>
 
                           </div>
 
                           <!-- DISTRITO -->
-                          <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-1 col-xl-1">
+                          <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-2 col-xl-2">
                             <label id="antiguo_distrito">SNP-ONP:</label>                 
-                            <select id="snp_onp" name="snp_onp" class="form-control selectpicker" data-live-search="true" >
+                            <select id="snp_onp" name="snp_onp" class="form-control selectpicker" onchange="recibir();" data-live-search="true" >
                               <option>SELECT</option>
                               <option>SI</option>
                               <option>NO</option>
@@ -132,12 +136,12 @@ if ($_SESSION['acceso']==1)
 
                           <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-2 col-xl-2">
                             <label>SNP-ONP:</label>
-                            <input type="number" class="form-control" name="aporte_obligatario" id="aporte_obligatario"  placeholder="Ingresa Monto" required>
+                            <input type="number" class="form-control"  name="onp" id="onp"  placeholder="Ingresa Monto"  required>
                           </div>
 
                           <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-2 col-xl-2">
                             <label id="antiguo_distrito">AFP:</label>                 
-                            <select id="id_afp" name="id_afp" class="form-control selectpicker" data-live-search="true" ></select>                             
+                            <select id="id_afp" name="id_afp" class="form-control selectpicker" onchange="recibir();" data-live-search="true" ></select>                             
                           </div>
 
                           <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-2 col-xl-2">
@@ -152,27 +156,27 @@ if ($_SESSION['acceso']==1)
 
                           <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-2 col-xl-2">
                             <label>PRIMA DE SEGURO.:</label>
-                            <input type="number" class="form-control" name="prima_seguro" id="prima_seguro"  placeholder="Aporte Prima" required>
+                            <input type="number" class="form-control" name="prima_seguro" id="prima_seguro" placeholder="Aporte Prima" required>
                           </div>
 
                           <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-2 col-xl-2">
                             <label>TOTAL DE DESCUENTO:</label>
-                            <input type="number" class="form-control" name="total_descuento" id="total_descuento"  placeholder="Total Descuento" required>
+                            <input type="text" class="form-control" name="total_descuento" id="total_descuento"  placeholder="Total Descuento" required>
                           </div>
 
                           <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
                             <label>REMUNERACIÓN NETA:</label>
-                            <input type="number" class="form-control" name="remuneracion_neta" id="remuneracion_neta"  placeholder="Remuneración Total" required>
+                            <input type="number" class="form-control" name="remuneracion_neta" id="remuneracion_neta" placeholder="Remuneración Total" onkeyup="recibir();" required>
                           </div>
 
                            <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
                             <label>SALUD:</label>
-                            <input type="number" class="form-control" name="salud" id="salud"  placeholder="Comisión Salud" required>
+                            <input type="number" class="form-control f"  name="salud" id="salud"  onkeyup="aportes();" placeholder="Comisión Salud" required>
                           </div>
 
                            <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
                             <label>SCTR:</label>
-                            <input type="number" class="form-control" name="sctr" id="sctr"  placeholder="Comisión SCTR" required>
+                            <input type="number" class="form-control f"  name="sctr" id="sctr" onkeyup="aportes();" placeholder="Comisión SCTR" required>
                           </div>
 
                            <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">

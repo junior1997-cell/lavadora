@@ -8,7 +8,7 @@ class PlanillaModel extends Model{
 	protected $table ='planilla_remuneraciones';
 	protected $id ='idplanilla';
 	protected $returnType='array';
-	protected $allowedFields = ['codigo_plantilla','nombres_planilla','id_cargo_ocupacion','asig_familiar_planilla','sueldo_basico_planilla','monto_asig_familiar_planilla','otros_planilla','total_remuneracion_bruta_planilla','snp_onp_planilla','id_afp','aporte_obligatorio_planilla','comision_sobre_ra_planilla','prima_seguro_planilla','total_descuento_planilla','remuneracion_neta_planilla','aporte_salud_planilla','aporte_sctr_planilla','aporte_total_planilla','fecha_planilla'];
+	protected $allowedFields = ['codigo_planilla','nombres_planilla','id_cargo_ocupacion','asig_familiar_planilla','sueldo_basico_planilla','monto_asig_familiar_planilla','otros_planilla','total_remunera_bruta_planilla','snp_onp_planilla','monto_onp','id_afp','aporte_obligatorio_planilla','comision_sobre_ra_planilla','prima_seguro_planilla','total_descuento_planilla','remuneracion_neta_planilla','aporte_salud_planilla','aporte_sctr_planilla','aporte_total_planilla','fecha_planilla'];
 
 	public function get_usuarios(){
 
@@ -22,6 +22,13 @@ class PlanillaModel extends Model{
 
 		return $this->db->table('afp p')
 		->select(' p.idafp,p.nombre_afp')
+		->get()->getResultArray();
+	}
+
+	public function get_cargo(){
+
+		return $this->db->table('cargo p')
+		->select(' p.idcargo,p.nombre_cargo')
 		->get()->getResultArray();
 	}
 

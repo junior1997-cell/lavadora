@@ -25,6 +25,7 @@ $asignacion_monto=isset($_POST["monto_asignacion"])? limpiarCadena($_POST["monto
 $otros=isset($_POST["otros"])? limpiarCadena($_POST["otros"]):"";
 $total_remuneracion_bruta=isset($_POST["total_remuneracion"])? limpiarCadena($_POST["total_remuneracion"]):"";
 $snp_onp=isset($_POST["snp_onp"])? limpiarCadena($_POST["snp_onp"]):"";
+$snp_onp=isset($_POST["onp"])? limpiarCadena($_POST["onp"]):"";
 $id_afp=isset($_POST["id_afp"])? limpiarCadena($_POST["id_afp"]):"";
 $aporte_obligatario=isset($_POST["aporte_obligatario"])? limpiarCadena($_POST["aporte_obligatario"]):"";
 $comision_ra=isset($_POST["comision_ra"])? limpiarCadena($_POST["comision_ra"]):"";
@@ -39,8 +40,30 @@ $total_aportes=isset($_POST["total_aportes"])? limpiarCadena($_POST["total_aport
 switch ($_GET["op"]){
 	case 'guardaryeditar':
 
+		$codigo_planilla=$_POST["codigo"];
+		$nombres_planilla=$_POST["apellidos_nombres"];
+		$id_cargo_ocupacion=$_POST["cargo"];
+		$asig_familiar_planilla=$_POST["id_asignacion"];
+		$sueldo_basico_planilla=$_POST["sueldo_basico"];
+		$monto_asig_familiar_planilla=$_POST["monto_asignacion"];
+		$otros_planilla=$_POST["otros"];
+		$total_remunera_bruta_planilla=$_POST["total_remuneracion"];
+		$snp_onp_planilla=$_POST["snp_onp"];
+		$monto_onp=$_POST["onp"];
+		$id_afp=$_POST["id_afp"];
+		$aporte_obligatorio_planilla=$_POST["aporte_obligatario"];
+		$comision_sobre_ra_planilla=$_POST["comision_ra"];
+		$prima_seguro_planilla=$_POST["prima_seguro"];
+		$total_descuento_planilla=$_POST["total_descuento"];
+		$remuneracion_neta_planilla=$_POST["remuneracion_neta"];
+		$aporte_salud_planilla=$_POST["salud"];
+		$aporte_sctr_planilla=$_POST["sctr"];
+		$aporte_total_planilla=$_POST["total_aportes"];
+
+		/*var_dump($nombres_planilla,$id_cargo_ocupacion,$asig_familiar_planilla,$sueldo_basico_planilla,$monto_asig_familiar_planilla,$otros_planilla,$total_remunera_bruta_planilla,$snp_onp_planilla,$monto_onp,$id_afp,$aporte_obligatorio_planilla,$comision_sobre_ra_planilla,$prima_seguro_planilla,$total_descuento_planilla,$remuneracion_neta_planilla,$aporte_salud_planilla,$aporte_sctr_planilla,$aporte_total_planilla);*/
+
 		if (empty($idplanilla)){
-			$rspta=$planilla->insertar($codigo,$apellidos_nombres,$cargo,$asignacion_familiar,$sueldo_basico,$asignacion_monto,$otros,$total_remuneracion_bruta,$snp_onp,$id_afp,$aporte_obligatario,$comision_ra,$prima_seguro,$total_descuento,$remuneracion_neta,$salud,$sctr,$total_aportes);
+			$rspta=$planilla->api_crear_planilla($codigo_planilla,$nombres_planilla,$id_cargo_ocupacion,$asig_familiar_planilla,$sueldo_basico_planilla,$monto_asig_familiar_planilla,$otros_planilla,$total_remunera_bruta_planilla,$snp_onp_planilla,$monto_onp,$id_afp,$aporte_obligatorio_planilla,$comision_sobre_ra_planilla,$prima_seguro_planilla,$total_descuento_planilla,$remuneracion_neta_planilla,$aporte_salud_planilla,$aporte_sctr_planilla,$aporte_total_planilla);
 			echo $rspta ? "Planilla Registrada" : "No se pudo registrar planilla";
 		}
 		else {
@@ -50,17 +73,17 @@ switch ($_GET["op"]){
 	break;
 
 	case 'desactivar':
-		$rspta=$planilla->desactivar($idarticulo);
+		$rspta=$planilla->desactivar($idplanilla);
  		echo $rspta ? "Artículo Desactivado" : "Artículo no se puede desactivar";
 	break;
 
 	case 'activar':
-		$rspta=$planilla->activar($idarticulo);
+		$rspta=$planilla->activar($idplanilla);
  		echo $rspta ? "Artículo activado" : "Artículo no se puede activar";
 	break;
 
 	case 'mostrar':
-		$rspta=$planilla->mostrar($idarticulo);
+		$rspta=$planilla->mostrar($idplanilla);
  		//Codificar el resultado utilizando json
  		echo json_encode($rspta);
 	break;
@@ -160,6 +183,17 @@ switch ($_GET["op"]){
 		foreach ($rspta['Detalle'] as $reg){
 
 			echo '<option value=' . $reg['idafp'] . '>' . $reg['nombre_afp']. '</option>';
+		}
+	break;
+
+	case 'cargo_select':
+
+		$rspta=$planilla->api_select_cargo();
+			//Vamos a declarar un array
+		echo '<option value="">NO SELECT</option>';
+		foreach ($rspta['Detalle'] as $reg){
+
+			echo '<option value=' . $reg['idcargo'] . '>' . $reg['nombre_cargo']. '</option>';
 		}
 	break;
 }

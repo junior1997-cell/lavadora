@@ -5,8 +5,18 @@ function init(){
 	mostrarform(false);
 	listar();
 	listardatos();
+	recibir();
+	
 	document.getElementById('monto_asignacion').readOnly = true;
 	document.getElementById('total_remuneracion').readOnly = true;
+	document.getElementById('onp').readOnly = true;		
+	document.getElementById('id_afp').readOnly = true;	
+	document.getElementById('aporte_obligatario').readOnly = true;
+	document.getElementById('comision_ra').readOnly = true;
+	document.getElementById('prima_seguro').readOnly = true;
+	document.getElementById('total_descuento').readOnly = true;
+	document.getElementById('remuneracion_neta').readOnly = true;
+	document.getElementById('total_aportes').readOnly = true;			
 	//ShowSelected();
 	//total_r_bruta()
 
@@ -26,6 +36,10 @@ function init(){
 	$.post("../ajax/planilla.php?op=afp_select", function(r){
         $("#id_afp").html(r);
         $('#id_afp').selectpicker('refresh');
+	});
+	$.post("../ajax/planilla.php?op=cargo_select", function(r){
+        $("#cargo").html(r);
+        $('#cargo').selectpicker('refresh');
 	});
 
 	$.post("../ajax/librodiario.php?op=SelecLibroContable", function(r){
@@ -356,7 +370,7 @@ function marcarImpuesto(){
 function ShowSelected(){
 	/* Para obtener el valor */
 	var cod = document.getElementById("id_asignacion").value;
-	console.log('hola: ',cod);
+	//console.log('hola: ',cod);
 
 
 	if (cod ==='SI') {
@@ -389,13 +403,216 @@ function sumar() {
     }
 
   });
+  //	 $("#total_remuneracion").val(total);
+  //var y=total*0.18;
 
-//console.log(total);
-  //alert(total);
-  //document.getElementById('spTotal').innerHTML = total;
-  $("#total_remuneracion").val(total);
+ 	$("#total_remuneracion").val(total);
+ recibir(); 
 
 }
+
+function aportes() {
+	var total = 0;
+
+  $(".f").each(function() {
+
+    if (isNaN(parseFloat($(this).val()))) {
+
+      total += 0;
+
+    } else {
+
+      total += parseFloat($(this).val());
+      //console.log(total);
+
+    }
+
+  });
+  //	 $("#total_remuneracion").val(total);
+  //var y=total*0.18;
+  sumar();
+ 	$("#total_aportes").val(total); 
+}
+
+function roundNumber(num, scale) {
+  if(!("" + num).includes("e")) {
+    return +(Math.round(num + "e+" + scale)  + "e-" + scale);
+  } else {
+    var arr = ("" + num).split("e");
+    var sig = ""
+    if(+arr[1] + scale > 0) {
+      sig = "+";
+    }
+    return +(Math.round(+arr[0] + "e" + sig + (+arr[1] + scale)) + "e-" + scale);
+  }
+}
+
+function recibir(){
+	var cod = document.getElementById("snp_onp").value;
+	var code = document.getElementById("id_afp").value;
+	//console.log('holaaaaaaaaa: ',cod);
+// Obtenemos el valor por el id
+    var port=document.getElementById("total_remuneracion").value;
+    var otros=document.getElementById("otros").value;
+    //document.getElementById('id_afp').disabled = true;
+
+     t=(port-otros)*0.13;
+     //console.log(t);
+     if (cod ==='SI') {
+		document.getElementById('onp').readOnly = true;
+		var y = $("#onp").val(t);
+
+		$("#total_descuento").val(t);
+		//var str = port;
+
+		var total=parseFloat(port, 10);
+		var totalDes=parseFloat(t, 10);
+
+		//console.log(total);
+		//console.log(totalDes);
+		var totalcononp=total+totalDes;
+		//console.log(totalcononp);
+
+		$("#remuneracion_neta",).val(totalcononp);
+
+		document.getElementById('id_afp').disabled = true;
+
+	}else{
+		document.getElementById('onp').readOnly = true;
+		$("#onp").val("");
+		var y = $("#onp").val(0);
+		$("#total_descuento").val(0);
+		$("#remuneracion_neta",).val(0);
+
+		
+		document.getElementById('id_afp').disabled = false;	
+		
+
+		$('select[name=id_afp]').selectpicker().on('changed.bs.select', function (e) {
+    var selected = e.target.value;
+    
+
+    	// NO SELECT
+		    if(selected == "2"){
+
+		    	$("#id_afp").prop("disabled",false);
+		    	a=(port-otros)*0.10;
+		    	var deci =roundNumber(a,2);
+				$("#aporte_obligatario").val(deci);
+				b=((port-otros)*1.55)/100;
+				var deci = roundNumber(b,2);
+				$("#comision_ra").val(deci);
+				c=((port-otros)*1.35)/100;
+				var deci = roundNumber(c,2);
+				$("#prima_seguro").val(deci);
+								
+				var f=a+b+c; 
+				var deci =roundNumber(f,2);					
+				$("#total_descuento").val(deci);
+
+
+				var total=parseFloat(port);
+				var totalHori=total+deci;
+				$("#remuneracion_neta",).val(totalHori);
+
+		    }else{
+		    	//$("#id_afp").hide();
+		    	$("#id_afp").prop("disabled",false);
+		    	
+				$("#aporte_obligatario").val(0);
+				
+				$("#comision_ra").val(0);
+				
+				$("#prima_seguro").val(0);						
+									
+				$("#total_descuento").val(0);	
+				$("#remuneracion_neta",).val(0);  
+
+		    }
+
+		    if(selected == "3"){
+		    	$("#id_afp").prop("disabled",false);
+		    	
+		    	a=(port-otros)*0.10;
+		    	var deci =roundNumber(a,2);
+		    	var y = $("#aporte_obligatario").val(deci);
+				b=((port-otros)*1.5)/100;
+				var deci = roundNumber(b,2);
+				var R = $("#comision_ra").val(deci);
+				c=((port-otros)*1.35)/100;
+				var deci = roundNumber(c,2);	
+				var S = $("#prima_seguro").val(deci);
+								
+				var f=a+b+c;
+				var deci =roundNumber(f,2);				
+				$("#total_descuento").val(deci); 
+
+				var total=parseFloat(port);
+				var totalHori=total+deci;
+				$("#remuneracion_neta",).val(totalHori);
+		    	
+		    }
+
+		    if(selected == "4"){
+		    	
+		    	$("#id_afp").prop("disabled",false); 
+
+		    	a=(port-otros)*0.10;
+		    	var deci =roundNumber(a,2);
+		    	var y = $("#aporte_obligatario").val(deci);
+				b=((port-otros)*1.69)/100;
+				var deci = roundNumber(b,2);
+				var R = $("#comision_ra").val(deci);
+				c=((port-otros)*1.35)/100;
+				var deci = roundNumber(c,2);
+				var S = $("#prima_seguro").val(deci);
+								
+				var f=a+b+c;	
+				var deci =roundNumber(f,2);				
+				$("#total_descuento").val(deci);
+
+				var total=parseFloat(port);
+				var totalHori=total+deci;
+				$("#remuneracion_neta",).val(totalHori);   	
+
+		    }
+
+		    if(selected == "5"){
+		    	$("#id_afp").prop("disabled",false); 
+
+		    	a=(port-otros)*0.10;
+		    	var deci =roundNumber(a,2);
+		    	var y = $("#aporte_obligatario").val(deci);
+				b=((port-otros)*1.6)/100;
+				var deci = roundNumber(b,2);
+				var R = $("#comision_ra").val(deci);
+				c=((port-otros)*1.35)/100;
+				var deci = roundNumber(c,2);
+				var S = $("#prima_seguro").val(deci);
+								
+				var f=a+b+c;
+				var deci =roundNumber(f,2);					
+				$("#total_descuento").val(deci); 
+
+				var total=parseFloat(port);
+				var totalHori=total+deci;
+				$("#remuneracion_neta",).val(totalHori);   	
+
+		    }
+     
+});
+
+	}
+
+
+
+	 
+
+ 		
+ 	
+
+} 
+ 
 //funcion para sumar automatico dando click en otro lado
 //function total_r_bruta(valor){
 	//console.log('v: ', valor)
