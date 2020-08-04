@@ -65,7 +65,7 @@ if ($_SESSION['almacen']==1)
                           </thead>
                           <tbody id="filas" class="td">
                           </tbody>
-                      </table> 
+                      </table>
                       </center>
                     </div>
                   </div><!-- /.box -->

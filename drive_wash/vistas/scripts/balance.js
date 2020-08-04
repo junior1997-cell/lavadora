@@ -27,6 +27,8 @@ function init(){
 	//total();
 	total_debe();
 	//aportes();
+	totaldebehabercuentas();
+	
 }
 	
 
@@ -43,6 +45,144 @@ function roundNumber(num, scale) {
     }
     return +(Math.round(+arr[0] + "e" + sig + (+arr[1] + scale)) + "e-" + scale);
   }
+}
+
+function totaldebehabercuentas(){
+	$.post("../ajax/balance.php?op=totaldebehabercuentas", function(data){
+
+		data = JSON.parse(data);
+
+		d10= data['Detalle10'][0]['debe'];
+		h10= data['Detalle10'][0]['haber'];
+		
+		d12= data['Detalle12'][0]['debe'];
+		h12= data['Detalle12'][0]['haber'];
+		
+		d14= data['Detalle14'][0]['debe'];
+		h14= data['Detalle14'][0]['haber'];
+		
+		d20= data['Detalle20'][0]['debe'];
+		h20= data['Detalle20'][0]['haber'];
+		
+		d33= data['Detalle33'][0]['debe'];
+		h33= data['Detalle33'][0]['haber'];
+		
+		d40= data['Detalle40'][0]['debe'];
+		h40= data['Detalle40'][0]['haber'];
+		
+		d41= data['Detalle41'][0]['debe'];
+		h41= data['Detalle41'][0]['haber'];
+		
+		d42= data['Detalle42'][0]['debe'];
+		h42= data['Detalle42'][0]['haber'];
+		
+		d45= data['Detalle45'][0]['debe'];
+		h45= data['Detalle45'][0]['haber'];
+		
+		d46= data['Detalle46'][0]['debe'];
+		h46= data['Detalle46'][0]['haber'];
+		
+		d50= data['Detalle50'][0]['debe'];
+		h50= data['Detalle50'][0]['haber'];
+		
+		d59= data['Detalle59'][0]['debe'];
+		h59= data['Detalle59'][0]['haber'];
+		
+		d60= data['Detalle60'][0]['debe'];
+		h60= data['Detalle60'][0]['haber'];
+		
+		d61= data['Detalle61'][0]['debe'];
+		h61= data['Detalle61'][0]['haber'];
+		
+		d62= data['Detalle62'][0]['debe'];
+		h62= data['Detalle62'][0]['haber'];
+		
+		d63= data['Detalle63'][0]['debe'];
+		h63= data['Detalle63'][0]['haber'];
+		
+		d69= data['Detalle69'][0]['debe'];
+		h69= data['Detalle69'][0]['haber'];
+		
+		d70= data['Detalle70'][0]['debe'];
+		h70= data['Detalle70'][0]['haber'];
+
+		d79= data['Detalle79'][0]['debe'];
+		h79= data['Detalle79'][0]['haber'];
+		
+		d94= data['Detalle94'][0]['debe'];
+		h94= data['Detalle94'][0]['haber'];
+		
+		d95= data['Detalle95'][0]['debe'];
+		h95= data['Detalle95'][0]['haber'];
+
+		//if(d10>h10 || d12>h12 || d14>h14 || d20>h20 || d33>h33 || d40>h40 || d41>h41 || d42>h42 || d45>h45 || d46>h46 || d50>h50 ||d59>h59){
+			var s10 = d10-h10;
+			console.log(s10);
+			var s12 = d12-h12;
+			var s14 = d14-h14;
+			var s20 = d20-h20;
+			var s33 = d33-h33;
+			var s40 = d40-h40;
+			var s41 = d41-h41;
+			var s42 = d42-h42;
+			var s45 = d45-h45;
+			var s46 = d46-h46;
+			var s50 = d50-h50;
+			var s59 = d59-h59;
+			var s60 = d60-h60;
+			var s61 = d61-h61;
+			//console.log(s61);
+			var s62 = d62-h62;
+			var s63 = d63-h63;
+			var s69 = d69-h69;
+			var s70 = d70-h70;
+			console.log(s70);
+			var s79 = d79-h79;
+			//console.log(s79);
+
+			var s94 = d94-h94;
+			var s95 = d95-h95;
+				//eeff --activo
+			var aaa=s10+s12+s14+s20+s33+s41;
+			var sumat =roundNumber(aaa, 3);
+			document.getElementById("totalactivo").innerHTML = sumat;
+				//saldos --pasivo y patrimonio
+			var subtotalpastp=-(+s40+s42+s45+s50+s59);
+			var totalpastp =roundNumber(subtotalpastp, 2);
+			document.getElementById("totalpastp").innerHTML = totalpastp;
+				//saldos --Acreedor
+			var totalacreedor =subtotalpastp-s61-s70-s79;
+			var totalacreedorr =roundNumber(totalacreedor, 3);
+			document.getElementById("totalacreedor").innerHTML = totalacreedorr;
+			//saldos ---Deudor
+			var aa=s10+s12+s14+s20+s33+s41;
+			var totaldeudor =aa+s60+s62+s63+s69+s94+s95;
+			var totaldeudorr =roundNumber(totaldeudor, 1);
+			document.getElementById("totaldeudor").innerHTML = totaldeudorr;		
+			//perdida
+			var subperdida = s69+s94+s95;
+			var perdidatotal =roundNumber(subperdida, 3);
+			document.getElementById("perdidatotal").innerHTML = perdidatotal;
+			//ganacias
+			var ganacias =-(s70+subperdida);
+			var perdidatotal =roundNumber(ganacias, 1);
+			var xxx= Math.round(perdidatotal);
+			document.getElementById("ganacias").innerHTML = xxx;
+			//resta EEFF
+			var actpatr =aaa-subtotalpastp;
+			/*console.log('act',sumat);
+			console.log('patr',totalpastp);*/
+			document.getElementById("actpatr").innerHTML = actpatr;
+			//---------ultimo------
+			document.getElementById("rest70").innerHTML = -s70;
+			document.getElementById("rest700").innerHTML = -s70;
+
+			document.getElementById("restact").innerHTML = sumat;
+			document.getElementById("restactt").innerHTML = sumat;
+
+
+
+	});
 }
 
 
@@ -67,6 +207,7 @@ function suma_debe_haber10(){
 
 			document.getElementById("bcDeudordd10").innerHTML = x;
 			document.getElementById("bcacreedordd10").innerHTML = 0;
+			$("#aaaa").val(x);
 
 			document.getElementById("activo10").innerHTML = x;
 			document.getElementById("paspat10").innerHTML = 0;
@@ -475,6 +616,7 @@ function suma_debe_haber50(){
 
 		if (tdebe>thaber) {
 
+			var cont_deudor=0;
 			var resta=tdebe-thaber;
 			var x= roundNumber(resta,3);
 			acre =0;
@@ -922,36 +1064,6 @@ function total(){
     //alert(acciones + " " + accion + " ");
  }
 
-/*function aportes() {
-	var total = 0;
-
-  $(".sum").each(function() {
-
-    if (isNaN(parseFloat($(this).val()))) {
-
-      total += 0;
-
-    } else {
-
-      total += parseFloat($(this).val());
-     console.log(total);
-
-    }
-
-  });
-  //	 $("#total_remuneracion").val(total);
-  var y=total;
-  console.log(y);
-  //sumar();
- 	//$("#total_aportes").val(total); 
-}
-
-$(function(){
-  $('tr td:last-child').click(function(){
-    console.log($(this).parent().find('td:first').text());
-  });
-});*/
-//total_debe_balance
 function total_debe(){
 
 	$.post("../ajax/balance.php?op=total_debe_balance", function(data)
@@ -959,24 +1071,25 @@ function total_debe(){
 		data = JSON.parse(data);		
 
 		total= data['Detalle'][0]['totaldebe'];
+		totalhaber= data['Detalle'][0]['totalhaber'];
 		
 		var tdebe=parseFloat(total, 10);
 		//var thaber=parseFloat(totall, 10);
 		document.getElementById("totaldebe").innerHTML = tdebe;
+		document.getElementById("totalhaber").innerHTML = totalhaber;
 
  	});
 }
 
 
 function tdfilas(){
-	td=
-
+	var td=
 	'<tr>'+
 	'<td>10</td>'+
 	'<td>EFECTIVO Y EQUIVALENTES DE EFECTIVO</td>'+
-	'<td id="bcDiezd" class="sum" onkeyup="aportes();"></td>'+
+	'<td id="bcDiezd" class="sum"></td>'+
 	'<td id="bcDiezh"></td>'+
-	'<td id="bcDeudordd10"></td>'+
+	'<td id="bcDeudordd10" name="bcDeudordd10"></td>'+
 	'<td id="bcacreedordd10"></td>'+
 	'<td id="activo10"></td>'+
 	'<td id="paspat10"></td>'+
@@ -1220,7 +1333,7 @@ function tdfilas(){
 	'<td id="bcDeudordd95"></td>'+
 	'<td id="bcacreedordd95"></td>'+
 	'<td></td>'+
-	'<td></td>'+
+	'<td ></td>'+
 	'<td id="perdida95"></td>'+
 	'<td></td>'+
 	'</tr>'+
@@ -1228,12 +1341,12 @@ function tdfilas(){
 	'<td>TOTAL</td>'+
 	'<td>S/.</td>'+
 	'<td id="totaldebe"</td>'+
-	'<td></td>'+
-	'<td></td>'+
-	'<td></td>'+
-	'<td></td>'+
-	'<td></td>'+
-	'<td></td>'+
+	'<td id="totalhaber"></td>'+
+	'<td id="totaldeudor"></td>'+
+	'<td id="totalacreedor"></td>'+
+	'<td id="totalactivo"></td>'+
+	'<td id="totalpastp"></td>'+
+	'<td id="perdidatotal"></td>'+
 	'<td id="total70"></td>'+
 	'</tr>'+
 	'<tr>'+
@@ -1244,8 +1357,8 @@ function tdfilas(){
 	'<td></td>'+
 	'<td></td>'+
 	'<td></td>'+
-	'<td></td>'+
-	'<td></td>'+
+	'<td id="actpatr"></td>'+
+	'<td id="ganacias"></td>'+
 	'<td></td>'+
 	'</tr>'+
 	'<tr>'+
@@ -1255,16 +1368,13 @@ function tdfilas(){
 	'<td></td>'+
 	'<td></td>'+
 	'<td></td>'+
-	'<td></td>'+
-	'<td></td>'+
-	'<td></td>'+
-	'<td></td>'+
+	'<td id="restact" style="background-color:grey;"></td>'+
+	'<td id="restactt" style="background-color:grey;"></td>'+
+	'<td id="rest70" style="background-color:grey;"></td>'+
+	'<td id="rest700" style="background-color:grey;"></td>'+
 	'</tr>';
 
 	$('#filas').append(td);
 }
-
-
-
-
 init();
+

@@ -23,6 +23,12 @@ switch ($_GET["op"]){
 		//var_dump($rspta);die;
 		echo json_encode($rspta);
 	break;
+	
+	case 'totaldebehabercuentas':
+		$rspta = $balance->totaldebehabercuentas();
+		//var_dump($rspta);die;
+		echo json_encode($rspta);
+	break;
 }
 //Fin de las validaciones de acceso
 }

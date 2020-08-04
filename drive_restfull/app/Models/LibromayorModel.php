@@ -30,6 +30,17 @@ class LibromayorModel extends Model{
 		->get()->getResultArray();
 	}
 
+	public function get_total_debehaber(){
+
+		return $this->db->table('libro_diario ld')
+
+		->select('ROUND(SUM(ld.debe),1) as debe ,ROUND(SUM(ld.haber),1) as haber')
+
+		//->where('ld.id_plan_contable', $total)
+		//->where dpp.id_pedido_prenda=2
+		->get()->getResultArray();
+	}
+
 	/*public function getpedido_prenda(){
 
 		return $this->db->table('pedido_prenda pp')
