@@ -40,7 +40,7 @@ Class Planilla
 		  	'aporte_salud_planilla' =>$aporte_salud_planilla,
 		  	'aporte_sctr_planilla' =>$aporte_sctr_planilla,
 		  	'aporte_total_planilla' =>$aporte_total_planilla),
-		  //	'fecha_planilla' =>$fecha_planilla),
+		  	//'fecha_planilla' =>$fecha_planilla),
 		  CURLOPT_HTTPHEADER => array(
 		    "Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VUU2hUQnZPZ2R2SHI5UG5DdExGbXlUZy53Lmc1Y01pOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlY2ZpLi90RmxTRFhPOS9NOTlFNGxWS0xNOGdodzhOeQ=="
 		  ),

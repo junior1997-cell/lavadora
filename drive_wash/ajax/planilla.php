@@ -96,10 +96,10 @@ switch ($_GET["op"]){
 
  		foreach ($rspta["Detalle"] as $reg){
  			$data[]=array(
- 				"0"=>($reg['idplanilla'])?'<button class="btn btn-warning" onclick="mostrar('.$reg['idplanilla'].')"><i class="fa fa-pencil"></i></button>'.
- 					' <button class="btn btn-danger" onclick="desactivar('.$reg['idplanilla'].')"><i class="fa fa-close"></i></button>':
- 					'<button class="btn btn-warning" onclick="mostrar('.$reg['idplanilla'].')"><i class="fa fa-pencil"></i></button>'.
- 					' <button class="btn btn-primary" onclick="activar('.$reg['idplanilla'].')"><i class="fa fa-check"></i></button>',
+ 				"0"=>($reg['idplanilla'])?'<button class="btn btn-warning" disabled onclick="mostrar('.$reg['idplanilla'].')"><i class="fa fa-pencil"></i></button>'.
+ 					' <button class="btn btn-danger" disabled onclick="desactivar('.$reg['idplanilla'].')"><i class="fa fa-close"></i></button>':
+ 					'<button class="btn btn-warning" disabled onclick="mostrar('.$reg['idplanilla'].')"><i class="fa fa-pencil"></i></button>'.
+ 					' <button class="btn btn-primary" disabled onclick="activar('.$reg['idplanilla'].')"><i class="fa fa-check"></i></button>',
  				"1"=>$reg['codigo_planilla'],
  				"2"=>$reg['nombre_persona'],
  				"3"=>$reg['nombre_cargo'],
