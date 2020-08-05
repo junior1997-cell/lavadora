@@ -436,6 +436,65 @@ class Planilla extends Controller {
         return json_encode($data, true);
     }
 
+    public function listarplanilla() {
+        //realiza solicitud a services y le decimos que ejecute el metodo request()
+        $request = \Config\Services::request();
+        $validation = \Config\Services::validation();
+        $headers = $request->getHeaders();
+
+        $registroModel = new RegistrosModel($db);
+        $registro = $registroModel->where('estado', 1)
+                ->findAll();
+
+        //$db = \Config\Database::connect();
+        //$pager = \Config\Services::pager();
+        foreach ($registro as $key => $value) {
+
+            if (array_key_exists('Authorization', $headers) && !empty($headers['Authorization'])) {
+
+                if ($request->getHeader('Authorization') == 'Authorization: Basic ' . base64_encode($value["cliente_id"] . ":" . $value["llave_secreta"])) {
+
+                    $Planilla = new PlanillaModel();
+                    //$librodiario = $Librodiario->findAll();
+                    $ListarV = $Planilla->getplanilla();
+                    
+                    if (!empty($ListarV)) {
+
+                        $data = array(
+                            "Status" => 200,
+                            "Total_Resultados" => count($ListarV),
+                            "Detalle" => $ListarV
+                                //"Paginador"=>$paginador
+                        );
+                         return json_encode($data, true);
+                    } else {
+
+                        $data = array(
+                            "Status" => 404,
+                            "Total_Resultados" => 0,
+                            "Detalle" => "Ningún registro cargado"
+                        );
+                    }
+                } else {
+
+                    $data = array(
+                        "Status" => 404,
+                        "Detalle" => "El token es inválido"
+                    );
+                }
+            } else {
+
+                $data = array(
+                    "Status" => 404,
+                    "Detalle" => "No está autorizado para recibir los registros"
+                );
+            }
+        }
+
+        return json_encode($data, true);
+    }
+
+
     public function afpselect() {
         //realiza solicitud a services y le decimos que ejecute el metodo request()
         $request = \Config\Services::request();

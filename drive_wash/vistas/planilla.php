@@ -54,6 +54,16 @@ if ($_SESSION['acceso']==1)
                             <th>Asignación Familiar</th>
                             <th>Total Remuneración Bruta</th>
                             <th>SNP / ONP</th>
+                            <th>MONTO SNP / ONP</th>
+                            <th>AFP</th>
+                            <th>APORTE OBLIGATORIO</th>
+                            <th>COMISIÓN % SOBRE</th>
+                            <th>PRIMA SEGURO</th>
+                            <th>TOTAL DESCUENTO</th>
+                            <th>REMUNERACIÓN NETA</th>
+                            <th>SALUD</th>
+                            <th>SCTR</th>
+                            <th>TOTAL APORTES</th>
                           </thead>
                           <tbody>                            
                           </tbody>
@@ -67,6 +77,16 @@ if ($_SESSION['acceso']==1)
                             <th>Asignación Familiar</th>
                             <th>Total Remuneración Bruta</th>
                             <th>SNP / ONP</th>
+                           <th>MONTO SNP / ONP</th>
+                            <th>AFP</th>
+                            <th>APORTE OBLIGATORIO</th>
+                            <th>COMISIÓN % SOBRE</th>
+                            <th>PRIMA SEGURO</th>
+                            <th>TOTAL DESCUENTO</th>
+                            <th>REMUNERACIÓN NETA</th>
+                            <th>SALUD</th>
+                            <th>SCTR</th>
+                            <th>TOTAL APORTES</th>
                           </tfoot>
                         </table>
                     </div>
