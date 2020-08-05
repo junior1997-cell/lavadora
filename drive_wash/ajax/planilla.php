@@ -101,15 +101,25 @@ switch ($_GET["op"]){
  					'<button class="btn btn-warning" onclick="mostrar('.$reg['idplanilla'].')"><i class="fa fa-pencil"></i></button>'.
  					' <button class="btn btn-primary" onclick="activar('.$reg['idplanilla'].')"><i class="fa fa-check"></i></button>',
  				"1"=>$reg['codigo_planilla'],
- 				"2"=>$reg['nombres_planilla'],
+ 				"2"=>$reg['nombre_persona'],
  				"3"=>$reg['nombre_cargo'],
  				"4"=>$reg['asig_familiar_planilla'],
  				"5"=>$reg['sueldo_basico_planilla'],
  				"6"=>$reg['monto_asig_familiar_planilla'],
  				"7"=>$reg['total_remunera_bruta_planilla'],
- 				"8"=>$reg['snp_onp_planilla'] 				
+ 				"8"=>$reg['snp_onp_planilla'],
+ 				"9"=>$reg['monto_onp'],
+ 				"10"=>$reg['nombre_afp'], 				
+ 				"11"=>$reg['aporte_obligatorio_planilla'],
+ 				"12"=>$reg['comision_sobre_ra_planilla'], 
+ 				"13"=>$reg['prima_seguro_planilla'], 
+ 				"14"=>$reg['total_descuento_planilla'], 
+ 				"15"=>$reg['remuneracion_neta_planilla'], 
+ 				"16"=>$reg['aporte_salud_planilla'], 
+ 				"17"=>$reg['aporte_sctr_planilla'], 
+ 				"18"=>$reg['aporte_total_planilla'] 
  				//"6"=>($reg['estado'])?'<span class="label bg-green">Activado</span>':
- 				//'<span class="label bg-red">Desactivado</span>'
+ 				//'<span class="label bg-red">Desactivado</span>'*/
  				);
  		}
  		$results = array(

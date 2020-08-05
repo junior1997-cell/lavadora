@@ -6,6 +6,7 @@ function init(){
 	listar();
 	listardatos();
 	recibir();
+
 	
 	document.getElementById('monto_asignacion').readOnly = true;
 	document.getElementById('total_remuneracion').readOnly = true;
@@ -86,28 +87,33 @@ function hora_fecha(){
 //Función limpiar
 function limpiar()
 {
-	$("#idproveedor").val("");
-	$("#proveedor").val("");
-	$("#serie_comprobante").val("");
-	$("#num_comprobante").val("");
-	$("#impuesto").val("0");
-	
-
-	$("#total_compra").val("");
-	$(".filas").remove();
-	$("#total").html("0");
-	
-	//Obtenemos la fecha actual
-	var now = new Date();
-	var day = ("0" + now.getDate()).slice(-2);
-	var month = ("0" + (now.getMonth() + 1)).slice(-2);
-	var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
-    $('#fecha_hora').val(today);
-
-    //Marcamos el primer tipo_documento
-    $("#tipo_comprobante").val("Boleta");
-	$("#tipo_comprobante").selectpicker('refresh');
+	$("#codigo").val("");
+	$("#apellidos_nombres").val("");
+	$("#apellidos_nombres").selectpicker('refresh');
+	$("#cargo").val("");
+	$("#cargo").selectpicker('refresh');
+	$("#id_asignacion").val("");
+	$("#id_asignacion").selectpicker('refresh');
+	$("#sueldo_basico").val("");
+	$("#monto_asignacion").val("");
+	$("#otros").val("");
+	$("#total_remuneracion").val("");
+	$("#snp_onp").val("");
+	$("#snp_onp").selectpicker('refresh');
+	$("#onp").val("");
+	$("#id_afp").Val("");
+	$("#id_afp").selectpicker('refresh');
+	$("#aporte_obligatario").val("");
+	$("#comision_ra").val("");
+	$("#prima_seguro").val("");
+	$("#total_descuento").val("NO SELECT");
+	$("#remuneracion_neta").val("NO SELECT");
+	$("#salud").val("");
+	$("#sctr").val("");
+	$("#total_aportes").val("");
 }
+
+
 
 //Función mostrar formulario
 function mostrarform(flag)
@@ -126,7 +132,7 @@ function mostrarform(flag)
 
 		$("#btnGuardar").show();
 		$("#btnCancelar").show();
-		detalles=0;
+		
 		$("#btnAgregarArt").show();
 		$("#btnAgregarfila").show();
 	}
@@ -136,6 +142,7 @@ function mostrarform(flag)
 		$("#listadoafp").show();
 		$("#formularioregistros").hide();
 		$("#btnagregar").show();
+		//&("#btnCancelar").show();
 	}
 
 }
@@ -143,8 +150,9 @@ function mostrarform(flag)
 //Función cancelarform
 function cancelarform()
 {
-	limpiar();
+	//limpiar();
 	mostrarform(false);
+	
 }
 
 //Función Listar
@@ -411,41 +419,8 @@ function sumar() {
 
 }
 
-function aportes() {
-	var total = 0;
 
-  $(".f").each(function() {
 
-    if (isNaN(parseFloat($(this).val()))) {
-
-      total += 0;
-
-    } else {
-
-      total += parseFloat($(this).val());
-      //console.log(total);
-
-    }
-
-  });
-  //	 $("#total_remuneracion").val(total);
-  //var y=total*0.18;
-  sumar();
- 	$("#total_aportes").val(total); 
-}
-
-function roundNumber(num, scale) {
-  if(!("" + num).includes("e")) {
-    return +(Math.round(num + "e+" + scale)  + "e-" + scale);
-  } else {
-    var arr = ("" + num).split("e");
-    var sig = ""
-    if(+arr[1] + scale > 0) {
-      sig = "+";
-    }
-    return +(Math.round(+arr[0] + "e" + sig + (+arr[1] + scale)) + "e-" + scale);
-  }
-}
 
 function recibir(){
 	var cod = document.getElementById("snp_onp").value;
@@ -489,7 +464,7 @@ function recibir(){
 		
 
 		$('select[name=id_afp]').selectpicker().on('changed.bs.select', function (e) {
-    var selected = e.target.value;
+   		 var selected = e.target.value;
     
 
     	// NO SELECT
@@ -596,8 +571,7 @@ function recibir(){
 
 				var total=parseFloat(port);
 				var totalHori=total+deci;
-				$("#remuneracion_neta",).val(totalHori);   	
-
+				$("#remuneracion_neta",).val(totalHori);   
 		    }
      
 });
@@ -605,13 +579,45 @@ function recibir(){
 	}
 
 
-
-	 
-
- 		
- 	
-
 } 
+
+function aportes() {
+	var aporte = 0;
+
+  $(".f").each(function() {
+
+    if (isNaN(parseFloat($(this).val()))) {
+
+      aporte += 0;
+
+    } else {
+
+      aporte += parseFloat($(this).val());
+      //console.log(total);
+
+    }
+
+  });
+  //	 $("#total_remuneracion").val(total);
+  //var y=total*0.18;
+  
+ 	$("#total_aportes").val(aporte); 
+
+}
+
+function roundNumber(num, scale) {
+  if(!("" + num).includes("e")) {
+    return +(Math.round(num + "e+" + scale)  + "e-" + scale);
+  } else {
+    var arr = ("" + num).split("e");
+    var sig = ""
+    if(+arr[1] + scale > 0) {
+      sig = "+";
+    }
+    return +(Math.round(+arr[0] + "e" + sig + (+arr[1] + scale)) + "e-" + scale);
+  }
+}
+init();
  
 //funcion para sumar automatico dando click en otro lado
 //function total_r_bruta(valor){
@@ -645,4 +651,3 @@ function recibir(){
  	});
 }*/
 
-init();

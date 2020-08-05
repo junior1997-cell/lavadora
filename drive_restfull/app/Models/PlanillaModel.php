@@ -10,6 +10,7 @@ class PlanillaModel extends Model{
 	protected $returnType='array';
 	protected $allowedFields = ['codigo_planilla','nombres_planilla','id_cargo_ocupacion','asig_familiar_planilla','sueldo_basico_planilla','monto_asig_familiar_planilla','otros_planilla','total_remunera_bruta_planilla','snp_onp_planilla','monto_onp','id_afp','aporte_obligatorio_planilla','comision_sobre_ra_planilla','prima_seguro_planilla','total_descuento_planilla','remuneracion_neta_planilla','aporte_salud_planilla','aporte_sctr_planilla','aporte_total_planilla','fecha_planilla'];
 
+	
 	public function get_usuarios(){
 
 		return $this->db->table('persona p')
@@ -32,6 +33,8 @@ class PlanillaModel extends Model{
 		->get()->getResultArray();
 	}
 
+	
+
 	public function getpedido_prenda(){
 
 		return $this->db->table('pedido_prenda pp')
@@ -49,34 +52,7 @@ class PlanillaModel extends Model{
 		->get()->getResultArray();
 	}
 
-	public function getdetalle_pedido_prenda($idpedido){
-
-		return $this->db->table('detalle_pedido_prenda dpp')
-
-		->select('dpp.iddetalle_pedido_prenda, 
-			dpp.cantidad_detalle_pedido_prenda,
-			p.idprenda, 
-			p.nombre_prenda as Prenda')
-
-		->join('pedido_prenda pp','dpp.id_pedido_prenda= pp.idpedido_prenda')
-		->join('prenda p','dpp.id_prenda=p.idprenda')
-		->where('dpp.id_pedido_prenda', $idpedido)
-		//->where dpp.id_pedido_prenda=2
-		->get()->getResultArray();
-	}
-
-	public function get_total_pedido_ld($total){
-
-		return $this->db->table('pedido_prenda pp')
-
-		->select('pp.total_pedido')
-
-		->where('pp.idpedido_prenda', $total)
-		//->where dpp.id_pedido_prenda=2
-		->get()->getResultArray();
-	}
-
-
+	
 	public function get_porcentajes_pago(){
 
 		return $this->db->table('porcentajes_de_pago pg')
@@ -86,5 +62,17 @@ class PlanillaModel extends Model{
 		
 		->get()->getResultArray();
 	}
+
+		public function getplanilla(){
+
+		return $this->db->table('planilla_remuneraciones pr')
+		->select('pr.idplanilla, pr.codigo_planilla, c.nombre_cargo,p.nombre_persona,pr.asig_familiar_planilla,pr.sueldo_basico_planilla,pr.monto_asig_familiar_planilla,pr.otros_planilla,pr.total_remunera_bruta_planilla,pr.snp_onp_planilla,pr.monto_onp,a.nombre_afp,pr.aporte_obligatorio_planilla,pr.comision_sobre_ra_planilla,pr.prima_seguro_planilla,pr.total_descuento_planilla,pr.remuneracion_neta_planilla,pr.aporte_salud_planilla,pr.aporte_sctr_planilla,pr.aporte_total_planilla')
+		->join('cargo c','pr.id_cargo_ocupacion=c.idcargo')
+		->join('persona p','pr.nombres_planilla=p.idpersona')
+		->join('afp a','pr.id_afp=a.idafp')
+		->get()->getResultArray();
+	}
+
+
 
 }
