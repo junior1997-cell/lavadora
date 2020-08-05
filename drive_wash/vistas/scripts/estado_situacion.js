@@ -444,21 +444,22 @@ function totalestadosituacionfinanciera(){
 			var s41 = d41-h41;
 			var s42 = d42-h42;
 
-			var d=s40-s41+s42;
+			var d=(-s40+s41-s42);
+			console.log(d);
 			var sumaTPC =roundNumber(d, 3);
 			document.getElementById("totalPC").innerHTML = sumaTPC;
 
 			/*Total del Pasivo No Corriente*/
-			var s45 = d45-h45;
+			var s45 = h45-d45;
 
 			var e=s45;
-			var sumaTPNC =roundNumber(d, 3);
+			var sumaTPNC =roundNumber(e, 3);
 			document.getElementById("totalPNC").innerHTML = sumaTPNC;
 
 			//var s46 = d46-h46;
 			/*Suma Total del PASIVO y PATRIMONIO*/
-			var s50 = d50-h50;
-			var s59 = d59-h59;
+			var s50 = h50-d50;
+			var s59 = h59-d59;
 
 			var f=sumaTPC+sumaTPNC+s50+s59;
 			var sumaTPSPT =roundNumber(f, 3);

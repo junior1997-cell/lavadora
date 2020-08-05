@@ -182,7 +182,7 @@ function totalestadoresultadosintegrales(){
       var s94 = d94-h94;
       var s95 = d95-h95;
 
-      var b=s94+s95;
+      var b=-(sumaUB+s94+s95);
       var sumaUO =roundNumber(b, 3);
       document.getElementById("totalUO").innerHTML = sumaUO;
 
