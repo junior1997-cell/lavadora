@@ -48,8 +48,8 @@ switch ($_GET["op"]){
 			//$data = '{"n_operacion": 12345}';
 			//print_r('Haber: ',$_POST["haber"]);
 			//echo Console::log('Haber', $haber);
-			$datitos = array();
-			//var_dump($n_operacion,$fecha,$glosa,$id_libro_contable,$doc_sustet,$id_plan_contable,$debe,$haber);die;
+			// $datitos = array();
+			var_dump($n_operacion,$fecha,$glosa,$id_libro_contable,$doc_sustet,$id_plan_contable,$debe,$haber);die;
 
 			$rspta=$Librodiario->api_crear_libro_diario($n_operacion,$fecha,$glosa,$id_libro_contable,$doc_sustet,$id_plan_contable,$debe,$haber);
 			echo $rspta ? "Operación registrada" : "No se pudieron registrar todos los datos del ingreso";

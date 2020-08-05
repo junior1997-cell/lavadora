@@ -326,7 +326,7 @@
                 <div class="row">
                     <div class="col-lg-4 col-sm-6 col-md-6 col-12 mt-2 mb-2">
                         <div class="card">
-                            <img style="" src="public/jhefry/assets/img/goku4.jpg" class="card-img-top" width="200" height="300">
+                            <img style="" src="public/jhefry/assets/img/juni.png" class="card-img-top" width="200" height="300">
                             <div class="card-body">
 
                                 <center><h4 class="card-title" ><i class="badge badge-info" style="color: black;" >Descripción</i></h4>
@@ -356,7 +356,7 @@
 
                     <div class="col-lg-4 col-sm-6 col-md-6 col-12 mt-2 mb-2">
                         <div class="card">
-                            <img style="" src="public/jhefry/assets/img/goku2.jpg" class="card-img-top" width="200" height="300">
+                            <img style="" src="public/jhefry/assets/img/jeison.jpg" class="card-img-top" width="200" height="300">
                             <div class="card-body">
 
                                 <center><h4 class="card-title" ><i class="badge badge-info" style="color: black;" >Descripción</i></h4>
@@ -374,7 +374,7 @@
                     
                     <div class="col-lg-4 col-sm-6 col-md-6 col-12 mt-2 mb-2">
                         <div class="card">
-                            <img style="" src="public/jhefry/assets/img/goku3.jpg" class="card-img-top" width="200" height="300">
+                            <img style="" src="public/jhefry/assets/img/papu.jpeg" class="card-img-top" width="200" height="300">
                             <div class="card-body">
 
                                 <center><h4 class="card-title" ><i class="badge badge-info" style="color: black;" >Descripción</i></h4>
@@ -389,7 +389,7 @@
 
                     <div class="col-lg-4 col-sm-6 col-md-6 col-12 mt-2 mb-2">
                         <div class="card">
-                            <img style="" src="public/jhefry/assets/img/goku5.jpg" class="card-img-top" width="200" height="300">
+                            <img style="" src="public/jhefry/assets/img/prima.jpeg" class="card-img-top" width="200" height="300">
                             <div class="card-body">
 
                                 <center><h4 class="card-title" ><i class="badge badge-info" style="color: black;" >Descripción</i></h4>

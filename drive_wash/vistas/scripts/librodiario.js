@@ -414,8 +414,8 @@ function agregarDatellepedido(idpedidoprenda, documentosustent, totall) {
                 
                 '<td><input type="text" value="'+denominacion+'"></td>' +
                 
-                '<td><input type="number" style="width: 70px" name="debe[]" id="debe[]" value="' + fila_librodiario + '"></td>' +
-                '<td><input type="number" style="width: 70px" name="haber[]" id="haber[]" value="' + totall + '"></td>' +
+                '<td><input type="number"  min="0" step="0.01" style="width: 70px" name="debe[]" id="debe[]" value="' + fila_librodiario + '"></td>' +
+                '<td><input type="number"  min="0" step="0.01" style="width: 70px" name="haber[]" id="haber[]" value="' + totall + '"></td>' +
                 
                 '<td><button type="button" onclick="modificarSubototales()" class="btn btn-info"><i class="fa fa-refresh"></i></button></td>' +
                 '</tr>';
@@ -430,33 +430,56 @@ function agregarDatellepedido(idpedidoprenda, documentosustent, totall) {
     }
 }
 
+function roundNumberventa(num, scale) {
+  if(!("" + num).includes("e")) {
+    return +(Math.round(num + "e+" + scale)  + "e-" + scale);
+  } else {
+    var arr = ("" + num).split("e");
+    var sig = ""
+    if(+arr[1] + scale > 0) {
+      sig = "+";
+    }
+    return +(Math.round(+arr[0] + "e" + sig + (+arr[1] + scale)) + "e-" + scale);
+  }
+}  
 
 function modificarSubototales() {
-    var cant = document.getElementsByName("cantidad[]");
-    var prec = document.getElementsByName("precio_compra[]");
-    var sub = document.getElementsByName("subtotal");
-
+    var cant = document.getElementsByName("debe[]");
+    var prec = document.getElementsByName("haber[]");
+    // var sub = document.getElementsByName("subtotal");
+    var inpSD =0;
+    var inpSDD =0;
+    var inpPH=0;
+    var inpPHH=0;
     for (var i = 0; i <cant.length; i++) {
         var inpC=cant[i];
         var inpP=prec[i];
-        var inpS=sub[i];
+        // var inpS=sub[i];
 
-        inpS.value=inpC.value * inpP.value;
-        document.getElementsByName("subtotal")[i].innerHTML = inpS.value;
+        inpSD=inpC.value;
+        inpSDD=parseFloat(inpSD) + inpSDD;
+        inpPH=inpP.value;
+        inpPHH=inpPHH + parseFloat(inpPH);
+        // document.getElementsByName("subtotal")[i].innerHTML = inpS.value;
     }
-    calcularTotales();
-
-}
-function calcularTotales() {
-    var sub = document.getElementsByName("subtotal");
-    console.log(sub);
+    // calcularTotales();
+    var s= typeof inpSDD;
+    console.log(s);
+    totalD=roundNumberventa(inpSDD,1); 
+    totalH=roundNumberventa(inpPHH,1);
+ 
+     // var sub = document.getElementsByName("subtotal");
+    // console.log(sub);
     var total = 0.0;
 
-    for (var i = 0; i < sub.length; i++) {
-        total += document.getElementsByName("subtotal")[i].value;
-    }
-    $("#totaldebe").html("S/. " + total);
-    $("#total_compra").val(total);
+    // for (var i = 0; i < sub.length; i++) {
+    //     totalD += inpSD;
+    //     totalH += inpPH;
+    // }
+    $("#totaldebe").html("S/. " + totalD);
+    $("#totalhaber").html("S/. " + totalH);
+    $("#totaldebe_val").val(totalD);
+    $("#totalhaber_val").val(totalH);
     evaluar();
 }
 
@@ -473,7 +496,7 @@ function evaluar() {
 
 function eliminarDetalle(indice) {
     $("#fila" + indice).remove();
-    calcularTotales();
+     modificarSubototales();
     detalles = detalles - 1;
     evaluar();
 }

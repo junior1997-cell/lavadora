@@ -100,8 +100,14 @@ if (!isset($_SESSION["nombre"])) {
                                             <th></th>
                                             <th></th>
                                             <th></th>
-                                            <th><h4 id="totaldebe">S/. 50.00</h4></th>
-                                            <th><h4 id="totalhaber">S/. 50.00</h4></th>
+                                            <th>
+                                                <h4 id="totaldebe">S/. 00.00</h4>
+                                                <input type="hidden" name="totaldebe_val" id="totaldebe_val">
+                                            </th>
+                                            <th>
+                                                <h4 id="totalhaber">S/. 00.00</h4>
+                                                <input type="hidden" name="totalhaber_val" id="totalhaber_val">
+                                            </th>
                                             </tfoot>
                                         </table>
 

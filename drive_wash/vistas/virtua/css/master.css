@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  background: url(../img/por2.png) no-repeat center top;
+  background: url(../img/p.png) no-repeat center top;
   background-size: cover;
   font-family: sans-serif;
   height: 100vh;
@@ -27,6 +27,9 @@ body {
   position: absolute;
   top: -50px;
   left: calc(50% - 50px);
+}
+.card .avatar1 {
+  text-align: center;
 }
 
 .login-box h1 {
@@ -80,12 +83,13 @@ body {
   border-radius: 20px;
 }
 
-.login-box input[type="button"]:hover {
+.login-box button[type="submit"]:hover {
   cursor: pointer;
   background: #ffc107;
   color: #000;
 }
-.login-box button[type="submit"]:hover {
+
+.login-box input[type="button"]:hover {
   cursor: pointer;
   background: #ffc107;
   color: #000;
@@ -101,17 +105,33 @@ body {
 .login-box a:hover {
   color: #fff;
 }
-.buf {
-  margin: 0;
-  padding: 0;
-  background: url(../img/foto9.jpg) no-repeat center top;
-  background-size: cover;
-  font-family: sans-serif;
-  height: 100vh;
+
+.card{
+  background: #FFFFFF;
+  color: #FFFFFF;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+  padding: 0px 30px;
+}
+.button input[type="button"] {  
+  border: none;
+  outline: none;
+  height: 40px;
+  width: 125px;
+  background: #b80f22;
+  color: #fff;
+  font-size: 18px;
+  border-radius: 20px;
 }
 
-
-
+.button input[type="button"]:hover {
+  cursor: pointer;
+  background: #ffc107;
+  color: #000;
+}
 .register-box {
   width: 320px;
   height: 580px;
@@ -125,9 +145,9 @@ body {
   padding: 70px 30px;
 }
 
-.register-box .avatar {
-  width: 100px;
-  height: 100px;
+.card .avatar {
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
   position: absolute;
   top: -50px;

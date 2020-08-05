@@ -686,7 +686,8 @@ function calcularTotales(){
 
   	// console.log(porcen_deli);
 	
-	var sub = document.getElementsByName("subtotal");
+	 var sub = document.getElementsByName("subtotal");
+	// console.log(sub);
   	var total = 0.0;
   	
   	// var porcentaje=0.15;
