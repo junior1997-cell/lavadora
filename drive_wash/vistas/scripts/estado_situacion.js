@@ -11,7 +11,7 @@ function init(){
 	suma_debe_haber42();
 	suma_debe_haber45();
 	suma_debe_haber50();
-	suma_debe_haber59();
+	//suma_debe_haber59();
 	totalestadosituacionfinanciera();
 
 }
@@ -338,8 +338,7 @@ function suma_debe_haber50(){
 
  	});
 }
-
-function suma_debe_haber59(){
+/*function suma_debe_haber59(){
 
 	$.post("../ajax/libromayor.php?op=total_debe_haber_c59", function(data)
 	{
@@ -368,7 +367,7 @@ function suma_debe_haber59(){
 		}
 
  	});
-}
+}*/
 
 /*Funciones para sumar los totales*/
 
@@ -415,6 +414,27 @@ function totalestadosituacionfinanciera(){
 		d59= data['Detalle59'][0]['debe'];
 		h59= data['Detalle59'][0]['haber'];
 
+		d60= data['Detalle60'][0]['debe'];
+		h60= data['Detalle60'][0]['haber'];
+
+		d61= data['Detalle61'][0]['debe'];
+		h62= data['Detalle61'][0]['haber'];
+
+		d63= data['Detalle63'][0]['debe'];
+		h63= data['Detalle63'][0]['haber'];
+
+		d69= data['Detalle69'][0]['debe'];
+		h69= data['Detalle69'][0]['haber'];
+
+		d70= data['Detalle70'][0]['debe'];
+		h70= data['Detalle70'][0]['haber'];
+
+		d94= data['Detalle94'][0]['debe'];
+		h94= data['Detalle94'][0]['haber'];
+
+		d95= data['Detalle95'][0]['debe'];
+		h95= data['Detalle95'][0]['haber'];
+
 		//if(d10>h10 || d12>h12 || d14>h14 || d20>h20 || d33>h33 || d40>h40 || d41>h41 || d42>h42 || d45>h45 || d46>h46 || d50>h50 ||d59>h59){
 			
 			/*Suma Total del Activo Corriente*/
@@ -455,19 +475,47 @@ function totalestadosituacionfinanciera(){
 			var e=s45;
 			var sumaTPNC =roundNumber(e, 3);
 			document.getElementById("totalPNC").innerHTML = sumaTPNC;
+			///---------------------
+			resultados=parseFloat(d69)+parseFloat(d94)+parseFloat(d95);
+
+			setent=parseFloat(h70);
+			restaaa=resultados-setent;
+			console.log(restaaa);
+
+			console.log('aaaaaaaaaaa',resultados);
+			console.log('a',setent);
+			////--------------------
+			if (d59>h59) {
+
+			var resta=d59-h59;
+			var x= roundNumber(resta,3);
+
+			document.getElementById("paspat59").innerHTML = 0;
+			}else{
+			var restb=h59-d59;
+			var y= roundNumber(restb,3);
+			var abs=y-restaaa;
+
+			document.getElementById("paspat59").innerHTML = abs;
+
+			}
+
 
 			//var s46 = d46-h46;
 			/*Suma Total del PASIVO y PATRIMONIO*/
 			var s50 = h50-d50;
 			var s59 = h59-d59;
 
-			var f=sumaTPC+sumaTPNC+s50+s59;
+			var f=sumaTPC+sumaTPNC+s50+abs;
 			var sumaTPSPT =roundNumber(f, 3);
 			document.getElementById("totalPSPT").innerHTML = sumaTPSPT;
 
 
 	});
 }
+
+
+
 
 
 /*unction sumaAC (){

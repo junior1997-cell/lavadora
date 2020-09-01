@@ -171,8 +171,8 @@ function totalestadoresultadosintegrales(){
     //if(d10>h10 || d12>h12 || d14>h14 || d20>h20 || d33>h33 || d40>h40 || d41>h41 || d42>h42 || d45>h45 || d46>h46 || d50>h50 ||d59>h59){
       
       /*Suma Total de la UTILIDAD BRUTA*/
-      var s69 = d69-h69;
-      var s70 = d70-h70;
+      var s69 = h69-d69;
+      var s70 = h70-d70;
 
       var a=s70+s69;
       var sumaUB =roundNumber(a, 3);
@@ -182,7 +182,7 @@ function totalestadoresultadosintegrales(){
       var s94 = d94-h94;
       var s95 = d95-h95;
 
-      var b=-(sumaUB+s94+s95);
+      var b=-(-sumaUB+s94+s95);
       var sumaUO =roundNumber(b, 3);
       document.getElementById("totalUO").innerHTML = sumaUO;
 
