@@ -29,6 +29,8 @@
 @import url(nice-select.css);
 @import url(baguetteBox.min.css);
 
+
+
 /*------------------------------------------------------------------
     SKELETON
 -------------------------------------------------------------------*/
@@ -162,7 +164,7 @@
 }
 /*------------------------------------------------------------------ HEADER -------------------------------------------------------------------*/
  .main-top{
-     background: #000000;
+     background: #952F57;
      padding: 10px 0px;
 }
  .custom-select-box{
@@ -174,10 +176,47 @@
      background: none;
      border: none;
 }
+/*------------------------------------------BANNER PRINCIPAL-------------------------------------------------------------------------------------*/
+.banner{
+    background:url(../images/banner-02.jpg) no-repeat center top;
+    background-attachment:fixed;
+    background-size:cover;
+    height:100vh;
+    min-height:100%;
+}
+
+.banner .container, .banner .banner-static, .banner .col-lg-12 {
+    height: 100%;
+}
+.banner-text {
+    display: table;
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+.banner-cell {
+    display: table-cell;
+    vertical-align: middle;
+    color: #fff;
+}
+.banner-text h1 {
+    font-family: 'nautilus_pompiliusregular';
+    letter-spacing: 2.7px;
+    position: relative;
+    display: inline-block;
+    font-size: 74px;
+    line-height: 100px;
+    color:#fff;
+    padding-bottom: 0px;
+    padding-top:100px;
+}
+
+/*--------------------------------------------------ACABA EL BANNER PRINCIPAL---------------------------------------------------------------*/
  .custom-select-box .bootstrap-select .btn-light{
      padding: 4px;
      font-size: 14px;
-     background: #b0b435;
+     background: #952F57;
      color: #fff;
      border: none;
      border-radius: 0px;
@@ -279,7 +318,7 @@
  .login-box .bootstrap-select .btn-light{
      padding: 4px;
      font-size: 14px;
-     background: #b0b435;
+     background: #952F57;
      color: #fff;
      border: none;
      border-radius: 0px;
@@ -402,7 +441,7 @@
          top: -2px;
     }
      nav.navbar .navbar-brand img.logo{
-         width: 160px;
+         width: 10px;
     }
      .attr-nav > ul > li > a{
          padding: 16px 15px 15px;
@@ -742,7 +781,7 @@
      height: 100vh;
 }
  .slides-navigation a {
-     background: #b0b435;
+     background: #952F57;
      position: absolute;
      height: 70px;
      width: 70px;
@@ -758,7 +797,7 @@
      font-size: 40px;
 }
  .slides-navigation a:hover {
-     background: #000000;
+     background: #952F57;
 }
  .cover-slides .container{
      height: 100%;
